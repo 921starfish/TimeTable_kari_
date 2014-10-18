@@ -15,10 +15,10 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TimeTable0._0β.App">
-      <m2:VisualElements DisplayName="TimeTable0.0β" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="TimeTable0.0β" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="TimeTable0.0β" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="TimeTable0.0β" ForegroundText="light" BackgroundColor="#a349a4">
         <m2:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </m2:DefaultTile>
-        <m2:SplashScreen Image="Assets\SplashScreen.png" />
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#a349a4" />
       </m2:VisualElements>
     </Application>
   </Applications>

@@ -127,6 +127,8 @@
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
     <None Include="TimeTable0.0β_TemporaryKey.pfx" />
+    <Content Include="Assets\Logo-kari-.png" />
+    <Content Include="Assets\Logo-kari-150_150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="DataModel\SampleData.json" />
   </ItemGroup>
