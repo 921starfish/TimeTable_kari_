@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
 
-  <Identity Name="fabda1e4-819d-4271-ab8c-1ef8b1076ac0"
+  <Identity Name="a32e4249-15ed-49a4-9009-68d7520474d1"
             Publisher="CN=921starfish"
             Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>TimeTable0.0α.Windows</DisplayName>
+    <DisplayName>TimeTable0.0α</DisplayName>
     <PublisherDisplayName>921starfish</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -23,12 +23,12 @@
   <Applications>
     <Application Id="App"
         Executable="$targetnametoken$.exe"
-        EntryPoint="TimeTable0._0α.Windows.App">
+        EntryPoint="TimeTable0._0α.App">
         <m2:VisualElements
-            DisplayName="TimeTable0.0α.Windows"
+            DisplayName="TimeTable0.0α"
             Square150x150Logo="Assets\Logo.png"
             Square30x30Logo="Assets\SmallLogo.png"
-            Description="TimeTable0.0α.Windows"
+            Description="TimeTable0.0α"
             ForegroundText="light"
             BackgroundColor="#464646">
             <m2:SplashScreen Image="Assets\SplashScreen.png" />
