@@ -8,6 +8,6 @@
     <Application.Resources>
 
         <!--アプリケーション固有のリソース -->
-        <x:String x:Key="AppName">TimeTable0._0α</x:String>
+        <x:String x:Key="AppName">TimeTable(仮)</x:String>
     </Application.Resources>
 </Application>
