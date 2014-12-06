@@ -1,11 +1,9 @@
 ﻿using TimeTable0._0β.Common;
-using TimeTable0._0β.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,18 +14,26 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// アイテム ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234233 を参照してください
+// 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
 
 namespace TimeTable0._0β
 {
     /// <summary>
-    /// アイテムのコレクションのプレビューを表示するページです。このページは、分割アプリで使用できる
-    /// グループを表示し、その 1 つを選択するために使用されます。
+    /// 多くのアプリケーションに共通の特性を指定する基本ページ。
     /// </summary>
-    public sealed partial class ItemsPage : Page
+    public sealed partial class BasicPage1 : Page
     {
+
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        /// <summary>
+        /// これは厳密に型指定されたビュー モデルに変更できます。
+        /// </summary>
+        public ObservableDictionary DefaultViewModel
+        {
+            get { return this.defaultViewModel; }
+        }
 
         /// <summary>
         /// NavigationHelper は、ナビゲーションおよびプロセス継続時間管理を
@@ -38,19 +44,13 @@ namespace TimeTable0._0β
             get { return this.navigationHelper; }
         }
 
-        /// <summary>
-        /// これは厳密に型指定されたビュー モデルに変更できます。
-        /// </summary>
-        public ObservableDictionary DefaultViewModel
-        {
-            get { return this.defaultViewModel; }
-        }
 
-        public ItemsPage()
+        public BasicPage1()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
+            this.navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
         /// <summary>
@@ -58,31 +58,26 @@ namespace TimeTable0._0β
         /// 再作成する場合は、保存状態も指定されます。
         /// </summary>
         /// <param name="sender">
-        /// イベントのソース (通常、<see cref="NavigationHelper"/>)
+        /// イベントのソース (通常、<see cref="NavigationHelper"/>)>
         /// </param>
         /// <param name="e">このページが最初に要求されたときに
         /// <see cref="Frame.Navigate(Type, Object)"/> に渡されたナビゲーション パラメーターと、
         /// 前のセッションでこのページによって保存された状態の辞書を提供する
-        /// イベント データ。ページに初めてアクセスするとき、状態は null になります。</param>
-        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        /// セッション。ページに初めてアクセスするとき、状態は null になります。</param>
+        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: 問題のドメインでサンプル データを置き換えるのに適したデータ モデルを作成します
-            var sampleDataGroups = await SampleDataSource.GetGroupsAsync();
-            this.DefaultViewModel["Items"] = sampleDataGroups;
         }
 
         /// <summary>
-        /// アイテムがクリックされたときに呼び出されます。
+        /// アプリケーションが中断される場合、またはページがナビゲーション キャッシュから破棄される場合、
+        /// このページに関連付けられた状態を保存します。値は、
+        /// <see cref="SuspensionManager.SessionState"/> のシリアル化の要件に準拠する必要があります。
         /// </summary>
-        /// <param name="sender">クリックされたアイテムを表示する GridView (アプリケーションがスナップ
-        /// されている場合は ListView) です。</param>
-        /// <param name="e">クリックされたアイテムを説明するイベント データ。</param>
-        void ItemView_ItemClick(object sender, ItemClickEventArgs e)
+        /// <param name="sender">イベントのソース (通常、<see cref="NavigationHelper"/>)</param>
+        /// <param name="e">シリアル化可能な状態で作成される空のディクショナリを提供するイベント データ
+        ///。</param>
+        private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            // 適切な移動先のページに移動し、新しいページを構成します。
-            // このとき、必要な情報をナビゲーション パラメーターとして渡します
-            var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(SplitPage), groupId);
         }
 
         #region NavigationHelper の登録
@@ -107,10 +102,5 @@ namespace TimeTable0._0β
         }
 
         #endregion
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(BasicPage1));
-        }
     }
 }
