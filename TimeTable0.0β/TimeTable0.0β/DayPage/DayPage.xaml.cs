@@ -110,7 +110,7 @@ namespace TimeTable0._0β
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(BasicPage1));
+            this.Frame.Navigate(typeof(TablePage));
         }
     }
 }

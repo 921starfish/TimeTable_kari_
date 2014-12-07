@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using TimeTable0._0β.TimeTablePage;
 // 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
 
 namespace TimeTable0._0β
@@ -21,7 +21,7 @@ namespace TimeTable0._0β
     /// <summary>
     /// 多くのアプリケーションに共通の特性を指定する基本ページ。
     /// </summary>
-    public sealed partial class BasicPage1 : Page
+    public sealed partial class TablePage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -45,7 +45,7 @@ namespace TimeTable0._0β
         }
 
 
-        public BasicPage1()
+        public TablePage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -66,6 +66,7 @@ namespace TimeTable0._0β
         /// セッション。ページに初めてアクセスするとき、状態は null になります。</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            this.DataContext = new TimeTablePageViewModel();
         }
 
         /// <summary>
