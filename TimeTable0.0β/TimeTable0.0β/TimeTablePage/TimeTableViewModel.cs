@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTable0._0β.Commands;
 using Windows.UI.Xaml;
 
 namespace TimeTable0._0β.TimeTablePage
@@ -11,9 +12,10 @@ namespace TimeTable0._0β.TimeTablePage
     class TimeTableViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public TimeTableViewModel(int i,int w)
+        public TimeTableViewModel(TablePage page, int i,int w)
         {
             this.TableNumber = i+1;
+            Page = page; 
             switch (w)
             { 
                 case 1:
@@ -44,6 +46,12 @@ namespace TimeTable0._0β.TimeTablePage
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += OnTick;
             timer.Start();
+            TableClickedAction =new AlwaysExecutableDelegateCommand(
+            ()=>
+            {
+                Page.Frame.Navigate(typeof(SplitPage));          
+            });
+          
         }
 
         private void OnTick(object sender, object e)
@@ -54,5 +62,7 @@ namespace TimeTable0._0β.TimeTablePage
         public int Hight { get; set; }
         public int Width { get; set; }
         public DispatcherTimer timer { get; set; }
+        public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
+        public TablePage Page { get; set; }
     }
 }

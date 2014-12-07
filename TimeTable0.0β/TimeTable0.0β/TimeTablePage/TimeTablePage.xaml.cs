@@ -66,7 +66,7 @@ namespace TimeTable0._0β
         /// セッション。ページに初めてアクセスするとき、状態は null になります。</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            this.DataContext = new TimeTablePageViewModel();
+            this.DataContext = new TimeTablePageViewModel(this);
         }
 
         /// <summary>

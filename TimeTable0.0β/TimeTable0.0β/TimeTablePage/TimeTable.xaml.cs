@@ -33,5 +33,10 @@ namespace TimeTable0._0β.TimeTablePage
         {
 
         }
+
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -11,17 +11,20 @@ namespace TimeTable0._0β.TimeTablePage
     class TimeTablePageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public TimeTablePageViewModel()
+        public TimeTablePageViewModel(TablePage page)
         {
+            Page = page;
             Tables = new ObservableCollection<TimeTableViewModel>();
             for (int j = 1; j < 8;j++ )
                 for (int i = 0; i < 7; i++)
                 {
-                    Tables.Add(new TimeTableViewModel(i, j));
+                    Tables.Add(new TimeTableViewModel(Page,i, j));
                 }
-            
+            PropertyChanged(this, new PropertyChangedEventArgs("Tables"));
         }
 
         public ObservableCollection<TimeTableViewModel> Tables { get; set; }
+
+        public TablePage Page { get; set; }
     }
 }

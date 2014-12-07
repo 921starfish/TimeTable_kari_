@@ -112,5 +112,10 @@ namespace TimeTable0._0β
         {
             this.Frame.Navigate(typeof(TablePage));
         }
+
+        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

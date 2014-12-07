@@ -51,7 +51,7 @@
         <GridView  Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Tables}" >   
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel DataContext="{Binding}">
+                    <StackPanel  DataContext="{Binding}">
                         <local:TimeTable/>
                     </StackPanel>
                 </DataTemplate>

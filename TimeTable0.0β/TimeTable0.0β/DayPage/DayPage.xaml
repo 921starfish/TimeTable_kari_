@@ -48,7 +48,7 @@
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
             ItemClick="ItemView_ItemClick"
-            ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="144,2,693,-2">
+            ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="144,2,693,-2" SelectionChanged="itemGridView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="511" Height="250" Background="#FFC240DE">
