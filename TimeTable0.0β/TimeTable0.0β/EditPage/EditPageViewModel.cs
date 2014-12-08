@@ -10,14 +10,17 @@ namespace TimeTable0._0β.EditPage
     class EditPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public EditPageViewModel(int n,DayOfWeek w)
+        public EditPageViewModel(TableKey key)
         {
-            this.dayOfWeek = w;
-            this.TableNumber = n;
+            this.TableKey = key;
+            this.WeekDayText = key.dayOfWeek.ToString();
+            this.TableNumber = key.TableNumber;
+            this.DetailText =WeekDayText +" "+ TableNumber.ToString() ; 
         }
+        public TableKey TableKey { get; set; }
+        string WeekDayText { get; set; }
+        int TableNumber { get; set; }
 
-        public DayOfWeek dayOfWeek { get; set; }
-        public int TableNumber { get; set; }
-        
+        public string DetailText { get; set; }
     }
 }

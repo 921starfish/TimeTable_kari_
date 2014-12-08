@@ -81,8 +81,8 @@ namespace TimeTable0._0β
         {
             // 適切な移動先のページに移動し、新しいページを構成します。
             // このとき、必要な情報をナビゲーション パラメーターとして渡します
-            var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(SplitPage), groupId);
+            // var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
+            //this.Frame.Navigate(typeof(SplitPage), groupId);
         }
 
         #region NavigationHelper の登録

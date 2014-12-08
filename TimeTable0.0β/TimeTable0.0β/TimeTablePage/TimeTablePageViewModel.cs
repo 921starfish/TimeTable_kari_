@@ -16,9 +16,9 @@ namespace TimeTable0._0β.TimeTablePage
             Page = page;
             Tables = new ObservableCollection<TimeTableViewModel>();
             for (int j = 1; j < 8;j++ )
-                for (int i = 0; i < 7; i++)
+                for (int i = 1; i < 8; i++)
                 {
-                    Tables.Add(new TimeTableViewModel(Page,i, j));
+                    Tables.Add(new TimeTableViewModel(Page,new TableKey(i,j)));
                 }
             PropertyChanged(this, new PropertyChangedEventArgs("Tables"));
         }

@@ -69,7 +69,7 @@ namespace TimeTable0._0β
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: バインド可能なグループのコレクションを this.DefaultViewModel["Groups"] に割り当てます
-            this.DataContext = new EditPageViewModel(lastClickedTableNumber,lastClickedDayOfWeek);
+                this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
         }
 
         #region NavigationHelper の登録
@@ -108,5 +108,10 @@ namespace TimeTable0._0β
         public int lastClickedTableNumber { get; set; }
 
         public DayOfWeek lastClickedDayOfWeek { get; set; }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
