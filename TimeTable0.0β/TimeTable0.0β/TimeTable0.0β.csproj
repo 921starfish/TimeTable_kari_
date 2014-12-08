@@ -108,6 +108,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DayPage\DayPageTable.xaml.cs">
+      <DependentUpon>DayPageTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DayPage\DayPageViewModel.cs" />
+    <Compile Include="DayPage\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DayPage\TimeControlViewModel.cs" />
     <Compile Include="EditPage\EditPageViewModel.cs" />
     <Compile Include="TableKey.cs" />
     <Compile Include="TimeTablePage\TimeTable.xaml.cs">
@@ -157,6 +165,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DayPage\DayPageTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DayPage\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TimeTablePage\TimeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

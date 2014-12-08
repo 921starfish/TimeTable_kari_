@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using TimeTable0._0β.Commands;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace TimeTable0._0β.TimeTablePage
 {
     class TimeTableViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public TimeTableViewModel(TablePage page, TableKey key)
+        public TimeTableViewModel(Page page, TableKey key)
         {
             this.TableKey = key;
             this.Page = page; 
@@ -39,7 +40,7 @@ namespace TimeTable0._0β.TimeTablePage
         public int Width { get; set; }
         public DispatcherTimer timer { get; set; }
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
-        public TablePage Page { get; set; }
+        public Page Page { get; set; }
         public TableKey TableKey { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="TimeTable0._0β.DayPage.DayPageTable"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTable0._0β.DayPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+  d:DesignHeight="{Binding Hight}"
+    d:DesignWidth="{Binding Width}" Loaded="UserControl_Loaded">
+    <UserControl.Background>
+        <ImageBrush Stretch="Fill"/>
+    </UserControl.Background>
+
+
+    <Grid Background="#FFEF89FF" Width="{Binding Width}" Height="{Binding Hight}" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>
+        <TextBlock Grid.Column="1" Text="{Binding TableNumber}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="80"/>
+        <TextBlock Grid.Column="2" Text="時限" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" />
+    </Grid>
+</UserControl>

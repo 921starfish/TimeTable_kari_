@@ -9,19 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <!--<Page.Resources>
-        <x:Double x:Key="GridHeight">140</x:Double>
-        <x:Double x:Key="GridWidth">200</x:Double>
-        --><!-- TODO: Delete this line if the key AppName is declared in App.xaml --><!--
-    </Page.Resources>-->
-
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
-    <Grid>
+    <Grid MinHeight="768" MinWidth="1024">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
@@ -30,6 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" 
                         Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"

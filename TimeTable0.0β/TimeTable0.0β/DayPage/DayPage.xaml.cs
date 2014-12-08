@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTable0._0β.DayPage;
 
 // アイテム ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234233 を参照してください
 
@@ -38,13 +39,7 @@ namespace TimeTable0._0β
             get { return this.navigationHelper; }
         }
 
-        /// <summary>
-        /// これは厳密に型指定されたビュー モデルに変更できます。
-        /// </summary>
-        public ObservableDictionary DefaultViewModel
-        {
-            get { return this.defaultViewModel; }
-        }
+  
 
         public ItemsPage()
         {
@@ -66,9 +61,7 @@ namespace TimeTable0._0β
         /// イベント データ。ページに初めてアクセスするとき、状態は null になります。</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: 問題のドメインでサンプル データを置き換えるのに適したデータ モデルを作成します
-            var sampleDataGroups = await SampleDataSource.GetGroupsAsync();
-            this.DefaultViewModel["Items"] = sampleDataGroups;
+            this.DataContext = new DayPageViewModel(this);
         }
 
         /// <summary>
@@ -114,6 +107,16 @@ namespace TimeTable0._0β
         }
 
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListView_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
