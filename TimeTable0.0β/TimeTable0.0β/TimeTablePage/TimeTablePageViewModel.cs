@@ -20,7 +20,7 @@ namespace TimeTable0._0β.TimeTablePage
                 Tables[j]=new ObservableCollection<TimeTableViewModel>();
                 for (int i = 1; i < 8; i++)
                 {
-                    Tables[j].Add(new TimeTableViewModel(Page, new TableKey(i, 1)));
+                    Tables[j].Add(new TimeTableViewModel(Page, new TableKey(i, j+1)));
                 }
             }
                
