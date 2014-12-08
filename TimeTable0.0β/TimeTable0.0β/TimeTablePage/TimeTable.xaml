@@ -13,15 +13,15 @@
     </UserControl.Background>
 
 
-    <Grid Background="LightGray" Width="{Binding Width}" Height="{Binding Hight}" >
+    <Grid Background="#a349a4" Width="{Binding Width}" Height="{Binding Hight}" >
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"  Foreground="#a349a4" BorderBrush="#FFA349A4"/>
-        <TextBlock Grid.Column="1" Text="{Binding TableNumber}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="80"/>
-        <TextBlock Grid.Column="2" Text="時限" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  SelectionChanged="TextBlock_SelectionChanged"/>
+        <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit" />
+        <!--<TextBlock Grid.Column="1" Text="{Binding TableNumber}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>-->
+        <!--<TextBlock Grid.Column="2" Text="時限" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  SelectionChanged="TextBlock_SelectionChanged"/>-->
     </Grid>
 </UserControl>
