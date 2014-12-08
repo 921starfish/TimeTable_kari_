@@ -10,53 +10,116 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <x:Double x:Key="GridHeight">140</x:Double>
         <x:Double x:Key="GridWidth">200</x:Double>
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-    </Page.Resources>
+        --><!-- TODO: Delete this line if the key AppName is declared in App.xaml --><!--
+    </Page.Resources>-->
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="900" Width="1600">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-       
-        <!-- Back button and page title -->
-
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" 
+                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
+
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
-        <GridView  Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding Tables}" >   
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel  DataContext="{Binding}">
-                        <local:TimeTable/>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding MonTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding TueTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding WedTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding ThuTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FriTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SatTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView  Grid.Row="1" Grid.Column="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SunTables}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  DataContext="{Binding}">
+                            <local:TimeTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
-
 </Page>

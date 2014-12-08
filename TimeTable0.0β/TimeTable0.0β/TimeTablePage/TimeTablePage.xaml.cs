@@ -103,5 +103,10 @@ namespace TimeTable0._0β
         }
 
         #endregion
+
+        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
