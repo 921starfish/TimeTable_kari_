@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTable0._0β.DataModel;
 
 // 分割アプリケーション テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234228 を参照してください
 
@@ -91,6 +92,9 @@ namespace TimeTable0._0β
                 // 作成します
                 rootFrame.Navigate(typeof(ItemsPage), e.Arguments);
             }
+            ApplicationData sampleData = await ApplicationData.LoadData();
+            var data=await sampleData.GetSchedule(6, 36);
+            await ApplicationData.SaveData(sampleData);
             // 現在のウィンドウがアクティブであることを確認します
             Window.Current.Activate();
         }

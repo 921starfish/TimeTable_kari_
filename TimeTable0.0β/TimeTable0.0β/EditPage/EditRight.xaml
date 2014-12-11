@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="TimeTable0._0β.EditPage.EditRight"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTable0._0β.EditPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="1000"
+    d:DesignWidth="1000">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "1*"/>
+            <ColumnDefinition Width= "10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "10*"/>
+        </Grid.RowDefinitions>
+        <local:RightInformation Grid.Row="1" Grid.Column="1"/>
+        
+    </Grid>
+</UserControl>

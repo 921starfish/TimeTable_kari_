@@ -20,54 +20,27 @@
         このグリッドはページのルート パネルとして機能します。
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "3*"/>
+            <ColumnDefinition Width= "6*"/>
+        </Grid.ColumnDefinitions>
         <Hub>
-            <Hub.Header>
-                <!-- [戻る] ボタンおよびページ タイトル-->
-                <Grid Width="292" Height="82">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="5*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        x:Name="backButton"  Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="backButton"/>
-                    <TextBlock Grid.Column="1" x:Name="pageTitle" Text="法学１" Style="{StaticResource HeaderTextBlockStyle}" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        IsHitTestVisible="false" TextWrapping="NoWrap"  SelectionChanged="pageTitle_SelectionChanged" Foreground="Black" />
-                </Grid>
-            </Hub.Header>
-
-            <HubSection Width="465" Background="#FFF2CFFF" BorderBrush="#00000000"/>
-            <HubSection Width="900" Foreground="Black" Background="White" FontWeight="Bold" IsHeaderInteractive="True">
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Image Stretch="Fill" Width="420" Height="280"/>
-                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
-                                   Text="タイトル"/>
-                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
-                                   Text="説明文:"/>
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
-                                   Text="長めの文章"/>
-                    </Grid>
-                </DataTemplate>
+            <HubSection Width="900" Foreground="Black" Background="White" 
+                        >
             </HubSection>
         </Hub>
-        <TextBox HorizontalAlignment="Left" Margin="507,112,0,0" TextWrapping="Wrap" Text="テーブル名を入力してください" VerticalAlignment="Top" Background="Transparent" FontSize="48" BorderBrush="Transparent" FontFamily="Global User Interface"/>
-        <TextBox HorizontalAlignment="Left" Margin="70,142,0,0" TextWrapping="Wrap" Text="{Binding DetailText}" VerticalAlignment="Top" BorderBrush="Transparent" Height="296" Width="321" TextChanged="TextBox_TextChanged"/>
-        <TextBox HorizontalAlignment="Left" Margin="76,466,0,0" TextWrapping="Wrap" Text="場所" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" FontSize="36"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="88,551,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="301"/>
+        <TextBox HorizontalAlignment="Left" Margin="507,112,0,0" TextWrapping="Wrap" 
+                 Text="テーブル名を入力してください" VerticalAlignment="Top" 
+                 Background="Transparent" FontSize="48" BorderBrush="Transparent" 
+                 FontFamily="Global User Interface"/>
+        <TextBox HorizontalAlignment="Left" Margin="70,142,0,0" TextWrapping="Wrap" 
+                 Text="{Binding DetailText}" VerticalAlignment="Top" 
+                 BorderBrush="Transparent" Height="296" Width="321" 
+                 TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Margin="76,466,0,0" TextWrapping="Wrap" 
+                 Text="場所" VerticalAlignment="Top" Background="Transparent" 
+                 BorderBrush="Transparent" FontSize="36"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="88,551,0,0" 
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="301"/>
     </Grid>
 </Page>
