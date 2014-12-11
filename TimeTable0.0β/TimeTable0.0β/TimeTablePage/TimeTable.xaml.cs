@@ -38,5 +38,11 @@ namespace TimeTable0._0β.TimeTablePage
         {
 
         }
+
+        private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            
+        }
+       
     }
 }
