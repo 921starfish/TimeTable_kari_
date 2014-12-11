@@ -108,6 +108,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\ApplicationData.cs" />
     <Compile Include="DayPage\DayPageTable.xaml.cs">
       <DependentUpon>DayPageTable.xaml</DependentUpon>
     </Compile>
@@ -116,7 +117,22 @@
       <DependentUpon>TimeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DayPage\TimeControlViewModel.cs" />
+    <Compile Include="EditPage\EditLeft.xaml.cs">
+      <DependentUpon>EditLeft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPage\EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditPage\EditPageViewModel.cs" />
+    <Compile Include="EditPage\EditRight.xaml.cs">
+      <DependentUpon>EditRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPage\FreeAreaControl.xaml.cs">
+      <DependentUpon>FreeAreaControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPage\PlaceInformationControl.xaml.cs">
+      <DependentUpon>PlaceInformationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditPage\RightInformation.xaml.cs">
       <DependentUpon>RightInformation.xaml</DependentUpon>
     </Compile>
@@ -136,9 +152,6 @@
     <Compile Include="DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPage\EditPage.xaml.cs">
-      <DependentUpon>EditPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataModel\SampleDataSource.cs" />
     <Compile Include="Common\RelayCommand.cs" />
@@ -152,6 +165,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="DataModel\ScheduleData.xml" />
+    <Content Include="XMLFile1.xml" />
     <None Include="Common\ReadMe.txt" />
     <None Include="TimeTable0.0β_TemporaryKey.pfx" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -179,6 +194,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditPage\EditLeft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPage\EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPage\EditRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPage\FreeAreaControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPage\PlaceInformationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditPage\RightInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,10 +231,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DayPage\DayPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EditPage\EditPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

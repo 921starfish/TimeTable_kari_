@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeTable0._0β.Commands;
+using TimeTable0._0β.EditPage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

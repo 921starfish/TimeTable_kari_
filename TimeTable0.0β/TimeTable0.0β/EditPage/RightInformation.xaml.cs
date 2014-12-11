@@ -17,11 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TimeTable0._0β.EditPage
 {
-    public sealed partial class LeftInformation : UserControl
+    public sealed partial class RightInformation : UserControl
     {
-        public LeftInformation()
+        public RightInformation()
         {
-            this.InitializeComponent();
+
         }
     }
 }

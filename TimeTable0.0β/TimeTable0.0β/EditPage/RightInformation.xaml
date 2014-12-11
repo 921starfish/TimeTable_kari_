@@ -12,20 +12,15 @@
     <Grid Background="Azure">
         <Grid.RowDefinitions>
             <RowDefinition Height= "1*"/>
-            <RowDefinition Height= "2*"/>
-            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "5*"/>
         </Grid.RowDefinitions>
         <TextBox   Grid.Row="0"
                    Foreground="Black"
-                   Text="タイトル"
+                   Text="ここに小見出しを入力"
                    FontWeight="Bold"/>
         <TextBox   Grid.Row="1" 
                    Foreground="Black"
-                   Text="説明文:"
-                   />
-        <TextBox   Grid.Row="2" 
-                   Foreground="Black"
-                   Text="長めの文章"
+                   Text="ここに説明文を入力"
                    />
     </Grid>
 </UserControl>
