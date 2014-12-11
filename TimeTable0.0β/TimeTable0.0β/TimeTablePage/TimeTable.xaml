@@ -45,7 +45,6 @@
         </Storyboard>
     </Control.Resources>
 
-
     <Grid x:Name="grid" Background="#a349a4" Width="{Binding Width}" Height="{Binding Hight}" MinHeight="90" MinWidth="200" PointerEntered="Grid_PointerEntered">
         
         <Grid.ColumnDefinitions>
