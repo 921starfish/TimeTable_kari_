@@ -127,12 +127,6 @@
     <Compile Include="EditPage\EditRight.xaml.cs">
       <DependentUpon>EditRight.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPage\FreeAreaControl.xaml.cs">
-      <DependentUpon>FreeAreaControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditPage\PlaceInformationControl.xaml.cs">
-      <DependentUpon>PlaceInformationControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TableKey.cs" />
     <Compile Include="TimeTablePage\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -197,14 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditPage\EditRight.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditPage\FreeAreaControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditPage\PlaceInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

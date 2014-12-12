@@ -28,5 +28,10 @@ namespace TimeTable0._0β.EditPage
         {
 
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

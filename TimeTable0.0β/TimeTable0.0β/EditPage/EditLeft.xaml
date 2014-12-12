@@ -27,10 +27,28 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         IsHitTestVisible="false" SelectionChanged="pageTitle_SelectionChanged" Foreground="Black" />
-        <local:FreeAreaControl Grid.Column="1"
-                               Grid.Row ="2"/>
-        <local:PlaceInformationControl Grid.Column="1"
-                                       Grid.Row="4"/>
-
+        <TextBox Grid.Column="1" Grid.Row="2" Background ="Azure"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             TextWrapping="Wrap"
+             AcceptsReturn="True"
+             BorderBrush="Blue"
+             Text="{Binding DetailText}" TextChanged="TextBox_TextChanged">
+        </TextBox>
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "1*"/>
+                <RowDefinition Height= "1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                   Foreground="Black"
+                   Text="場所"
+                   FontWeight="Bold" FontSize="36" FontStyle="Italic"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox   Grid.Row="1" 
+                   Foreground="Black"
+                   Background="White"
+                   Text="ここに説明文を入力" FontFamily="Global User Interface"
+                   />
+        </Grid>
     </Grid>
 </UserControl>
