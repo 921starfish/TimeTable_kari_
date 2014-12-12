@@ -133,9 +133,6 @@
     <Compile Include="EditPage\PlaceInformationControl.xaml.cs">
       <DependentUpon>PlaceInformationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPage\RightInformation.xaml.cs">
-      <DependentUpon>RightInformation.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EditPage\TytleControl.xaml.cs">
       <DependentUpon>TytleControl.xaml</DependentUpon>
     </Compile>
@@ -211,10 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditPage\PlaceInformationControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditPage\RightInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
