@@ -10,5 +10,10 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         {
             this.InitializeComponent();
         }
+
+        private void Grid_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.DataContext = new TimeControlViewModel();
+        }
     }
 }

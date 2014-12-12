@@ -5,33 +5,36 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
- d:DesignHeight="1000"
-    d:DesignWidth="500">
+    mc:Ignorable="d">
 
-    <Grid Background="#FFF2CFFF">
+    <Grid Background="#FFE8E2E8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width= "1*"/>
             <ColumnDefinition Width= "5*"/>
             <ColumnDefinition Width= "1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "0*"/>
             <RowDefinition Height= "2*"/>
             <RowDefinition Height= "6*"/>
             <RowDefinition Height= "1*"/>
             <RowDefinition Height= "2*"/>
             <RowDefinition Height= "2*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="pageTitle" Text="法学１" Style="{StaticResource HeaderTextBlockStyle}" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        IsHitTestVisible="false" Foreground="Black" />
-        <TextBox Grid.Column="1" Grid.Row="2" Background ="Azure"
+        <TextBlock Grid.Column="1" Grid.Row="1" 
+                   x:Name="pageTitle" 
+                   Text="{Binding ClassName}" 
+                   Style="{StaticResource HeaderTextBlockStyle}" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                     IsHitTestVisible="false" 
+                   Foreground="Black" 
+                   FontFamily="メイリオ"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Background ="#f0edf3"
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
              TextWrapping="Wrap"
              AcceptsReturn="True"
-             BorderBrush="Blue"
+             BorderBrush="#e0dade"
              Text="{Binding DetailText}">
         </TextBox>
         <Grid Grid.Column="1" Grid.Row="4">
@@ -42,11 +45,13 @@
             <TextBlock Grid.Row="0"
                    Foreground="Black"
                    Text="場所"
-                   FontWeight="Bold" FontSize="36" FontStyle="Italic"
+                   FontSize="36"
+                   FontFamily="メイリオ"
                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBox   Grid.Row="1" 
+                   BorderBrush="#e0dade"
                    Foreground="Black"
-                   Background="White"
+                   Background="#f0edf3"
                    Text="ここに説明文を入力" FontFamily="Global User Interface"
                    />
         </Grid>

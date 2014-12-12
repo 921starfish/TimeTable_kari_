@@ -103,7 +103,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="View\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -112,6 +111,7 @@
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\StaticResource.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Data\ApplicationData.cs" />
     <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
@@ -133,9 +133,11 @@
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageLeftViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
       <DependentUpon>EditPageRightControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageRightViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TimeTableOne.Common;
 using TimeTableOne.Utils;
+using TimeTableOne.View.Pages.EditPage.Controls;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,13 +28,13 @@ namespace TimeTableOne.View.Pages.EditPage
     public sealed partial class EditPage : Page
     {
         private NavigationHelper navigationHelper;
-
         public EditPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
         }
+
 
         /// <summary>
         /// NavigationHelper は、ナビゲーションおよびプロセス継続時間管理を

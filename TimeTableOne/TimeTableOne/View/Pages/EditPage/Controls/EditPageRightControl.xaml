@@ -17,27 +17,38 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height= "1*"/>
-            <RowDefinition Height= "10*"/>
+            <RowDefinition Height= "20*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row ="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height= "1*"/>
-                <RowDefinition Height= "5*"/>
+                <RowDefinition Height= "8*"/>
             </Grid.RowDefinitions>
             <TextBox   Grid.Row="0"
+                       VerticalAlignment="Top"
                        TextWrapping="Wrap"
                        AcceptsReturn="True"
                        Foreground="Black"
-                       Text="ここに小見出しを入力"
-                       FontWeight="Bold" FontSize="48">
+                       Text="{Binding Komidashi}"
+                       FontFamily="メイリオ"
+                       FontSize="48"
+                       Height="70">
             </TextBox>
-
+            <Rectangle  Fill="#e0dade" Grid.Row="0" 
+                        Margin="0,75,0,0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"  
+                        Height="1" 
+                        Width="{Binding RecLength}"/>
             <TextBox   Grid.Row="1" 
                        TextWrapping="Wrap"
                        AcceptsReturn="True"
                        Foreground="Black"
-                       Text="ここに説明文を入力" FontSize="36">
+                       FontStyle="Normal"
+                       Text="ここに説明文を入力" 
+                       FontSize="32">
             </TextBox>
+           
         </Grid>
     </Grid>
 </UserControl>

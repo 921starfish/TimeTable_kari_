@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width= "3*"/>
             <ColumnDefinition Width= "2*"/>
