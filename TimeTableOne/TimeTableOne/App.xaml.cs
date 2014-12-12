@@ -76,7 +76,7 @@ namespace TimeTableOne
                 // ナビゲーションの履歴スタックが復元されていない場合、最初のページに移動します。
                 // このとき、必要な情報をナビゲーション パラメーターとして渡して、新しいページを
                 // 作成します
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(TimeTableOne.View.Pages.DayPage.DayPage), e.Arguments);
             }
             // 現在のウィンドウがアクティブであることを確認します
             Window.Current.Activate();

@@ -8,9 +8,9 @@ namespace TimeTableOne.View.Pages.DayPage
     /// <summary>
     /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
-    public sealed partial class DayPageView : Page
+    public sealed partial class DayPage : Page
     {
-        public DayPageView()
+        public DayPage()
         {
             this.InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace TimeTableOne.View.Pages.DayPage
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new DayPageViewModel(this);
+            this.Frame.Navigate(typeof(TablePage.TablePage));
         }
     }
 }

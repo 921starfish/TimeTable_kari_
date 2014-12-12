@@ -28,7 +28,7 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" />
             <TextBlock x:Name="pageTitle" 
-                       Text="{StaticResource AppName}" 
+                       Text="TimeTable" 
                        Style="{StaticResource HeaderTextBlockStyle}" 
                        Grid.Column="1" 
                        IsHitTestVisible="false" 

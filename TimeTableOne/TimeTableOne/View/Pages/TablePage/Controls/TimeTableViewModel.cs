@@ -14,7 +14,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeTableViewModel(Page page, TableKey key)
         {
             this.TableKey = key;
-            this.Page = page; 
+            this.Page = page;
             this.Width = 200;
             this.Hight = 100;
             this.TableNumber = key.TableNumber;
@@ -22,10 +22,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += OnTick;
             timer.Start();
-            TableClickedAction =new AlwaysExecutableDelegateCommand(
-            ()=>
+            TableClickedAction = new AlwaysExecutableDelegateCommand(
+            () =>
             {
-                Page.Frame.Navigate(typeof(EditPage),key);          
+                Page.Frame.Navigate(typeof(EditPage.EditPage), key);
             });
         }
 
@@ -40,6 +40,5 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
         public Page Page { get; set; }
         public TableKey TableKey { get; set; }
-    }
     }
 }

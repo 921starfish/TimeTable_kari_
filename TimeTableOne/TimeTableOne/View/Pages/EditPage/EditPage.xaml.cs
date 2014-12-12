@@ -1,11 +1,10 @@
-﻿using TimeTable0._0β.Common;
-using TimeTable0._0β.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
+using TimeTableOne.Common;
+using TimeTableOne.Utils;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -15,27 +14,24 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using TimeTable0._0β.EditPage;
 
-// 分割ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234234 を参照してください
+// 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
-namespace TimeTable0._0β
+namespace TimeTableOne.View.Pages.EditPage
 {
     /// <summary>
     /// グループのタイトル、グループ内のアイテムの一覧、および現在選択されているアイテムの
     /// 詳細を表示するページ。
     /// </summary>
-    public sealed partial class SplitPage : Page
+    public sealed partial class EditPage : Page
     {
         private NavigationHelper navigationHelper;
-        private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        /// <summary>
-        /// これは厳密に型指定されたビュー モデルに変更できます。
-        /// </summary>
-        public ObservableDictionary DefaultViewModel
+        public EditPage()
         {
-            get { return this.defaultViewModel; }
+            this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += navigationHelper_LoadState;
         }
 
         /// <summary>
@@ -46,14 +42,6 @@ namespace TimeTable0._0β
         {
             get { return this.navigationHelper; }
         }
-
-        public SplitPage()
-        {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-        }
-
 
         /// <summary>
         /// このページには、移動中に渡されるコンテンツを設定します。前のセッションからページを
@@ -94,20 +82,5 @@ namespace TimeTable0._0β
         }
 
         #endregion
-
-        private void pageTitle_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ItemsPage));
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-    }
+    } 
 }
