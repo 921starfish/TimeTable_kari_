@@ -11,6 +11,8 @@
 
     <TextBox Background ="Azure"
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             TextWrapping="Wrap"
+             AcceptsReturn="True"
              BorderBrush="Blue"
              Text="{Binding DetailText}" TextChanged="TextBox_TextChanged">
 

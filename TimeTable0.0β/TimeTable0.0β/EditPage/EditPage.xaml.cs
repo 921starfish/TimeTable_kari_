@@ -27,7 +27,7 @@ namespace TimeTable0._0β
     /// </summary>
     public sealed partial class SplitPage : Page
     {
-           private NavigationHelper navigationHelper;
+        private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace TimeTable0._0β
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: バインド可能なグループのコレクションを this.DefaultViewModel["Groups"] に割り当てます
-                this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
+            this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
         }
 
         #region NavigationHelper の登録
@@ -102,7 +102,7 @@ namespace TimeTable0._0β
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-                this.Frame.Navigate(typeof(ItemsPage));
+            this.Frame.Navigate(typeof(ItemsPage));
         }
 
         public int lastClickedTableNumber { get; set; }

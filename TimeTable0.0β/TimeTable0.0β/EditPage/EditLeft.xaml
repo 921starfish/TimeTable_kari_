@@ -23,8 +23,10 @@
             <RowDefinition Height= "2*"/>
             <RowDefinition Height= "2*"/>
         </Grid.RowDefinitions>
-        <local:TytleControl Grid.Column="1"
-                            Grid.Row ="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="pageTitle" Text="法学１" Style="{StaticResource HeaderTextBlockStyle}" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsHitTestVisible="false" SelectionChanged="pageTitle_SelectionChanged" Foreground="Black" />
         <local:FreeAreaControl Grid.Column="1"
                                Grid.Row ="2"/>
         <local:PlaceInformationControl Grid.Column="1"

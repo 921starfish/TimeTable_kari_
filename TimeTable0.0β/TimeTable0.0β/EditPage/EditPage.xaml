@@ -25,5 +25,12 @@
         </Grid.ColumnDefinitions>
         <local:EditLeft Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <local:EditRight Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Button Grid.Column="0" Grid.Row ="0"
+                Margin="50,50,0,0"
+                x:Name="backButton"  Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                Style="{StaticResource NavigationBackButtonNormalStyle}"
+                AutomationProperties.Name="Back"
+                AutomationProperties.AutomationId="BackButton"
+                AutomationProperties.ItemType="backButton"  />
     </Grid>
 </Page>

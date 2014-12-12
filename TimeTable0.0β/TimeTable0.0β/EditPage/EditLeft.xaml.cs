@@ -23,5 +23,10 @@ namespace TimeTable0._0β.EditPage
         {
             this.InitializeComponent();
         }
+
+        private void pageTitle_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
