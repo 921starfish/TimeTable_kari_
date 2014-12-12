@@ -19,7 +19,7 @@ namespace TimeTable0._0β.TimeTablePage
             this.TableKey = key;
             this.Page = page; 
             this.Width = 200;
-            this.Hight = 90;
+            this.Hight = 100;
             this.TableNumber = key.TableNumber;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(60);
