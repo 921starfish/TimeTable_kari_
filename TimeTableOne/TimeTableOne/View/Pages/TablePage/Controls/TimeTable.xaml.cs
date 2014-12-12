@@ -13,16 +13,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
+// ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
-namespace TimeTableOne
+namespace TimeTableOne.View.Pages.TablePage.Controls
 {
-    /// <summary>
-    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class TimeTable : UserControl
     {
-        public MainPage()
+        public TimeTable()
         {
             this.InitializeComponent();
         }
