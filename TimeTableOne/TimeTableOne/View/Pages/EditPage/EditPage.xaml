@@ -18,7 +18,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Rectangle Grid.Row="0" Fill="#FF803980"/>
+            <Rectangle Grid.Row="0" Fill="{Binding colorResource.OneNotePurple}"/>
             <Button Grid.Column="0" 
                     Grid.Row ="0"
                     Width="120"

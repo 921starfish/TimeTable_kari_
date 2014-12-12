@@ -16,7 +16,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             this.TableKey = key;
             this.Page = page;
             this.Width = 200;
-            this.Hight = 100;
+            this.Hight = 90;
             this.TableNumber = key.TableNumber;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(60);
@@ -27,6 +27,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             {
                 Page.Frame.Navigate(typeof(EditPage.EditPage), key);
             });
+            colorResource = new ColorResource();
         }
 
         private void OnTick(object sender, object e)
@@ -40,5 +41,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
         public Page Page { get; set; }
         public TableKey TableKey { get; set; }
+
+        public ColorResource colorResource { get; set; }
     }
 }

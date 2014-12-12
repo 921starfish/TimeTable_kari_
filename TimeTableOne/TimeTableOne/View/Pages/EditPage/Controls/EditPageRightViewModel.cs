@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -14,8 +15,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditPageRightViewModel()
         {
             Komidashi = "ここにテーブル名を入力してください";
+            colorResource = new ColorResource();
         }
         public string Komidashi { get; set; }
+
+
         public int RecLength
         {
             get
@@ -23,5 +27,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 return Komidashi.Length * 50;
             }
         }
+
+        public ColorResource colorResource { get; set; }
     }
 }

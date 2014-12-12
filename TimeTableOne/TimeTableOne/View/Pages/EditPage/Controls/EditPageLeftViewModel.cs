@@ -18,6 +18,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             this.TableNumber = key.TableNumber;
             this.WeekDayText = key.dayOfWeek.ToString();
             this.DetailText = WeekDayText + " " + TableNumber.ToString();
+            colorResource = new ColorResource();
         }
         public string ClassName { get; set; }
 
@@ -26,5 +27,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public string WeekDayText { get; set; }
 
         public string DetailText { get; set; }
+
+        public ColorResource colorResource{get;set;}
     }
 }

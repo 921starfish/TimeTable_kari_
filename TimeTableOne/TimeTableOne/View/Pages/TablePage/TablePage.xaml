@@ -9,7 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid MinHeight="768" MinWidth="1024" Background="#80397B">
+    <Grid MinHeight="768" MinWidth="1024" Background="{Binding  colorResource.OneNotePurple}">
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
             <RowDefinition Height="*"/>
@@ -36,7 +36,7 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
         </Grid>
-        <Grid Grid.Row="1" Background="LightGray">
+        <Grid Grid.Row="1" Background="{Binding  colorResource.EditBoxGray}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="15*"/>
@@ -52,29 +52,29 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="0"/>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Mon" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="0"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Mon" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="Tue" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="2">
+                <TextBlock Text="Tue" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="Wed" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="3">
+                <TextBlock Text="Wed" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="4">
-                <TextBlock Text="Thu" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="4">
+                <TextBlock Text="Thu" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="5">
-                <TextBlock Text="Fry" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="5">
+                <TextBlock Text="Fry" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="6">
-                <TextBlock Text="Sat" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="6">
+                <TextBlock Text="Sat" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="7">
-                <TextBlock Text="Sun" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="7">
+                <TextBlock Text="Sun" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
             </Grid>
-            <Grid Background="LightGray" Grid.Row="0" Grid.Column="8"/>
+            <Grid Background="{Binding  colorResource.EditBoxGray}" Grid.Row="0" Grid.Column="8"/>
 
 
             <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding MonTables}" >

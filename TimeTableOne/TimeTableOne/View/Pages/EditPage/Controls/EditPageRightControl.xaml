@@ -34,7 +34,7 @@
                        FontSize="48"
                        Height="70">
             </TextBox>
-            <Rectangle  Fill="#e0dade" Grid.Row="0" 
+            <Rectangle  Fill="{Binding colorResource.TextBoxBorder}" Grid.Row="0" 
                         Margin="0,75,0,0" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top"  
