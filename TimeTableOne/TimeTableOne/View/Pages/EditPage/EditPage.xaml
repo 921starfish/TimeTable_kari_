@@ -8,6 +8,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -18,7 +21,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Rectangle Grid.Row="0" Fill="{Binding colorResource.OneNotePurple}"/>
+            <Rectangle Grid.Row="0" Fill="{StaticResource OneNotePurple}"/>
             <Button Grid.Column="0" 
                     Grid.Row ="0"
                     Width="120"

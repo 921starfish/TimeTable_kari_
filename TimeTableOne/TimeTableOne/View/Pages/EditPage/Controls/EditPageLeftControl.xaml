@@ -6,8 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{Binding colorResource.EditBoxGray}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource EditBoxGray}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width= "1*"/>
             <ColumnDefinition Width= "5*"/>
@@ -35,7 +37,7 @@
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 TextWrapping="Wrap"
                 AcceptsReturn="True"
-                BorderBrush="{Binding colorResource.TextBoxBorder}"
+                BorderBrush="{StaticResource TextBoxBorder}"
                 Text="{Binding DetailText}">
         </TextBox>
         <Grid Grid.Column="1" Grid.Row="4">
@@ -50,9 +52,9 @@
                    FontFamily="メイリオ"
                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBox   Grid.Row="1" 
-                   BorderBrush="{Binding colorResource.TextBoxBorder}"
+                   BorderBrush="{StaticResource TextBoxBorder}"
                    Foreground="Black"
-                   Background="{Binding colorResource.TextBoxGray}"
+                   Background="{StaticResource TextBoxGray}"
                    Text="ここに説明文を入力" FontFamily="Global User Interface"
                    />
         </Grid>

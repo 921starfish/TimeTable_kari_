@@ -15,7 +15,6 @@ namespace TimeTableOne.View.Pages.DayPage
         public DayPageViewModel(Page page)
         {
             Tables = new ObservableCollection<TimeTableViewModel>();
-            colorResource = new ColorResource();
             TimeTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
@@ -26,7 +25,5 @@ namespace TimeTableOne.View.Pages.DayPage
             }
         }
         public DispatcherTimer timer { get; set; }
-
-        public ColorResource colorResource { get; set; }
     }
 }

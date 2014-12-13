@@ -20,7 +20,6 @@ namespace TimeTableOne.View.Pages.TablePage
                     Tables[j].Add(new TimeTableViewModel(Page, new TableKey(i, j + 1)));
                 }
             }
-            colorResource = new ColorResource();
             PropertyChanged(this, new PropertyChangedEventArgs("Tables"));
         }
         public ObservableCollection<TimeTableViewModel> MonTables { get { return Tables[0]; } }
@@ -32,7 +31,5 @@ namespace TimeTableOne.View.Pages.TablePage
         public ObservableCollection<TimeTableViewModel> SunTables { get { return Tables[6]; } }
         private ObservableCollection<TimeTableViewModel>[] Tables;
         public TablePage Page { get; set; }
-
-        public ColorResource colorResource { get; set; }
     }
 }

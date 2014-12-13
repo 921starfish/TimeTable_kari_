@@ -14,7 +14,6 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += OnTick;
             timer.Start();
-            colorResource = new ColorResource();
         }
 
         private void OnTick(object sender, object e)
@@ -63,7 +62,5 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             }
         }
         public DispatcherTimer timer { get; set; }
-
-        public ColorResource colorResource { get; set; }
     }
 }

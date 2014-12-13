@@ -8,55 +8,24 @@
     mc:Ignorable="d"
       d:DesignHeight="{Binding Hight}"
     d:DesignWidth="{Binding Width}" >
-    <UserControl.Background>
-        <ImageBrush Stretch="Fill"/>
-    </UserControl.Background>
-
+    
     <Control.Resources>
-        <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-        <Storyboard x:Name="apear">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="button">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="disapear">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="button">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>  
     </Control.Resources>
 
     <Grid x:Name="grid" 
-          Background="{Binding  colorResource.TextBoxGray}" 
+          Background="{StaticResource TextBoxGray}" 
           Width="{Binding Width}" 
           Height="{Binding Hight}" 
           MinHeight="90" 
           MinWidth="200">
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="button"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding TableClickedAction}" Style="{StaticResource NavigationBackButtonNormalStyle}" />
-        <Rectangle Stroke="{Binding colorResource.TextBoxBorder}" Grid.ColumnSpan="3"/>
+        <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
     </Grid>
 </UserControl>
+

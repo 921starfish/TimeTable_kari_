@@ -15,7 +15,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditPageRightViewModel()
         {
             Komidashi = "ここにテーブル名を入力してください";
-            colorResource = new ColorResource();
         }
         public string Komidashi { get; set; }
 
@@ -27,7 +26,5 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 return Komidashi.Length * 50;
             }
         }
-
-        public ColorResource colorResource { get; set; }
     }
 }
