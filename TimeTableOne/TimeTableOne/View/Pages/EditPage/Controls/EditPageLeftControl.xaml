@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="1" 
                    x:Name="pageTitle" 
-                   Text="{Binding ClassName}" 
+                   Text="{Binding TableName}" 
                    Style="{StaticResource HeaderTextBlockStyle}" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
@@ -33,12 +33,12 @@
                    Foreground="Black" 
                    FontFamily="メイリオ"/>
         <TextBox Grid.Column="1" Grid.Row="2" 
-                Background ="{Binding colorResource.TextBoxGray}"
+                Background ="{StaticResource TextBoxGray}"
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 TextWrapping="Wrap"
                 AcceptsReturn="True"
                 BorderBrush="{StaticResource TextBoxBorder}"
-                Text="{Binding DetailText}">
+                Text="{Binding DetailText,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.RowDefinitions>
@@ -55,7 +55,7 @@
                    BorderBrush="{StaticResource TextBoxBorder}"
                    Foreground="Black"
                    Background="{StaticResource TextBoxGray}"
-                   Text="ここに説明文を入力" FontFamily="Global User Interface"
+                   Text="{Binding PlaceInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" FontFamily="Global User Interface"
                    />
         </Grid>
     </Grid>

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 
@@ -10,14 +11,17 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
     class TimeTableViewModel
     : INotifyPropertyChanged
     {
+        private ScheduleData data;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public TimeTableViewModel(Page page, TableKey key)
         {
+            data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
             this.Page = page;
             this.Width = 200;
             this.Hight = 90;
             this.TableNumber = key.TableNumber;
+            this.TableName = (data ?? new ScheduleData()).TableName;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += OnTick;
@@ -32,6 +36,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         private void OnTick(object sender, object e)
         {
         }
+        public string TableName { get; set; }
         public DayOfWeek dayOfWeek { get; set; }
         public int TableNumber { get; set; }
         public int Hight { get; set; }

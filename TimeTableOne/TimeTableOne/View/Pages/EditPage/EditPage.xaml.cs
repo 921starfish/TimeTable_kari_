@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Data;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
 
@@ -33,6 +34,13 @@ namespace TimeTableOne.View.Pages.EditPage
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
+        }
+
+        void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
+            ApplicationData.SaveData(ApplicationData.Instance);
+
         }
 
 

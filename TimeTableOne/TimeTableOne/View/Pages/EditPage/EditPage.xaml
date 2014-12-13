@@ -33,8 +33,8 @@
                     AutomationProperties.Name="Back"
                     AutomationProperties.AutomationId="BackButton"
                     AutomationProperties.ItemType="backButton"  />
-            <controls:EditPageLeftControl Grid.Row="1" DataContext="{Binding leftData}" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <controls:EditPageLeftControl Grid.Row="1" DataContext="{Binding}" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         </Grid>
-        <controls:EditPageRightControl DataContext="{Binding rightData}" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <controls:EditPageRightControl DataContext="{Binding}" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>

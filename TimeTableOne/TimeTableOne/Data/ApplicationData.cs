@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -16,34 +17,87 @@ namespace TimeTableOne.Data
 {
     public class ApplicationData
     {
-        public ScheduleKey[] Keys = new ScheduleKey[0];
 
-        public ScheduleData[] Data = new ScheduleData[0];
+        private static ApplicationData _instance;
 
-        private static ApplicationDataContainer getDataContainer()
+        public static ApplicationData Instance
         {
-            return Windows.Storage.ApplicationData.Current.LocalSettings;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = LoadData();
+                }
+                return _instance;
+            }
+        }
+
+        public List<ScheduleKey> Keys = new List<ScheduleKey>();
+
+        public List<ScheduleData> Data =new List<ScheduleData>();
+
+        private static ApplicationDataContainer SettingFolder
+        {
+            get
+            {
+                return Windows.Storage.ApplicationData.Current.LocalSettings;
+            }
+        }
+
+        private static string getDataString()
+        {
+            if (SettingFolder.Values["DATA-COUNT"] != null)
+            {
+                int count = (int)SettingFolder.Values["DATA-COUNT"];
+                List<byte> decompressed=new List<byte>();
+                for (int i = 0; i < count; i++)
+                {
+                    byte[] data = SettingFolder.Values["DATA-" + i] as byte[];
+                    decompressed.AddRange(data);
+                }
+                return Encoding.Unicode.GetString(decompressed.ToArray(),0,decompressed.Count);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private static void setDataString(string data)
+        {
+            char[] saveChars = data.ToCharArray();
+            byte[] dataAsBytes = Encoding.Unicode.GetBytes(saveChars);
+            byte[] buffer=new byte[1024];
+            using (MemoryStream ms=new MemoryStream(dataAsBytes))
+            {
+                int sum = 0;
+                int count = 0;
+                int itr = 0;
+                while ((count=ms.Read(buffer,0,1024))!=0)
+                {
+                    byte[] cpBuf=new byte[count];
+                    Array.Copy(buffer,cpBuf,count);
+                    SettingFolder.Values["DATA-" + itr] = cpBuf;
+                    sum += count;
+                    itr++;
+                }
+                SettingFolder.Values["DATA-COUNT"] = itr;
+            }
         }
         /// <summary>
         /// データをでシリアライズして取得
         /// </summary>
         /// <returns></returns>
-        public async static Task<ApplicationData> LoadData()
+        public static ApplicationData LoadData()
         {
             using (MemoryStream ms = new MemoryStream())
             using (StreamWriter importer = new StreamWriter(ms))
             {
-                object rawData = getDataContainer().Values["Data"];
-                string castedData = rawData as string;
-                if (castedData == null)
-                {
-                    return new ApplicationData();
-                }
-                else
-                {
+                string castedData = getDataString();
+                if (string.IsNullOrWhiteSpace(castedData)) return new ApplicationData();
                     Debug.WriteLine(castedData);
-                    await importer.WriteAsync(castedData);
-                    await importer.FlushAsync();
+                    importer.WriteAsync(castedData);
+                    importer.FlushAsync();
                     ms.Seek(0, SeekOrigin.Begin);
                     XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
                     XmlReader reader = XmlReader.Create(ms);
@@ -64,8 +118,6 @@ namespace TimeTableOne.Data
                     }
                     return new ApplicationData();
                 }
-            }
-
         }
 
         /// <summary>
@@ -73,17 +125,17 @@ namespace TimeTableOne.Data
         /// </summary>
         /// <param name="data">シリアライズするデータ</param>
         /// <returns></returns>
-        public static async Task SaveData(ApplicationData data)
+        public static void SaveData(ApplicationData data)
         {
             using (MemoryStream ms = new MemoryStream())
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
                 serializer.Serialize(ms, data);
-                await ms.FlushAsync();
+                 ms.Flush();
                 ms.Seek(0, SeekOrigin.Begin);
                 using (StreamReader reader = new StreamReader(ms))
                 {
-                    getDataContainer().Values["Data"] = await reader.ReadToEndAsync();
+                    setDataString(reader.ReadToEnd());
                 }
             }
         }
@@ -103,9 +155,9 @@ namespace TimeTableOne.Data
         /// <param name="dayOfWeek"></param>
         /// <param name="tableNumber"></param>
         /// <returns></returns>
-        public async Task<ScheduleData> GetSchedule(int dayOfWeek, int tableNumber)
+        public ScheduleData GetSchedule(int dayOfWeek, int tableNumber)
         {
-            Guid key = await GetKey(dayOfWeek, tableNumber);
+            Guid key = GetKey(dayOfWeek, tableNumber).Result;
             if (key == Guid.Empty)
             {
                 return null;
@@ -144,18 +196,18 @@ namespace TimeTableOne.Data
     {
         public ScheduleData()
         {
-
+            
         }
 
         public Guid ScheduleId;
 
-        public string ClassName;
+        public string TableName = "";
 
-        public string Place;
+        public string Place ="";
 
-        public string FreeFormText;
+        public string FreeFormText = "";
 
-        public string Description;
+        public string Description = "";
 
         public static ScheduleData GenerateEmpty()
         {

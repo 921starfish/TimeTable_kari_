@@ -14,12 +14,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditPageLeftViewModel(TableKey key)
         {
 
-            ClassName = "テーブル名";
+            TableName = "テーブル名";
             this.TableNumber = key.TableNumber;
             this.WeekDayText = key.dayOfWeek.ToString();
             this.DetailText = WeekDayText + " " + TableNumber.ToString();
         }
-        public string ClassName { get; set; }
+        public string TableName { get; set; }
 
         int TableNumber { get; set; }
 

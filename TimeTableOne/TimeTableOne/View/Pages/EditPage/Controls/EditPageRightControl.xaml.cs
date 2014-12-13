@@ -23,5 +23,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             this.InitializeComponent();
         }
+
     }
 }

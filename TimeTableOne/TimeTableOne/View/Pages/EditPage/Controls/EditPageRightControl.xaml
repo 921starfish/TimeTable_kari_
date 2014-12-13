@@ -31,10 +31,11 @@
                        TextWrapping="Wrap"
                        AcceptsReturn="True"
                        Foreground="Black"
-                       Text="{Binding Komidashi}"
+                       Text="{Binding Komidashi, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                        FontFamily="メイリオ"
                        FontSize="48"
-                       Height="70">
+                       Height="70"
+                       >
             </TextBox>
             <Rectangle  Fill="{StaticResource TextBoxBorder}" Grid.Row="0" 
                         Margin="0,75,0,0" 
@@ -47,7 +48,7 @@
                        AcceptsReturn="True"
                        Foreground="Black"
                        FontStyle="Normal"
-                       Text="ここに説明文を入力" 
+                       Text="{Binding TableInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
                        FontSize="32">
             </TextBox>
            

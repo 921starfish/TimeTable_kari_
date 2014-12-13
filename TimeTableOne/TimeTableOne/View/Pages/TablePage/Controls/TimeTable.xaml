@@ -24,6 +24,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding TableName}"></TextBlock>
         <Button x:Name="button"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding TableClickedAction}" Style="{StaticResource NavigationBackButtonNormalStyle}" />
         <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
     </Grid>
