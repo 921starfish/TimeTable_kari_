@@ -59,6 +59,7 @@ namespace TimeTableOne.View.Pages.EditPage
                 PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
                 PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
                 PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TableInfomation"));
             });
         }
 
