@@ -50,16 +50,17 @@ namespace TimeTableOne.View.Pages.EditPage
                 this._tableName = "";
                 this._placeInformation = "";
                 this._tableInformation = "";
-                tableNameEdited = true;
-                placeEdited = true;
-                freeTextEdited = true;
-                detailTextEdited = true;
                 PropertyChanged(this, new PropertyChangedEventArgs("TableName"));
-                PropertyChanged(this, new PropertyChangedEventArgs("DwtailText"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DetailText"));
                 PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
                 PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
                 PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
                 PropertyChanged(this, new PropertyChangedEventArgs("TableInfomation"));
+                _scheduleData.TableName = TableName;
+                _scheduleData.Place = PlaceInformation;
+                _scheduleData.Description = DetailText;
+                _scheduleData.FreeFormText = TableInformation;
+              
             });
         }
 
@@ -130,7 +131,7 @@ namespace TimeTableOne.View.Pages.EditPage
                     _detailText = value;
                     detailTextEdited = true;
                 }
-                PropertyChanged(this, new PropertyChangedEventArgs("DwtailText"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DetailText"));
             }
         }
 

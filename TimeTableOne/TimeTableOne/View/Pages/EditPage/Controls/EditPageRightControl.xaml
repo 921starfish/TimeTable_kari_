@@ -28,8 +28,8 @@
             </Grid.RowDefinitions>
             <TextBox   Grid.Row="0"
                        VerticalAlignment="Top"
-                       TextWrapping="Wrap"
-                       AcceptsReturn="True"
+                       TextWrapping="NoWrap"
+                       AcceptsReturn ="False"
                        Foreground="Black"
                        Text="{Binding Komidashi, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                        FontFamily="メイリオ"

@@ -41,7 +41,7 @@
                    VerticalAlignment="Center"
                    IsHitTestVisible="false" 
                    Foreground="Black" 
-                   FontFamily="メイリオ"
+                   FontFamily="Meiryo UI"
                    FontSize="45"/>
         <TextBox Grid.Column="1" Grid.Row="2" 
                 Background ="{StaticResource TextBoxGray}"
