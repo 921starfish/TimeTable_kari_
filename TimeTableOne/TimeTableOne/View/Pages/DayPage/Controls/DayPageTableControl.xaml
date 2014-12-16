@@ -10,11 +10,12 @@
     </UserControl.Resources>
     <Grid Background="{Binding TableColor}" Width="{Binding Width}" Height="{Binding Hight}" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" 
+                   Grid.ColumnSpan="2"
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Center"
                    FontSize="40"
