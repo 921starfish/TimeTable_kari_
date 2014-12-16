@@ -35,6 +35,7 @@
                        FontFamily="メイリオ"
                        FontSize="48"
                        Height="70"
+                       PlaceholderText="ここにテーブル名を入力してください"
                        >
             </TextBox>
             <Rectangle  Fill="{StaticResource TextBoxBorder}" Grid.Row="0" 
@@ -49,7 +50,8 @@
                        Foreground="Black"
                        FontStyle="Normal"
                        Text="{Binding TableInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                       FontSize="32">
+                       FontSize="32"
+                       PlaceholderText="テーブルの説明を入力してください">
             </TextBox>
            
         </Grid>

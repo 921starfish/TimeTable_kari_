@@ -23,11 +23,20 @@
             <RowDefinition Height= "2*"/>
             <RowDefinition Height= "2*"/>
         </Grid.RowDefinitions>
+        <AppBarButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"
+                      VerticalContentAlignment="Center"
+                      
+                      VerticalAlignment="Bottom"  Command="{Binding AllDelete}" Foreground="Black" BorderBrush="Black" Background="Black">
+            <AppBarButton.Icon>
+                <SymbolIcon  Foreground="Black" Symbol="Clear" HorizontalAlignment="Left" Width="40" RequestedTheme="Dark" RenderTransformOrigin="0.5,0.5" />
+            </AppBarButton.Icon>
+            
+        </AppBarButton>
         <TextBlock Grid.Column="1" Grid.Row="1" 
                    x:Name="pageTitle" 
                    Text="{Binding TableName}" 
                    Style="{StaticResource HeaderTextBlockStyle}" 
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    IsHitTestVisible="false" 
                    Foreground="Black" 
@@ -56,7 +65,7 @@
                    Foreground="Black"
                    Background="{StaticResource TextBoxGray}"
                    Text="{Binding PlaceInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" FontFamily="Global User Interface"
-                   />
+                   PlaceholderText="ここに場所を入力してください"/>
         </Grid>
     </Grid>
 </UserControl>

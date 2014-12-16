@@ -39,6 +39,7 @@ namespace TimeTableOne.View.Pages.EditPage
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
+            ((EditPageViewModel)DataContext).saveData();
             ApplicationData.SaveData(ApplicationData.Instance);
 
         }

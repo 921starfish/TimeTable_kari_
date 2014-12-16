@@ -8,12 +8,26 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="{StaticResource TextBoxGray}" Width="{Binding Width}" Height="{Binding Hight}" >
+    <Grid Background="{Binding TableColor}" Width="{Binding Width}" Height="{Binding Hight}" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="40"
+                   Text="{Binding TableName}">
+        </TextBlock>
+        <TextBlock Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Text="{Binding Place}"
+                   Margin="0,80,0,0">
+                   
+        </TextBlock>
         <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
         <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>
         <!--<TextBlock Grid.Column="1" Text="{Binding TableNumber}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="80" />

@@ -14,7 +14,7 @@
     </Control.Resources>
 
     <Grid x:Name="grid" 
-          Background="{StaticResource TextBoxGray}" 
+          Background="{Binding TableColor}" 
           Width="{Binding Width}" 
           Height="{Binding Hight}" 
           MinHeight="90" 
@@ -24,8 +24,16 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding TableName}"></TextBlock>
-        <Button x:Name="button"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding TableClickedAction}" Style="{StaticResource NavigationBackButtonNormalStyle}" />
+        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding TableName}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="20"></TextBlock>
+        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding Place}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="10"
+                   Margin="0,40,0,0"></TextBlock>
+        <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>
         <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
     </Grid>
 </UserControl>

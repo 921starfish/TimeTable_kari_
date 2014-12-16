@@ -9,6 +9,7 @@ using TimeTableOne.View.Pages.EditPage.Controls;
 using Windows.UI;
 using Windows.UI.Xaml;
 using System.Threading.Tasks;
+using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage
 {
@@ -17,11 +18,11 @@ namespace TimeTableOne.View.Pages.EditPage
         private readonly TableKey _key;
         private TableKey _tableKey;
         private string _tableName = "";
-        private string _weekDayText ="";
-        private string _detailText ="";
-        private string _komidashi ="";
-        private string _placeInformation ="";
-        private string _tableInformation ="";
+        private string _weekDayText = "";
+        private string _detailText = "";
+        private string _komidashi = "";
+        private string _placeInformation = "";
+        private string _tableInformation = "";
         private ScheduleData _scheduleData;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -39,49 +40,97 @@ namespace TimeTableOne.View.Pages.EditPage
             }
             else
             {
-                
-            Initialize();
+                Initialize();
             }
-
+            AllDelete = new AlwaysExecutableDelegateCommand(
+            () =>
+            {
+                this._detailText = "";
+                this._komidashi = "";
+                this._tableName = "";
+                this._placeInformation = "";
+                this._tableInformation = "";
+                tableNameEdited = true;
+                placeEdited = true;
+                freeTextEdited = true;
+                detailTextEdited = true;
+                PropertyChanged(this, new PropertyChangedEventArgs("TableName"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DwtailText"));
+                PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
+                PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
+                PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
+            });
         }
 
         private void Initialize()
         {
             this.TableKey = _key;
-            TableName = "テーブル名";
             this.TableNumber = _key.TableNumber;
             this.WeekDayText = _key.dayOfWeek.ToString();
-            this.DetailText = WeekDayText + " " + TableNumber.ToString();
-
-            Komidashi = "ここにテーブル名を入力してください";
-            PlaceInformation = "場所を入力";
-            TableInformation = "テーブルについての情報を入力してください";
+            this.DetailText = _scheduleData.Description;
+            this.Komidashi = _scheduleData.TableName;
+            this.PlaceInformation = _scheduleData.Place;
+            this.TableInformation = _scheduleData.FreeFormText;
+            this.TableName = _scheduleData.TableName;
         }
 
-        public TableKey TableKey
+        public void saveData()
         {
-            get { return _tableKey; }
-            set { _tableKey = value; }
+            if (tableNameEdited)
+            {
+                _scheduleData.TableName = TableName;
+            }
+            if (placeEdited)
+            {
+                _scheduleData.Place = PlaceInformation;
+            }
+            if (detailTextEdited)
+            {
+                _scheduleData.Description = DetailText;
+            }
+            if (freeTextEdited)
+            {
+                _scheduleData.FreeFormText = TableInformation;
+            }
         }
+
+        private bool tableNameEdited;
+        private bool placeEdited;
+        private bool freeTextEdited;
+        private bool detailTextEdited;
+        public TableKey TableKey { get; set; }
+
+        int TableNumber { get; set; }
+
+        public string WeekDayText { get; set; }
 
         public string TableName
         {
             get { return _tableName; }
-            set { _tableName = value; }
-        }
-
-        int TableNumber { get; set; }
-
-        public string WeekDayText
-        {
-            get { return _weekDayText; }
-            set { _weekDayText = value; }
+            set
+            {
+                _tableName = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("TableName"));
+            }
         }
 
         public string DetailText
         {
             get { return _detailText; }
-            set { _detailText = value; }
+            set
+            {
+                if (value == "")
+                {
+                    _detailText = _key.dayOfWeek.ToString() + " " + _key.TableNumber.ToString();
+                    detailTextEdited = false;
+                }
+                else
+                {
+                    _detailText = value;
+                    detailTextEdited = true;
+                }
+                PropertyChanged(this, new PropertyChangedEventArgs("DwtailText"));
+            }
         }
 
         public ScheduleData scheduleKey { get; set; }
@@ -91,7 +140,19 @@ namespace TimeTableOne.View.Pages.EditPage
             get { return _komidashi; }
             set
             {
-                _komidashi = value;
+                if (value == "")
+                {
+                    TableName = "";
+                    tableNameEdited = false;
+
+                }
+                else
+                {
+                    _komidashi = value;
+                    TableName = value;
+                    tableNameEdited = true;
+                }
+
                 PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
                 PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
             }
@@ -100,21 +161,55 @@ namespace TimeTableOne.View.Pages.EditPage
         public string PlaceInformation
         {
             get { return _placeInformation; }
-            set { _placeInformation = value; }
+            set
+            {
+                if (value == "")
+                {
+                    placeEdited = false;
+                }
+                else
+                {
+                    _placeInformation = value;
+                    placeEdited = true;
+                }
+                PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
+            }
         }
 
         public string TableInformation
         {
             get { return _tableInformation; }
-            set { _tableInformation = value; }
+            set
+            {
+                if (value == "")
+                {
+                    freeTextEdited = false;
+                }
+                else
+                {
+                    _tableInformation = value;
+                    freeTextEdited = true;
+                }
+                PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
+            }
         }
 
         public int RecLength
         {
             get
             {
-                return Komidashi.Length * 50;
+                if (_tableName == "")
+                {
+                    return 18*50;
+                }
+                else
+                {
+                    return Komidashi.Length * 50 + 50;
+                }
+              
             }
         }
+
+        public AlwaysExecutableDelegateCommand AllDelete { get; set; }
     }
 }

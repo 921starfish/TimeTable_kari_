@@ -133,11 +133,9 @@
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\EditPage\Controls\EditPageLeftViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
       <DependentUpon>EditPageRightControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\EditPage\Controls\EditPageRightViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
