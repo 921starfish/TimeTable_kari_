@@ -76,6 +76,7 @@ namespace TimeTableOne.View.Pages.EditPage
             this.TableName = _scheduleData.TableName;
         }
 
+
         public void saveData()
         {
             if (tableNameEdited)

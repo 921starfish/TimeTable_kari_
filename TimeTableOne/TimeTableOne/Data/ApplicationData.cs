@@ -209,6 +209,8 @@ namespace TimeTableOne.Data
 
         public string Description = "";
 
+        public string OneNoteId = "";
+
         public static ScheduleData GenerateEmpty()
         {
             return new ScheduleData() { ScheduleId = Guid.NewGuid() };

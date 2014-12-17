@@ -6,35 +6,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-      d:DesignHeight="{Binding Hight}"
+    d:DesignHeight="{Binding Hight}"
     d:DesignWidth="{Binding Width}" >
     
     <Control.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>  
     </Control.Resources>
-
-    <Grid x:Name="grid" 
-          Background="{Binding TableColor}" 
-          Width="{Binding Width}" 
-          Height="{Binding Hight}" 
+    <Button
+          Background="{Binding TableColor}"
+        
           MinHeight="90" 
-          MinWidth="200">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding TableName}"
+          MinWidth="200"
+        Height="{Binding Hight}"
+        Width="{Binding Width}"
+        Command="{Binding TableClickedAction}" 
+        BorderBrush="{StaticResource TextBoxBorder}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding TableName}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="20"></TextBlock>
-        <TextBlock Grid.Row ="0" Grid.Column="1" Text="{Binding Place}"
-                   HorizontalAlignment="Left"
+            <TextBlock Text="{Binding Place}"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="10"
-                   Margin="0,40,0,0"></TextBlock>
-        <Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>
-        <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
-    </Grid>
+                   FontSize="15"
+                   Margin="0,50,0,0"></TextBlock>
+            <!--<Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>-->
+        </Grid>
+    </Button>
 </UserControl>
 

@@ -23,5 +23,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             this.InitializeComponent();
         }
+
+        private void grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            
+        }
     }
 }

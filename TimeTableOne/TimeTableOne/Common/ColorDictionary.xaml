@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TimeTableOne.Common">
     <SolidColorBrush x:Key="OneNotePurple" Color="#FF80397B"/>
+    <SolidColorBrush x:Key="SelectedOneNotePurple" Color="#FFA3569E"/>
     <SolidColorBrush x:Key="EditBoxGray" Color="#FFE8E2E8"/>
     <SolidColorBrush x:Key="TextBoxGray" Color="#FFF0EDF3"/>
     <SolidColorBrush x:Key="TextBoxBorder" Color="#FFE0DADE"/>

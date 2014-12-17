@@ -19,6 +19,8 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         private void OnTick(object sender, object e)
         {
             PropertyChanged(this, new PropertyChangedEventArgs("TimeText"));
+            PropertyChanged(this, new PropertyChangedEventArgs("WeekText"));
+            PropertyChanged(this, new PropertyChangedEventArgs("DayText"));
         }
         public string TimeText
         {
