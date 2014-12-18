@@ -30,7 +30,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }
             else
             {
-                TableColor = new SolidColorBrush(Color.FromArgb(225, 128, 57, 123));
+                TableColor = new SolidColorBrush(Color.FromArgb(255, 128, 57, 123));
                 this.Place = (data ?? new ScheduleData()).Place;
             }
             timer = new DispatcherTimer();
