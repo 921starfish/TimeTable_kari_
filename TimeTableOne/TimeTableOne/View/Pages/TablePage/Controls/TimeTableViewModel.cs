@@ -20,7 +20,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
             this.Page = page;
-            this.Width = 170;
+            this.Width = 175;
             this.Hight = 90;
             this.TableNumber = key.TableNumber;
             this.TableName = (data ?? new ScheduleData()).TableName;

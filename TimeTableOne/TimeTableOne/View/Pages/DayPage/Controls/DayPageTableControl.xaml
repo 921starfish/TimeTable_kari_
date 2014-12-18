@@ -23,8 +23,8 @@
                 VerticalAlignment="Stretch" 
                 Command="{Binding TableClickedAction}"  
                 FontSize="30"
-                Loaded="Button1_Loaded" >
-            <SymbolIcon Symbol="Add"/>
+                Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
+            <SymbolIcon Symbol="Add" Foreground="{StaticResource TextBoxBorder}"/>
             </Button>
         <TextBlock x:Name="Block1"
                    Grid.Column="1" 
@@ -42,8 +42,6 @@
                    Margin="0,80,0,0">
                    
         </TextBlock>
-        <Rectangle Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
-        <!--<TextBlock Grid.Column="1" Text="{Binding TableNumber}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="80" />
-        <TextBlock Grid.Column="2" Text="時限" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" />-->
+        <Rectangle StrokeThickness="2" Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
     </Grid>
 </UserControl>

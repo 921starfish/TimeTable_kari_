@@ -19,7 +19,7 @@
       
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Button1" 
             Loaded="Button1_Loaded">
-            <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" />
+            <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" Foreground="{StaticResource TextBoxBorder}" />
             <TextBlock 
                 x:Name="Block1"
                 
@@ -39,6 +39,7 @@
                 Loaded="Button1_Loaded"
                 BorderBrush="#00000000">
         </Button>
+        <Rectangle StrokeThickness="2" Stroke="{StaticResource TextBoxBorder}"/>
 
 
 
