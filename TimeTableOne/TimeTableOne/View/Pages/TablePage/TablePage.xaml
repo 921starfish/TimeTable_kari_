@@ -10,7 +10,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary>
+                    <Style TargetType="ListView">
+                        <Style.Setters>
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel  DataContext="{Binding}">
+                                            <control:TimeTable/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource OneNotePurple}">
         <Grid.RowDefinitions>
@@ -79,68 +98,19 @@
             <Grid Grid.Row="0" Grid.Column="8"/>
 
 
-            <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" ItemsSource="{Binding MonTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding MonTables}" >
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding TueTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding WedTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding ThuTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FriTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SatTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
             <ListView  Grid.Row="1" Grid.Column="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SunTables}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel  DataContext="{Binding}">
-                            <control:TimeTable/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
         </Grid>
     </Grid>
