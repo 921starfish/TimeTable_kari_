@@ -20,12 +20,14 @@
                 Command="{Binding TableClickedAction}" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="Edit" Loaded="Button1_Loaded"/>
+                Loaded="Button1_Loaded">
+            <SymbolIcon Symbol="Add"/>
+        </Button>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock 
                 x:Name="Block1"
                 Text="{Binding TableName}"
-                   HorizontalAlignment="Left"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="20"></TextBlock>
             <TextBlock Text="{Binding Place}"

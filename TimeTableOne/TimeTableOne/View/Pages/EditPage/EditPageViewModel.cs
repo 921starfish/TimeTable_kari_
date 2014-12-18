@@ -62,6 +62,11 @@ namespace TimeTableOne.View.Pages.EditPage
                 _scheduleData.FreeFormText = TableInformation;
               
             });
+            OpenOneNote = new AlwaysExecutableDelegateCommand(
+           () =>
+           {
+               OneNoteControl.open(_scheduleData.TableName);
+           });
         }
 
         private void Initialize()
@@ -214,5 +219,8 @@ namespace TimeTableOne.View.Pages.EditPage
         }
 
         public AlwaysExecutableDelegateCommand AllDelete { get; set; }
+
+        public AlwaysExecutableDelegateCommand OpenOneNote { get; set; }
+    
     }
 }
