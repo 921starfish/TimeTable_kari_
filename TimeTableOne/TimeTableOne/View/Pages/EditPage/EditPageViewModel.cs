@@ -65,7 +65,7 @@ namespace TimeTableOne.View.Pages.EditPage
             OpenOneNote = new AlwaysExecutableDelegateCommand(
            () =>
            {
-               OneNoteControl.open(_scheduleData.TableName);
+               OneNoteControl.Open(_scheduleData.TableName);
            });
         }
 
