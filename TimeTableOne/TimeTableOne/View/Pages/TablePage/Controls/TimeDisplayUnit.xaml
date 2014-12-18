@@ -17,14 +17,14 @@
         <Grid.Resources>
             <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
         </Grid.Resources>
-        <Polygon Points="0,0 60,0 100,45 60,90 0,90" Fill="LightGray">
+        <Polygon Points="0,0 60,0 100,45 60,90 0,90" Fill="{StaticResource TextBoxGray}">
         </Polygon>
-        <TextBlock Text="{Binding TimeIndex}" Foreground="Black" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"></TextBlock>
-        <Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource OneNotePurple}"></Polygon>
-        <Polygon Points="60,90 200,90 200,55 91.11,55 " Fill="{StaticResource OneNotePurple}"></Polygon>
+        <TextBlock Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"></TextBlock>
+        <Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource EditBoxGray}"></Polygon>
+        <Polygon Points="60,90 200,90 200,55 91.11,55 " Fill="{StaticResource EditBoxGray}"></Polygon>
         <Grid Margin="91.11,0,0,0">
-            <TextBlock Text="{Binding FromTime,Converter={StaticResource DateConverter}}" FontSize="30" HorizontalAlignment="Center"/>
-            <TextBlock Text="{Binding ToTime,Converter={StaticResource DateConverter}}" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding FromTime,Converter={StaticResource DateConverter}}" FontSize="30" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
+            <TextBlock Text="{Binding ToTime,Converter={StaticResource DateConverter}}" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#FF4D4D4D"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

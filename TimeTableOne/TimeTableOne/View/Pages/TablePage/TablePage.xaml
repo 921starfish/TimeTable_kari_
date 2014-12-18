@@ -64,7 +64,7 @@
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
@@ -72,8 +72,9 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
+            <control:TimeDisplay Grid.Column="0" Grid.Row="1"></control:TimeDisplay>
             <Grid Grid.Row="0" Grid.Column="1">
                 <TextBlock Text="Mon" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
             </Grid>

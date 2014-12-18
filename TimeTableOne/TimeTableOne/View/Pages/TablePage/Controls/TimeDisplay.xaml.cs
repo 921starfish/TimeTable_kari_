@@ -22,6 +22,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeDisplay()
         {
             this.InitializeComponent();
+            this.DataContext = new TimeDisplayViewModelInDesign();//TODO これは仮のViewModel
         }
     }
 }
