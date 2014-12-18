@@ -19,9 +19,41 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 {
     public sealed partial class TimeDisplayUnit : UserControl
     {
+
+        private bool isFocused = false;
         public TimeDisplayUnit()
         {
             this.InitializeComponent();
+            VisualStateManager.GoToState(this, "NotMouseOver", false);
+        }
+
+        protected override void OnPointerEntered(PointerRoutedEventArgs e)
+        {
+            base.OnPointerEntered(e);
+            if (isFocused) return;
+            VisualStateManager.GoToState(this, "MouseOverToEdit", true);
+        }
+
+        protected override void OnPointerExited(PointerRoutedEventArgs e)
+        {
+            base.OnPointerExited(e);
+            if(isFocused)return;
+            VisualStateManager.GoToState(this, "NotMouseOver", true);
+        }
+
+        protected override void OnPointerPressed(PointerRoutedEventArgs e)
+        {
+            base.OnPointerPressed(e);
+            if (isFocused)
+            {
+                VisualStateManager.GoToState(this, "MouseOverToEdit", true);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "Editing", true);
+                textBox.SelectAll();
+            }
+            isFocused = !isFocused;
         }
     }
 }

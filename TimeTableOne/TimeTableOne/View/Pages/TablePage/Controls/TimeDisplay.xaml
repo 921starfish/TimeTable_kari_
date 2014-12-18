@@ -12,10 +12,12 @@
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding TimeRegions}" Background="{StaticResource EditBoxGray}">
+        <ListView ItemsSource="{Binding TimeRegions}" Background="{StaticResource EditBoxGray}" SelectionMode="None" IsActiveView="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:TimeDisplayUnit/>
+                    <Button Padding="0" Margin="0" BorderBrush="Transparent" Command="{Binding EditCommand}">
+                        <local:TimeDisplayUnit/>
+                    </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
