@@ -36,6 +36,8 @@ namespace TimeTableOne.Data
 
         public List<ScheduleData> Data =new List<ScheduleData>();
 
+        public List<ScheduleTimeSpan> TimeSpans=new List<ScheduleTimeSpan>(); 
+
         private static ApplicationDataContainer SettingFolder
         {
             get
@@ -214,6 +216,21 @@ namespace TimeTableOne.Data
         public static ScheduleData GenerateEmpty()
         {
             return new ScheduleData() { ScheduleId = Guid.NewGuid() };
+        }
+    }
+
+    public class ScheduleTimeSpan
+    {
+        public DateTime FromTime;
+        public DateTime ToTime;
+
+        public static ScheduleTimeSpan GenerateFromHourMinute(int fromHour,int fromMinute,int toHour,int toMinute)
+        {
+            return new ScheduleTimeSpan()
+            {
+                FromTime = new DateTime(2015, 1, 1, fromHour, fromMinute, 0),
+                ToTime = new DateTime(2015, 1, 1, toHour, toMinute, 0)
+            };
         }
     }
 }

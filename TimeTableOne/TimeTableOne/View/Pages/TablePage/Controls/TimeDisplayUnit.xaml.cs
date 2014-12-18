@@ -19,8 +19,11 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 {
     public sealed partial class TimeDisplayUnit : UserControl
     {
-
-        private bool isFocused = false;
+        private TimeDisplayUnitViewModel ViewModel
+        {
+            get { return DataContext as TimeDisplayUnitViewModel; }
+        }
+            private bool isFocused = false;
         public TimeDisplayUnit()
         {
             this.InitializeComponent();
@@ -46,14 +49,18 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             base.OnPointerPressed(e);
             if (isFocused)
             {
-                VisualStateManager.GoToState(this, "MouseOverToEdit", true);
+                if (ViewModel.CommitChange())
+                {
+                    isFocused = !isFocused;
+                    VisualStateManager.GoToState(this, "MouseOverToEdit", true);
+                }
             }
             else
             {
                 VisualStateManager.GoToState(this, "Editing", true);
                 textBox.SelectAll();
+                isFocused = !isFocused;
             }
-            isFocused = !isFocused;
         }
     }
 }
