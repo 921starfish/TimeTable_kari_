@@ -16,16 +16,15 @@
           Background="{Binding TableColor}"
           Height="{Binding Hight}"
           Width="{Binding Width}">
-        <Button x:Name="Button1"  
-                Command="{Binding TableClickedAction}" 
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Content="Edit" Loaded="Button1_Loaded"/>
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+      
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Button1" 
+            Loaded="Button1_Loaded">
+            <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" />
             <TextBlock 
                 x:Name="Block1"
+                
                 Text="{Binding TableName}"
-                   HorizontalAlignment="Left"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="20"></TextBlock>
             <TextBlock Text="{Binding Place}"
@@ -33,8 +32,16 @@
                    VerticalAlignment="Center"
                    FontSize="15"
                    Margin="0,50,0,0"></TextBlock>
-
         </Grid>
+        <Button Command="{Binding TableClickedAction}" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Loaded="Button1_Loaded"
+                BorderBrush="#00000000">
+        </Button>
+
+
+
     </Grid>
 </UserControl>
 

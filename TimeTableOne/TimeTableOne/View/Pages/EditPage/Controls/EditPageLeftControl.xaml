@@ -16,24 +16,29 @@
             <ColumnDefinition Width= "1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height= "0*"/>
+            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "1*"/>
             <RowDefinition Height= "2*"/>
-            <RowDefinition Height= "6*"/>
             <RowDefinition Height= "1*"/>
             <RowDefinition Height= "2*"/>
             <RowDefinition Height= "2*"/>
         </Grid.RowDefinitions>
-        <AppBarButton Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right"
-                      Width="90"
-                      VerticalContentAlignment="Center"
-                      
-                      VerticalAlignment="Bottom"  Command="{Binding AllDelete}" Foreground="Black" BorderBrush="Black" Background="Black">
-            <AppBarButton.Icon>
-                <SymbolIcon  Foreground="Black" Symbol="Clear" HorizontalAlignment="Left" Width="40" RequestedTheme="Dark" RenderTransformOrigin="0.5,0.5" />
-            </AppBarButton.Icon>
-            
-        </AppBarButton>
-        <TextBlock Grid.Column="1" Grid.Row="1" 
+        <Button Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="1"
+                HorizontalAlignment="Right"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Stretch"
+                Command ="{Binding OpenOneNote}"
+                BorderBrush="#00000000">
+            <SymbolIcon Symbol="Emoji2" Foreground="Black" />
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1"
+                HorizontalAlignment="Right"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Stretch"  Command="{Binding AllDelete}"
+                BorderBrush="#00000000">
+            <SymbolIcon Symbol="Delete" Foreground="Black" />
+        </Button>
+        <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
                    x:Name="pageTitle" 
                    Text="{Binding TableName}" 
                    Style="{StaticResource HeaderTextBlockStyle}" 

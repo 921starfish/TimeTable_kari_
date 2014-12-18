@@ -19,7 +19,7 @@
                             <Setter Property="ItemTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <StackPanel  DataContext="{Binding}">
+                                        <StackPanel  Margin="0,0,0,0" DataContext="{Binding}">
                                             <control:TimeTable/>
                                         </StackPanel>
                                     </DataTemplate>
@@ -50,7 +50,7 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" />
             <TextBlock x:Name="pageTitle" 
-                       Text="TimeTable" 
+                       Text="TimeTable"
                        Style="{StaticResource HeaderTextBlockStyle}" 
                        Grid.Column="1" 
                        IsHitTestVisible="false" 

@@ -21,10 +21,11 @@
                 Grid.ColumnSpan="3" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch" 
-                Command="{Binding TableClickedAction}" 
-                Content="Edit"  
+                Command="{Binding TableClickedAction}"  
                 FontSize="30"
-                Loaded="Button1_Loaded"/>
+                Loaded="Button1_Loaded" >
+            <SymbolIcon Symbol="Add"/>
+            </Button>
         <TextBlock x:Name="Block1"
                    Grid.Column="1" 
                    Grid.ColumnSpan="2"
