@@ -15,7 +15,7 @@
     <Grid
           Background="{Binding TableColor}" >
       
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Button1" 
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
             Loaded="Button1_Loaded">
             <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" />
             <TextBlock 

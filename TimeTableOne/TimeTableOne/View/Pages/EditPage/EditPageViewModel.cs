@@ -24,6 +24,11 @@ namespace TimeTableOne.View.Pages.EditPage
         private string _placeInformation = "";
         private string _tableInformation = "";
         private ScheduleData _scheduleData;
+
+        public ScheduleData ScheduleData
+        {
+            get { return _scheduleData; }
+        }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
 
@@ -141,7 +146,6 @@ namespace TimeTableOne.View.Pages.EditPage
             }
         }
 
-        public ScheduleData scheduleKey { get; set; }
 
         public string Komidashi
         {

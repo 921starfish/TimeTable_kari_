@@ -31,7 +31,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }
             else
             {
-                TableColor = new SolidColorBrush(Color.FromArgb(225, 128, 57, 123));
+                TableColor = new SolidColorBrush(data.ColorData);
                 this.Place = (data ?? new ScheduleData()).Place;
             }
             timer = new DispatcherTimer();
@@ -65,8 +65,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
         public Page Page { get; set; }
         public TableKey TableKey { get; set; }
-
-     
     }
 
     public class TimeTableViewModelInDesign : TimeTableViewModel

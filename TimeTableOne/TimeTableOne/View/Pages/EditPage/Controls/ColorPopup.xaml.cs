@@ -14,25 +14,28 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
-    public sealed partial class EditPageLeftControl : UserControl
+    public sealed partial class ColorPopup : UserControl
     {
-        public EditPageLeftControl()
+        private EditPageViewModel ViewModel
+        {
+            get { return DataContext as EditPageViewModel; }
+        }
+
+        public ColorPopup()
         {
             this.InitializeComponent();
+            ColorList.DataContext = new ColorPopupViewModelInDesign();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
-            TestPopup.IsOpen = !TestPopup.IsOpen;
-        }
-
-        private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            TestPopup.IsOpen = false;
+            var selected = ColorList.SelectedItem as ColorPopupUnitViewModel;
+            ViewModel.ScheduleData.ColorData = selected.ColorBrush.Color;
+            ApplicationData.SaveData(ApplicationData.Instance);
         }
     }
 }

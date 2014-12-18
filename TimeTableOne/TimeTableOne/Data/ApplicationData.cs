@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.Web.AtomPub;
 
@@ -212,10 +213,11 @@ namespace TimeTableOne.Data
         public string Description = "";
 
         public string OneNoteId = "";
+        public Color ColorData { get; set; }
 
         public static ScheduleData GenerateEmpty()
         {
-            return new ScheduleData() { ScheduleId = Guid.NewGuid() };
+            return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123)};
         }
     }
 

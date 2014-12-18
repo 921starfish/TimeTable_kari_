@@ -134,6 +134,13 @@
     </Compile>
     <Compile Include="View\Pages\DayPage\Controls\TimeControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
+      <DependentUpon>ColorPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopupUnit.xaml.cs">
+      <DependentUpon>ColorPopupUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopupViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
@@ -192,6 +199,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\DayPage\Controls\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ColorPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ColorPopupUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

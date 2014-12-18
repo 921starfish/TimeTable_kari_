@@ -32,7 +32,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }
             else
             {
-                Button1.Background = new SolidColorBrush(Color.FromArgb(255, 128, 57, 123));
                
             }
         }
