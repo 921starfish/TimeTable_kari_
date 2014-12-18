@@ -24,7 +24,7 @@
                 Command="{Binding TableClickedAction}"  
                 FontSize="30"
                 Loaded="Button1_Loaded" >
-            <SymbolIcon Symbol="Add"/>
+            <SymbolIcon Symbol="Add" Name="icon"/>
             </Button>
         <TextBlock x:Name="Block1"
                    Grid.Column="1" 

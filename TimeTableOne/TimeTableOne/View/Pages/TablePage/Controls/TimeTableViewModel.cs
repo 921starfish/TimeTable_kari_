@@ -12,10 +12,10 @@ using TimeTableOne.Utils.Commands;
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
     public class TimeTableViewModel
-    : INotifyPropertyChanged
+    : BasicViewModel
     {
         private ScheduleData data;
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        private Brush _tableColor;
         public TimeTableViewModel(Page page, TableKey key)
         {
             data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
@@ -54,7 +54,17 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
         }
 
-        public Brush TableColor { get; set; }
+        public Brush TableColor
+        {
+            get { return _tableColor; }
+            set
+            {
+                if (Equals(value, _tableColor)) return;
+                _tableColor = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string TableName { get; set; }
         public string Place { get; set; }
         public DayOfWeek dayOfWeek { get; set; }
