@@ -28,14 +28,31 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public ColorPopup()
         {
             this.InitializeComponent();
-            ColorList.DataContext = new ColorPopupViewModelInDesign();
+            
         }
+
+        
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = ColorList.SelectedItem as ColorPopupUnitViewModel;
+            if(selected==null)return;
             ViewModel.ScheduleData.ColorData = selected.ColorBrush.Color;
             ApplicationData.SaveData(ApplicationData.Instance);
+        }
+
+        private void ColorPopup_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            ColorPopupViewModel vm;
+            ColorList.DataContext = vm=ColorPopupViewModel.GenerateViewModel(ViewModel.ScheduleData);
+            try
+            {
+                ColorList.SelectedIndex = vm.SelectedIndex;
+            }
+            catch (ArgumentException ex)
+            {
+                
+            }
         }
     }
 }

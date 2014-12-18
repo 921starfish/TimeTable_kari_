@@ -6,23 +6,51 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using TimeTableOne.Data;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
     public class ColorPopupViewModel:BasicViewModel
     {
-        public ColorPopupViewModel()
+        private int _selectedIndex;
+
+        protected ColorPopupViewModel()
         {
             this.ColorItems=new ObservableCollection<ColorPopupUnitViewModel>();
         }
 
-        public ObservableCollection<ColorPopupUnitViewModel> ColorItems { get; set; } 
-    }
+        private ColorPopupViewModel(ScheduleData data):this()
+        {
+            GenerateColors();
+            for (int i = 0; i < ColorItems.Count; i++)
+            {
+                if (ColorItems[i].ColorBrush.Color.Equals(data.ColorData))
+                {
+                    SelectedIndex = i;
+                    return;
+                }
+            }
+        }
 
-    public class ColorPopupViewModelInDesign : ColorPopupViewModel
-    {
-        public ColorPopupViewModelInDesign()
+        public ObservableCollection<ColorPopupUnitViewModel> ColorItems { get; set; }
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+            set
+            {
+                if (value == _selectedIndex) return;
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        protected void GenerateColors()
         {
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.AliceBlue));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.AntiqueWhite));
@@ -34,6 +62,20 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.YellowGreen));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Black));
         }
+
+        public static ColorPopupViewModel GenerateViewModel(ScheduleData data)
+        {
+            return new ColorPopupViewModel(data);
+        }
+    }
+
+    public class ColorPopupViewModelInDesign : ColorPopupViewModel
+    {
+        public ColorPopupViewModelInDesign()
+        {
+            GenerateColors();
+        }
+
     }
 
     public class ColorPopupUnitViewModel:BasicViewModel

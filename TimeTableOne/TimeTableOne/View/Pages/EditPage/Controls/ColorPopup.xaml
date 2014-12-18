@@ -8,7 +8,7 @@
     xmlns:system="using:System"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400" >
+    d:DesignWidth="400" DataContextChanged="ColorPopup_OnDataContextChanged">
     <Grid>
         <Polyline Stroke="Black" StrokeThickness="3" Fill="White" Points="0,150 35,115 35,0 400,0 400,300 35,300 35,185 0,150">
         </Polyline>
@@ -18,7 +18,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">テーブル色を設定します</TextBlock>
-            <ListView Name="ColorList" d:DataContext="{local:ColorPopupViewModelInDesign}" Grid.Row="1" ItemsSource="{Binding ColorItems}" Width="365" SelectionChanged="Selector_OnSelectionChanged">
+            <ListView Name="ColorList" d:DataContext="{local:ColorPopupViewModelInDesign}" Grid.Row="1" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}"  ItemsSource="{Binding ColorItems}" Width="365" SelectionChanged="Selector_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ColorPopupUnit></local:ColorPopupUnit>
