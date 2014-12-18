@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.TablePage.Controls.TimeDisplayUnit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.TablePage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:f="using:Windows.Foundation"
+    mc:Ignorable="d"
+    d:DataContext="{local:TimeDisplayUnitViewModelInDesign}"
+    d:DesignHeight="90"
+    d:DesignWidth="200">
+    <UserControl.Resources>
+        <local:TimeDisplayUnitTimeConverter x:Key="DateConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+        </Grid.Resources>
+        <Polygon Points="0,0 60,0 100,45 60,90 0,90" Fill="LightGray">
+        </Polygon>
+        <TextBlock Text="{Binding TimeIndex}" Foreground="Black" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"></TextBlock>
+        <Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource OneNotePurple}"></Polygon>
+        <Polygon Points="60,90 200,90 200,55 91.11,55 " Fill="{StaticResource OneNotePurple}"></Polygon>
+        <Grid Margin="91.11,0,0,0">
+            <TextBlock Text="{Binding FromTime,Converter={StaticResource DateConverter}}" FontSize="30" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding ToTime,Converter={StaticResource DateConverter}}" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

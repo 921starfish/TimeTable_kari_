@@ -114,6 +114,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Data\ApplicationData.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
     <Compile Include="Utils\Commands\CommandBase.cs" />
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
@@ -141,6 +142,14 @@
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\EditPageViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
+      <DependentUpon>TimeDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml.cs">
+      <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplayViewModel.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -193,6 +202,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
