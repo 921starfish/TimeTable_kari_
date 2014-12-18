@@ -8,19 +8,23 @@
     mc:Ignorable="d"
     d:DesignHeight="{Binding Hight}"
     d:DesignWidth="{Binding Width}" >
-    
+
     <Control.Resources>
-        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>  
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Control.Resources>
-    <Button
-        x:Name="Button1"
+    <Grid
           Background="{Binding TableColor}"
-        Height="{Binding Hight}"
-        Width="{Binding Width}"
-        Command="{Binding TableClickedAction}" 
-        BorderBrush="{StaticResource TextBoxBorder}" PointerExited="Button_PointerExited">
+          Height="{Binding Hight}"
+          Width="{Binding Width}">
+        <Button x:Name="Button1"  
+                Command="{Binding TableClickedAction}" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Content="Edit" Loaded="Button1_Loaded"/>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding TableName}"
+            <TextBlock 
+                x:Name="Block1"
+                Text="{Binding TableName}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontSize="20"></TextBlock>
@@ -29,8 +33,8 @@
                    VerticalAlignment="Center"
                    FontSize="15"
                    Margin="0,50,0,0"></TextBlock>
-            <!--<Button  Grid.Column="0" Command="{Binding TableClickedAction}" Content="Edit"/>-->
+
         </Grid>
-    </Button>
+    </Grid>
 </UserControl>
 

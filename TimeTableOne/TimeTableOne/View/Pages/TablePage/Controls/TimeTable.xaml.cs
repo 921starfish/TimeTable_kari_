@@ -25,14 +25,17 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             this.InitializeComponent();
         }
 
-        private void grid_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Button1_Loaded(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void Button_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-         
+            if (Block1.Text == "")
+            {
+            }
+            else
+            {
+                Button1.Background = new SolidColorBrush(Color.FromArgb(255, 128, 57, 123));
+                Button1.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+                Button1.Content = "";
+            }
         }
     }
 }
