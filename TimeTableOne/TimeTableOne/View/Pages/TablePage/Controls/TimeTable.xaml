@@ -13,14 +13,12 @@
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>  
     </Control.Resources>
     <Button
+        x:Name="Button1"
           Background="{Binding TableColor}"
-        
-          MinHeight="90" 
-          MinWidth="200"
         Height="{Binding Hight}"
         Width="{Binding Width}"
         Command="{Binding TableClickedAction}" 
-        BorderBrush="{StaticResource TextBoxBorder}">
+        BorderBrush="{StaticResource TextBoxBorder}" PointerExited="Button_PointerExited">
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="{Binding TableName}"
                    HorizontalAlignment="Left"

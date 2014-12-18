@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +28,11 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         private void grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             
+        }
+
+        private void Button_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+         
         }
     }
 }
