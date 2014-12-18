@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Windows.Security.Cryptography.Certificates;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -10,7 +11,7 @@ using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
-    class TimeTableViewModel
+    public class TimeTableViewModel
     : INotifyPropertyChanged
     {
         private ScheduleData data;
@@ -44,6 +45,11 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             });
         }
 
+        public TimeTableViewModel()
+        {
+            
+        }
+
         private void OnTick(object sender, object e)
         {
         }
@@ -61,5 +67,16 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TableKey TableKey { get; set; }
 
      
+    }
+
+    public class TimeTableViewModelInDesign : TimeTableViewModel
+    {
+        public TimeTableViewModelInDesign()
+        {
+            this.Width = 170;
+            this.Hight = 90;
+            TableName = "SampleData";
+            TableColor = new SolidColorBrush(Color.FromArgb(225, 128, 57, 123));
+        }
     }
 }

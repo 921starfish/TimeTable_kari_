@@ -15,9 +15,7 @@
         <ListView ItemsSource="{Binding TimeRegions}" Background="{StaticResource EditBoxGray}" SelectionMode="None" IsActiveView="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button Padding="0" Margin="0" BorderBrush="Transparent" Command="{Binding EditCommand}">
                         <local:TimeDisplayUnit/>
-                    </Button>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

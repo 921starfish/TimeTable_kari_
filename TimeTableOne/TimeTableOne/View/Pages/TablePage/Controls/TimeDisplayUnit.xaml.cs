@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -49,17 +50,42 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             base.OnPointerPressed(e);
             if (isFocused)
             {
-                if (ViewModel.CommitChange())
-                {
-                    isFocused = !isFocused;
-                    VisualStateManager.GoToState(this, "MouseOverToEdit", true);
-                }
+                EndFocus();
             }
             else
             {
                 VisualStateManager.GoToState(this, "Editing", true);
-                textBox.SelectAll();
+                textBox.Focus(FocusState.Keyboard);
                 isFocused = !isFocused;
+            }
+        }
+
+        private void EndFocus()
+        {
+            if (ViewModel.CommitChange())
+            {
+                isFocused = !isFocused;
+                VisualStateManager.GoToState(this, "MouseOverToEdit", true);
+            }
+        }
+
+        private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box != null)
+            {
+                box.SelectAll();
+            }
+        }
+
+        private void TextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                if (isFocused)
+                {
+                    EndFocus();
+                }
             }
         }
     }
