@@ -33,9 +33,22 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             else
             {
                 Button1.Background = new SolidColorBrush(Color.FromArgb(255, 128, 57, 123));
-                Button1.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-                Button1.Content = "";
+               
             }
         }
+
+        private void SymbolIcon_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Block1.Text == "")
+            {
+            }
+            else
+            {
+                Symbol1.Visibility = Visibility.Collapsed;
+
+            }
+
+        }
+
     }
 }
