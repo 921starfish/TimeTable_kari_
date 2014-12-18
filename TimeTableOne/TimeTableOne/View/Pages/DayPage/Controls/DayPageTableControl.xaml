@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="{Binding TableColor}"  
+    <Grid Background="{Binding TableColor}" 
           VerticalAlignment="Stretch"
           HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Center"
                    FontSize="30"
-                   Text="{Binding TableName}">
+                   Text="{Binding TableName}" Foreground="{Binding ForeColor}">
         </TextBlock>
         <TextBlock Grid.Column="1" 
                    HorizontalAlignment="Left" 

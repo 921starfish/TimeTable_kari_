@@ -28,7 +28,6 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             {
                 Button1.BorderBrush = new SolidColorBrush(Color.FromArgb(0,0,0,0));
                 icon.Visibility = Visibility.Collapsed;
-                
             }
         }
 

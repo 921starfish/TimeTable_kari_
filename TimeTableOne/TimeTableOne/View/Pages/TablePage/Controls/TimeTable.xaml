@@ -24,7 +24,7 @@
                 Text="{Binding TableName}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="20"></TextBlock>
+                   FontSize="20" Foreground="{Binding ForeColor}"></TextBlock>
             <TextBlock Text="{Binding Place}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

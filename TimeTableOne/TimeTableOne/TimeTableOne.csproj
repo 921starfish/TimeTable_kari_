@@ -117,6 +117,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Data\ApplicationData.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Utils\ColorUtil.cs" />
     <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
     <Compile Include="Utils\Commands\CommandBase.cs" />
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />

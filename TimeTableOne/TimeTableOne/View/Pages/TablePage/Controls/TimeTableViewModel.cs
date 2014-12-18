@@ -15,7 +15,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
     : BasicViewModel
     {
         private ScheduleData data;
-        private Brush _tableColor;
+        private SolidColorBrush _tableColor;
+        private Brush _foreColor;
+
         public TimeTableViewModel(Page page, TableKey key)
         {
             data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
@@ -54,13 +56,26 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
         }
 
-        public Brush TableColor
+        public SolidColorBrush TableColor
         {
             get { return _tableColor; }
             set
             {
                 if (Equals(value, _tableColor)) return;
                 _tableColor = value;
+                OnPropertyChanged();
+                ForeColor=value.Color.Liminance()>=0.5?new SolidColorBrush(Colors.Black):
+                new SolidColorBrush(Colors.White);
+            }
+        }
+
+        public Brush ForeColor
+        {
+            get { return _foreColor; }
+            set
+            {
+                if (Equals(value, _foreColor)) return;
+                _foreColor = value;
                 OnPropertyChanged();
             }
         }
