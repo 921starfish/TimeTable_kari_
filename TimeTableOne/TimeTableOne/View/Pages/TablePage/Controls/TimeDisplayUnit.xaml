@@ -13,18 +13,22 @@
     <UserControl.Resources>
         <local:TimeDisplayUnitTimeConverter x:Key="DateConverter"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Width="200" Height="90">
         <Grid.Resources>
             <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
         </Grid.Resources>
-        <Polygon Points="0,0 60,0 100,45 60,90 0,90" Fill="{StaticResource TextBoxGray}">
+        <Polygon Points="0,0 90,0 110,45 90,90 0,90" Fill="{StaticResource TextBoxGray}">
         </Polygon>
-        <TextBlock Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"></TextBlock>
-        <Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource EditBoxGray}"></Polygon>
-        <Polygon Points="60,90 200,90 200,55 91.11,55 " Fill="{StaticResource EditBoxGray}"></Polygon>
-        <Grid Margin="91.11,0,0,0">
-            <TextBlock Text="{Binding FromTime,Converter={StaticResource DateConverter}}" FontSize="30" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
-            <TextBlock Text="{Binding ToTime,Converter={StaticResource DateConverter}}" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#FF4D4D4D"></TextBlock>
+        <TextBlock Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" VerticalAlignment="Center" Margin="32,9,0,9"></TextBlock>
+        <Polygon Points="60,0 200,0 200,35 91.11,35"/>
+        <Polygon Points="60,90 200,90 200,55 91.11,55 "/>
+        <Grid Margin="90.0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding FromTime,Converter={StaticResource DateConverter}}" Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF4D4D4D"/>
+            <TextBlock Text="{Binding ToTime,Converter={StaticResource DateConverter}}" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF4D4D4D"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

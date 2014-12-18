@@ -54,6 +54,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             TimeRegions.Add(new TimeDisplayUnitViewModel() { TimeIndex = 4, FromTime = genFromTime(14, 30), ToTime = genFromTime(16, 00) });
             TimeRegions.Add(new TimeDisplayUnitViewModel() { TimeIndex = 5, FromTime = genFromTime(16, 10), ToTime = genFromTime(17, 40) });
             TimeRegions.Add(new TimeDisplayUnitViewModel() { TimeIndex = 6, FromTime = genFromTime(18, 00), ToTime = genFromTime(19, 40) });
+            TimeRegions.Add(new TimeDisplayUnitViewModel() { TimeIndex = 7, FromTime = genFromTime(20, 10), ToTime = genFromTime(21, 20) });
 
         }
     }
