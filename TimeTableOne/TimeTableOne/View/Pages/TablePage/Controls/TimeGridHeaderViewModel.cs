@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Common;
+using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
@@ -16,6 +17,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             _dayofWeek = dayofWeek;
             Header = WeekStringConverter.getAsString(dayofWeek);
             GenerateHelpDisplay();
+            Width = TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting);
         }
 
         private void GenerateHelpDisplay()
@@ -42,6 +44,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public string Header { get; set; }
 
         public string HelpDisplay { get; set; }
+
+        public int Width { get; set; }
 
         public SolidColorBrush TextBrush { get; set; }
     }

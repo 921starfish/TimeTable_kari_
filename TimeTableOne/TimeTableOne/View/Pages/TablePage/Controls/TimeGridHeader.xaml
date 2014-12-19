@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignWidth="170" d:DesignHeight="45" Width="170" Height="90" d:DataContext="{local:TimeGridHeaderViewModelInDesign}">
+    d:DesignWidth="170" d:DesignHeight="45" Width="{Binding Width}" Height="90" d:DataContext="{local:TimeGridHeaderViewModelInDesign}">
     
     <Grid>
         <Grid.RowDefinitions>

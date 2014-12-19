@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Navigation;
 using TimeTableOne.Common;
 
 // 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
+using TimeTableOne.Data;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.TablePage
@@ -98,7 +99,26 @@ namespace TimeTableOne.View.Pages.TablePage
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = new TablePageViewModel();
-            GridControl.DataContext = new TimeTableGridViewModel();
+        }
+
+        public TablePageViewModel ViewModel
+        {
+            get { return DataContext as TablePageViewModel; }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            BottomCommandBar.IsOpen = !BottomCommandBar.IsOpen;
+        }
+
+        private void ToggleColumn(object sender, RoutedEventArgs e)
+        {
+            var config = ApplicationData.Instance.Configuration;
+            config.TableTypeSetting = config.TableTypeSetting == TableType.WeekDay
+                ? TableType.AllDay
+                : TableType.WeekDay;
+            ApplicationData.SaveData(ApplicationData.Instance);
+            ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
         }
     }
 }

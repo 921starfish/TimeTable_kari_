@@ -14,6 +14,11 @@
     <Page.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Name="BottomCommandBar">
+            <AppBarButton Label="7/5列切替" Click="ToggleColumn"></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource OneNotePurple}">
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -41,8 +46,11 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Left"/>
             <controls:TimeControl Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" d:DataContext="{controls:TimeControlViewModel}"/>
+            <Button Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="ButtonBase_OnClick">
+                <SymbolIcon Symbol="Setting"></SymbolIcon>
+            </Button>
         </Grid>
-        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" d:DataContext="{control:TimeTableGridViewModelInDesign}">
+        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}">
             
         </control:TimeTableGrid>
     </Grid>

@@ -12,6 +12,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.EditPage.Controls;
 
@@ -29,16 +30,17 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
                 Colors.CornflowerBlue, Colors.Red
             };
-           
+            TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
             var f = Window.Current.Content as Frame;
+            int n = type == TableType.AllDay ? 7 : 5;
             GridItems.Add(new EmptyGridUnitViewModel());
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < n; i++)
             {
                 GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = new SolidColorBrush(colors[i]) });
             }
             for (int i = 0; i < 7; i++)
             {
-                for (int w = 0; w < 8; w++)
+                for (int w = 0; w < n+1; w++)
                 {
                     if (w == 0)
                     {
@@ -58,9 +60,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     }
                 }
             }
-            ElementWidth = 170;
+            ElementWidth =TableLayoutManager.getElementWidth(type);
             ElementHeight = 90;
-            WidthSplit = 8;
+            WidthSplit = n+1;
         }
 
         public ObservableCollection<BasicViewModel> GridItems { get; set; } 

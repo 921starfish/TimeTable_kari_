@@ -121,6 +121,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
+    <Compile Include="Data\ConfigurationData.cs" />
     <Compile Include="Privacy.xaml.cs">
       <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
@@ -180,6 +181,7 @@
       <DependentUpon>TimeTableGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\TableLayoutManager.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
