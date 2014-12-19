@@ -5,7 +5,7 @@ using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.TablePage
 {
-    class TablePageViewModel : INotifyPropertyChanged
+    public class TablePageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public TablePageViewModel(TablePage page)
@@ -22,6 +22,11 @@ namespace TimeTableOne.View.Pages.TablePage
             }
             PropertyChanged(this, new PropertyChangedEventArgs("Tables"));
         }
+
+        protected TablePageViewModel()
+        {
+            
+        }
         public ObservableCollection<TimeTableViewModel> MonTables { get { return Tables[0]; } }
         public ObservableCollection<TimeTableViewModel> TueTables { get { return Tables[1]; } }
         public ObservableCollection<TimeTableViewModel> WedTables { get { return Tables[2]; } }
@@ -29,7 +34,23 @@ namespace TimeTableOne.View.Pages.TablePage
         public ObservableCollection<TimeTableViewModel> FriTables { get { return Tables[4]; } }
         public ObservableCollection<TimeTableViewModel> SatTables { get { return Tables[5]; } }
         public ObservableCollection<TimeTableViewModel> SunTables { get { return Tables[6]; } }
-        private ObservableCollection<TimeTableViewModel>[] Tables;
+        protected ObservableCollection<TimeTableViewModel>[] Tables;
         public TablePage Page { get; set; }
+    }
+
+    public class TablePageViewModelInDesign : TablePageViewModel
+    {
+        public TablePageViewModelInDesign()
+        {
+            Tables = new ObservableCollection<TimeTableViewModel>[7];
+            for (int j = 0; j < 7; j++)
+            {
+                Tables[j] = new ObservableCollection<TimeTableViewModel>();
+                for (int i = 1; i < 8; i++)
+                {
+                    Tables[j].Add(new TimeTableViewModelInDesign());
+                }
+            }
+        }
     }
 }

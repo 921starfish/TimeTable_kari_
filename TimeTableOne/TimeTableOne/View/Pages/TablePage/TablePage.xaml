@@ -8,7 +8,8 @@
     xmlns:common="using:TimeTableOne.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:tablePage="using:TimeTableOne.View.Pages.TablePage"
+    mc:Ignorable="d" d:DataContext="{tablePage:TablePageViewModelInDesign}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

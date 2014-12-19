@@ -1,5 +1,6 @@
 ﻿using Windows.Foundation.Metadata;
 using Windows.UI;
+using Windows.UI.Xaml;
 using TimeTableOne.View.Pages.TablePage.Controls;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -25,9 +26,8 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             }
             else
             {
-                Button1.Background = new SolidColorBrush(Color.FromArgb(255, 128, 57, 123));
                 Button1.BorderBrush = new SolidColorBrush(Color.FromArgb(0,0,0,0));
-                Button1.Content = "";
+                icon.Visibility = Visibility.Collapsed;
             }
         }
 

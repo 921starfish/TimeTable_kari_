@@ -17,22 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
-    public sealed partial class EditPageLeftControl : UserControl
+    public sealed partial class ColorPopupUnit : UserControl
     {
-        public EditPageLeftControl()
+        public ColorPopupUnit()
         {
             this.InitializeComponent();
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-           
-            TestPopup.IsOpen = !TestPopup.IsOpen;
-        }
-
-        private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            TestPopup.IsOpen = false;
         }
     }
 }

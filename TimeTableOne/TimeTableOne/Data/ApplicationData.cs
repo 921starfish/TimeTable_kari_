@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.Web.AtomPub;
 
@@ -35,6 +36,8 @@ namespace TimeTableOne.Data
         public List<ScheduleKey> Keys = new List<ScheduleKey>();
 
         public List<ScheduleData> Data =new List<ScheduleData>();
+
+        public List<ScheduleTimeSpan> TimeSpans=new List<ScheduleTimeSpan>(); 
 
         private static ApplicationDataContainer SettingFolder
         {
@@ -210,10 +213,26 @@ namespace TimeTableOne.Data
         public string Description = "";
 
         public string OneNoteId = "";
+        public Color ColorData { get; set; }
 
         public static ScheduleData GenerateEmpty()
         {
-            return new ScheduleData() { ScheduleId = Guid.NewGuid() };
+            return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123)};
+        }
+    }
+
+    public class ScheduleTimeSpan
+    {
+        public DateTime FromTime;
+        public DateTime ToTime;
+
+        public static ScheduleTimeSpan GenerateFromHourMinute(int fromHour,int fromMinute,int toHour,int toMinute)
+        {
+            return new ScheduleTimeSpan()
+            {
+                FromTime = new DateTime(2015, 1, 1, fromHour, fromMinute, 0),
+                ToTime = new DateTime(2015, 1, 1, toHour, toMinute, 0)
+            };
         }
     }
 }

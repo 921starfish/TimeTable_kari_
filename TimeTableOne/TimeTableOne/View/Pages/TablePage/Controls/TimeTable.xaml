@@ -7,17 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="{Binding Hight}"
-    d:DesignWidth="{Binding Width}" >
+    d:DesignWidth="{Binding Width}" Width="170" Height="90" d:DataContext="{local:TimeTableViewModelInDesign}">
 
     <Control.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Control.Resources>
     <Grid
-          Background="{Binding TableColor}"
-          Height="{Binding Hight}"
-          Width="{Binding Width}">
+          Background="{Binding TableColor}" >
       
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Button1" 
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
             Loaded="Button1_Loaded">
             <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" Foreground="{StaticResource TextBoxBorder}" />
             <TextBlock 
@@ -26,12 +24,12 @@
                 Text="{Binding TableName}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="20"></TextBlock>
+                   FontSize="20" Foreground="{Binding ForeColor}"></TextBlock>
             <TextBlock Text="{Binding Place}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="15"
-                   Margin="0,50,0,0"></TextBlock>
+                   Margin="0,50,0,0" Foreground="{Binding ForeColor}"></TextBlock>
         </Grid>
         <Button Command="{Binding TableClickedAction}" 
                 HorizontalAlignment="Stretch"

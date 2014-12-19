@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace TimeTableOne.Utils.Commands
 {
-    public delegate void Action();
 
     public abstract class DelegateCommandBase : CommandBase
     {

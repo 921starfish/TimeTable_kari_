@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeTableOne.Utils.Commands
 {
-    class AlwaysExecutableDelegateCommand : DelegateCommandBase
+    public class AlwaysExecutableDelegateCommand : DelegateCommandBase
     {
 
         public AlwaysExecutableDelegateCommand(Action act)
