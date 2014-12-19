@@ -65,6 +65,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             WidthSplit = n+1;
         }
 
+
         public ObservableCollection<BasicViewModel> GridItems { get; set; } 
 
         public int ElementWidth { get; set; }
@@ -72,6 +73,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public int ElementHeight { get; set; }
 
         public int WidthSplit { get; set; }
+
+        public DeleteRowCommand DeleteRow { get; set; }
     }
 
     public class TimeTableGridViewModelInDesign : TimeTableGridViewModel

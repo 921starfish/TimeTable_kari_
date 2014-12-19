@@ -99,7 +99,10 @@ namespace TimeTableOne.View.Pages.TablePage
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = new TablePageViewModel();
+            RemoveButton.Command=RemoveCommand=new DeleteRowCommand(RemoveRow);
         }
+
+        public DeleteRowCommand RemoveCommand { get; set; }
 
         public TablePageViewModel ViewModel
         {
@@ -127,14 +130,16 @@ namespace TimeTableOne.View.Pages.TablePage
             config.TableCount++;
             ApplicationData.SaveData(ApplicationData.Instance);
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
+            RemoveCommand.NotifyCanExecuteChanged();
         }
 
-        private void RemoveRow(object sender, RoutedEventArgs e)
+        private void RemoveRow()
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount--;
             ApplicationData.SaveData(ApplicationData.Instance);
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
+            RemoveCommand.NotifyCanExecuteChanged();
         }
     }
 }

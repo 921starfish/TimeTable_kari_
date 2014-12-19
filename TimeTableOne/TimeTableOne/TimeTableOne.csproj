@@ -181,6 +181,7 @@
       <DependentUpon>TimeTableGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\DeleteRowCommand.cs" />
     <Compile Include="View\Pages\TablePage\TableLayoutManager.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
