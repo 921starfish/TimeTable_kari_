@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
 using TimeTableOne.View.Pages.TablePage.Controls;
@@ -53,6 +54,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         protected void GenerateColors()
         {
+
+            Color OneNotePurpleColor = (Color)Application.Current.Resources["OneNotePurpleColor"];
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.AliceBlue));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.AntiqueWhite));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Aquamarine));
@@ -62,6 +65,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Red));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.YellowGreen));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Black));
+            ColorItems.Add(new ColorPopupUnitViewModel(OneNotePurpleColor));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Transparent));
         }
 
         public static ColorPopupViewModel GenerateViewModel(ScheduleData data)
