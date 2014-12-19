@@ -18,9 +18,14 @@
       <m2:VisualElements DisplayName="TimeTableOne" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="TimeTableOne" ForegroundText="light" BackgroundColor="#80397B">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="picturesLibrary" />
+    <Capability Name="removableStorage" />
   </Capabilities>
 </Package>
