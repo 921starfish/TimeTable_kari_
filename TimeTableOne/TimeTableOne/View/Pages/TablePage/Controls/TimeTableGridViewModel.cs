@@ -38,7 +38,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             {
                 GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = new SolidColorBrush(colors[i]) });
             }
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < ApplicationData.Instance.Configuration.TableCount; i++)
             {
                 for (int w = 0; w < n+1; w++)
                 {

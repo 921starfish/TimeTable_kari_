@@ -120,5 +120,21 @@ namespace TimeTableOne.View.Pages.TablePage
             ApplicationData.SaveData(ApplicationData.Instance);
             ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
         }
+
+        private void AppendRow(object sender, RoutedEventArgs e)
+        {
+            var config = ApplicationData.Instance.Configuration;
+            config.TableCount++;
+            ApplicationData.SaveData(ApplicationData.Instance);
+            ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
+        }
+
+        private void RemoveRow(object sender, RoutedEventArgs e)
+        {
+            var config = ApplicationData.Instance.Configuration;
+            config.TableCount--;
+            ApplicationData.SaveData(ApplicationData.Instance);
+            ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
+        }
     }
 }

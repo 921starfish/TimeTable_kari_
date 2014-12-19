@@ -27,7 +27,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public static TimeDisplayViewModel GenerateViewModel()
         {
-            if (ApplicationData.Instance.TimeSpans.Count != 7)
+            if (ApplicationData.Instance.TimeSpans.Count==0)
             {
                 ApplicationData.Instance.TimeSpans = new List<ScheduleTimeSpan>();
                 List<ScheduleTimeSpan> spans = ApplicationData.Instance.TimeSpans;
@@ -150,6 +150,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public static BasicViewModel FromData(int i)
         {
+            for (int j = 0; j <ApplicationData.Instance.Configuration.TableCount-ApplicationData.Instance.TimeSpans.Count; j++)
+            {
+                ApplicationData.Instance.TimeSpans.Add(ScheduleTimeSpan.GenerateFromHourMinute(0, 0, 0, 0));
+            }
             var model= ApplicationData.Instance.TimeSpans[i];
             TimeDisplayUnitViewModel vm=new TimeDisplayUnitViewModel();
             vm.TargetModelSpan = model;
