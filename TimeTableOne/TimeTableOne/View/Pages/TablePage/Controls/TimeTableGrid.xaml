@@ -25,7 +25,7 @@
             <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
-        <ListView x:Name="Grids" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+        <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
