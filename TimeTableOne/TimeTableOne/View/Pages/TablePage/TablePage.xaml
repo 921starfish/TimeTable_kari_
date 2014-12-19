@@ -16,9 +16,9 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
-            <AppBarButton Label="7/5列切替" Click="ToggleColumn"></AppBarButton>
-            <AppBarButton Label="一行追加" Click="AppendRow"></AppBarButton>
-            <AppBarButton Label="一行消す" Name="RemoveButton"></AppBarButton>
+            <AppBarButton Icon="Rotate"  Label="7/5列切替" Click="ToggleColumn"></AppBarButton>
+            <AppBarButton Icon="Add" Label="一行追加" Click="AppendRow"></AppBarButton>
+            <AppBarButton Icon="Remove" Label="一行消す" Name="RemoveButton"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource OneNotePurple}">
