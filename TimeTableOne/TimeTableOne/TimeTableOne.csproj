@@ -124,6 +124,9 @@
       <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="BackgroundSelect.xaml.cs">
+      <DependentUpon>BackgroundSelect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\ColorUtil.cs" />
     <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
     <Compile Include="Utils\Commands\CommandBase.cs" />
@@ -206,6 +209,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Privacy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BackgroundSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

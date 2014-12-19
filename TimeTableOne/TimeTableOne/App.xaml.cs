@@ -134,7 +134,18 @@ namespace TimeTableOne
 					accountFlyout.Show();
 				});
 			e.Request.ApplicationCommands.Add(accountCommand);
+
+            // 星野が追加
+            e.Request.ApplicationCommands.Add(new SettingsCommand(
+                "Background Setting", "背景を変更", (handler) => ShowCustomSettingFlyout()));
+            //ここまで
 		}
+
+        public void ShowCustomSettingFlyout()
+        {
+            TopBackgroundSelect backgroundSettingFlyout = new TopBackgroundSelect();
+            backgroundSettingFlyout.Show();
+        }
 
 		public static async Task updateUserName(TextBlock userName, Boolean signIn) {
 			try {
