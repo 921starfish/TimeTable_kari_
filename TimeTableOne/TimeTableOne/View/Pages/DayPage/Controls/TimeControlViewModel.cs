@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 
 namespace TimeTableOne.View.Pages.DayPage.Controls
 {
-    class TimeControlViewModel : INotifyPropertyChanged
+    public class TimeControlViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged= delegate { };
         public TimeControlViewModel()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using TimeTableOne.Common;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
@@ -13,6 +14,28 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeGridHeaderViewModel(DayOfWeek dayofWeek)
         {
             _dayofWeek = dayofWeek;
+            Header = WeekStringConverter.getAsString(dayofWeek);
+            GenerateHelpDisplay();
+        }
+
+        private void GenerateHelpDisplay()
+        {
+            DayOfWeek today = DateTime.Now.DayOfWeek;
+            if (today == _dayofWeek)
+            {
+                HelpDisplay = "今日";
+            }
+            int diff = ((int) today - (int) _dayofWeek)%7;
+            if (diff == 6)
+            {
+                HelpDisplay = "明日";
+            }else if (diff == 1)
+            {
+                HelpDisplay = "昨日";
+            }else if (diff == 5)
+            {
+                HelpDisplay = "明後日";
+            }
         }
 
         private DayOfWeek _dayofWeek;
@@ -27,6 +50,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
     {
         public TimeGridHeaderViewModelInDesign():base(DayOfWeek.Sunday)
         {
+            HelpDisplay = "きょう";
             this.Header = "Sun";
             TextBrush=new SolidColorBrush(Colors.Red);
         }

@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding HelpDisplay}"></TextBlock>
+        <TextBlock Grid.Row="0" Text="{Binding HelpDisplay}" FontSize="32" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock Grid.Row="1" Text="{Binding Header}" Foreground="{Binding TextBrush}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </Grid>
 </UserControl>
