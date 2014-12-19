@@ -35,6 +35,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public ObservableCollection<ColorPopupUnitViewModel> ColorItems { get; set; }
 
+
         public int SelectedIndex
         {
             get
