@@ -7,7 +7,7 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
 {
     class TimeControlViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged= delegate { };
         public TimeControlViewModel()
         {
             timer = new DispatcherTimer();

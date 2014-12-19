@@ -59,61 +59,8 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"/>
         </Grid>
-        <Grid Grid.Row="1" Background="{StaticResource EditBoxGray}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="15*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0*"/>
-            </Grid.ColumnDefinitions>
-            <control:TimeDisplay Grid.Column="0" Grid.Row="1"></control:TimeDisplay>
-            <Grid Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Mon" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
-            </Grid>
-            <Grid  Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="Tue" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="Wed" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="4">
-                <TextBlock Text="Thu" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="5">
-                <TextBlock Text="Fry" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="6">
-                <TextBlock Text="Sat" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="7">
-                <TextBlock Text="Sun" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="8"/>
-
-
-            <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding MonTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding TueTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding WedTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding ThuTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FriTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SatTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SunTables}" >
-            </ListView>
-        </Grid>
+        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1"  DataContext="{Binding TimeTableDataContext}">
+            
+        </control:TimeTableGrid>
     </Grid>
 </Page>

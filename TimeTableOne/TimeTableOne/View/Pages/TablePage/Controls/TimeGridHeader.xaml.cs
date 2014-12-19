@@ -17,12 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
-    public sealed partial class TimeTableGrid : UserControl
+    public sealed partial class TimeGridHeader : UserControl
     {
-        public TimeTableGrid()
+        public TimeGridHeader()
         {
             this.InitializeComponent();
-            Grids.ItemTemplateSelector=new TimeTableGridTemplateSelector();
         }
     }
 }

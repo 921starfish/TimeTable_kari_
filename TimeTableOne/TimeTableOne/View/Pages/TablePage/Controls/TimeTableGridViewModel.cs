@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using TimeTableOne.Utils;
+using TimeTableOne.View.Pages.EditPage.Controls;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
 {
@@ -14,7 +21,44 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeTableGridViewModel()
         {
             GridItems=new ObservableCollection<BasicViewModel>();
-            
+            bool isDesignmode = true;//DesignMode.DesignModeEnabled;
+            string[] headers = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+            Color[] colors =
+            {
+                Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
+                Colors.CornflowerBlue, Colors.Red
+            };
+            var f = Window.Current.Content as Frame;
+            GridItems.Add(new TimeGridHeaderViewModel());
+            for (int i = 0; i < 7; i++)
+            {
+                GridItems.Add(new TimeGridHeaderViewModel() { Header = headers[i], TextBrush = new SolidColorBrush(colors[i]) });
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                for (int w = 0; w < 8; w++)
+                {
+                    if (w == 0)
+                    {
+                        if (isDesignmode) GridItems.Add(new TimeDisplayUnitViewModelInDesign());
+                        else
+                        {
+                            GridItems.Add(new TimeDisplayUnitViewModel());
+                        }
+                    }
+                    else
+                    {
+                        if (isDesignmode) GridItems.Add(new TimeTableViewModelInDesign());
+                        else
+                        {
+                            GridItems.Add(new TimeTableViewModel(new TableKey(i + 1, w + 1)));
+                        }
+                    }
+                }
+            }
+            ElementWidth = 170;
+            ElementHeight = 90;
+            WidthSplit = 8;
         }
 
         public ObservableCollection<BasicViewModel> GridItems { get; set; } 
@@ -30,44 +74,37 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
     {
         public TimeTableGridViewModelInDesign()
         {
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            GridItems.Add(new TimeDisplayUnitViewModel());
-            ElementWidth = 200;
-            ElementHeight = 90;
-            WidthSplit = 8;
+
         }
     }
 
     public class TimeTableGridTemplateSelector : DataTemplateSelector
     {
-
+       
+        public TimeTableGridTemplateSelector()
+        {
+            Debug.WriteLine("Construct!");
+        }
         public DataTemplate TimeRegionTemplate { get; set; }
 
         public DataTemplate TimeTableUnitTemplate { get; set; }
 
+        public DataTemplate HeaderTemplate { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item)
         {
+            Debug.WriteLine("Called!");
             if (item is TimeDisplayUnitViewModel)
             {
                 return TimeRegionTemplate;
             }
-            else
+            else if(item is TimeTableViewModel)
             {
                 return TimeTableUnitTemplate;
+            }
+            else
+            {
+                return HeaderTemplate;
             }
         }
 
@@ -75,5 +112,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             return this.SelectTemplateCore(item);
         }
+
     }
 }

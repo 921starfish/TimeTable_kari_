@@ -8,7 +8,7 @@
     mc:Ignorable="d" d:DataContext="{local:TimeTableGridViewModelInDesign}"
     d:DesignHeight="800"
     d:DesignWidth="1920">
-    <Grid Background="BlueViolet">
+    <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="TimeRegionDataTemplate">
                 <local:TimeDisplayUnit></local:TimeDisplayUnit>
@@ -16,15 +16,24 @@
             <DataTemplate x:Key="TimeTableUnitDataTemplate">
                 <local:TimeTable></local:TimeTable>
             </DataTemplate>
-            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <DataTemplate x:Key="HeaderTemplate" >
+                <local:TimeGridHeader></local:TimeGridHeader>
+            </DataTemplate>
+            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
-        <ListView ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+        <ListView x:Name="Grids" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" MaximumRowsOrColumns="{Binding WidthSplit}" ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></VariableSizedWrapGrid>
+                    <WrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></WrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="0"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@ namespace TimeTableOne.View.Pages.DayPage
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TablePage.TablePage));
+            this.Frame.Navigate(typeof (TablePage.TablePage));
         }
     }
 }
