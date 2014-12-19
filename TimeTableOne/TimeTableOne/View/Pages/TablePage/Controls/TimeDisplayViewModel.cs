@@ -147,6 +147,17 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         }
 
         public ScheduleTimeSpan TargetModelSpan { get; set; }
+
+        public static BasicViewModel FromData(int i)
+        {
+            var model= ApplicationData.Instance.TimeSpans[i];
+            TimeDisplayUnitViewModel vm=new TimeDisplayUnitViewModel();
+            vm.TargetModelSpan = model;
+            vm.FromTime = model.FromTime;
+            vm.ToTime = model.ToTime;
+            vm.TimeIndex = i + 1;
+            return vm;
+        }
     }
 
     public class TimeDisplayUnitViewModelInDesign : TimeDisplayUnitViewModel

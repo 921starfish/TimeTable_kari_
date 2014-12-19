@@ -22,13 +22,14 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeTableGridViewModel()
         {
             GridItems=new ObservableCollection<BasicViewModel>();
-            bool isDesignmode = true;//DesignMode.DesignModeEnabled;
+            bool isDesignmode = DesignMode.DesignModeEnabled;
             string[] headers = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
             Color[] colors =
             {
                 Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
                 Colors.CornflowerBlue, Colors.Red
             };
+           
             var f = Window.Current.Content as Frame;
             GridItems.Add(new TimeGridHeaderViewModel());
             for (int i = 0; i < 7; i++)
@@ -44,7 +45,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                         if (isDesignmode) GridItems.Add(new TimeDisplayUnitViewModelInDesign());
                         else
                         {
-                            GridItems.Add(new TimeDisplayUnitViewModel());
+                            GridItems.Add(TimeDisplayUnitViewModel.FromData(i));
                         }
                     }
                     else
