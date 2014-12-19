@@ -170,6 +170,10 @@
       <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplayViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml.cs">
+      <DependentUpon>TimeTableGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -257,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\TablePage\Controls\TimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

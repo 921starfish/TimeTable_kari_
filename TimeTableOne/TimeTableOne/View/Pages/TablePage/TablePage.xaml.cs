@@ -95,7 +95,7 @@ namespace TimeTableOne.View.Pages.TablePage
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new TablePageViewModel(this);
+            this.DataContext = new TablePageViewModel();
         }
     }
 }
