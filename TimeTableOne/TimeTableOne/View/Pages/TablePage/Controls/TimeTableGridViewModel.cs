@@ -23,7 +23,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             GridItems=new ObservableCollection<BasicViewModel>();
             bool isDesignmode = DesignMode.DesignModeEnabled;
-            string[] headers = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+            DayOfWeek[] headers = {DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
             Color[] colors =
             {
                 Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
@@ -31,10 +31,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             };
            
             var f = Window.Current.Content as Frame;
-            GridItems.Add(new TimeGridHeaderViewModel());
+            GridItems.Add(new EmptyGridUnitViewModel());
             for (int i = 0; i < 7; i++)
             {
-                GridItems.Add(new TimeGridHeaderViewModel() { Header = headers[i], TextBrush = new SolidColorBrush(colors[i]) });
+                GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = new SolidColorBrush(colors[i]) });
             }
             for (int i = 0; i < 7; i++)
             {
@@ -95,6 +95,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public DataTemplate HeaderTemplate { get; set; }
 
+        public DataTemplate EmptyTemplate { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item)
         {
             if (item is TimeDisplayUnitViewModel)
@@ -111,6 +113,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             {
                 htCount++;
                 return HeaderTemplate;
+            }else if (item is EmptyGridUnitViewModel)
+            {
+                return EmptyTemplate;
             }
             else
             {

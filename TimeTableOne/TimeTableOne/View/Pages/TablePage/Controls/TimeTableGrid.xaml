@@ -22,7 +22,10 @@
             <DataTemplate x:Key="HeaderTemplate" >
                 <local:TimeGridHeader></local:TimeGridHeader>
             </DataTemplate>
-            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <DataTemplate x:Key="EmptyTemplate">
+                
+            </DataTemplate>
+            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
         <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">

@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="View\Pages\EditPage\EditPageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
       <DependentUpon>TimeDisplay.xaml</DependentUpon>
     </Compile>
