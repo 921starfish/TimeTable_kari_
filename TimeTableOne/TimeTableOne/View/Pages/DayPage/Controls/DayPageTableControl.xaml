@@ -24,7 +24,7 @@
                 Command="{Binding TableClickedAction}"  
                 FontSize="30"
                 Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
-            <SymbolIcon Symbol="Add" Foreground="{StaticResource TextBoxBorder}"/>
+            <SymbolIcon x:Name="icon" Symbol="Add" Foreground="{StaticResource TextBoxBorder}"/>
             </Button>
         <TextBlock x:Name="Block1"
                    Grid.Column="1" 
