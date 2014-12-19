@@ -22,7 +22,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeTableGrid()
         {
             this.InitializeComponent();
-            Grids.ItemTemplateSelector=new TimeTableGridTemplateSelector();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,7 +81,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
     public class TimeTableGridTemplateSelector : DataTemplateSelector
     {
-       
+        private int trCount = 0;
+        private int ttutCount = 0;
+        private int htCount = 0;
         public TimeTableGridTemplateSelector()
         {
             Debug.WriteLine("Construct!");
@@ -93,18 +96,24 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         protected override DataTemplate SelectTemplateCore(object item)
         {
-            Debug.WriteLine("Called!");
             if (item is TimeDisplayUnitViewModel)
             {
+                trCount++;
                 return TimeRegionTemplate;
             }
             else if(item is TimeTableViewModel)
             {
+                ttutCount++;
                 return TimeTableUnitTemplate;
+            }
+            else if (item is TimeGridHeaderViewModel)
+            {
+                htCount++;
+                return HeaderTemplate;
             }
             else
             {
-                return HeaderTemplate;
+                throw new InvalidDataContractException("Invalid Viewmodel was pasesd!!");
             }
         }
 

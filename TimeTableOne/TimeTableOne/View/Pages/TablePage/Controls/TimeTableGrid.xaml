@@ -25,7 +25,7 @@
         <ListView x:Name="Grids" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></WrapGrid>
+                    <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerStyle>
