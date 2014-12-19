@@ -183,6 +183,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\OneNotePurple.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
     <None Include="TimeTableOne_TemporaryKey.pfx" />

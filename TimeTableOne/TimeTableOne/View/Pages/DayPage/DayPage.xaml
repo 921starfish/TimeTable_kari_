@@ -8,15 +8,15 @@
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
-    </Page.Resources>  
+    </Page.Resources>
     <Grid MinHeight="768" MinWidth="1024" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="{StaticResource EditBoxGray}">
-           <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="1*"></ColumnDefinition>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="400"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -31,7 +31,10 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Grid Grid.Column="1"  Background="{StaticResource OneNotePurple}">
+        <Grid Grid.Column="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/OneNotePurple.png" Stretch="Fill" Opacity="1"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>
@@ -55,6 +58,6 @@
             <Grid Grid.Column="0" Grid.Row="0" 
                   Grid.RowSpan="2" 
                   Grid.ColumnSpan="1" />
-          </Grid>
+        </Grid>
     </Grid>
 </Page>

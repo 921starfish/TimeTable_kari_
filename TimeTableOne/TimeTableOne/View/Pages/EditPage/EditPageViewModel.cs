@@ -9,6 +9,7 @@ using TimeTableOne.View.Pages.EditPage.Controls;
 using Windows.UI;
 using Windows.UI.Xaml;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage
@@ -48,25 +49,7 @@ namespace TimeTableOne.View.Pages.EditPage
                 Initialize();
             }
             AllDelete = new AlwaysExecutableDelegateCommand(
-            () =>
-            {
-                this._detailText = "";
-                this._komidashi = "";
-                this._tableName = "";
-                this._placeInformation = "";
-                this._tableInformation = "";
-                PropertyChanged(this, new PropertyChangedEventArgs("TableName"));
-                PropertyChanged(this, new PropertyChangedEventArgs("DetailText"));
-                PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
-                PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
-                PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
-                PropertyChanged(this, new PropertyChangedEventArgs("TableInfomation"));
-                _scheduleData.TableName = TableName;
-                _scheduleData.Place = PlaceInformation;
-                _scheduleData.Description = DetailText;
-                _scheduleData.FreeFormText = TableInformation;
-              
-            });
+            DeleteWithCheck);
             OpenOneNote = new AlwaysExecutableDelegateCommand(
            () =>
            {
@@ -225,6 +208,39 @@ namespace TimeTableOne.View.Pages.EditPage
         public AlwaysExecutableDelegateCommand AllDelete { get; set; }
 
         public AlwaysExecutableDelegateCommand OpenOneNote { get; set; }
+
+        private async void DeleteWithCheck()
+        {
+            MessageDialog dlg = new MessageDialog("本当に削除しますか？");
+            dlg.Commands.Add(new UICommand("はい"));
+            dlg.Commands.Add(new UICommand("いいえ"));
+            dlg.DefaultCommandIndex = 1;// いいえがデフォ
+            var cmd = await dlg.ShowAsync();
+            // いいえのとき
+            if (cmd == dlg.Commands[1])
+            {
+                return;
+            }
+            else if (cmd == dlg.Commands[0])
+            {
+                this._detailText = "";
+                this._komidashi = "";
+                this._tableName = "";
+                this._placeInformation = "";
+                this._tableInformation = "";
+                PropertyChanged(this, new PropertyChangedEventArgs("TableName"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DetailText"));
+                PropertyChanged(this, new PropertyChangedEventArgs("Komidashi"));
+                PropertyChanged(this, new PropertyChangedEventArgs("RecLength"));
+                PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TableInfomation"));
+                _scheduleData.TableName = TableName;
+                _scheduleData.Place = PlaceInformation;
+                _scheduleData.Description = DetailText;
+                _scheduleData.FreeFormText = TableInformation;
+            }
+            
+        }
     
     }
 }
