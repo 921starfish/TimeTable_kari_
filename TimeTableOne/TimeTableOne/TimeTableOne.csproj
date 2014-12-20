@@ -119,6 +119,7 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Common\TimerManager.cs" />
     <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
     <Compile Include="Data\ConfigurationData.cs" />

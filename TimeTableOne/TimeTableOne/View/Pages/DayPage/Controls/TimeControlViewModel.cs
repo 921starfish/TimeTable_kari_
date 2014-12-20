@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using TimeTableOne.Common;
 using TimeTableOne.Utils;
 using Windows.UI.Xaml;
 
@@ -10,13 +11,15 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         public event PropertyChangedEventHandler PropertyChanged= delegate { };
         public TimeControlViewModel()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(60);
-            timer.Tick += OnTick;
-            timer.Start();
+            TimerManager.Instance.GUITick += Instance_Tick;
         }
 
-        private void OnTick(object sender, object e)
+        void Instance_Tick(object sender, EventArgs e)
+        {
+            OnTick();
+        }
+
+        private void OnTick()
         {
             PropertyChanged(this, new PropertyChangedEventArgs("TimeText"));
             PropertyChanged(this, new PropertyChangedEventArgs("WeekText"));

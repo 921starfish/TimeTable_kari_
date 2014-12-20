@@ -37,7 +37,8 @@
             </Style>
             <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
             <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
-            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+            </Style>
             <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
