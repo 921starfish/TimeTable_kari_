@@ -134,4 +134,40 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         }
 
     }
+
+    public class TimeTableGridContainerStyleSelector : StyleSelector
+    {
+        public Style HeaderStyle { get; set; }
+
+        public Style TableElementStyle { get; set; }
+
+        public Style TimeRegionStyle { get; set; }
+        
+        public Style EmptyStyle { get; set; }
+
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+
+            if (item is TimeDisplayUnitViewModel)
+            {
+                return TimeRegionStyle;
+            }
+            else if (item is TimeTableViewModel)
+            {
+                return TableElementStyle;
+            }
+            else if (item is TimeGridHeaderViewModel)
+            {
+                return HeaderStyle;
+            }
+            else if (item is EmptyGridUnitViewModel)
+            {
+                return EmptyStyle;
+            }
+            else
+            {
+                throw new InvalidDataContractException("Invalid Viewmodel was pasesd!!");
+            }
+        }
+    }
 }

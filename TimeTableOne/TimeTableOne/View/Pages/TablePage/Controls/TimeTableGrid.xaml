@@ -13,6 +13,7 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource EditBoxGray}">
         <Grid.Resources>
+            <!--DataTemplateの要素の宣言-->
             <DataTemplate x:Key="TimeRegionDataTemplate">
                 <local:TimeDisplayUnit></local:TimeDisplayUnit>
             </DataTemplate>
@@ -26,20 +27,26 @@
                 
             </DataTemplate>
             <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <!--ItemsContainerStyleのリソース-->
+            <Style TargetType="ListViewItem" x:Key="ContainerBaseStyle">
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+                
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
-        <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+        <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="0"></Setter>
-                    <Setter Property="Padding" Value="0"></Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
+            </ListView.ItemsPanel> 
         </ListView>
     </Grid>
 </UserControl>
