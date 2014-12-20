@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Title="背景"
     HeaderBackground="{StaticResource OneNotePurple}"
+    Background="{StaticResource EditBoxGray}"
     d:DesignWidth="346">
 
     <!-- この StackPanel はコンテンツ セクションの垂直レイアウト用のルート パネルとして機能します -->
