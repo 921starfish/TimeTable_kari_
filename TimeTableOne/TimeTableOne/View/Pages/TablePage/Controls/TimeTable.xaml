@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="{Binding Hight}"
-    d:DesignWidth="{Binding Width}" Width="170" Height="90" d:DataContext="{local:TimeTableViewModelInDesign}">
+    d:DesignWidth="{Binding Width}" Width="{Binding Width}" Height="90" d:DataContext="{local:TimeTableViewModelInDesign}">
 
     <Control.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>

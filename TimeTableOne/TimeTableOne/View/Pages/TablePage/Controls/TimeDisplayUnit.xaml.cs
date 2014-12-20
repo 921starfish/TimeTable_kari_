@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -45,12 +46,12 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             VisualStateManager.GoToState(this, "NotMouseOver", true);
         }
 
-        protected override void OnPointerPressed(PointerRoutedEventArgs e)
+        protected async override void OnPointerPressed(PointerRoutedEventArgs e)
         {
             base.OnPointerPressed(e);
             if (isFocused)
             {
-                EndFocus();
+                await EndFocus();
             }
             else
             {
@@ -60,9 +61,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }
         }
 
-        private void EndFocus()
+        private async Task EndFocus()
         {
-            if (ViewModel.CommitChange())
+            if (await ViewModel.CommitChange())
             {
                 isFocused = !isFocused;
                 VisualStateManager.GoToState(this, "MouseOverToEdit", true);

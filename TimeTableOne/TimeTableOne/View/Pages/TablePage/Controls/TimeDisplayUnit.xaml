@@ -111,17 +111,23 @@
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
-		<Polygon Points="0,0 60,0 100,45 60,90 0,90" Fill="{StaticResource TextBoxGray}"/>
-		<SymbolIcon x:Name="symbolIcon" Symbol="Edit" Foreground="Black" HorizontalAlignment="Left" Margin="15,0,0,0"/>
-		<SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="Black" HorizontalAlignment="Left" Margin="15,0,0,0"/>
-		<TextBlock x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"/>
-		<Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource EditBoxGray}"/>
+		
+	
+        <Polygon Points="60,0 200,0 200,35 91.11,35" Fill="{StaticResource EditBoxGray}"/>
         <Polygon Points="60,90 200,90 200,55 91.11,55 " Fill="{StaticResource EditBoxGray}"/>
+        <Polygon Points="0,0 70,0 100,45 70,90 0,90" Fill="{StaticResource TextBoxGray}" />
+        <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Foreground="Black" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+        <SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="Black" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+        <TextBlock x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" VerticalAlignment="Center" Margin="15,0,0,0"/>
         <Grid Margin="91.11,0,0,0">
-            <TextBlock x:Name="textBlock2"  Text="{Binding FromTime, Converter={StaticResource DateConverter}}" FontSize="30" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
-            <TextBlock x:Name="textBlock1"  Text="{Binding ToTime, Converter={StaticResource DateConverter}}" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
-            <TextBox x:Name="textBox" Padding="0" Text="{Binding FromTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Top" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
-            <TextBox x:Name="textBox1" Padding="0" Text="{Binding ToTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Bottom" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="textBlock2"  Grid.Row="0" Text="{Binding FromTime, Converter={StaticResource DateConverter}}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF4D4D4D"/>
+            <TextBlock x:Name="textBlock1"  Grid.Row="1" Text="{Binding ToTime, Converter={StaticResource DateConverter}}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
+            <TextBox x:Name="textBox" Grid.Row="0" Padding="0" Text="{Binding FromTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Top" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
+            <TextBox x:Name="textBox1" Grid.Row="1" Padding="0" Text="{Binding ToTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Bottom" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
         </Grid>
     </Grid>
 </UserControl>

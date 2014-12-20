@@ -119,7 +119,10 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Common\TimerManager.cs" />
+    <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
+    <Compile Include="Data\ConfigurationData.cs" />
     <Compile Include="Privacy.xaml.cs">
       <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,7 @@
     </Compile>
     <Compile Include="View\Pages\EditPage\EditPageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
       <DependentUpon>TimeDisplay.xaml</DependentUpon>
     </Compile>
@@ -170,6 +174,16 @@
       <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplayViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeGridHeader.xaml.cs">
+      <DependentUpon>TimeGridHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeGridHeaderViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml.cs">
+      <DependentUpon>TimeTableGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\DeleteRowCommand.cs" />
+    <Compile Include="View\Pages\TablePage\TableLayoutManager.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -257,7 +271,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeGridHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\TablePage\Controls\TimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
