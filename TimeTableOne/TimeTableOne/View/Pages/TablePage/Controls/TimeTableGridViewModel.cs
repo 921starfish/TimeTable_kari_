@@ -55,7 +55,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                         if (isDesignmode) GridItems.Add(new TimeTableViewModelInDesign());
                         else
                         {
-                            GridItems.Add(new TimeTableViewModel(new TableKey(i + 1, w + 1)));
+                            GridItems.Add(new TimeTableViewModel(new TableKey(i + 1, w)));
                         }
                     }
                 }

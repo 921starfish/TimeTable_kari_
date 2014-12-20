@@ -28,19 +28,24 @@ namespace TimeTableOne.Utils {
 
 		//ページがロードされた時に再ログイン
 		private static async void InitializePage() {
-			try {
-				authClient = new LiveAuthClient();
-				LiveLoginResult loginResult = await authClient.InitializeAsync(scopes);
+		    try
+		    {
+		        authClient = new LiveAuthClient();
+		        LiveLoginResult loginResult =authClient.InitializeAsync(scopes).GetAwaiter().GetResult();
 
-				if (loginResult.Status == LiveConnectSessionStatus.Connected) {
-					liveClient = new LiveConnectClient(loginResult.Session);
-				}
-			}
-
-				//とりあえずデバッグに出力
-			catch (LiveAuthException authExp) {
-				Debug.WriteLine(authExp.ToString());
-			}
+		        if (loginResult.Status == LiveConnectSessionStatus.Connected)
+		        {
+		            liveClient = new LiveConnectClient(loginResult.Session);
+		        }
+		    }
+		    catch (LiveAuthException authExp)
+		    {
+		        Debug.WriteLine(authExp.ToString());
+		    }
+		    catch (Exception e)
+		    {
+                Debug.WriteLine(e.ToString());
+		    }
 		}
 
 		private static async void login() {
@@ -116,7 +121,7 @@ namespace TimeTableOne.Utils {
 		}
 
 		public static async void Open(string tableName) {
-		 	//login();
+		 //	login();
 			await CreatePage();
 		}
 

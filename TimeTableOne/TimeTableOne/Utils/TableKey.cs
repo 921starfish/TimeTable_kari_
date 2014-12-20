@@ -77,5 +77,11 @@ namespace TimeTableOne.Utils
                 }
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            TableKey key = obj as TableKey;
+            return key.dayOfWeek == dayOfWeek && key.TableNumber == TableNumber;
+        }
     }
 }

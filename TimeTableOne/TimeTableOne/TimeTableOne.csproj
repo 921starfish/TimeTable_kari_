@@ -118,6 +118,7 @@
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\ScheduleManager.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\TimerManager.cs" />
     <Compile Include="Common\WeekStringConverter.cs" />
