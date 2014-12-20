@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using TimeTableOne.Data;
@@ -27,13 +28,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public static TimeDisplayViewModel GenerateViewModel()
         {
-            if (ApplicationData.Instance.TimeSpans.Count==0)
-            {
-                ApplicationData.Instance.TimeSpans = new List<ScheduleTimeSpan>();
-                List<ScheduleTimeSpan> spans = ApplicationData.Instance.TimeSpans;
-                GenerateDefaultSpans(spans);
-                ApplicationData.SaveData(ApplicationData.Instance);
-            }
+
             TimeDisplayViewModel vm=new TimeDisplayViewModel();
             //モデルデータからVMを生成します。
             for (int index = 0; index < ApplicationData.Instance.TimeSpans.Count; index++)
@@ -50,16 +45,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             return vm;
     }
 
-        private static void GenerateDefaultSpans(List<ScheduleTimeSpan> spans)
-        {//データがない際は以下のデータをデフォルトとして書きだします。
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(8,50,10,20));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(10,30,12, 0));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(12, 50, 14, 20));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(14, 30, 16, 0));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(16 ,10, 17, 40));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(18, 00, 19, 30));
-            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(19, 40, 21,10));
-        }
     }
 
     public class TimeDisplayUnitViewModel:BasicViewModel
@@ -138,21 +123,60 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             throw new InvalidDataContractException();
         }
 
-        public bool CommitChange()
+        public async Task<bool> CommitChange()
         {
-            TargetModelSpan.FromTime = FromTime;
-            TargetModelSpan.ToTime = ToTime;
-            ApplicationData.SaveData(ApplicationData.Instance);
-            return true;
+            if ((FromTime-ToTime).TotalMilliseconds > 0)
+            {
+                //時間の順番がおかしい時
+                FromTime = TargetModelSpan.FromTime;
+                ToTime = TargetModelSpan.ToTime;
+                MessageDialog dialog=new MessageDialog("開始時間は終了時間より前である必要があります。","エラー");
+                await dialog.ShowAsync();
+                return false;
+            }
+            //次の時間が先になっていないかチェック
+            int index = ApplicationData.Instance.TimeSpans.IndexOf(TargetModelSpan);
+            if (index == -1)
+            {
+                throw new InvalidDataContractException();
+            }
+                if (index != ApplicationData.Instance.TimeSpans.Count - 1)
+                {
+                    var next = ApplicationData.Instance.TimeSpans[index + 1];
+                    if ((next.FromTime - TargetModelSpan.ToTime).TotalMilliseconds < 0)
+                    {
+                        FromTime = TargetModelSpan.FromTime;
+                        ToTime = TargetModelSpan.ToTime;
+                        MessageDialog dialog = new MessageDialog("終了時間は次の時間の開始時間よりも前である必要があります。", "エラー");
+                        await dialog.ShowAsync();
+                        return false;
+                    }
+                }
+                TargetModelSpan.FromTime = FromTime;
+                TargetModelSpan.ToTime = ToTime;
+                ApplicationData.SaveData(ApplicationData.Instance);
+                return true;
+            
         }
 
         public ScheduleTimeSpan TargetModelSpan { get; set; }
 
         public static BasicViewModel FromData(int i)
         {
-            for (int j = 0; j <ApplicationData.Instance.Configuration.TableCount-ApplicationData.Instance.TimeSpans.Count; j++)
+            if (ApplicationData.Instance.TimeSpans.Count != 0)
             {
-                ApplicationData.Instance.TimeSpans.Add(ScheduleTimeSpan.GenerateFromHourMinute(0, 0, 0, 0));
+                var lastData = ApplicationData.Instance.TimeSpans[ApplicationData.Instance.TimeSpans.Count - 1];
+                for (int j = 0;
+                    j < ApplicationData.Instance.Configuration.TableCount - ApplicationData.Instance.TimeSpans.Count;
+                    j++)
+                {
+                    ApplicationData.Instance.TimeSpans.Add(ScheduleTimeSpan.GenerateFromHourMinute(
+                        lastData.ToTime.Hour, lastData.ToTime.Minute, lastData.ToTime.Hour, lastData.ToTime.Minute));
+                }
+            }
+            else
+            {
+                GenerateDefaultSpans(ApplicationData.Instance.TimeSpans);
             }
             var model= ApplicationData.Instance.TimeSpans[i];
             TimeDisplayUnitViewModel vm=new TimeDisplayUnitViewModel();
@@ -161,6 +185,18 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             vm.ToTime = model.ToTime;
             vm.TimeIndex = i + 1;
             return vm;
+        }
+
+
+        private static void GenerateDefaultSpans(List<ScheduleTimeSpan> spans)
+        {//データがない際は以下のデータをデフォルトとして書きだします。
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(8, 50, 10, 20));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(10, 30, 12, 0));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(12, 50, 14, 20));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(14, 30, 16, 0));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(16, 10, 17, 40));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(18, 00, 19, 30));
+            spans.Add(ScheduleTimeSpan.GenerateFromHourMinute(19, 40, 21, 10));
         }
     }
 
