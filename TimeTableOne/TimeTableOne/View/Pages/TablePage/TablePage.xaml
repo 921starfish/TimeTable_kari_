@@ -9,29 +9,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tablePage="using:TimeTableOne.View.Pages.TablePage"
+    xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls"
     mc:Ignorable="d" d:DataContext="{tablePage:TablePageViewModelInDesign}">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary>
-                    <Style TargetType="ListView">
-                        <Style.Setters>
-                            <Setter Property="ItemTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <StackPanel  Margin="0,0,0,0" DataContext="{Binding}">
-                                            <control:TimeTable/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style.Setters>
-                    </Style>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
+    <Page.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Name="BottomCommandBar">
+            <AppBarButton Icon="Rotate"  Label="7/5列切替" Click="ToggleColumn"></AppBarButton>
+            <AppBarButton Icon="Add" Label="一行追加" Click="AppendRow"></AppBarButton>
+            <AppBarButton Icon="Remove" Label="一行消す" Name="RemoveButton"></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource OneNotePurple}">
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -57,63 +46,14 @@
                        IsHitTestVisible="false" 
                        TextWrapping="NoWrap" 
                        VerticalAlignment="Center" 
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Left"/>
+            <controls:TimeControl Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" d:DataContext="{controls:TimeControlViewModel}"/>
+            <Button Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="ButtonBase_OnClick">
+                <SymbolIcon Symbol="Setting"></SymbolIcon>
+            </Button>
         </Grid>
-        <Grid Grid.Row="1" Background="{StaticResource EditBoxGray}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="15*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0*"/>
-            </Grid.ColumnDefinitions>
-            <control:TimeDisplay Grid.Column="0" Grid.Row="1"></control:TimeDisplay>
-            <Grid Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Mon" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
-            </Grid>
-            <Grid  Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="Tue" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="Wed" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="4">
-                <TextBlock Text="Thu" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="5">
-                <TextBlock Text="Fry" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="6">
-                <TextBlock Text="Sat" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="7">
-                <TextBlock Text="Sun" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="8"/>
-
-
-            <ListView  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding MonTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding TueTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding WedTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding ThuTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FriTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SatTables}" >
-            </ListView>
-            <ListView  Grid.Row="1" Grid.Column="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding SunTables}" >
-            </ListView>
-        </Grid>
+        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}">
+            
+        </control:TimeTableGrid>
     </Grid>
 </Page>

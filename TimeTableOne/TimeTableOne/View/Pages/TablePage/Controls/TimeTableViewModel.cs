@@ -18,12 +18,11 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         private SolidColorBrush _tableColor;
         private Brush _foreColor;
 
-        public TimeTableViewModel(Page page, TableKey key)
+        public TimeTableViewModel(TableKey key)
         {
             data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
-            this.Page = page;
-            this.Width = 175;
+            this.Width =TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting);
             this.Hight = 90;
             this.TableNumber = key.TableNumber;
             this.TableName = (data ?? new ScheduleData()).TableName;
@@ -43,7 +42,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             TableClickedAction = new AlwaysExecutableDelegateCommand(
             () =>
             {
-                Page.Frame.Navigate(typeof(EditPage.EditPage), key);
+                Frame f = Window.Current.Content as Frame;
+                if(f!=null)f.Navigate(typeof(EditPage.EditPage), key);
             });
         }
 

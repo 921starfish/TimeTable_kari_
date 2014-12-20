@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.TablePage.Controls.TimeTableGrid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.TablePage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DataContext="{local:TimeTableGridViewModelInDesign}"
+    d:DesignHeight="800"
+    d:DesignWidth="1920">
+    <UserControl.Resources >
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource EditBoxGray}">
+        <Grid.Resources>
+            <!--DataTemplateの要素の宣言-->
+            <DataTemplate x:Key="TimeRegionDataTemplate">
+                <local:TimeDisplayUnit></local:TimeDisplayUnit>
+            </DataTemplate>
+            <DataTemplate x:Key="TimeTableUnitDataTemplate">
+                <local:TimeTable></local:TimeTable>
+            </DataTemplate>
+            <DataTemplate x:Key="HeaderTemplate" >
+                <local:TimeGridHeader></local:TimeGridHeader>
+            </DataTemplate>
+            <DataTemplate x:Key="EmptyTemplate">
+                
+            </DataTemplate>
+            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <!--ItemsContainerStyleのリソース-->
+            <Style TargetType="ListViewItem" x:Key="ContainerBaseStyle">
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+                
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+            </Style>
+            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
+        </Grid.Resources>
+        <!--以下ListViewの実装-->
+        <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel> 
+        </ListView>
+    </Grid>
+</UserControl>

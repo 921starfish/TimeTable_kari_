@@ -18,7 +18,7 @@ namespace TimeTableOne.View.Pages.DayPage
             TimeTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
-                VM = new TimeTableViewModel(page, new TableKey(i, DateTime.Now.DayOfWeek));
+                VM = new TimeTableViewModel( new TableKey(i, DateTime.Now.DayOfWeek));
                 Tables.Add(VM);
             }
         }

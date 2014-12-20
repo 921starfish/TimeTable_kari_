@@ -37,7 +37,9 @@ namespace TimeTableOne.Data
 
         public List<ScheduleData> Data =new List<ScheduleData>();
 
-        public List<ScheduleTimeSpan> TimeSpans=new List<ScheduleTimeSpan>(); 
+        public List<ScheduleTimeSpan> TimeSpans=new List<ScheduleTimeSpan>();
+
+        public ConfigurationData Configuration=new ConfigurationData();
 
         private static ApplicationDataContainer SettingFolder
         {
