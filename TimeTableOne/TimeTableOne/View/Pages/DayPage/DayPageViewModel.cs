@@ -3,16 +3,18 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.DayPage
 {
-    class DayPageViewModel : INotifyPropertyChanged
+    public class DayPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<TimeTableViewModel> Tables { get; set; }
-        public DayPageViewModel(Page page)
+        public DayPageViewModel()
         {
             Tables = new ObservableCollection<TimeTableViewModel>();
             TimeTableViewModel VM;
@@ -21,7 +23,19 @@ namespace TimeTableOne.View.Pages.DayPage
                 VM = new TimeTableViewModel( new TableKey(i, DateTime.Now.DayOfWeek));
                 Tables.Add(VM);
             }
+
+            Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
         }
         public DispatcherTimer timer { get; set; }
+
+        public Uri Background { get; set; }
+    }
+
+    public class DayPageViewModelInDesign : DayPageViewModel
+    {
+        public DayPageViewModelInDesign()
+        {
+            Background = new Uri("ms-appx:///Assets/OneNotePurple.png");
+        }
     }
 }

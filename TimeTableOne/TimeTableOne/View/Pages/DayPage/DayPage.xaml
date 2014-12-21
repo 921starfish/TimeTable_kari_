@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls"
+    xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls" d:DataContext=""
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
@@ -33,7 +33,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.Background>
-                <ImageBrush ImageSource="ms-appx:///Assets/OneNotePurple.png" Stretch="Fill" Opacity="1"/>
+                <ImageBrush ImageSource="{Binding Background}" Stretch="Fill" Opacity="1"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

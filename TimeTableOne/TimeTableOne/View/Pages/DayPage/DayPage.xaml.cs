@@ -17,7 +17,7 @@ namespace TimeTableOne.View.Pages.DayPage
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new DayPageViewModel(this);
+            this.DataContext = new DayPageViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
