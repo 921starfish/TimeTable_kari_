@@ -13,6 +13,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        
         }
     }
 }

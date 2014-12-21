@@ -1,82 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Microsoft.Live;
-using System.Threading.Tasks;
+using TimeTableOne.Utils;
 
-// 設定フライアウトの項目テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=273769 を参照してください
 
 namespace TimeTableOne {
+
 	public sealed partial class Account : SettingsFlyout {
-		public Account() {
-			this.InitializeComponent();
-			SetNameField(false);
+		public static readonly DependencyProperty SignInNameProperty =
+			DependencyProperty.Register(
+				"SignInName",
+				typeof (string),
+				typeof (Account),
+				new PropertyMetadata(null));
+
+		public static readonly DependencyProperty IsSignedInProperty =
+			DependencyProperty.Register(
+				"IsSignedIn",
+				typeof (bool),
+				typeof (Account),
+				new PropertyMetadata(null));
+
+		public string SignInName {
+			get {
+				return (string) this.GetValue(SignInNameProperty);
+			}
+			set {
+				this.SetValue(SignInNameProperty, value);
+			}
 		}
 
-		private async Task SetNameField(Boolean login) {
-			// If login == false, just update the name field. 
-			await App.updateUserName(this.userName, login);
-
-			// Test to see if the user can sign out.
-			Boolean userCanSignOut = true;
-
-			LiveAuthClient LCAuth = new LiveAuthClient();
-			LiveLoginResult LCLoginResult = await LCAuth.InitializeAsync();
-
-			if (LCLoginResult.Status == LiveConnectSessionStatus.Connected) {
-				userCanSignOut = LCAuth.CanLogout;
+		public bool IsSignedIn {
+			get {
+				return (bool) this.GetValue(IsSignedInProperty);
 			}
+			set {
+				this.SetValue(IsSignedInProperty, value);
+			}
+		}
 
-			if (this.userName.Text.Equals("You're not signed in.")) {
-				// Show sign-in button.
-				signInBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-				signOutBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+		private static Account _current;
+
+		public static Account Current {
+			get {
+				return _current;
 			}
-			else {
-				// Show sign-out button if they can sign out.
-				signOutBtn.Visibility = (userCanSignOut ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
-				signInBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-			}
+		}
+
+		public Account() {
+			this.InitializeComponent();
+			_current = this;
+			this.UpdateState();
 		}
 
 		private async void SignInClick(object sender, RoutedEventArgs e) {
-			// This call will sign the user in and update the Account flyout UI.
-			await SetNameField(true);
+			try {
+				await OneNoteControl.Current.SignIn();
+				this.UpdateState();
+			}
+			catch (LiveConnectException exception) {
+				Debug.WriteLine(exception.ToString());
+			}
 		}
 
 		private async void SignOutClick(object sender, RoutedEventArgs e) {
 			try {
-				// Initialize access to the Live Connect SDK.
-				LiveAuthClient LCAuth = new LiveAuthClient();
-				LiveLoginResult LCLoginResult = await LCAuth.InitializeAsync();
-				// Sign the user out, if he or she is connected;
-				//  if not connected, skip this and just update the UI
-				if (LCLoginResult.Status == LiveConnectSessionStatus.Connected) {
-					LCAuth.Logout();
-				}
-
-				// At this point, the user should be disconnected and signed out, so
-				//  update the UI.
-				this.userName.Text = "You're not signed in.";
-
-				// Show sign-in button.
-				signInBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-				signOutBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+				await OneNoteControl.Current.SignOut();
+				this.UpdateState();
 			}
-			catch (LiveConnectException x) {
-				// Handle exception.
+			catch (LiveConnectException exception) {
+				Debug.WriteLine(exception.ToString());
+			}
+		}
+
+		public void UpdateState() {
+			try {
+				this.SignInName = OneNoteControl.Current.SignInName;
+				this.IsSignedIn = OneNoteControl.Current.IsSignedIn;
+				if (this.IsSignedIn) {
+					signOutBtn.Visibility = (OneNoteControl.Current.AuthClient.CanLogout
+						? Visibility.Visible
+						: Visibility.Collapsed);
+					signInBtn.Visibility = Visibility.Collapsed;
+				}
+				else {
+					signInBtn.Visibility = Visibility.Visible;
+					signOutBtn.Visibility = Visibility.Collapsed;
+				}
+			}
+			catch (LiveConnectException exception) {
+				Debug.WriteLine(exception.ToString());
 			}
 		}
 	}
+
 }
