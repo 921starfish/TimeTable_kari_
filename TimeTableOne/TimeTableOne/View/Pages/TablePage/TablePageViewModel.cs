@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
@@ -11,6 +12,7 @@ namespace TimeTableOne.View.Pages.TablePage
         public TablePageViewModel()
         {
             TimeTableDataContext=new TimeTableGridViewModel();
+            Width = TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting);
         }
 
         public TimeTableGridViewModel TimeTableDataContext
@@ -23,6 +25,8 @@ namespace TimeTableOne.View.Pages.TablePage
                 OnPropertyChanged();
             }
         }
+
+        public int Width { get; set; }
     }
 
     public class TablePageViewModelInDesign : TablePageViewModel

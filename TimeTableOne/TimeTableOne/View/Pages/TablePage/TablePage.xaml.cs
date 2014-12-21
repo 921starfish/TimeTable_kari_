@@ -7,6 +7,7 @@ using TimeTableOne.Common;
 
 // 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
 using TimeTableOne.Data;
+using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.TablePage
@@ -100,9 +101,12 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             this.DataContext = new TablePageViewModel();
             RemoveButton.Command=RemoveCommand=new DeleteRowCommand(RemoveRow);
+            BasicTableCommands.AddRowCommand=AppendCommand=new AlwaysExecutableDelegateCommand(AppendRow);
         }
 
         public DeleteRowCommand RemoveCommand { get; set; }
+
+        public CommandBase AppendCommand { get; set; }
 
         public TablePageViewModel ViewModel
         {
@@ -125,6 +129,11 @@ namespace TimeTableOne.View.Pages.TablePage
         }
 
         private void AppendRow(object sender, RoutedEventArgs e)
+        {
+            AppendRow();
+        }
+
+        private void AppendRow()
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount++;

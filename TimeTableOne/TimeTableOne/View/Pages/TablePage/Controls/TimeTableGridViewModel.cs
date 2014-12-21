@@ -60,6 +60,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     }
                 }
             }
+           GridItems.Add(new AppendRowButtonViewModel());
             ElementWidth =TableLayoutManager.getElementWidth(type);
             ElementHeight = 90;
             WidthSplit = n+1;
@@ -102,6 +103,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public DataTemplate EmptyTemplate { get; set; }
 
+        public DataTemplate AppendRowTemplate { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item)
         {
             if (item is TimeDisplayUnitViewModel)
@@ -121,6 +124,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }else if (item is EmptyGridUnitViewModel)
             {
                 return EmptyTemplate;
+            }else if (item is AppendRowButtonViewModel)
+            {
+                return AppendRowTemplate;
             }
             else
             {
@@ -145,6 +151,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         
         public Style EmptyStyle { get; set; }
 
+        public Style AppendRowButtonStyle { get; set; }
+
         protected override Style SelectStyleCore(object item, DependencyObject container)
         {
 
@@ -163,6 +171,9 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             else if (item is EmptyGridUnitViewModel)
             {
                 return EmptyStyle;
+            }else if (item is AppendRowButtonViewModel)
+            {
+                return AppendRowButtonStyle;
             }
             else
             {

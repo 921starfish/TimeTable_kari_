@@ -26,7 +26,10 @@
             <DataTemplate x:Key="EmptyTemplate">
                 
             </DataTemplate>
-            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <DataTemplate x:Key="AppendRowTemplate">
+                <local:AppendRowButton></local:AppendRowButton>
+            </DataTemplate>
+            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" AppendRowTemplate="{StaticResource AppendRowTemplate}" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
             <!--ItemsContainerStyleのリソース-->
             <Style TargetType="ListViewItem" x:Key="ContainerBaseStyle">
                 <Setter Property="Margin" Value="0"></Setter>
@@ -39,7 +42,8 @@
             <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
             <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
             </Style>
-            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
+            <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" AppendRowButtonStyle="{StaticResource AppendRowContainerStyle}" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
         </Grid.Resources>
         <!--以下ListViewの実装-->
         <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
