@@ -22,7 +22,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
-            this.Width =TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting);
+            this.Width =TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting)-10;
             this.Hight = 90;
             this.TableNumber = key.TableNumber;
             this.TableName = (data ?? new ScheduleData()).TableName;

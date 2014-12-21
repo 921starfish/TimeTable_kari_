@@ -7,14 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="{Binding Hight}"
-    d:DesignWidth="{Binding Width}" Width="{Binding Width}" Height="90" d:DataContext="{local:TimeTableViewModelInDesign}">
+    d:DesignWidth="{Binding Width}" Width="{Binding Width}" Height="80" d:DataContext="{local:TimeTableViewModelInDesign}">
 
     <Control.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Control.Resources>
+       
     <Grid
-          Background="{Binding TableColor}" >
-      
+          Background="{Binding TableColor}">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualState x:Name="CurrentState">
+    				<Storyboard RepeatBehavior="Forever">
+    					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+    						<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+    					</DoubleAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="NotCurrentState">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
             Loaded="Button1_Loaded">
             <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" Foreground="{StaticResource TextBoxBorder}" />
@@ -37,7 +55,7 @@
                 Loaded="Button1_Loaded"
                 BorderBrush="#00000000">
         </Button>
-        <Rectangle StrokeThickness="2" Stroke="{StaticResource TextBoxBorder}"/>
+        <Rectangle Margin="1" x:Name="rectangle" StrokeThickness="2" Stroke="DodgerBlue"/>
 
 
 

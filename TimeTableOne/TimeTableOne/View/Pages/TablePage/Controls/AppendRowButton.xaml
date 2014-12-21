@@ -1,0 +1,17 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.TablePage.Controls.AppendRowButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.TablePage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="90"
+    d:DesignWidth="200" Height="90">
+    
+    <Grid>
+        <Button BorderBrush="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding Append}"></Button>
+        <Polygon Points="10,10 60,10 100,45 60,80 10,80"  StrokeThickness="3" Stroke="LightGray" StrokeDashArray="5,2"></Polygon>
+        <SymbolIcon Symbol="Add" HorizontalAlignment="Left" Margin="20,0,0,0"></SymbolIcon>
+    </Grid>
+</UserControl>
