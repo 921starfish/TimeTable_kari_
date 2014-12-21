@@ -2,126 +2,230 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Live;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.Live;
+using Newtonsoft.Json;
+using Windows.System;
 
 
 namespace TimeTableOne.Utils {
 
-	internal static class OneNoteControl {
-		static OneNoteControl() {
-			InitializePage();
-		}
+	public class OneNoteControl {
 
-		//スコープの定義
-		private static readonly string[] scopes = new string[] {"wl.signin", "wl.basic", "Office.OneNote_Create"};
+		private static OneNoteControl _current;
 
-		//必要な変数
-		private static LiveAuthClient authClient;
-		private static LiveConnectClient liveClient;
-
-		//OneNoteのURI
-		private static readonly Uri PagesEndPoint = new Uri("https://www.onenote.com/api/v1.0/pages?sectionName=Time%20Table&20One%20Test");
-
-		//ページがロードされた時に再ログイン
-		private static async void InitializePage() {
-			try {
-				authClient = new LiveAuthClient();
-				LiveLoginResult loginResult = await authClient.InitializeAsync(scopes);
-
-				if (loginResult.Status == LiveConnectSessionStatus.Connected) {
-					liveClient = new LiveConnectClient(loginResult.Session);
-				}
-			}
-
-				//とりあえずデバッグに出力
-			catch (LiveAuthException authExp) {
-				Debug.WriteLine(authExp.ToString());
+		public static OneNoteControl Current {
+			get {
+				return _current;
 			}
 		}
 
-		private static async void login() {
-			try {
-				LiveLoginResult loginResult = await authClient.LoginAsync(scopes);
+		public OneNoteControl() {
+			_current = this;
+		}
 
-				//ログインの確認
-				if (loginResult.Status == LiveConnectSessionStatus.Connected) {
+		private const string UserNotSignedIn = "You're not signed in.";
 
-					liveClient = new LiveConnectClient(loginResult.Session);
-					Debug.WriteLine("logged in");
+		private LiveAuthClient _authClient;
+
+		public LiveAuthClient AuthClient {
+			get {
+				if (_authClient == null) {
+					_authClient = new LiveAuthClient();
 				}
-
-			}
-				//とりあえずデバッグログ
-			catch (LiveAuthException authExp) {
-				Debug.WriteLine(authExp.ToString());
+				return _authClient;
 			}
 		}
 
-		//適当にHTMLページの作成、OneNoteに出力
-		private static async Task CreatePage() {
+		private static readonly string[] Scopes = new[] {"wl.signin", "wl.offline_access", "Office.OneNote_Create"};
+
+		private static readonly string PagesEndPoint = "https://www.onenote.com/api/v1.0/pages";
+
+		private string pageSectionName = "Quick Notes";
+
+		private string DEFAULT_SECTION_NAME = "Quick Notes";
+
+		// 送るノート名の変更
+		public Uri GetPagesEndpoint(string specifiedSectionName) {
+			string sectionNameToUse;
+			if (specifiedSectionName != null) {
+				sectionNameToUse = specifiedSectionName;
+			}
+			else {
+				sectionNameToUse = DEFAULT_SECTION_NAME;
+			}
+			return new Uri(PagesEndPoint + "/?sectionName=" + sectionNameToUse);
+		}
+
+		// 認証されているか
+		public bool IsAuthenticated {
+			get {
+				return _authClient.Session != null && !string.IsNullOrEmpty(_authClient.Session.AccessToken);
+			}
+		}
+
+		public string SignInName;
+
+		public bool IsSignedIn;
+
+		public string clientLink;
+
+		public async Task<LiveLoginResult> SignIn() {
+
+			LiveLoginResult loginResult = await AuthClient.InitializeAsync(Scopes);
+
+			if (loginResult.Status != LiveConnectSessionStatus.Connected) {
+				loginResult = await AuthClient.LoginAsync(Scopes);
+			}
+			UpdateAuthProperties(loginResult.Status);
+			return loginResult;
+		}
+
+		public async Task SignOut() {
+			LiveLoginResult loginResult = await AuthClient.InitializeAsync(Scopes);
+
+			if (loginResult.Status != LiveConnectSessionStatus.NotConnected) {
+				AuthClient.Logout();
+			}
+			UpdateAuthProperties(LiveConnectSessionStatus.NotConnected);
+		}
+
+		// サインインボタンを使わずにサインイン。
+		// すでにサインインしたことあるのが前提
+		public async Task<LiveLoginResult> SilentSignIn() {
 			try {
-				var client = new HttpClient();
+				LiveLoginResult loginResult = await AuthClient.InitializeAsync(Scopes);
+				UpdateAuthProperties(loginResult.Status);
+				return loginResult;
+			}
+			catch (Exception) {
+				return null;
+			}
+		}
 
-				//JSONが返ってくる
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				//認証されていない時
-				if (IsAuthenticated) {
-					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-						"Bearer",
-						authClient.Session.AccessToken);
-				}
+		// Authの更新の結果を格納
+		private async void UpdateAuthProperties(LiveConnectSessionStatus loginStatus) {
+			IsSignedIn = loginStatus == LiveConnectSessionStatus.Connected;
+			if (IsSignedIn) {
+				SignInName = await RetrieveName();
+			}
+			else {
+				SignInName = UserNotSignedIn;
+			}
+		}
 
+		// 名前の抽出
+		private async Task<string> RetrieveName() {
+			var lcConnect = new LiveConnectClient(AuthClient.Session);
 
-				string date = GetDate();
-				string simpleHtml = "<html>" +
-				                    "<head>" +
-				                    "<title>A simple page created from basic HTML-formatted text on Windows 8.</title>" +
-				                    "<meta name=\"created\" content=\"" + date + "\" />" +
-				                    "</head>" +
-				                    "<body>" +
-									"<p>This is a page that Time Table One create test page <i>formatted</i> <b>text</b></p>" +
-				                    "</body>" +
-				                    "</html>";
+			LiveOperationResult operationResult = await lcConnect.GetAsync("me");
+			dynamic result = operationResult.Result;
+			if (result != null) {
+				return (string) result.name;
+			}
+			else {
+				throw new InvalidOperationException();
+			}
+		}
 
-				var createMessage = new HttpRequestMessage(HttpMethod.Post, PagesEndPoint) {
-					Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
-				};
+		// トークンをリフレッシュしなければならない
+		private async Task AttemptRefreshToken() {
+			if (IsSignedIn) {
+				LiveLoginResult loginWithRefreshTokenResult = await AuthClient.InitializeAsync(Scopes);
+				UpdateAuthProperties(loginWithRefreshTokenResult.Status);
+			}
+		}
 
-				HttpResponseMessage response = await client.SendAsync(createMessage);
+		// 新規ページ作成の制御
+		private async Task CreatePage() {
+			StandardResponse response = await CreateSimplePage(pageSectionName);
+			Debug.WriteLine(
+				((int) response.StatusCode).ToString() + ": " +
+				response.StatusCode.ToString());
+			if (response.StatusCode == HttpStatusCode.Created) {
+				var successResponse = (CreateSuccessResponse) response;
+				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
+			}
+			else {
+				clientLink = string.Empty;
+			}
+		}
 
-				Debug.WriteLine(response.ToString());
+		// 新規ページ作成本体
+		// ページにデフォルトで入れておく情報を指定できる
+		public async Task<StandardResponse> CreateSimplePage(string sectionName) {
+
+			var client = new HttpClient();
+
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			if (IsAuthenticated) {
+				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+					"Bearer",
+					_authClient.Session.AccessToken);
 			}
 
-			catch (Exception e) {
-				Debug.WriteLine(e.ToString());
-			}
+			string date = GetDate();
+			string simpleHtml = "<html>" +
+			                    "<head>" +
+			                    "<title>タイトルだよ</title>" +
+			                    "<meta name=\"created\" content=\"" + date + "\" />" +
+			                    "</head>" +
+			                    "<body>" +
+			                    "<p>いろいろできそう <i>ななめ</i> <b>太字</b></p>" +
+			                    "<p>リンクとか <a href=\"http://www.microsoft.com\">マイクロソフトへ</a></p>" +
+			                    "</body>" +
+			                    "</html>";
 
+			var createMessage = new HttpRequestMessage(HttpMethod.Post, GetPagesEndpoint(sectionName)) {
+				Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
+			};
+
+			HttpResponseMessage response = await client.SendAsync(createMessage);
+
+			return await TranslateResponse(response);
 		}
 
 		private static string GetDate() {
 			return DateTime.Now.ToString("o");
 		}
 
-		/// <summary>
-		/// 認証されているかどうか
-		/// </summary>
-		public static bool IsAuthenticated {
-			get {
-				return authClient.Session != null && !string.IsNullOrEmpty(authClient.Session.AccessToken);
+		// httpレスポンスを読みやすくする
+		// マイクロソフトのStandardResponseを使用
+		private static async Task<StandardResponse> TranslateResponse(HttpResponseMessage response) {
+			StandardResponse standardResponse;
+			if (response.StatusCode == HttpStatusCode.Created) {
+				dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+				standardResponse = new CreateSuccessResponse {
+					StatusCode = response.StatusCode,
+					OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
+					OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
+				};
 			}
+			else {
+				standardResponse = new StandardErrorResponse {
+					StatusCode = response.StatusCode,
+					Message = await response.Content.ReadAsStringAsync()
+				};
+			}
+
+			IEnumerable<string> correlationValues;
+			if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues)) {
+				standardResponse.CorrelationId = correlationValues.FirstOrDefault();
+			}
+
+			return standardResponse;
 		}
 
-		public static async void Open(string tableName) {
-		 	//login();
+
+		public async void Open(string tableName) {
+			pageSectionName = tableName;
+			await AttemptRefreshToken();
 			await CreatePage();
-		}
-
-		public static string CreatNewNote(string tableName) {
-			return "";
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
 	}
 

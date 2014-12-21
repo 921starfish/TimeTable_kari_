@@ -19,6 +19,8 @@ using TimeTableOne.Data;
 using Windows.UI.ApplicationSettings;
 using System.Threading.Tasks;
 using Microsoft.Live;
+using TimeTableOne.Utils;
+
 
 // 空のアプリケーション テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234227 を参照してください
 
@@ -207,6 +209,6 @@ namespace TimeTableOne
 			}
 		}
 
-
+	    private OneNoteControl oneNoteControl = new OneNoteControl();
     }
 }
