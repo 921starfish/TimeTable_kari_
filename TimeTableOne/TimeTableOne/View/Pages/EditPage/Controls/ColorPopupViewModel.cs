@@ -8,20 +8,26 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using System.ComponentModel;
+using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
-    public class ColorPopupViewModel:BasicViewModel
+    public class ColorPopupViewModel : BasicViewModel
     {
         private int _selectedIndex;
+        private SolidColorBrush _tableColor;
+        private Brush _foreColor;
 
         protected ColorPopupViewModel()
         {
-            this.ColorItems=new ObservableCollection<ColorPopupUnitViewModel>();
+            this.ColorItems = new ObservableCollection<ColorPopupUnitViewModel>();
+         
         }
 
-        private ColorPopupViewModel(ScheduleData data):this()
+        private ColorPopupViewModel(ScheduleData data) : this()
         {
             GenerateColors();
             for (int i = 0; i < ColorItems.Count; i++)
@@ -39,15 +45,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public int SelectedIndex
         {
-            get
-            {
-                return _selectedIndex;
-            }
+            get { return _selectedIndex; }
             set
             {
                 if (value == _selectedIndex) return;
                 _selectedIndex = value;
                 OnPropertyChanged();
+
             }
         }
 
@@ -55,24 +59,56 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         protected void GenerateColors()
         {
 
-            Color OneNotePurpleColor = (Color)Application.Current.Resources["OneNotePurpleColor"];
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.AliceBlue));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.AntiqueWhite));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Aquamarine));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Bisque));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Orange));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.IndianRed));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Red));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.YellowGreen));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Black));
+            Color OneNotePurpleColor = (Color) Application.Current.Resources["OneNotePurpleColor"];
             ColorItems.Add(new ColorPopupUnitViewModel(OneNotePurpleColor));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Red));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Orange));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Yellow));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Green));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Blue));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Black));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Violet));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Pink));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightSalmon));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightYellow));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightGreen));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightBlue));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Gray));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Transparent));
         }
+
+
+      
 
         public static ColorPopupViewModel GenerateViewModel(ScheduleData data)
         {
             return new ColorPopupViewModel(data);
         }
+
+        public SolidColorBrush TableColor
+        {
+            get { return _tableColor; }
+            set
+            {
+                if (Equals(value, _tableColor)) return;
+                _tableColor = value;
+                OnPropertyChanged();
+                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
+                new SolidColorBrush(Colors.White);
+            }
+        }
+        public Brush ForeColor
+        {
+            get { return _foreColor; }
+            set
+            {
+                if (Equals(value, _foreColor)) return;
+                _foreColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+     
     }
 
     public class ColorPopupViewModelInDesign : ColorPopupViewModel
@@ -110,4 +146,5 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             
         }
     }
+
 }

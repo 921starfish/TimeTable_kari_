@@ -10,13 +10,15 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media;
+using TimeTableOne.Annotations;
 using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage
 {
     class EditPageViewModel : INotifyPropertyChanged
     {
-        private readonly TableKey _key;
+        public  TableKey _key;
         private TableKey _tableKey;
         private string _tableName = "";
         private string _weekDayText = "";
@@ -35,7 +37,13 @@ namespace TimeTableOne.View.Pages.EditPage
 
         public EditPageViewModel(TableKey key)
         {
+          loadData(key);
+        }
+
+        public void loadData(TableKey key)
+        {
             _key = key;
+            this.TableKey = _key;
             _scheduleData = ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             if (_scheduleData == null)
             {
@@ -55,11 +63,12 @@ namespace TimeTableOne.View.Pages.EditPage
            {
                OneNoteControl.Open(_scheduleData.TableName);
            });
+            TableColor = new SolidColorBrush(_scheduleData.ColorData);
         }
+
 
         private void Initialize()
         {
-            this.TableKey = _key;
             this.TableNumber = _key.TableNumber;
             this.WeekDayText = _key.dayOfWeek.ToString();
             this.DetailText = _scheduleData.Description;
@@ -94,6 +103,7 @@ namespace TimeTableOne.View.Pages.EditPage
         private bool placeEdited;
         private bool freeTextEdited;
         private bool detailTextEdited;
+        private SolidColorBrush _tableColor;
         public TableKey TableKey { get; set; }
 
         int TableNumber { get; set; }
@@ -241,6 +251,13 @@ namespace TimeTableOne.View.Pages.EditPage
             }
             
         }
-    
+        public SolidColorBrush TableColor {
+            get { return _tableColor; }
+            set
+            {
+                _tableColor = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("TableColor"));
+            }
+        }
     }
 }

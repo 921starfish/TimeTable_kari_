@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -28,31 +29,37 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public ColorPopup()
         {
             this.InitializeComponent();
-            
+
         }
 
-        
+
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = ColorList.SelectedItem as ColorPopupUnitViewModel;
-            if(selected==null)return;
+            if (selected == null) return;
             ViewModel.ScheduleData.ColorData = selected.ColorBrush.Color;
             ApplicationData.SaveData(ApplicationData.Instance);
+            TableKey Key = ViewModel.TableKey;
+            ViewModel.loadData(Key);
+
+
         }
 
         private void ColorPopup_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             ColorPopupViewModel vm;
-            ColorList.DataContext = vm=ColorPopupViewModel.GenerateViewModel(ViewModel.ScheduleData);
+            ColorList.DataContext = vm = ColorPopupViewModel.GenerateViewModel(ViewModel.ScheduleData);
             try
             {
                 ColorList.SelectedIndex = vm.SelectedIndex;
             }
             catch (ArgumentException ex)
             {
-                
+
             }
         }
+
+
     }
 }

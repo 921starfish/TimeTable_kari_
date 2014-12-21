@@ -73,14 +73,6 @@
                    Background="{StaticResource TextBoxGray}"
                    Text="{Binding PlaceInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" FontFamily="Global User Interface"
                    PlaceholderText="ここに場所を入力してください"/>
-            <Button Grid.Row="0" Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Right" Click="ButtonBase_OnClick">
-                <Grid>
-                    <SymbolIcon Symbol="Flag" Foreground="Black"/>
-                    <Popup Name="TestPopup" LostFocus="UIElement_OnLostFocus">
-                        <local:ColorPopup Margin="45,-135,0,0"></local:ColorPopup>
-                    </Popup>
-                </Grid>
-            </Button>
         </Grid>
     </Grid>
 </UserControl>

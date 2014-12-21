@@ -21,11 +21,19 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Grid Background="{StaticResource OneNotePurple}">
+            <Grid Background="{Binding TableColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="20*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" BorderBrush="Transparent" HorizontalAlignment="Right" Click="ButtonBase_OnClick">
+                    <Grid>
+                        <SymbolIcon Symbol="Flag" Foreground="White" Height="27" VerticalAlignment="Top"/>
+                        <Popup Name="TestPopup" LostFocus="UIElement_OnLostFocus">
+                            <controls:ColorPopup Margin="45,0,0,0"></controls:ColorPopup>
+                        </Popup>
+                    </Grid>
+                </Button>
                 <Button Grid.Column="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
