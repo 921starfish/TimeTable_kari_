@@ -21,6 +21,9 @@
       <Extensions>
         <Extension Category="windows.search" />
       </Extensions>
+      <ApplicationContentUriRules>
+        <Rule Match="https://timetableone.com/update/notification" Type="include" />
+      </ApplicationContentUriRules>
     </Application>
   </Applications>
   <Capabilities>

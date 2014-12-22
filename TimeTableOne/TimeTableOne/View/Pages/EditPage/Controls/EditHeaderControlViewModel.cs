@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,21 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.NumberOfDay);
             _scheduleData = _scheduleData ?? new ScheduleData();
             _lectureNameForEdit = _scheduleData.TableName;
+            PlacePredictions=new ObservableCollection<string>();
+            foreach (var scheduleData in ApplicationData.Instance.Data)
+            {
+                if (!String.IsNullOrEmpty(scheduleData.Place))
+                {
+                    PlacePredictions.Add(scheduleData.Place);
+                }
+            }
+            PlaceSearcher = PlaceSearcherFunc;
+
+        }
+
+        private bool PlaceSearcherFunc(string arg1, string arg2)
+        {
+            return arg1.ToLower().Contains(arg2.ToLower());
         }
 
         public TableKey TableKey
@@ -105,6 +121,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             get { return _scheduleData.Place; }
         }
+
+        public ObservableCollection<string> PlacePredictions { get; set; }
+
+        public Func<string,string,bool> PlaceSearcher { get; set; } 
 
     }
 

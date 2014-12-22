@@ -89,7 +89,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             _isPlaceEditing = true;
             VisualStateManager.GoToState(this, "OnEditPlace", true);
             textBox1.Focus(FocusState.Keyboard);
-            textBox1.SelectAll();
             isPlaceTextBoxFocused = true;
         }
 
