@@ -25,18 +25,13 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             GridItems=new ObservableCollection<BasicViewModel>();
             bool isDesignmode = DesignMode.DesignModeEnabled;
             DayOfWeek[] headers = {DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
-            Color[] colors =
-            {
-                Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
-                Colors.CornflowerBlue, Colors.Red
-            };
             TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
             var f = Window.Current.Content as Frame;
             int n = type == TableType.AllDay ? 7 : 5;
             GridItems.Add(new EmptyGridUnitViewModel());
             for (int i = 0; i < n; i++)
             {
-                GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = new SolidColorBrush(colors[i]) });
+                GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = headers[i].GetWeekColor() });
             }
             for (int i = 0; i < ApplicationData.Instance.Configuration.TableCount; i++)
             {

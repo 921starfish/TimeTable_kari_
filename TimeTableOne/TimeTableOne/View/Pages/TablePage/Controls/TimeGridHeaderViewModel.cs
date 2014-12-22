@@ -47,7 +47,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public int Width { get; set; }
 
-        public SolidColorBrush TextBrush { get; set; }
+        public Brush TextBrush { get; set; }
     }
 
     public class TimeGridHeaderViewModelInDesign : TimeGridHeaderViewModel

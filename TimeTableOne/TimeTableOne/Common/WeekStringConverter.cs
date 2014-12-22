@@ -16,5 +16,10 @@ namespace TimeTableOne.Common
         {
             return EngDayOfWeek[(int) week];//TODO ここを設定変えれば日本語で出るようにしたらいいかも
         }
+
+        public static string getAsStringInJpn(DayOfWeek week)
+        {
+            return JpnDayOfWeek[(int) week];
+        }
     }
 }

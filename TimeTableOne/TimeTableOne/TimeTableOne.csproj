@@ -157,6 +157,10 @@
       <DependentUpon>ColorPopupUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\ColorPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditHeaderControl.xaml.cs">
+      <DependentUpon>EditHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditHeaderControlViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
@@ -253,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\ColorPopupUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
