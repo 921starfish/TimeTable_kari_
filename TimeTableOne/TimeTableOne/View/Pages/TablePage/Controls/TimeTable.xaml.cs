@@ -45,6 +45,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         private void CheckCurrentSchedule()
         {
+            if (ViewModel == null) return;
             if (ScheduleManager.Instance.CurrentKey!=null&&ScheduleManager.Instance.CurrentKey.Equals(ViewModel.TableKey))
             {
                 VisualStateManager.GoToState(this, "CurrentState", false);
@@ -52,7 +53,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             else
             {
                 VisualStateManager.GoToState(this, "NotCurrentState", false);
-
             }
         }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.TablePage
@@ -14,10 +16,11 @@ namespace TimeTableOne.View.Pages.TablePage
             switch (type)
             {
                 case TableType.AllDay:
-                    return 170;
+                    return (int)((Frame)(Window.Current.Content)).ActualWidth/7-30;
                     break;
+
                 case TableType.WeekDay:
-                    return 250;
+                    return (int)((Frame)(Window.Current.Content)).ActualWidth / 5-50;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("type");
