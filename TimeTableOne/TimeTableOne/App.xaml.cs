@@ -208,7 +208,5 @@ namespace TimeTableOne
 				// Handle the exception. 
 			}
 		}
-
-	    private OneNoteControl oneNoteControl = new OneNoteControl();
     }
 }

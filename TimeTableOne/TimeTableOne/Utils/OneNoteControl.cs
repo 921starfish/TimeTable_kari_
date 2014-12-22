@@ -23,11 +23,12 @@ namespace TimeTableOne.Utils
         {
             get
             {
+                _current = _current ?? new OneNoteControl();
                 return _current;
             }
         }
 
-        public OneNoteControl()
+        private OneNoteControl()
         {
             _current = this;
         }
@@ -120,8 +121,9 @@ namespace TimeTableOne.Utils
                 UpdateAuthProperties(loginResult.Status);
                 return loginResult;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.ToString());
                 return null;
             }
         }
