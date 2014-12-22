@@ -16,11 +16,11 @@ namespace TimeTableOne.View.Pages.TablePage
             switch (type)
             {
                 case TableType.AllDay:
-                    return (int)((Frame)(Window.Current.Content)).ActualWidth/7-30;
+                    return (int)(((Frame)(Window.Current.Content)).ActualWidth / 7 - ((Frame)(Window.Current.Content)).ActualWidth/50);
                     break;
 
                 case TableType.WeekDay:
-                    return (int)((Frame)(Window.Current.Content)).ActualWidth / 5-50;
+                    return (int)(((Frame)(Window.Current.Content)).ActualWidth / 5 - ((Frame)(Window.Current.Content)).ActualWidth/30);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("type");
