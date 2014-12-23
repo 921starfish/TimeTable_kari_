@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.ClassRoomControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5">出席率</TextBlock>
+        <local:AttendRateUserControl Margin="0,40,0,0"></local:AttendRateUserControl>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
+    </Grid>
+</UserControl>
