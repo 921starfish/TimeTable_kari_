@@ -19,6 +19,8 @@ namespace TimeTableOne.Data
         public int TableCount = 7;
 
         public string BackgroundImagePath = "ms-appx:///Assets/OneNotePurple.png";
+
+        public string PageTitle = "TimeTable";
     }
 
     public enum TableType
