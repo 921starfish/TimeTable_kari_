@@ -64,6 +64,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <controls:ClassRoomControl></controls:ClassRoomControl>
+            <controls:AssignmentControl Grid.Column="1"></controls:AssignmentControl>
         </Grid>
     </Grid>
     <!--</Grid>-->
