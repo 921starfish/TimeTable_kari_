@@ -21,8 +21,18 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <SymbolIcon Grid.Column="0" Grid.Row="0" Symbol="Home"></SymbolIcon>
-            <SymbolIcon Grid.Column="0" Grid.Row="1" Symbol="Important"></SymbolIcon>
+            <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Stretch" BorderBrush="Transparent" Command="{Binding NoClassButtonClick}">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Home"></SymbolIcon>
+                    <TextBlock Text="休講" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" BorderBrush="Transparent" Command="{Binding RoomChangeButtonClick}">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Important"></SymbolIcon>
+                    <TextBlock Text="教室変更" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>
