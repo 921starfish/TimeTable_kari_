@@ -19,5 +19,8 @@
             <SymbolIcon Symbol="Add"></SymbolIcon>
         </Button>
         <ListView Grid.Row="1"></ListView>
+        <Popup x:Name="AddAssignmentPopup">
+            
+        </Popup>
     </Grid>
 </UserControl>
