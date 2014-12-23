@@ -51,8 +51,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             VisualStateManager.GoToState(this, "OnEditLectureName", true);
             isLectureNameEditing = true;
-            textBox.Focus(FocusState.Keyboard);
-            textBox.SelectAll();
+            textBox.Focus(FocusState.Pointer);
             isLectureNameBoxFocused = true;
         }
 

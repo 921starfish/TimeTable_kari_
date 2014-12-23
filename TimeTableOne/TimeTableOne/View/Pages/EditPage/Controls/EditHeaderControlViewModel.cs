@@ -41,6 +41,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             _scheduleData = _scheduleData ?? new ScheduleData();
             _lectureNameForEdit = _scheduleData.TableName;
             PlacePredictions=new ObservableCollection<string>();
+            LectureNamePredictions=new ObservableCollection<string>();
             foreach (var scheduleData in ApplicationData.Instance.Data)
             {
                 if (!String.IsNullOrEmpty(scheduleData.Place))
@@ -48,13 +49,20 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     PlacePredictions.Add(scheduleData.Place);
                 }
             }
-            PlaceSearcher = PlaceSearcherFunc;
+            foreach (var scheduleData in ApplicationData.Instance.Data)
+            {
+                if (!String.IsNullOrEmpty(scheduleData.TableName))
+                {
+                    LectureNamePredictions.Add(scheduleData.TableName);
+                }
+            }
+            AutoCompleteFunction = AutoCompleteFunctionImpl;
 
         }
 
-        private bool PlaceSearcherFunc(string arg1, string arg2)
+        private bool AutoCompleteFunctionImpl(string inlist, string input)
         {
-            return arg1.ToLower().Contains(arg2.ToLower());
+            return inlist.ToLower().Contains(input.ToLower());
         }
 
         public TableKey TableKey
@@ -124,7 +132,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public ObservableCollection<string> PlacePredictions { get; set; }
 
-        public Func<string,string,bool> PlaceSearcher { get; set; } 
+        public ObservableCollection<string> LectureNamePredictions { get; set; } 
+
+        public Func<string,string,bool> AutoCompleteFunction { get; set; } 
 
     }
 
