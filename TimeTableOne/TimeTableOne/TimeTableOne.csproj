@@ -137,6 +137,7 @@
     <Compile Include="Utils\Commands\CommandBase.cs" />
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
     <Compile Include="Utils\OneNoteControl.cs" />
+    <Compile Include="Utils\StandardResponse.cs" />
     <Compile Include="Utils\TableKey.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>
