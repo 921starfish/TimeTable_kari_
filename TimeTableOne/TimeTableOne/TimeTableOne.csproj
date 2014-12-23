@@ -155,6 +155,9 @@
       <DependentUpon>AttendRateUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml.cs">
+      <DependentUpon>ClassRoomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
       <DependentUpon>ColorPopup.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,10 @@
     <Page Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\ColorPopup.xaml">
       <SubType>Designer</SubType>

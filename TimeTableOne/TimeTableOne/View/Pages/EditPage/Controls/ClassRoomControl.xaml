@@ -21,7 +21,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+            <SymbolIcon Grid.Column="0" Grid.Row="0" Symbol="Home"></SymbolIcon>
+            <SymbolIcon Grid.Column="0" Grid.Row="1" Symbol="Important"></SymbolIcon>
         </Grid>
     </Grid>
 </UserControl>
