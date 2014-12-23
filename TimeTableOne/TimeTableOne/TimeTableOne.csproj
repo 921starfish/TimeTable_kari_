@@ -137,7 +137,6 @@
     <Compile Include="Utils\Commands\CommandBase.cs" />
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
     <Compile Include="Utils\OneNoteControl.cs" />
-    <Compile Include="Utils\StandardResponse.cs" />
     <Compile Include="Utils\TableKey.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>
@@ -155,6 +154,9 @@
       <DependentUpon>AttendRateUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml.cs">
+      <DependentUpon>ClassRoomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
       <DependentUpon>ColorPopup.xaml</DependentUpon>
     </Compile>
@@ -212,9 +214,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="Assets\OneNotePurple.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
+    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
@@ -258,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
