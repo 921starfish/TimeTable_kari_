@@ -1,0 +1,146 @@
+﻿<UserControl x:Name="userControl"
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.EditHeaderControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:autoCompleteBox="using:AutoCompleteBox"
+    mc:Ignorable="d"
+
+    d:DesignHeight="300" d:DataContext="{local:EditHeaderControlViewModelInDesign}" Loaded="EditHeaderControl_OnLoaded"
+    d:DesignWidth="800">
+    
+    <Grid Background="{Binding BackgroundColor}" x:Name="VSM_Target">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.3"/>
+    				<VisualTransition From="BasicState" GeneratedDuration="0:0:0.3" To="OnEditLectureNameChanging"/>
+    				<VisualTransition From="OnEditLectureNameChanging" GeneratedDuration="0:0:0.3" To="OnEditLectureName"/>
+    				<VisualTransition From="BasicState" GeneratedDuration="0:0:0.3" To="OnEditPlaceChanging"/>
+    				<VisualTransition From="OnEditPlaceChanging" GeneratedDuration="0:0:0.3" To="OnEditPlace"/>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="BasicState"/>
+    			<VisualState x:Name="OnEditLectureNameChanging">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True"/>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="userControl">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="OnEditLectureName">
+    				<Storyboard>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock1">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="textBox">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Visible</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBlock">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Collapsed</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="OnEditPlaceChanging">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon1" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="OnEditPlace">
+    				<Storyboard>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock2">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBlock2">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Collapsed</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="textBox1">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox1">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Visible</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox1" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Background="DimGray">
+            <Button BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border BorderThickness="2" BorderBrush="White" CornerRadius="100" Padding="10">
+                <SymbolIcon Symbol="Calendar"></SymbolIcon>
+            </Border>
+            </Button>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="textBlock1" Text="{Binding WeekText}" FontSize="40" Foreground="{Binding WeekBrush}" Padding="0,0,10,0"></TextBlock>
+                <TextBlock Text="{Binding TimeText}" FontSize="40" Padding="10,0,0,0"></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="32,0,0,0"  Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <autoCompleteBox:AutoCompleteBox SearchFunction="{Binding AutoCompleteFunction}" ItemsSource="{Binding LectureNamePredictions}" Text="{Binding LectureNameForEdit,Mode=TwoWay}"  x:Name="textBox" Visibility="Collapsed" Opacity="0" Width="300" Height="50" GotFocus="LectureTextBox_GotFocus" LostFocus="LectureTextBox_LostFocus" />
+                <TextBlock x:Name="textBlock"  Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           Text="{Binding LectureName}" FontSize="50" PointerEntered="LectureTextBox_MouseEnter" PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed">
+                </TextBlock>
+                <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0"></SymbolIcon>
+                </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="textBox1" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
+                <TextBlock x:Name="textBlock2" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Place}" FontSize="40" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
+                <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0"></SymbolIcon>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -15,12 +15,15 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TimeTableOne.App">
-      <m2:VisualElements DisplayName="TimeTableOne" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="TimeTableOne" ForegroundText="light" BackgroundColor="#80397B">
+      <m2:VisualElements DisplayName="TimeTableOne" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="TimeTableOne" ForegroundText="light" BackgroundColor="#80397B" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
       </Extensions>
+      <ApplicationContentUriRules>
+        <Rule Match="https://timetableone.com/update/notification" Type="include" />
+      </ApplicationContentUriRules>
     </Application>
   </Applications>
   <Capabilities>

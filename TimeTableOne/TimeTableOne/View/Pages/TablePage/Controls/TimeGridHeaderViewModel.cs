@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Xml.Dom;
 using Windows.UI;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Common;
 using TimeTableOne.Data;
@@ -47,7 +49,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public int Width { get; set; }
 
-        public SolidColorBrush TextBrush { get; set; }
+        public Brush TextBrush { get; set; }
     }
 
     public class TimeGridHeaderViewModelInDesign : TimeGridHeaderViewModel
