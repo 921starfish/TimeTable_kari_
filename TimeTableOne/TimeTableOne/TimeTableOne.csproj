@@ -181,6 +181,7 @@
     <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml.cs">
       <DependentUpon>AddAssignmentPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopupViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>

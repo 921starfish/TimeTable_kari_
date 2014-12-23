@@ -5,6 +5,8 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:popups="using:Windows.UI.Popups"
+    d:DataContext="{local:AddAssignmentPopupViewModelInDesign}"
     mc:Ignorable="d"
     d:DesignHeight="600" Width="600" Height="450"
     d:DesignWidth="450">
@@ -30,20 +32,25 @@
                 </StackPanel.Resources>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="課題名:"></TextBlock>
-                    <TextBox Width="400"></TextBox>
+                    <TextBox Width="400" Text="{Binding AssignmentName,Mode=TwoWay}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="期限:"></TextBlock>
-                    <TextBox Width="40"></TextBox>
+                    <TextBox Width="40" Text="{Binding YearEdit,Mode=TwoWay}"></TextBox>
                     <TextBlock Text="年"></TextBlock>
-                    <TextBox Width="40"/>
+                    <TextBox Width="40" Text="{Binding MonthEdit,Mode=TwoWay}"/>
                     <TextBlock Text="月"></TextBlock>
-                    <TextBox Width="40"></TextBox>
+                    <TextBox Width="40" Text="{Binding DayEdit,Mode=TwoWay}"></TextBox>
                     <TextBlock Text="日"></TextBlock>
+                    <Button BorderThickness="0" Padding="0" Click="ButtonBase_OnClick">
+                        <SymbolIcon  Symbol="Download" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Foreground="Black" />
+                              
+                    </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="概要:"></TextBlock>
-                    <TextBox Width="400" Height="200"></TextBox>
+                    <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail}"></TextBox>
                 </StackPanel>
             </StackPanel>
             <Button Grid.Row="2" BorderThickness="0" HorizontalAlignment="Right" Margin="0,0,25,0">
