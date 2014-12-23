@@ -40,5 +40,6 @@
         </Grid>
         <controls:EditPageRightControl DataContext="{Binding}" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>  
         <controls:EditHeaderControl Height="300" Width="800" Grid.ColumnSpan="2"></controls:EditHeaderControl>
+        <controls:AttendRateUserControl Height="250" Width="350"></controls:AttendRateUserControl>
     </Grid>
 </Page>
