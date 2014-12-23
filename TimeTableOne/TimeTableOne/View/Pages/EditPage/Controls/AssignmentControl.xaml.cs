@@ -23,5 +23,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             this.InitializeComponent();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            //Expand Popup
+            AddAssignmentPopup.IsOpen = !AddAssignmentPopup.IsOpen;
+        }
     }
 }
