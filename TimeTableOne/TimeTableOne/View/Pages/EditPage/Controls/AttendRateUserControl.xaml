@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DataContext="{local:AttendRateUserControlViewModelInDesign}"
     d:DesignHeight="250"
-    d:DesignWidth="350" Height="250" Width="350">
+    d:DesignWidth="350" Height="200" Width="280">
     
     <Grid>
     	<VisualStateManager.VisualStateGroups>
@@ -73,7 +73,7 @@
             <Border VerticalAlignment="Bottom" Height="{Binding BarHeight}" Background="LawnGreen">
             </Border>
         </Border>
-        <TextBlock x:Name="textBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByDay}" FontSize="60" Opacity="1"></TextBlock>
-        <TextBlock x:Name="textBlock1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByPercentage}" FontSize="60" Opacity="0"></TextBlock>
+        <TextBlock x:Name="textBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByDay}" FontSize="50" Opacity="1"></TextBlock>
+        <TextBlock x:Name="textBlock1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByPercentage}" FontSize="50" Opacity="0"></TextBlock>
     </Grid>
 </UserControl>
