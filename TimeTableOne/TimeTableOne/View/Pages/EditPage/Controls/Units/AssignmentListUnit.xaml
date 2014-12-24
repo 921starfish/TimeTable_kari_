@@ -18,7 +18,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
             <AppBarButton Icon="Accept" Foreground="GreenYellow"/>
             <AppBarButton  Icon="Edit"  />
-            <AppBarButton/>
+            <AppBarButton Icon="Library"/>
         </StackPanel>
     </Grid>
 </UserControl>
