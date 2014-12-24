@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
@@ -24,7 +25,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 
         private void OnAcceptAssignmentData()
         {
-            
+            var current=TableUnitDataHelper.GetCurrentSchedule();
         }
 
         protected string _assignmentName;
@@ -43,6 +44,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value == _assignmentName) return;
                 _assignmentName = value;
                 OnPropertyChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
             }
         }
 
@@ -54,6 +56,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value == _assignmentDetail) return;
                 _assignmentDetail = value;
                 OnPropertyChanged();
+                                _acceptCommand.NotifyCanExecuteChanged();
+
             }
         }
 
@@ -65,6 +69,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value == _yearEdit) return;
                 _yearEdit = value;
                 OnPropertyChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
+
             }
         }
 
@@ -75,7 +81,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             {
                 if (value == _monthEdit) return;
                 _monthEdit = value;
-                OnPropertyChanged();
+                OnPropertyChanged(); _acceptCommand.NotifyCanExecuteChanged();
+
             }
         }
 
@@ -87,6 +94,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value == _dayEdit) return;
                 _dayEdit = value;
                 OnPropertyChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
+
             }
         }
 
@@ -98,6 +107,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value.Equals(_dueDate)) return;
                 _dueDate = value;
                 OnPropertyChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
+
             }
         }
 

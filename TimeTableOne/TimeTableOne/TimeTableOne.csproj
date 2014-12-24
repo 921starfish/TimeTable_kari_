@@ -125,6 +125,7 @@
     <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
     <Compile Include="Data\ConfigurationData.cs" />
+    <Compile Include="Data\TableUnitDataHelper.cs" />
     <Compile Include="Privacy.xaml.cs">
       <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
