@@ -27,7 +27,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             DayOfWeek[] headers = {DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
             TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
             var f = Window.Current.Content as Frame;
-            int n = type == TableType.AllDay ? 7 : 5;
+            int n = TableLayoutManager.getElementCount(type);
             GridItems.Add(new EmptyGridUnitViewModel());
             for (int i = 0; i < n; i++)
             {
@@ -88,7 +88,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         private int htCount = 0;
         public TimeTableGridTemplateSelector()
         {
-            Debug.WriteLine("Construct!");
         }
         public DataTemplate TimeRegionTemplate { get; set; }
 
