@@ -19,7 +19,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 {
     public class EditHeaderControlViewModel:BasicViewModel
     {
-        
+        private const string InitialLectureName = "(授業名をここに入力)";
+        private const string InitialPlaceName = "(場所をここに入力)";
         private Brush _backgroundColor;
         private TableKey _tableKey;
         protected ScheduleData _scheduleData;
@@ -100,33 +101,52 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             get { return string.Format("{0}時限",TableKey.TableNumber); }
         }
 
+        private string ManagedLectureName
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(_scheduleData.TableName) ? _scheduleData.TableName : InitialLectureName;
+            }
+        }
+
+        private string ManagedPlace
+        {
+            get { return !string.IsNullOrWhiteSpace(_scheduleData.Place) ? _scheduleData.Place : InitialPlaceName; }
+        }
+
         public string LectureName
         {
-            get { return _scheduleData.TableName; }
+            get { return ManagedLectureName; }
         }
 
         public string LectureNameForEdit
         {
-            get { return _scheduleData.TableName; }
+            get { return ManagedLectureName; }
             set
             {
                 if (value == _lectureNameForEdit||String.IsNullOrEmpty(value)) return;
                 _lectureNameForEdit = value;
-                _scheduleData.TableName = value;
-                ApplicationData.SaveData();
+                if (value != InitialLectureName)
+                {
+                    _scheduleData.TableName = value;
+                    ApplicationData.SaveData();
+                }
                 OnPropertyChanged("LectureName");
                 OnPropertyChanged();
             }
         }
         public string PlaceForEdit
         {
-            get { return _scheduleData.Place; }
+            get { return ManagedPlace; }
             set
             {
                 if (value == _placeNameForEdit || String.IsNullOrEmpty(value)) return;
                 _placeNameForEdit = value;
-                _scheduleData.Place = value;
-                ApplicationData.SaveData();
+                if (value != InitialPlaceName)
+                {
+                    _scheduleData.Place = value;
+                    ApplicationData.SaveData();
+                }
                 OnPropertyChanged("Place");
                 OnPropertyChanged();
             }
@@ -140,7 +160,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public string Place
         {
-            get { return _scheduleData.Place; }
+            get { return ManagedPlace; }
         }
 
         public ObservableCollection<string> PlacePredictions { get; set; }
