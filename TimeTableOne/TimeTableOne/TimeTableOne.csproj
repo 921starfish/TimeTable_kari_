@@ -125,6 +125,7 @@
     <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
     <Compile Include="Data\ConfigurationData.cs" />
+    <Compile Include="Data\TableUnitDataHelper.cs" />
     <Compile Include="Privacy.xaml.cs">
       <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
@@ -134,8 +135,10 @@
     </Compile>
     <Compile Include="Utils\ColorUtil.cs" />
     <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
+    <Compile Include="Utils\Commands\BasicCommand.cs" />
     <Compile Include="Utils\Commands\CommandBase.cs" />
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
+    <Compile Include="Utils\DateTimeUtil.cs" />
     <Compile Include="Utils\OneNoteControl.cs" />
     <Compile Include="Utils\StandardResponse.cs" />
     <Compile Include="Utils\TableKey.cs" />
@@ -151,10 +154,16 @@
     </Compile>
     <Compile Include="View\Pages\DayPage\Controls\TimeControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\AssignmentControl.xaml.cs">
+      <DependentUpon>AssignmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml.cs">
       <DependentUpon>AttendRateUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml.cs">
+      <DependentUpon>ClassRoomControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
       <DependentUpon>ColorPopup.xaml</DependentUpon>
     </Compile>
@@ -172,6 +181,14 @@
     <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
       <DependentUpon>EditPageRightControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml.cs">
+      <DependentUpon>AddAssignmentPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml.cs">
+      <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnitViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
@@ -246,6 +263,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
+    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -286,9 +304,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\EditPage\Controls\AssignmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\ColorPopup.xaml">
       <SubType>Designer</SubType>
@@ -307,6 +333,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -372,6 +406,7 @@
       <HintPath>..\packages\WinRTXamlToolkit.1.3.5.3\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

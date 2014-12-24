@@ -16,9 +16,9 @@ using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage
 {
-    class EditPageViewModel : INotifyPropertyChanged
+    public class EditPageViewModel : INotifyPropertyChanged
     {
-        public  TableKey _key;
+        public TableKey _key;
         private TableKey _tableKey;
         private string _tableName = "";
         private string _weekDayText = "";
@@ -37,7 +37,7 @@ namespace TimeTableOne.View.Pages.EditPage
 
         public EditPageViewModel(TableKey key)
         {
-          loadData(key);
+            loadData(key);
         }
 
         public void loadData(TableKey key)
@@ -58,10 +58,24 @@ namespace TimeTableOne.View.Pages.EditPage
             }
             AllDelete = new AlwaysExecutableDelegateCommand(
             DeleteWithCheck);
+            NoClassButtonClick = new AlwaysExecutableDelegateCommand(
+                () =>
+                {
+                    //TODO 休講時の処理を実装
+                    throw new NotImplementedException();
+                }
+            );
+            RoomChangeButtonClick = new AlwaysExecutableDelegateCommand(
+                () =>
+                {
+                    //TODO 教室変更時の処理を実装
+                    throw new NotImplementedException();
+                }
+            );
             OpenOneNote = new AlwaysExecutableDelegateCommand(
            () =>
            {
-			   OneNoteControl.Current.Open(_scheduleData.TableName);
+               OneNoteControl.Current.Open(_scheduleData.TableName);
            });
             TableColor = new SolidColorBrush(_scheduleData.ColorData);
         }
@@ -205,19 +219,23 @@ namespace TimeTableOne.View.Pages.EditPage
             {
                 if (_tableName == "")
                 {
-                    return 18*50;
+                    return 18 * 50;
                 }
                 else
                 {
                     return Komidashi.Length * 50 + 50;
                 }
-              
+
             }
         }
 
         public AlwaysExecutableDelegateCommand AllDelete { get; set; }
 
         public AlwaysExecutableDelegateCommand OpenOneNote { get; set; }
+
+        public AlwaysExecutableDelegateCommand NoClassButtonClick { get; set; }
+
+        public AlwaysExecutableDelegateCommand RoomChangeButtonClick { get; set; }
 
         private async void DeleteWithCheck()
         {
@@ -249,9 +267,10 @@ namespace TimeTableOne.View.Pages.EditPage
                 _scheduleData.Description = DetailText;
                 _scheduleData.FreeFormText = TableInformation;
             }
-            
+
         }
-        public SolidColorBrush TableColor {
+        public SolidColorBrush TableColor
+        {
             get { return _tableColor; }
             set
             {

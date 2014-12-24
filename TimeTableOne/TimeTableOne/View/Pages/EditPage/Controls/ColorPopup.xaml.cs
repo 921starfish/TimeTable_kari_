@@ -39,7 +39,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             var selected = ColorList.SelectedItem as ColorPopupUnitViewModel;
             if (selected == null) return;
             ViewModel.ScheduleData.ColorData = selected.ColorBrush.Color;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             TableKey Key = ViewModel.TableKey;
             ViewModel.loadData(Key);
 

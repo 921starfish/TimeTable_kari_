@@ -41,6 +41,7 @@ namespace TimeTableOne.Data
 
         public ConfigurationData Configuration=new ConfigurationData();
 
+        public List<AssignmentSchedule> Assignments=new List<AssignmentSchedule>(); 
         private static ApplicationDataContainer SettingFolder
         {
             get
@@ -128,14 +129,13 @@ namespace TimeTableOne.Data
         /// <summary>
         /// データをシリアライズ
         /// </summary>
-        /// <param name="data">シリアライズするデータ</param>
         /// <returns></returns>
-        public static void SaveData(ApplicationData data)
+        public static void SaveData()
         {
             using (MemoryStream ms = new MemoryStream())
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
-                serializer.Serialize(ms, data);
+                serializer.Serialize(ms, Instance);
                  ms.Flush();
                 ms.Seek(0, SeekOrigin.Begin);
                 using (StreamReader reader = new StreamReader(ms))
@@ -174,6 +174,14 @@ namespace TimeTableOne.Data
                     return scheduleData;
                 }
                 return null;
+            }
+        }
+
+        public IEnumerable<AssignmentSchedule> GetAssignments(ScheduleData data)
+        {
+            foreach (var assignmentSchedule in Assignments)
+            {
+                if (data.ScheduleId.Equals(assignmentSchedule.ScheduleId)) yield return assignmentSchedule;
             }
         }
     }
@@ -221,6 +229,11 @@ namespace TimeTableOne.Data
         {
             return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123)};
         }
+
+        public AssignmentSchedule GenerateAssignmentEmpty()
+        {
+            return new AssignmentSchedule(){ScheduleId= ScheduleId};
+        }
     }
 
     public class ScheduleTimeSpan
@@ -236,5 +249,14 @@ namespace TimeTableOne.Data
                 ToTime = new DateTime(2015, 1, 1, toHour, toMinute, 0)
             };
         }
+    }
+   
+    public class AssignmentSchedule
+    {
+        public DateTime DueTime;
+        public Guid ScheduleId;
+        public string AssignmentName="";
+        public string AssignmentDetail="";
+        public bool IsCompleted;
     }
 }

@@ -27,6 +27,21 @@ namespace TimeTableOne.View.Pages.TablePage
             }
         }
 
+        public static int getElementCount(TableType type)
+        {
+            switch (type)
+            {
+                case TableType.AllDay:
+                    return 7;
+                    break;
+                case TableType.WeekDay:
+                    return 5;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("type");
+            }
+        }
+
 
     }
 }

@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Common;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
+using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
@@ -22,6 +25,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         protected ScheduleData _scheduleData;
         private string _lectureNameForEdit;
         private string _placeNameForEdit;
+        private ICommand _backToTablePageCommand;
 
         public Brush BackgroundColor
         {
@@ -57,6 +61,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 }
             }
             AutoCompleteFunction = AutoCompleteFunctionImpl;
+            BackToTablePageCommand=new AlwaysExecutableDelegateCommand(() =>
+            {
+                ((Frame) Window.Current.Content).Navigate(typeof (TablePage.TablePage));
+;            });
 
         }
 
@@ -104,7 +112,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 if (value == _lectureNameForEdit||String.IsNullOrEmpty(value)) return;
                 _lectureNameForEdit = value;
                 _scheduleData.TableName = value;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 OnPropertyChanged("LectureName");
                 OnPropertyChanged();
             }
@@ -117,13 +125,17 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 if (value == _placeNameForEdit || String.IsNullOrEmpty(value)) return;
                 _placeNameForEdit = value;
                 _scheduleData.Place = value;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 OnPropertyChanged("Place");
                 OnPropertyChanged();
             }
         }
 
-        
+        public ICommand BackToTablePageCommand
+        {
+            get { return _backToTablePageCommand; }
+            set { _backToTablePageCommand = value; }
+        }
 
         public string Place
         {

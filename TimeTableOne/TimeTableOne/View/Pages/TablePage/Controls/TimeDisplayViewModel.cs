@@ -154,7 +154,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 }
                 TargetModelSpan.FromTime = FromTime;
                 TargetModelSpan.ToTime = ToTime;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 return true;
             
         }

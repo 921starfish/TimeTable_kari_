@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using TimeTableOne.Common;
 
@@ -20,6 +21,7 @@ namespace TimeTableOne.View.Pages.TablePage
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private bool _isTableTitleEditing;
 
         /// <summary>
         /// これは厳密に型指定されたビュー モデルに変更できます。
@@ -45,6 +47,7 @@ namespace TimeTableOne.View.Pages.TablePage
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            VisualStateManager.GoToState(this, "BasicState", false);
         }
 
         /// <summary>
@@ -124,7 +127,7 @@ namespace TimeTableOne.View.Pages.TablePage
             config.TableTypeSetting = config.TableTypeSetting == TableType.WeekDay
                 ? TableType.AllDay
                 : TableType.WeekDay;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
         }
 
@@ -137,7 +140,7 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount++;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             RemoveCommand.NotifyCanExecuteChanged();
         }
@@ -146,9 +149,33 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount--;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             RemoveCommand.NotifyCanExecuteChanged();
+        }
+
+        private void PageTitle_OnPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            if(_isTableTitleEditing)return;
+            VisualStateManager.GoToState(this, "MouseOn", true);
+        }
+
+        private void PageTitle_OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (_isTableTitleEditing) return;
+            VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void PageTitle_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            _isTableTitleEditing = true;
+            VisualStateManager.GoToState(this, "Editing", true);
+        }
+
+        private void TextBox_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            _isTableTitleEditing = false;
+            VisualStateManager.GoToState(this, "BasicState", true);
         }
     }
 }

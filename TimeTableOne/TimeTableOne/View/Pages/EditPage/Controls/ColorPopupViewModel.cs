@@ -60,20 +60,44 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
 
             Color OneNotePurpleColor = (Color) Application.Current.Resources["OneNotePurpleColor"];
-            ColorItems.Add(new ColorPopupUnitViewModel(OneNotePurpleColor));
+            
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Red));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Orange));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Yellow));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Green));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Blue));
+            ColorItems.Add(new ColorPopupUnitViewModel(OneNotePurpleColor));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Black));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Violet));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 32, 32, 32)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 64, 64, 64)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 96, 96, 96)));
+
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 128, 128, 128)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 160, 160, 160)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 192, 192, 192)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 224, 224, 224)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.White));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 254,  99, 119)));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Pink));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightSalmon));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightYellow));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightGreen));
+
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.LightBlue));
-            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Gray));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Violet));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.OrangeRed));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.RoyalBlue));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Azure));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Khaki));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.Maroon));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 6, 255, 119)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255, 242, 44, 90)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Colors.DeepPink));
+            
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255,99,216,183)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255,255,134,93)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255,251,226,0)));
+            ColorItems.Add(new ColorPopupUnitViewModel(Color.FromArgb(255,152, 81, 75)));
             ColorItems.Add(new ColorPopupUnitViewModel(Colors.Transparent));
         }
 

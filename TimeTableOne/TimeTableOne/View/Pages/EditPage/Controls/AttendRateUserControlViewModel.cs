@@ -21,7 +21,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public double BarHeight
         {
-            get { return (AttendLecture/(double) TotalLecture)*250; }
+            get { return (AttendLecture/(double) TotalLecture)*200; }
         }
 
         public string TextByDay
