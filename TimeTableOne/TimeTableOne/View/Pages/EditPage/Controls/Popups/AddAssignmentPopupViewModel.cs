@@ -26,6 +26,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         private void OnAcceptAssignmentData()
         {
             var current=TableUnitDataHelper.GetCurrentSchedule();
+            var assignment = current.GenerateAssignmentEmpty();
+            assignment.AssignmentName = _assignmentName;
+            assignment.AssignmentDetail = _assignmentDetail;
+            assignment.DueTime = _dueDate;
+            ApplicationData.Instance.Assignments.Add(assignment);
+            ApplicationData.SaveData();
         }
 
         protected string _assignmentName;
@@ -56,7 +62,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (value == _assignmentDetail) return;
                 _assignmentDetail = value;
                 OnPropertyChanged();
-                                _acceptCommand.NotifyCanExecuteChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
 
             }
         }
