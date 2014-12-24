@@ -42,8 +42,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             _tableKey = tableKey;
             _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.TableNumber);
-            _scheduleData = _scheduleData ?? new ScheduleData();
+            _scheduleData = _scheduleData ?? ScheduleData.GenerateEmpty();
             _lectureNameForEdit = _scheduleData.TableName;
+            _backgroundColor =new SolidColorBrush(_scheduleData.ColorData);
             PlacePredictions=new ObservableCollection<string>();
             LectureNamePredictions=new ObservableCollection<string>();
             foreach (var scheduleData in ApplicationData.Instance.Data)
