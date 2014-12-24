@@ -41,7 +41,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditHeaderControlViewModel(TableKey tableKey)
         {
             _tableKey = tableKey;
-            _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.NumberOfDay);
+            _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.TableNumber);
             _scheduleData = _scheduleData ?? new ScheduleData();
             _lectureNameForEdit = _scheduleData.TableName;
             PlacePredictions=new ObservableCollection<string>();

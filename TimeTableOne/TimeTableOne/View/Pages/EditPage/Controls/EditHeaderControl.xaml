@@ -8,7 +8,7 @@
     xmlns:autoCompleteBox="using:AutoCompleteBox"
     mc:Ignorable="d"
 
-    d:DesignHeight="300" d:DataContext="{local:EditHeaderControlViewModelInDesign}" Loaded="EditHeaderControl_OnLoaded"
+    d:DesignHeight="300" d:DataContext="{local:EditHeaderControlViewModelInDesign}" 
     d:DesignWidth="800">
     
     <Grid Background="{Binding BackgroundColor}" x:Name="VSM_Target">

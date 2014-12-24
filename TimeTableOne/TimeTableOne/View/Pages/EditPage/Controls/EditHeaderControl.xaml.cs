@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Data;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
@@ -27,12 +28,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditHeaderControl()
         {
             this.InitializeComponent();
+            Loaded += EditHeaderControl_Loaded;
             VisualStateManager.GoToState(this, "BasicState", true);
         }
 
-        private void EditHeaderControl_OnLoaded(object sender, RoutedEventArgs e)
+        void EditHeaderControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new EditHeaderControlViewModelInDesign();
+            this.DataContext = new EditHeaderControlViewModel(TableUnitDataHelper.GetCurrentKey());
         }
 
         private void LectureTextBox_MouseEnter(object sender, PointerRoutedEventArgs e)
