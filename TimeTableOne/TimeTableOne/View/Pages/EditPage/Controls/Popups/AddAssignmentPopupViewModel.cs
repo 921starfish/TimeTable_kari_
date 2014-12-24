@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
@@ -13,12 +14,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
     {
         public AddAssignmentPopupViewModel()
         {
-            _acceptButton=new BasicCommand(OnAcceptAssignmentData,ValidateAssignmentData);
+            _acceptCommand=new BasicCommand(OnAcceptAssignmentData,ValidateAssignmentData);
         }
 
         private bool ValidateAssignmentData()
         {
-            
+            return DateTimeUtil.IsDate(YearEdit, MonthEdit, DayEdit) && !String.IsNullOrWhiteSpace(_assignmentName);
         }
 
         private void OnAcceptAssignmentData()
@@ -28,11 +29,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 
         protected string _assignmentName;
         protected string _assignmentDetail;
-        protected string _yearEdit;
-        protected string _monthEdit;
-        protected string _dayEdit;
+        protected int _yearEdit;
+        protected int _monthEdit;
+        protected int _dayEdit;
         protected DateTime _dueDate;
-        protected ICommand _acceptButton;
+        protected BasicCommand _acceptCommand;
 
         public string AssignmentName
         {
@@ -56,7 +57,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             }
         }
 
-        public string YearEdit
+        public int YearEdit
         {
             get { return _yearEdit; }
             set
@@ -67,7 +68,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             }
         }
 
-        public string MonthEdit
+        public int MonthEdit
         {
             get { return _monthEdit; }
             set
@@ -78,7 +79,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             }
         }
 
-        public string DayEdit
+        public int DayEdit
         {
             get { return _dayEdit; }
             set
@@ -100,13 +101,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             }
         }
 
-        public ICommand AcceptButton
+        public BasicCommand AcceptCommand
         {
-            get { return _acceptButton; }
+            get { return _acceptCommand; }
             set
             {
-                if (Equals(value, _acceptButton)) return;
-                _acceptButton = value;
+                if (Equals(value, _acceptCommand)) return;
+                _acceptCommand = value;
                 OnPropertyChanged();
             }
         }
@@ -117,9 +118,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public AddAssignmentPopupViewModelInDesign()
         {
             _assignmentName = "前期レポート課題";
-            _yearEdit = "2015";
-            _monthEdit = "12";
-            _dayEdit = "25";
+            _yearEdit = 2015;
+            _monthEdit = 12;
+            _dayEdit = 25;
             _assignmentDetail = "計算数学のレポート課題";
         }
     }
