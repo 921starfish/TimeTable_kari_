@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTableOne.Data;
 using TimeTableOne.View.Pages.EditPage.Controls.Units;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
@@ -14,6 +15,15 @@ namespace TimeTableOne.View.Pages.EditPage
         public AssignmentControlViewModel()
         {
             Assignments=new ObservableCollection<AssignmentListUnitViewModel>();
+            var assignments = ApplicationData.Instance.GetAssignments(TableUnitDataHelper.GetCurrentSchedule());
+            foreach (var assignmentSchedule in assignments)
+            {
+                Assignments.Add(new AssignmentListUnitViewModel()
+                {
+                    AssignmentName = assignmentSchedule.AssignmentName,
+                    
+                });
+            }
         }
         public ObservableCollection<AssignmentListUnitViewModel> Assignments { get; set; } 
     }

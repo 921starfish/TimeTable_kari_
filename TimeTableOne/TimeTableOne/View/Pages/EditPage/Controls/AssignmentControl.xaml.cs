@@ -22,7 +22,15 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public AssignmentControl()
         {
             this.InitializeComponent();
+            Loaded += AssignmentControl_Loaded;
+
         }
+
+        void AssignmentControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = new AssignmentControlViewModel();
+        }
+
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
