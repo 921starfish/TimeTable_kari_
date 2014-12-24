@@ -45,7 +45,7 @@ namespace TimeTableOne.View.Pages.TablePage
                 _pageTitleForEdit = value;
                 PageTitle = value;
                 ApplicationData.Instance.Configuration.PageTitle = value;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 OnPropertyChanged("PageTitle");
                 OnPropertyChanged();
             }

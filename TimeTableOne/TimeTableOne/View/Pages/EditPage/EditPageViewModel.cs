@@ -16,7 +16,7 @@ using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.EditPage
 {
-    class EditPageViewModel : INotifyPropertyChanged
+    public class EditPageViewModel : INotifyPropertyChanged
     {
         public TableKey _key;
         private TableKey _tableKey;

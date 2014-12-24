@@ -112,7 +112,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 if (value == _lectureNameForEdit||String.IsNullOrEmpty(value)) return;
                 _lectureNameForEdit = value;
                 _scheduleData.TableName = value;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 OnPropertyChanged("LectureName");
                 OnPropertyChanged();
             }
@@ -125,7 +125,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 if (value == _placeNameForEdit || String.IsNullOrEmpty(value)) return;
                 _placeNameForEdit = value;
                 _scheduleData.Place = value;
-                ApplicationData.SaveData(ApplicationData.Instance);
+                ApplicationData.SaveData();
                 OnPropertyChanged("Place");
                 OnPropertyChanged();
             }

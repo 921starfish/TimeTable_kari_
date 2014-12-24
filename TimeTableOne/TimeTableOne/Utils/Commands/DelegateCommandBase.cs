@@ -22,7 +22,7 @@ namespace TimeTableOne.Utils.Commands
         }
     }
 
-    class BasicCommand : DelegateCommandBase
+    public class BasicCommand : DelegateCommandBase
     {
         private readonly Func<bool> _canExecute;
 

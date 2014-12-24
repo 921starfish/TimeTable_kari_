@@ -127,7 +127,7 @@ namespace TimeTableOne.View.Pages.TablePage
             config.TableTypeSetting = config.TableTypeSetting == TableType.WeekDay
                 ? TableType.AllDay
                 : TableType.WeekDay;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
         }
 
@@ -140,7 +140,7 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount++;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             RemoveCommand.NotifyCanExecuteChanged();
         }
@@ -149,7 +149,7 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount--;
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             RemoveCommand.NotifyCanExecuteChanged();
         }

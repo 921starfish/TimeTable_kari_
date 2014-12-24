@@ -40,7 +40,7 @@ namespace TimeTableOne.View.Pages.EditPage
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
             ((EditPageViewModel)DataContext).saveData();
-            ApplicationData.SaveData(ApplicationData.Instance);
+            ApplicationData.SaveData();
 
         }
 
@@ -67,7 +67,6 @@ namespace TimeTableOne.View.Pages.EditPage
         /// イベント データ。ページに初めてアクセスするとき、状態は null になります。</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: バインド可能なグループのコレクションを this.DefaultViewModel["Groups"] に割り当てます
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
         }
 
@@ -93,15 +92,11 @@ namespace TimeTableOne.View.Pages.EditPage
         }
 
         #endregion
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
 
-            //TestPopup.IsOpen = !TestPopup.IsOpen;
+        public EditPageViewModel ViewModel
+        {
+            get { return DataContext as EditPageViewModel; }
         }
 
-        private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            //TestPopup.IsOpen = false;
-        }
     } 
 }

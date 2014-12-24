@@ -129,14 +129,13 @@ namespace TimeTableOne.Data
         /// <summary>
         /// データをシリアライズ
         /// </summary>
-        /// <param name="data">シリアライズするデータ</param>
         /// <returns></returns>
-        public static void SaveData(ApplicationData data)
+        public static void SaveData()
         {
             using (MemoryStream ms = new MemoryStream())
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
-                serializer.Serialize(ms, data);
+                serializer.Serialize(ms, Instance);
                  ms.Flush();
                 ms.Seek(0, SeekOrigin.Begin);
                 using (StreamReader reader = new StreamReader(ms))
