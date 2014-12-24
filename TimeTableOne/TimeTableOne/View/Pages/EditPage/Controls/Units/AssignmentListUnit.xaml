@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.Units.AssignmentListUnit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="350" d:DataContext="{local:AssignmentListUnitViewModelInDesign}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding AssignmentName}" FontSize="20" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Text="{Binding RemainingDateInformation}"></TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+            <AppBarButton Icon="Accept" Foreground="GreenYellow"/>
+            <AppBarButton  Icon="Edit"  />
+            <AppBarButton/>
+        </StackPanel>
+    </Grid>
+</UserControl>
