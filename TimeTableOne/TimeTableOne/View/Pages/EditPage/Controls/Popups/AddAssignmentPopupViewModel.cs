@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 {
     public class AddAssignmentPopupViewModel:BasicViewModel
     {
+        public AddAssignmentPopupViewModel()
+        {
+            _acceptButton=new BasicCommand(OnAcceptAssignmentData,ValidateAssignmentData);
+        }
+
+        private bool ValidateAssignmentData()
+        {
+            
+        }
+
+        private void OnAcceptAssignmentData()
+        {
+            
+        }
+
         protected string _assignmentName;
         protected string _assignmentDetail;
         protected string _yearEdit;
         protected string _monthEdit;
         protected string _dayEdit;
         protected DateTime _dueDate;
+        protected ICommand _acceptButton;
 
         public string AssignmentName
         {
@@ -78,6 +96,17 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             {
                 if (value.Equals(_dueDate)) return;
                 _dueDate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand AcceptButton
+        {
+            get { return _acceptButton; }
+            set
+            {
+                if (Equals(value, _acceptButton)) return;
+                _acceptButton = value;
                 OnPropertyChanged();
             }
         }
