@@ -8,8 +8,16 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
     <Grid>
-
+        <Border Background="White" BorderBrush="Black" BorderThickness="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="0" Fill="{StaticResource OneNotePurple}"/>
+                <TextBlock Grid.Row="0" Text="休講設定" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

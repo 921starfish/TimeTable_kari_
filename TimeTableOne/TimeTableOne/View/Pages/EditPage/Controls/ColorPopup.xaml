@@ -10,10 +10,9 @@
     d:DesignHeight="300"
     d:DesignWidth="400" DataContextChanged="ColorPopup_OnDataContextChanged">
     <Grid>
-        <Polyline Stroke="Black" StrokeThickness="3" Fill="White" 
-                  Points="35,0 400,0 400,300 35,300 35,50 0,25 35,0">
-        </Polyline>
-        <Grid Margin="35,0,0,0">
+        <Rectangle Fill="White" Stroke="Black">
+        </Rectangle>
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
