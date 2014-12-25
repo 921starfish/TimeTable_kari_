@@ -58,19 +58,6 @@ namespace TimeTableOne.View.Pages.EditPage
             }
             AllDelete = new AlwaysExecutableDelegateCommand(
             DeleteWithCheck);
-            NoClassButtonClick = new AlwaysExecutableDelegateCommand(
-                () =>
-                {
-                    
-                }
-            );
-            RoomChangeButtonClick = new AlwaysExecutableDelegateCommand(
-                () =>
-                {
-                    //TODO 教室変更時の処理を実装
-                    throw new NotImplementedException();
-                }
-            );
             OpenOneNote = new AlwaysExecutableDelegateCommand(
            () =>
            {
@@ -231,10 +218,6 @@ namespace TimeTableOne.View.Pages.EditPage
         public AlwaysExecutableDelegateCommand AllDelete { get; set; }
 
         public AlwaysExecutableDelegateCommand OpenOneNote { get; set; }
-
-        public AlwaysExecutableDelegateCommand NoClassButtonClick { get; set; }
-
-        public AlwaysExecutableDelegateCommand RoomChangeButtonClick { get; set; }
 
         private async void DeleteWithCheck()
         {

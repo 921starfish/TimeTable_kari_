@@ -34,7 +34,7 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        <Popup Grid.Row="0" Margin="380,10,0,0" x:Name="AddAssignmentPopup">
+        <Popup Grid.Row="0" Margin="380,10,0,0" x:Name="AddAssignmentPopup" IsLightDismissEnabled="True">
             <popups:AddAssignmentPopup/>
         </Popup>
     </Grid>
