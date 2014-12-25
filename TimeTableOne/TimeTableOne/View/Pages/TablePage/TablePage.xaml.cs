@@ -122,7 +122,7 @@ namespace TimeTableOne.View.Pages.TablePage
         }
 
         private void ToggleColumn(object sender, RoutedEventArgs e)
-        {
+        {//TODO 土曜日+平日設定も利用する?
             var config = ApplicationData.Instance.Configuration;
             config.TableTypeSetting = config.TableTypeSetting == TableType.WeekDay
                 ? TableType.AllDay

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
@@ -13,6 +14,7 @@ using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.Web.AtomPub;
+using TimeTableOne.Data.Args;
 
 namespace TimeTableOne.Data
 {
@@ -28,10 +30,30 @@ namespace TimeTableOne.Data
                 if (_instance == null)
                 {
                     _instance = LoadData();
+                    InitializeBeforeInstanceUsing(_instance);
                 }
                 return _instance;
             }
         }
+
+        private static void InitializeBeforeInstanceUsing(ApplicationData instance)
+        {
+            instance.Assignments.CollectionChanged += Assignments_CollectionChanged;
+        }
+
+        static void Assignments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            AssignmentSchedule sc = Instance.Assignments[e.NewStartingIndex];
+            Instance.OnAssignmentChanged(Instance,new AssignmentChangedEventArgs(sc.ScheduleId));
+        }
+
+        #region Events
+        /// <summary>
+        /// 保存されている課題リストが変動した際に呼び出されます。
+        /// </summary>
+        public event EventHandler<AssignmentChangedEventArgs> OnAssignmentChanged = delegate { }; 
+            
+        #endregion
 
         public List<ScheduleKey> Keys = new List<ScheduleKey>();
 
@@ -41,7 +63,7 @@ namespace TimeTableOne.Data
 
         public ConfigurationData Configuration=new ConfigurationData();
 
-        public List<AssignmentSchedule> Assignments=new List<AssignmentSchedule>(); 
+        public ObservableCollection<AssignmentSchedule> Assignments=new ObservableCollection<AssignmentSchedule>(); 
         private static ApplicationDataContainer SettingFolder
         {
             get
