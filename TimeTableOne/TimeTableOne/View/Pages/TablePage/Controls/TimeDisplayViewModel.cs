@@ -113,14 +113,28 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         //TODO もっといい感じに。
         private static DateTime ToDate(string str)
         {
+            string hour="";
+            string minute="";
             string[] splitted = str.Split(':');
             if (splitted.Length == 2)
             {
-                int hour = int.Parse(splitted[0]);
-                int minute = int.Parse(splitted[1]);
-                return new DateTime(2015,1,1,hour,minute,0);
+                hour = splitted[0];
+                minute = splitted[1];     
             }
-            throw new InvalidDataContractException();
+            if (splitted.Length == 1)
+            {
+                if (str.Length == 3)
+                {
+                    hour = str[0].ToString();
+                    minute = str[1].ToString() + str[2].ToString();
+                }
+                if (str.Length == 4)
+                {
+                    hour = str[0].ToString() + str[1].ToString();
+                    minute = str[2].ToString() + str[3].ToString();
+                }
+            }
+            return new DateTime(2015, 1, 1, int.Parse(hour), int.Parse(minute), 0);
         }
 
         public async Task<bool> CommitChange()
