@@ -24,9 +24,14 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             this.InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void ToggleNoClassPopup(object sender, RoutedEventArgs e)
         {
             NoClassControl.IsOpen = !NoClassControl.IsOpen;
+        }
+
+        private void ToggleChangeRoomPopup(object sender, RoutedEventArgs e)
+        {
+            ChangeRoomControl.IsOpen = !ChangeRoomControl.IsOpen;
         }
     }
 }

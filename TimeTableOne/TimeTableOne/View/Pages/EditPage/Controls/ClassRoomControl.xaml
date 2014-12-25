@@ -22,7 +22,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ButtonBase_OnClick">
+            <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ToggleNoClassPopup">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Home"></SymbolIcon>
                     <TextBlock Text="休講" VerticalAlignment="Center"></TextBlock>
@@ -31,12 +31,15 @@
             <Popup Grid.Row="0" HorizontalAlignment="Right" x:Name="NoClassControl" IsLightDismissEnabled="True">
                 <popups:NoClassPopupControl Width="400" Height="600" Margin="0,-300,0,0"/>
             </Popup>
-            <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Command="{Binding RoomChangeButtonClick}">
+            <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ToggleChangeRoomPopup">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Important"></SymbolIcon>
                     <TextBlock Text="教室変更" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
             </Button>
+            <Popup Grid.Row="1" HorizontalAlignment="Right" x:Name="ChangeRoomControl" IsLightDismissEnabled="True">
+                <popups:ChangeRoomPopupControl Width="400" Height="600" Margin="0,-300,0,0"/>
+            </Popup>
         </Grid>
     </Grid>
 </UserControl>
