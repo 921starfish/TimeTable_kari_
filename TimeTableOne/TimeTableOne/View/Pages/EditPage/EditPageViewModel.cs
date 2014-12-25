@@ -61,8 +61,7 @@ namespace TimeTableOne.View.Pages.EditPage
             NoClassButtonClick = new AlwaysExecutableDelegateCommand(
                 () =>
                 {
-                    //TODO 休講時の処理を実装
-                    throw new NotImplementedException();
+                    
                 }
             );
             RoomChangeButtonClick = new AlwaysExecutableDelegateCommand(

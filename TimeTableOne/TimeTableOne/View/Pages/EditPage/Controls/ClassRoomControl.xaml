@@ -5,6 +5,7 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:popups="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
     mc:Ignorable="d"
     d:DesignHeight="600"
     d:DesignWidth="400">
@@ -21,12 +22,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Command="{Binding NoClassButtonClick}">
+            <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ButtonBase_OnClick">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Home"></SymbolIcon>
                     <TextBlock Text="休講" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
             </Button>
+            <Popup Grid.Row="0" HorizontalAlignment="Right" x:Name="NoClassControl" IsLightDismissEnabled="True">
+                <popups:NoClassPopupControl Width="400" Height="600" Margin="0,-300,0,0"/>
+            </Popup>
             <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Command="{Binding RoomChangeButtonClick}">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Important"></SymbolIcon>
