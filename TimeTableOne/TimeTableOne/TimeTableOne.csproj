@@ -188,6 +188,9 @@
       <DependentUpon>AddAssignmentPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml.cs">
+      <DependentUpon>NoClassPopupControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml.cs">
       <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
     </Compile>
@@ -340,6 +343,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
