@@ -68,7 +68,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton"  HorizontalAlignment="Stretch"  
                     VerticalAlignment="Stretch" 
-                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Click="BackButton_OnClick"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"

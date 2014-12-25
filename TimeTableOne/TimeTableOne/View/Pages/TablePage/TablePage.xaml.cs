@@ -8,6 +8,7 @@ using TimeTableOne.Common;
 
 // 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
@@ -176,6 +177,11 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             _isTableTitleEditing = false;
             VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+           PageUtil.MovePage(MainStaticPages.DayPage);
         }
     }
 }

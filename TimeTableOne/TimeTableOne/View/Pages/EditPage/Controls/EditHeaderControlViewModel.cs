@@ -60,8 +60,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             AutoCompleteFunction = AutoCompleteFunctionImpl;
             BackToTablePageCommand = new AlwaysExecutableDelegateCommand(() =>
             {
-                ((Frame) Window.Current.Content).Navigate(typeof (TablePage.TablePage));
-                ;
+                PageUtil.MovePage(MainStaticPages.TablePage);
             });
         }
 
