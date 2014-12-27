@@ -19,9 +19,27 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public sealed partial class AssignmentListUnit : UserControl
     {
+        private bool isEditState = false;
         public AssignmentListUnit()
         {
             this.InitializeComponent();
+            VisualStateManager.GoToState(this, "BasicState", false);
+        }
+
+        private void TextBlock1_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "EditState", true);
+            isEditState = true;
+        }
+
+        private void Grid_OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (isEditState)
+            {
+                
+                VisualStateManager.GoToState(this, "BasicState", true);
+                isEditState = false;
+            }
         }
     }
 }

@@ -192,6 +192,10 @@
     <Compile Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml.cs">
       <DependentUpon>ChangeRoomPopupControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopup.xaml.cs">
+      <DependentUpon>EditAssignmentPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopupViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml.cs">
       <DependentUpon>NoClassPopupControl.xaml</DependentUpon>
     </Compile>
@@ -351,6 +355,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

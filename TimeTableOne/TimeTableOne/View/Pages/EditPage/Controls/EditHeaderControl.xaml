@@ -113,7 +113,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border Background="DimGray">
-            <Button BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding BackToTablePageCommand}">
+            <Button BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
                 <Border BorderThickness="2" BorderBrush="White" CornerRadius="100" Padding="10">
                 <SymbolIcon Symbol="Calendar"></SymbolIcon>
             </Border>
@@ -155,8 +155,8 @@
             <Button Grid.Row ="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click">
                 <StackPanel>
                     <SymbolIcon Symbol="Flag"></SymbolIcon>
-                    <Popup x:Name="ColorPopup">
-                        <local:ColorPopup Width="400" Height="300"></local:ColorPopup>
+                    <Popup x:Name="ColorPopup" IsLightDismissEnabled="True">
+                        <local:ColorPopup Width="400" Height="300" ></local:ColorPopup>
                     </Popup>
                 </StackPanel>
             </Button>

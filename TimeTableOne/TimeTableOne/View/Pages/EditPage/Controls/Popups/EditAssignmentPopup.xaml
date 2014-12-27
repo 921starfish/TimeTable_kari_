@@ -1,0 +1,69 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.Popups.EditAssignmentPopup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:popups="using:Windows.UI.Popups"
+    d:DataContext="{local:EditAssignmentPopupViewModelInDesign}"
+    mc:Ignorable="d"
+    d:DesignHeight="600" Width="600" Height="450"
+    d:DesignWidth="450">
+    <Grid>
+        <Border Background="White" BorderBrush="Black" BorderThickness="5">
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Rectangle Fill="{StaticResource OneNotePurple}"></Rectangle>
+                <TextBlock Text="課題の編集" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <StackPanel Grid.Row="1">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="25"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                            <Setter Property="Margin" Value="25,5,5,0"></Setter>
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Margin" Value="0,10,0,0"></Setter>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Background" Value="{StaticResource EditBoxGray}"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="課題名:"></TextBlock>
+                        <TextBox Width="400" Text="{Binding AssignmentName,Mode=TwoWay}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="期限:"></TextBlock>
+                        <TextBox Width="40" Text="{Binding YearEdit,Mode=TwoWay}"></TextBox>
+                        <TextBlock Text="年"></TextBlock>
+                        <TextBox Width="40" Text="{Binding MonthEdit,Mode=TwoWay}"/>
+                        <TextBlock Text="月"></TextBlock>
+                        <TextBox Width="40" Text="{Binding DayEdit,Mode=TwoWay}"></TextBox>
+                        <TextBlock Text="日"></TextBlock>
+                        <Button BorderThickness="0" Padding="0" Click="ButtonBase_OnClick">
+                            <SymbolIcon  Symbol="Download" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Foreground="Black" />
+
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="概要:"></TextBlock>
+                        <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail,Mode=TwoWay}"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Right" Margin="0,0,25,0" Command="{Binding AcceptCommand}">
+                    <SymbolIcon Symbol="Accept" Foreground="LawnGreen"></SymbolIcon>
+                </Button>
+                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Left" Margin="0,0,25,0" Command="{Binding AllDelete}">
+                    <SymbolIcon Symbol="Delete" Foreground="Black"></SymbolIcon>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

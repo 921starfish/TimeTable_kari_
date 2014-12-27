@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
+using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
@@ -16,20 +19,45 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public AssignmentListUnitViewModel()
         {
-            
+            CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
         }
 
         public AssignmentListUnitViewModel(AssignmentSchedule schedule)
         {
             _schedule = schedule;
+            AssignmentDetail = schedule.AssignmentDetail;
+            AssignmentName =_assignmentName = schedule.AssignmentName ;
             updatAssignmentStatus();
+            CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
         }
+
+        private async void Completed()
+        {
+            
+            MessageDialog dlg = new MessageDialog("課題「"+AssignmentName+"」を完了に設定します");
+            dlg.Commands.Add(new UICommand("はい"));
+            dlg.Commands.Add(new UICommand("いいえ"));
+            dlg.Commands.Add(new UICommand("キャンセル"));
+            dlg.DefaultCommandIndex = 2;
+            var cmd = await dlg.ShowAsync();
+            if(cmd == dlg.Commands[0])
+            {
+                _schedule.IsCompleted = true;
+            }
+            else if (cmd == dlg.Commands[1])
+            {
+                _schedule.IsCompleted = false;
+            }
+        }
+
+         
 
         private string _assignmentName;
         private string _dueDateInformation;
         private string _remainingDateInformation;
         private string _assignmentStatus;
         private Brush _assignmentStatusColor;
+        private string _assignmentDetail;
 
         private void updatAssignmentStatus()
         {
@@ -89,6 +117,17 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
         }
 
+        public string AssignmentDetail
+        {
+            get { return _assignmentDetail; }
+            set
+            {
+                if (value == _assignmentDetail) return;
+                _assignmentDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Brush AssignmentStatusColor
         {
             get { return _assignmentStatusColor; }
@@ -99,6 +138,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 OnPropertyChanged();
             }
         }
+
+        public ICommand CompleteCommand { get; set; }
     }
 
     class AssignmentListUnitViewModelInDesign : AssignmentListUnitViewModel
@@ -109,6 +150,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             this.RemainingDateInformation = "残り1日";
             this.AssignmentStatusColor = new SolidColorBrush(Colors.Yellow);
             this.AssignmentStatus = "未完了";
+            this.AssignmentDetail = "This is detail.\n This is detail.\nThis is detail.\nThis is detail.";
         }
     }
 }

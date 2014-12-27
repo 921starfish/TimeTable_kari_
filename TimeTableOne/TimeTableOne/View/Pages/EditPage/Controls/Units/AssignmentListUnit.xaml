@@ -6,26 +6,55 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="150"
+    d:DesignHeight="200"
     d:DesignWidth="350" d:DataContext="{local:AssignmentListUnitViewModelInDesign}">
     <Grid>
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition From="BasicState" GeneratedDuration="0:0:0.3" To="EditState"/>
+    				<VisualTransition From="EditState" GeneratedDuration="0:0:0.3" To="BasicState"/>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="BasicState"/>
+    			<VisualState x:Name="EditState">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding AssignmentName}" FontSize="20" VerticalAlignment="Center"></TextBlock>
         <TextBlock Text="{Binding AssignmentStatus}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{Binding AssignmentStatusColor}"/>
-        <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Text="{Binding RemainingDateInformation}"></TextBlock>
-        <Grid Grid.Row="2" HorizontalAlignment="Stretch">
+        <TextBlock x:Name="textBlock" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Text="{Binding RemainingDateInformation}"></TextBlock>
+        <TextBlock x:Name="textBlock1" Grid.Row="2" Grid.Column="0"  FontSize="18" Text="{Binding AssignmentDetail}" RenderTransformOrigin="0.5,1" PointerPressed="TextBlock1_OnPointerPressed">
+        	<TextBlock.RenderTransform>
+        		<CompositeTransform ScaleY="1"/>
+        	</TextBlock.RenderTransform></TextBlock>
+        <Grid x:Name="grid" Grid.Row="2" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0" PointerExited="Grid_OnPointerExited" IsHitTestVisible="True">
+        	<Grid.RenderTransform>
+        		<CompositeTransform ScaleY="0"/>
+        	</Grid.RenderTransform>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <AppBarButton HorizontalAlignment="Center" Grid.Column="0" Icon="Accept" Foreground="GreenYellow"/>
-            <AppBarButton HorizontalAlignment="Center" Grid.Column="1" Icon="Edit"  />
-            <AppBarButton HorizontalAlignment="Center"  Grid.Column="2" Icon="Library"/>
+            <AppBarButton HorizontalAlignment="Center" Grid.Column="0" Icon="Accept" Foreground="GreenYellow" Command="{Binding CompleteCommand}" VerticalAlignment="Center"/>
+            <AppBarButton HorizontalAlignment="Center" Grid.Column="1" Icon="Edit" VerticalAlignment="Center"  />
+            <AppBarButton HorizontalAlignment="Center"  Grid.Column="2" Icon="Library" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>
