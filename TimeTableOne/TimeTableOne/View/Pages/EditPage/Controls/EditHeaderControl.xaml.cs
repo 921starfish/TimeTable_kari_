@@ -60,7 +60,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             VisualStateManager.GoToState(this, "OnEditLectureName", true);
             isLectureNameEditing = true;
-            textBox.Focus(FocusState.Pointer);
+            lectureNameBox.Focus(FocusState.Pointer);
         }
 
         private void LectureTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -76,6 +76,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             isLectureNameEditing = false;
             VisualStateManager.GoToState(this, "BasicState", true);
+            ViewModel.LectureNameForEdit = lectureNameBox.Text;
         }
 
         private void PlaceTextBox_MouseEnter(object sender, PointerRoutedEventArgs e)
@@ -94,7 +95,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             _isPlaceEditing = true;
             VisualStateManager.GoToState(this, "OnEditPlace", true);
-            textBox1.Focus(FocusState.Keyboard);
+            placeBox.Focus(FocusState.Keyboard);
         }
 
         private void PlaceTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -110,6 +111,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             _isPlaceEditing = false;
             VisualStateManager.GoToState(this, "BasicState", true);
+            ViewModel.PlaceForEdit = placeBox.Text;
         }
     }
 }

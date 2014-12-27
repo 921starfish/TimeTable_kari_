@@ -43,21 +43,21 @@
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="textBox">
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="lectureNameBox">
     						<DiscreteObjectKeyFrame KeyTime="0">
     							<DiscreteObjectKeyFrame.Value>
     								<FontFamily>Global User Interface</FontFamily>
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="lectureNameBox">
     						<DiscreteObjectKeyFrame KeyTime="0">
     							<DiscreteObjectKeyFrame.Value>
     								<Visibility>Visible</Visibility>
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="lectureNameBox" d:IsOptimized="True"/>
     					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBlock">
     						<DiscreteObjectKeyFrame KeyTime="0">
     							<DiscreteObjectKeyFrame.Value>
@@ -89,21 +89,21 @@
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="textBox1">
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="placeBox">
     						<DiscreteObjectKeyFrame KeyTime="0">
     							<DiscreteObjectKeyFrame.Value>
     								<FontFamily>Global User Interface</FontFamily>
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox1">
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="placeBox">
     						<DiscreteObjectKeyFrame KeyTime="0">
     							<DiscreteObjectKeyFrame.Value>
     								<Visibility>Visible</Visibility>
     							</DiscreteObjectKeyFrame.Value>
     						</DiscreteObjectKeyFrame>
     					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox1" d:IsOptimized="True"/>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="placeBox" d:IsOptimized="True"/>
     				</Storyboard>
     			</VisualState>
     		</VisualStateGroup>
@@ -132,9 +132,9 @@
 
             <StackPanel Margin="32,0,0,0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                <autoCompleteBox:AutoCompleteBox SearchFunction="{Binding AutoCompleteFunction}"
+                <autoCompleteBox:AutoCompleteBox  SearchFunction="{Binding AutoCompleteFunction}"
                                                      ItemsSource="{Binding LectureNamePredictions}"
-                                                     Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="textBox"
+                                                     Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="lectureNameBox"
                                                      Visibility="Collapsed" Opacity="0" Width="300" Height="50"
                                                      GotFocus="LectureTextBox_GotFocus"
                                                      LostFocus="LectureTextBox_LostFocus" />
@@ -145,7 +145,7 @@
                 <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0"></SymbolIcon>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="textBox1" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
+                <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="placeBox" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
                 <TextBlock x:Name="textBlock2" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Place}" FontSize="40" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
                 <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0"></SymbolIcon>
             </StackPanel>

@@ -182,7 +182,7 @@ namespace TimeTableOne.Data
         /// <param name="dayOfWeek"></param>
         /// <param name="tableNumber"></param>
         /// <returns></returns>
-        public ScheduleData GetSchedule(int dayOfWeek, int tableNumber)
+        public ScheduleData                                                                                    GetSchedule(int dayOfWeek, int tableNumber)
         {
             Guid key = GetKey(dayOfWeek, tableNumber).Result;
             if (key == Guid.Empty)

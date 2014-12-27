@@ -118,7 +118,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             get { return ManagedLectureName; }
             set
             {
-                if (value == _lectureNameForEdit || String.IsNullOrEmpty(value)) return;
+                if (value == _lectureNameForEdit || String.IsNullOrEmpty(value)) return;       
                 _lectureNameForEdit = value;
                 if (value != InitialLectureName)
                 {
