@@ -32,6 +32,11 @@
         </StackPanel>
 
         <!-- 必要に応じてコンテンツ セクションを以下でさらに定義します -->
-
+        <Button Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click_SelectImage">
+                    <SymbolIcon Symbol="OpenFile" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></SymbolIcon>
+        </Button>
+        <Button Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click_SetToDefault"
+                Content="初期状態に戻す">
+        </Button>
     </StackPanel>
 </SettingsFlyout>
