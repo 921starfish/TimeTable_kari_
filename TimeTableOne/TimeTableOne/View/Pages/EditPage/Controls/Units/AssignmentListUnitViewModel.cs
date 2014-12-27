@@ -60,6 +60,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private string _remainingDateInformation;
         private string _assignmentStatus;
         private Brush _assignmentStatusColor;
+        private string _assignmentDetail;
 
         private void updatAssignmentStatus()
         {
@@ -119,6 +120,17 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
         }
 
+        public string AssignmentDetail
+        {
+            get { return _assignmentDetail; }
+            set
+            {
+                if (value == _assignmentDetail) return;
+                _assignmentDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Brush AssignmentStatusColor
         {
             get { return _assignmentStatusColor; }
@@ -141,6 +153,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             this.RemainingDateInformation = "残り1日";
             this.AssignmentStatusColor = new SolidColorBrush(Colors.Yellow);
             this.AssignmentStatus = "未完了";
+            this.AssignmentDetail = "This is detail.\n This is detail.\nThis is detail.\nThis is detail.";
         }
     }
 }
