@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using TimeTableOne.View.Pages.DayPage.Controls;
 
 namespace TimeTableOne.View.Pages.DayPage
 {
@@ -14,18 +15,21 @@ namespace TimeTableOne.View.Pages.DayPage
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ScheduleData data;
-        public ObservableCollection<TimeTableViewModel> Tables { get; set; }
+        public ObservableCollection<DayPageTableViewModel> Tables { get; set; }
         public DayPageViewModel()
         {
-            Tables = new ObservableCollection<TimeTableViewModel>();
-            TimeTableViewModel VM;
+            Tables = new ObservableCollection<DayPageTableViewModel>();
+            DayPageTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
-                data = ApplicationData.Instance.GetSchedule(i, (int) DateTime.Now.DayOfWeek);
-                if (data != null || data.TableName=="")
+                data = ApplicationData.Instance.GetSchedule((int)DateTime.Now.DayOfWeek, i);
+                if (data != null)
                 {
-                    VM = new TimeTableViewModel(new TableKey(i, DateTime.Now.DayOfWeek));
-                    Tables.Add(VM);
+                    if (data.TableName != "")
+                    {
+                        VM = new DayPageTableViewModel(new TableKey(i, DateTime.Now.DayOfWeek));
+                        Tables.Add(VM);
+                    }
                 }
             }
 
