@@ -19,6 +19,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             var schedule = TableUnitDataHelper.GetCurrentSchedule();
             if (schedule != null)
             {
+                RecordFirstDate = schedule.CreationDate.ToString("yyyy年M月dd日からの記録");
                 var key = TableUnitDataHelper.GetCurrentKey();
                 DateTime current = DateTimeUtil.NextKeyDay(schedule.CreationDate, key.dayOfWeek);
                 for (int i = 0; i < 100; i++)
