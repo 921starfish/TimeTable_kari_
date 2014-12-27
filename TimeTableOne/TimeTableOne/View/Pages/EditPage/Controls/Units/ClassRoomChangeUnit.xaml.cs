@@ -23,5 +23,19 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             this.InitializeComponent();
         }
+
+        void ClassRoomChangeUnit_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ClassRoomChangeUnit_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
