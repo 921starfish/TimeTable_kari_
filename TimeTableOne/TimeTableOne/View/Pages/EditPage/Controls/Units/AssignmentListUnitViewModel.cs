@@ -19,7 +19,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public AssignmentListUnitViewModel()
         {
-            
+            CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
         }
 
         public AssignmentListUnitViewModel(AssignmentSchedule schedule)
@@ -29,11 +29,26 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
         }
 
-        private void Completed()
+        private async void Completed()
         {
-            //TODO ホシノクンへ
-            _schedule.IsCompleted = true;
+            
+            MessageDialog dlg = new MessageDialog("課題「"+AssignmentName+"」を完了に設定します");
+            dlg.Commands.Add(new UICommand("はい"));
+            dlg.Commands.Add(new UICommand("いいえ"));
+            dlg.Commands.Add(new UICommand("キャンセル"));
+            dlg.DefaultCommandIndex = 2;
+            var cmd = await dlg.ShowAsync();
+            if(cmd == dlg.Commands[0])
+            {
+                _schedule.IsCompleted = true;
+            }
+            else if (cmd == dlg.Commands[1])
+            {
+                _schedule.IsCompleted = false;
+            }
         }
+
+         
 
         private string _assignmentName;
         private string _dueDateInformation;
