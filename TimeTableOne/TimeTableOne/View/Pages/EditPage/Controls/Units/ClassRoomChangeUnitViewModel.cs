@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
-using TimeTableOne.Data;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
@@ -21,26 +20,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private string _classRoomChangeCaption;
         private Brush _captionColor;
         private string _changeTo;
-
-        public ClassRoomChangeUnitViewModel(DateTime current, ClassRoomChangeSchedule getClassRoomChangeSchedule,int i)
-        {
-            string[] supprtTexts = {"次回","次の次"};
-            if (getClassRoomChangeSchedule != null)
-            {
-
-            }
-            else
-            {
-                this.DisplayDate = current.ToString("yyyy年M月dd日");
-                if (i < supprtTexts.Length)
-                {
-                    SupportText = supprtTexts[i];
-                }
-                CaptionColor = new SolidColorBrush(Colors.Green);
-                ClassRoomChangeCaption = "通常";
-                ChangeTo = "";
-            }
-        }
 
         public string DisplayDate
         {

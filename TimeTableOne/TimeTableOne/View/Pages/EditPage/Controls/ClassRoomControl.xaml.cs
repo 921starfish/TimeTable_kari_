@@ -22,13 +22,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public ClassRoomControl()
         {
             this.InitializeComponent();
-
-            Loaded += ClassRoomControl_Loaded;
-        }
-
-        void ClassRoomControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = new ClassRoomControlViewModel();
         }
 
         private void ToggleNoClassPopup(object sender, RoutedEventArgs e)

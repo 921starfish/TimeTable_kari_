@@ -7,26 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DataContext="{local:ClassRoomChangeUnitViewModelInDesign}"
     d:DesignHeight="100"
-    d:DesignWidth="400" PointerPressed="ClassRoomChangeUnit_OnPointerPressed" IsHitTestVisible="True">
-    <Button BorderThickness="0" Click="ButtonBase_OnClick">
-        <Grid>
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="Black"></Setter>
-                </Style>
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DisplayDate}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SupportText}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ClassRoomChangeCaption}" Foreground="{Binding CaptionColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
-        </Grid>
-    </Button>
+    d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DisplayDate}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SupportText}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+       <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ClassRoomChangeCaption}" Foreground="{Binding CaptionColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+    </Grid>
 </UserControl>

@@ -5,7 +5,6 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:units="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -18,14 +17,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Rectangle Fill="{StaticResource OneNotePurple}"/>
-                <TextBlock FontSize="20" Text="教室変更" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <ListView Grid.Row="1" ItemsSource="{Binding ClassRoomChanges}" SelectionMode="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <units:ClassRoomChangeUnit/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <TextBlock FontSize="20" Text="教室変更" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                
             </Grid>
         </Border>
     </Grid>
