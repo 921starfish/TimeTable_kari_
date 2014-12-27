@@ -168,6 +168,7 @@
     <Compile Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml.cs">
       <DependentUpon>ClassRoomControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControlViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
       <DependentUpon>ColorPopup.xaml</DependentUpon>
     </Compile>
@@ -203,6 +204,10 @@
       <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnit.xaml.cs">
+      <DependentUpon>ClassRoomChangeUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnitViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
@@ -367,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
