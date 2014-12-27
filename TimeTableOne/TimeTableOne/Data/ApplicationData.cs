@@ -247,7 +247,7 @@ namespace TimeTableOne.Data
         public string OneNoteId = "";
 
         public DateTime CreationDay;
-        public Color ColorData { get; set; }
+        public Color ColorDate;
 
         public static ScheduleData GenerateEmpty()
         {
