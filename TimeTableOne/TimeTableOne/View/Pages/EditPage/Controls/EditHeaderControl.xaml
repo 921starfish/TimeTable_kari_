@@ -114,7 +114,7 @@
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Background="{StaticResource OneNotePurple}">
+        <Border  Background="{Binding BackgroundColor}">
             <Button BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
                 <Border BorderThickness="2" BorderBrush="white" CornerRadius="100" Padding="10">
                 <SymbolIcon Symbol="Calendar" Foreground="White"></SymbolIcon>
