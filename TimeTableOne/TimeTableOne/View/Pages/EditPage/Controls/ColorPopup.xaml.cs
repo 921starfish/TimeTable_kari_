@@ -38,10 +38,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             var selected = ColorList.SelectedItem as ColorPopupUnitViewModel;
             if (selected == null) return;
-            ViewModel.ScheduleData.ColorData = selected.ColorBrush.Color;
+            TableUnitDataHelper.GetCurrentSchedule().ColorData = selected.ColorBrush.Color;
             ApplicationData.SaveData();
-            TableKey Key = ViewModel.TableKey;
-            ViewModel.loadData(Key);
+            TableKey Key = TableUnitDataHelper.GetCurrentKey();
+            // ViewModel.loadData(Key);
 
 
         }
@@ -49,7 +49,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private void ColorPopup_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             ColorPopupViewModel vm;
-            ColorList.DataContext = vm = ColorPopupViewModel.GenerateViewModel(ViewModel.ScheduleData);
+            ColorList.DataContext = vm = ColorPopupViewModel.GenerateViewModel(TableUnitDataHelper.GetCurrentSchedule());
             try
             {
                 ColorList.SelectedIndex = vm.SelectedIndex;

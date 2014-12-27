@@ -6,9 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:popups="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
+    xmlns:units="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
+    xmlns:editPage="using:TimeTableOne.View.Pages.EditPage"
     mc:Ignorable="d"
     d:DesignHeight="600"
-    d:DesignWidth="400">
+    d:DesignWidth="400" d:DataContext="{editPage:AssignmentControlViewModelInDesign}">
     
     <Grid Background="DimGray">
         <Grid.RowDefinitions>
@@ -19,8 +21,20 @@
         <Button BorderThickness="0" HorizontalAlignment="Right" Click="ButtonBase_OnClick">
             <SymbolIcon Symbol="Add"></SymbolIcon>
         </Button>
-        <ListView Grid.Row="1"></ListView>
-        <Popup Grid.Row="0" Margin="380,10,0,0" x:Name="AddAssignmentPopup">
+        <ListView Grid.Row="1" ItemsSource="{Binding Assignments}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <units:AssignmentListUnit/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <Popup Grid.Row="0" Margin="380,10,0,0" x:Name="AddAssignmentPopup" IsLightDismissEnabled="True">
             <popups:AddAssignmentPopup/>
         </Popup>
     </Grid>

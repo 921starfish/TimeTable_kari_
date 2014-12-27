@@ -8,6 +8,7 @@ using TimeTableOne.Common;
 
 // 基本ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234237 を参照してください
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
@@ -122,13 +123,16 @@ namespace TimeTableOne.View.Pages.TablePage
         }
 
         private void ToggleColumn(object sender, RoutedEventArgs e)
-        {
+        {//TODO 土曜日+平日設定も利用する?
             var config = ApplicationData.Instance.Configuration;
-            config.TableTypeSetting = config.TableTypeSetting == TableType.WeekDay
-                ? TableType.AllDay
-                : TableType.WeekDay;
+            config.TableTypeSetting = this.MoveNext(config.TableTypeSetting); 
             ApplicationData.SaveData();
             ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
+        }
+
+        private TableType MoveNext(TableType t)
+        {
+            return  (TableType)((((int)t) + 1) % Enum.GetValues(typeof(TableType)).Length);
         }
 
         private void AppendRow(object sender, RoutedEventArgs e)
@@ -176,6 +180,11 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             _isTableTitleEditing = false;
             VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+           PageUtil.MovePage(MainStaticPages.DayPage);
         }
     }
 }

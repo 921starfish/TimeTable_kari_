@@ -16,6 +16,15 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public AddAssignmentPopupViewModel()
         {
             _acceptCommand=new BasicCommand(OnAcceptAssignmentData,ValidateAssignmentData);
+            initializeAsToday();
+        }
+
+        private void initializeAsToday()
+        {
+            var d = DateTime.Now.AddDays(7);
+            _yearEdit = d.Year;
+            _monthEdit = d.Month;
+            _dayEdit = d.Day;
         }
 
         private bool ValidateAssignmentData()

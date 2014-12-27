@@ -15,23 +15,13 @@ using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
-namespace TimeTableOne.View.Pages.EditPage.Controls
+namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 {
-    public sealed partial class ClassRoomControl : UserControl
+    public sealed partial class NoClassPopupControl : UserControl
     {
-        public ClassRoomControl()
+        public NoClassPopupControl()
         {
             this.InitializeComponent();
-        }
-
-        private void ToggleNoClassPopup(object sender, RoutedEventArgs e)
-        {
-            NoClassControl.IsOpen = !NoClassControl.IsOpen;
-        }
-
-        private void ToggleChangeRoomPopup(object sender, RoutedEventArgs e)
-        {
-            ChangeRoomControl.IsOpen = !ChangeRoomControl.IsOpen;
         }
     }
 }

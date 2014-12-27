@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -17,15 +13,15 @@ using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
-    public class EditHeaderControlViewModel:BasicViewModel
+    public class EditHeaderControlViewModel : BasicViewModel
     {
-        
+        private const string InitialLectureName = "(授業名をここに入力)";
+        private const string InitialPlaceName = "(場所をここに入力)";
         private Brush _backgroundColor;
         private TableKey _tableKey;
         protected ScheduleData _scheduleData;
         private string _lectureNameForEdit;
         private string _placeNameForEdit;
-        private ICommand _backToTablePageCommand;
 
         public Brush BackgroundColor
         {
@@ -41,11 +37,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public EditHeaderControlViewModel(TableKey tableKey)
         {
             _tableKey = tableKey;
-            _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.NumberOfDay);
-            _scheduleData = _scheduleData ?? new ScheduleData();
+            _scheduleData = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.TableNumber);
+            _scheduleData = _scheduleData ?? ScheduleData.GenerateEmpty();
             _lectureNameForEdit = _scheduleData.TableName;
-            PlacePredictions=new ObservableCollection<string>();
-            LectureNamePredictions=new ObservableCollection<string>();
+            _backgroundColor = new SolidColorBrush(_scheduleData.ColorData);
+            PlacePredictions = new ObservableCollection<string>();
+            LectureNamePredictions = new ObservableCollection<string>();
             foreach (var scheduleData in ApplicationData.Instance.Data)
             {
                 if (!String.IsNullOrEmpty(scheduleData.Place))
@@ -61,11 +58,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 }
             }
             AutoCompleteFunction = AutoCompleteFunctionImpl;
-            BackToTablePageCommand=new AlwaysExecutableDelegateCommand(() =>
+            BackToTablePageCommand = new AlwaysExecutableDelegateCommand(() =>
             {
-                ((Frame) Window.Current.Content).Navigate(typeof (TablePage.TablePage));
-;            });
-
+                PageUtil.MovePage(MainStaticPages.TablePage);
+            });
         }
 
         private bool AutoCompleteFunctionImpl(string inlist, string input)
@@ -84,82 +80,97 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             }
         }
 
-        public  Brush WeekBrush
+        public Brush WeekBrush
         {
             get { return TableKey.dayOfWeek.GetWeekColor(); }
         }
 
         public string WeekText
         {
-            get { return WeekStringConverter.getAsStringInJpn(TableKey.dayOfWeek)+"曜日"; }
+            get { return WeekStringConverter.getAsStringInJpn(TableKey.dayOfWeek) + "曜日"; }
         }
 
         public string TimeText
         {
-            get { return string.Format("{0}時限",TableKey.TableNumber); }
+            get { return string.Format("{0}時限", TableKey.TableNumber); }
+        }
+
+        private string ManagedLectureName
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(_scheduleData.TableName) ? _scheduleData.TableName : InitialLectureName;
+            }
+        }
+
+        private string ManagedPlace
+        {
+            get { return !string.IsNullOrWhiteSpace(_scheduleData.Place) ? _scheduleData.Place : InitialPlaceName; }
         }
 
         public string LectureName
         {
-            get { return _scheduleData.TableName; }
+            get { return ManagedLectureName; }
         }
 
         public string LectureNameForEdit
         {
-            get { return _scheduleData.TableName; }
+            get { return ManagedLectureName; }
             set
             {
-                if (value == _lectureNameForEdit||String.IsNullOrEmpty(value)) return;
+                if (value == _lectureNameForEdit || String.IsNullOrEmpty(value)) return;
                 _lectureNameForEdit = value;
-                _scheduleData.TableName = value;
-                ApplicationData.SaveData();
+                if (value != InitialLectureName)
+                {
+                    _scheduleData.TableName = value;
+                    ApplicationData.SaveData();
+                }
                 OnPropertyChanged("LectureName");
                 OnPropertyChanged();
             }
         }
+
         public string PlaceForEdit
         {
-            get { return _scheduleData.Place; }
+            get { return ManagedPlace; }
             set
             {
                 if (value == _placeNameForEdit || String.IsNullOrEmpty(value)) return;
                 _placeNameForEdit = value;
-                _scheduleData.Place = value;
-                ApplicationData.SaveData();
+                if (value != InitialPlaceName)
+                {
+                    _scheduleData.Place = value;
+                    ApplicationData.SaveData();
+                }
                 OnPropertyChanged("Place");
                 OnPropertyChanged();
             }
         }
 
-        public ICommand BackToTablePageCommand
-        {
-            get { return _backToTablePageCommand; }
-            set { _backToTablePageCommand = value; }
-        }
+        public ICommand BackToTablePageCommand { get; set; }
 
         public string Place
         {
-            get { return _scheduleData.Place; }
+            get { return ManagedPlace; }
         }
 
         public ObservableCollection<string> PlacePredictions { get; set; }
 
-        public ObservableCollection<string> LectureNamePredictions { get; set; } 
+        public ObservableCollection<string> LectureNamePredictions { get; set; }
 
-        public Func<string,string,bool> AutoCompleteFunction { get; set; } 
-
+        public Func<string, string, bool> AutoCompleteFunction { get; set; }
     }
 
-    class EditHeaderControlViewModelInDesign : EditHeaderControlViewModel
+    internal class EditHeaderControlViewModelInDesign : EditHeaderControlViewModel
     {
-        public EditHeaderControlViewModelInDesign():base(new TableKey(1,DayOfWeek.Sunday))
+        public EditHeaderControlViewModelInDesign() : base(new TableKey(1, DayOfWeek.Sunday))
         {
-            _scheduleData=new ScheduleData()
+            _scheduleData = new ScheduleData
             {
                 Place = "624教室",
                 TableName = "経済学Ⅰ"
             };
-            BackgroundColor=new SolidColorBrush(Colors.Purple);
+            BackgroundColor = new SolidColorBrush(Colors.Purple);
         }
     }
 }

@@ -124,6 +124,7 @@
     <Compile Include="Common\TimerManager.cs" />
     <Compile Include="Common\WeekStringConverter.cs" />
     <Compile Include="Data\ApplicationData.cs" />
+    <Compile Include="Data\Args\AssignmentChangedEventArgs.cs" />
     <Compile Include="Data\ConfigurationData.cs" />
     <Compile Include="Data\TableUnitDataHelper.cs" />
     <Compile Include="Privacy.xaml.cs">
@@ -140,6 +141,7 @@
     <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
     <Compile Include="Utils\DateTimeUtil.cs" />
     <Compile Include="Utils\OneNoteControl.cs" />
+    <Compile Include="Utils\PageUtil.cs" />
     <Compile Include="Utils\StandardResponse.cs" />
     <Compile Include="Utils\TableKey.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
@@ -154,6 +156,7 @@
     </Compile>
     <Compile Include="View\Pages\DayPage\Controls\TimeControlViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\EditPage\AssignmentControlViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\AssignmentControl.xaml.cs">
       <DependentUpon>AssignmentControl.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,12 @@
       <DependentUpon>AddAssignmentPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml.cs">
+      <DependentUpon>ChangeRoomPopupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml.cs">
+      <DependentUpon>NoClassPopupControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml.cs">
       <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
     </Compile>
@@ -263,7 +272,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
-    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -337,6 +345,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

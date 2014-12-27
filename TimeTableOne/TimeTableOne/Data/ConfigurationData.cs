@@ -25,6 +25,6 @@ namespace TimeTableOne.Data
 
     public enum TableType
     {
-        AllDay,WeekDay
+        AllDay=0,WeekDay=1,WithoutSunday=2
     }
 }

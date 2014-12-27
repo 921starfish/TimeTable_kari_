@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Data;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
@@ -20,21 +21,29 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
     public sealed partial class EditHeaderControl : UserControl
     {
         private bool isLectureNameEditing = false;
-        private bool isLectureNameBoxFocused = false;
         private bool _isPlaceEditing;
-        private bool isPlaceTextBoxFocused;
 
         public EditHeaderControl()
         {
             this.InitializeComponent();
+            Loaded += EditHeaderControl_Loaded;
             VisualStateManager.GoToState(this, "BasicState", true);
         }
 
-        private void EditHeaderControl_OnLoaded(object sender, RoutedEventArgs e)
+        public EditHeaderControlViewModel ViewModel
         {
-            this.DataContext = new EditHeaderControlViewModelInDesign();
+            get { return DataContext as EditHeaderControlViewModel; }
         }
 
+        void EditHeaderControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = new EditHeaderControlViewModel(TableUnitDataHelper.GetCurrentKey());
+            if (String.IsNullOrWhiteSpace(ViewModel.LectureName))
+            {
+                VisualStateManager.GoToState(this, "OnEditLectureName", false);
+            }
+        }
+         
         private void LectureTextBox_MouseEnter(object sender, PointerRoutedEventArgs e)
         {
             if (isLectureNameEditing||_isPlaceEditing) return;
@@ -52,7 +61,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             VisualStateManager.GoToState(this, "OnEditLectureName", true);
             isLectureNameEditing = true;
             textBox.Focus(FocusState.Pointer);
-            isLectureNameBoxFocused = true;
         }
 
         private void LectureTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -66,7 +74,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         private void LectureTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            isLectureNameBoxFocused = false;
             isLectureNameEditing = false;
             VisualStateManager.GoToState(this, "BasicState", true);
         }
@@ -88,7 +95,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             _isPlaceEditing = true;
             VisualStateManager.GoToState(this, "OnEditPlace", true);
             textBox1.Focus(FocusState.Keyboard);
-            isPlaceTextBoxFocused = true;
         }
 
         private void PlaceTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -103,8 +109,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private void PlaceTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             _isPlaceEditing = false;
-            isPlaceTextBoxFocused = false;
             VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ColorPopup.IsOpen = !ColorPopup.IsOpen;
         }
     }
 }

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -22,7 +23,21 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public AssignmentControl()
         {
             this.InitializeComponent();
+            Loaded += AssignmentControl_Loaded;
+
         }
+
+        void AssignmentControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = new AssignmentControlViewModel();
+            ApplicationData.Instance.OnAssignmentChanged += Instance_OnAssignmentChanged;
+        }
+
+        void Instance_OnAssignmentChanged(object sender, Data.Args.AssignmentChangedEventArgs e)
+        {
+            this.DataContext = new AssignmentControlViewModel();
+        }
+
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {

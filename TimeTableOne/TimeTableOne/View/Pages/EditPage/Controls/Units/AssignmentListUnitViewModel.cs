@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTableOne.Data;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public class AssignmentListUnitViewModel:BasicViewModel
     {
+        private readonly AssignmentSchedule _schedule;
+
+        public AssignmentListUnitViewModel()
+        {
+            
+        }
+
+        public AssignmentListUnitViewModel(AssignmentSchedule schedule)
+        {
+            _schedule = schedule;
+        }
+
         private string _assignmentName;
         private string _dueDateInformation;
         private string _remainingDateInformation;

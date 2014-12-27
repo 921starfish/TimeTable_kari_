@@ -16,7 +16,7 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
-            <AppBarButton Icon="Rotate"  Label="7/5列切替" Click="ToggleColumn"></AppBarButton>
+            <AppBarButton Icon="Rotate"  Label="5/6/7列切替" Click="ToggleColumn"></AppBarButton>
             <AppBarButton Icon="Add" Label="一行追加" Click="AppendRow"></AppBarButton>
             <AppBarButton Icon="Remove" Label="一行消す" Name="RemoveButton"></AppBarButton>
         </CommandBar>
@@ -68,7 +68,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton"  HorizontalAlignment="Stretch"  
                     VerticalAlignment="Stretch" 
-                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Click="BackButton_OnClick"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"

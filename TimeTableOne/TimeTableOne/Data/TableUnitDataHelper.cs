@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.EditPage;
 
 namespace TimeTableOne.Data
@@ -13,9 +14,19 @@ namespace TimeTableOne.Data
     {
         public static ScheduleData GetCurrentSchedule()
         {
-            var f = (Frame) Window.Current.Content;
+            return GetCurrentEditPageViewModel().ScheduleData;
+        }
+
+        public static TableKey GetCurrentKey()
+        {
+            return GetCurrentEditPageViewModel().TableKey;
+        }
+
+        public static EditPageViewModel GetCurrentEditPageViewModel()
+        {
+            var f = (Frame)Window.Current.Content;
             var editPage = f.Content as EditPage;
-            return editPage.ViewModel.ScheduleData;
+            return editPage.ViewModel;
         }
     }
 }
