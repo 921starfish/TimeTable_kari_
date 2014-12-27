@@ -144,6 +144,7 @@
     <Compile Include="Utils\PageUtil.cs" />
     <Compile Include="Utils\StandardResponse.cs" />
     <Compile Include="Utils\TableKey.cs" />
+    <Compile Include="View\Pages\DayPage\Controls\DayPageTableViewModel.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>
     </Compile>

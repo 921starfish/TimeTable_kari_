@@ -7,21 +7,30 @@ using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using TimeTableOne.View.Pages.DayPage.Controls;
 
 namespace TimeTableOne.View.Pages.DayPage
 {
     public class DayPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<TimeTableViewModel> Tables { get; set; }
+        private ScheduleData data;
+        public ObservableCollection<DayPageTableViewModel> Tables { get; set; }
         public DayPageViewModel()
         {
-            Tables = new ObservableCollection<TimeTableViewModel>();
-            TimeTableViewModel VM;
+            Tables = new ObservableCollection<DayPageTableViewModel>();
+            DayPageTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
-                VM = new TimeTableViewModel( new TableKey(i, DateTime.Now.DayOfWeek));
-                Tables.Add(VM);
+                data = ApplicationData.Instance.GetSchedule((int)DateTime.Now.DayOfWeek, i);
+                if (data != null)
+                {
+                    if (data.TableName != "")
+                    {
+                        VM = new DayPageTableViewModel(new TableKey(i, DateTime.Now.DayOfWeek));
+                        Tables.Add(VM);
+                    }
+                }
             }
 
             Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
