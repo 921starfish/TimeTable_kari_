@@ -131,8 +131,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock x:Name="textBlock1" Text="{Binding WeekText}" FontSize="20" Foreground="{Binding WeekBrush}" Padding="0,0,10,0"></TextBlock>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                <TextBlock x:Name="textBlock1"  Text="{Binding WeekText}" FontSize="20" Foreground="{Binding WeekBrush}" Padding="0,0,10,0"></TextBlock>
                 <TextBlock Text="{Binding TimeText}" FontSize="20" Padding="10,0,0,0"></TextBlock>
             </StackPanel>
             <StackPanel Margin="32,0,0,0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center"

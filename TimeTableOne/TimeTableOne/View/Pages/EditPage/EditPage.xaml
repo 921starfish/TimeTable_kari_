@@ -48,7 +48,7 @@
         </Grid>
         <controls:EditPageRightControl DataContext="{Binding}" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>  
         <controls:EditHeaderControl Height="300" Width="800" Grid.ColumnSpan="2"></controls:EditHeaderControl>-->
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
