@@ -25,11 +25,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         public AssignmentListUnitViewModel(AssignmentSchedule schedule)
         {
             _schedule = schedule;
-            _schedule.AssignmentDetail = schedule.AssignmentDetail;
-            _schedule.AssignmentName =_assignmentName = schedule.AssignmentName ;
-            _schedule.DueTime = schedule.DueTime;
-            _schedule.IsCompleted = schedule.IsCompleted;
-            _schedule.ScheduleId = schedule.ScheduleId;
+            AssignmentDetail = schedule.AssignmentDetail;
+            AssignmentName =_assignmentName = schedule.AssignmentName ;
             updatAssignmentStatus();
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
         }

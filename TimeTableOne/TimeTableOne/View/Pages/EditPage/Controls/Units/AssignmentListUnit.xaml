@@ -43,7 +43,7 @@
         	<TextBlock.RenderTransform>
         		<CompositeTransform ScaleY="1"/>
         	</TextBlock.RenderTransform></TextBlock>
-        <Grid x:Name="grid" Grid.Row="2" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0">
+        <Grid x:Name="grid" Grid.Row="2" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0" PointerExited="Grid_OnPointerExited" IsHitTestVisible="True">
         	<Grid.RenderTransform>
         		<CompositeTransform ScaleY="0"/>
         	</Grid.RenderTransform>

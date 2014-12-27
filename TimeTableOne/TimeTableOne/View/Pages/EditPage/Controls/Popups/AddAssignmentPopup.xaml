@@ -54,7 +54,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="概要:"></TextBlock>
-                    <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail}"></TextBox>
+                    <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail,Mode=TwoWay}"></TextBox>
                 </StackPanel>
             </StackPanel>
             <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Right" Margin="0,0,25,0" Command="{Binding AcceptCommand}">
