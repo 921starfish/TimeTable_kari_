@@ -70,7 +70,7 @@
     		</VisualStateGroup>
     	</VisualStateManager.VisualStateGroups>
         <Border BorderBrush="White" BorderThickness="7" Background="Gray">
-            <Border VerticalAlignment="Bottom" Height="{Binding BarHeight}" Background="LawnGreen">
+            <Border VerticalAlignment="Bottom" Height="{Binding BarHeight}" Background="#FF00FC00">
             </Border>
         </Border>
         <TextBlock x:Name="textBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByDay}" FontSize="50" Opacity="1"></TextBlock>

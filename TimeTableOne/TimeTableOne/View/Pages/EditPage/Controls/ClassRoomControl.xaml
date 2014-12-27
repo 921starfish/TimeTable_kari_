@@ -9,12 +9,15 @@
     mc:Ignorable="d"
     d:DesignHeight="600"
     d:DesignWidth="400" d:DataContext="{local:ClassRoomControlViewModelInDesign}">
-    <Grid Background="DimGray">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource EditBoxGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5">出席率</TextBlock>
+        <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5" Foreground="Black">出席率</TextBlock>
         <local:AttendRateUserControl Margin="0,40,0,0"></local:AttendRateUserControl>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -24,8 +27,8 @@
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ToggleNoClassPopup">
                 <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Home"></SymbolIcon>
-                    <TextBlock Text="休講" VerticalAlignment="Center"></TextBlock>
+                    <SymbolIcon Symbol="Home" Foreground="Black"></SymbolIcon>
+                    <TextBlock Text="休講" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
             <Popup Grid.Row="0" HorizontalAlignment="Right" x:Name="NoClassControl" IsLightDismissEnabled="True">
@@ -33,8 +36,8 @@
             </Popup>
             <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ToggleChangeRoomPopup">
                 <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Important"></SymbolIcon>
-                    <TextBlock Text="教室変更" VerticalAlignment="Center"></TextBlock>
+                    <SymbolIcon Symbol="Important" Foreground="#FF2E2929"></SymbolIcon>
+                    <TextBlock Text="教室変更" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
             <Popup Grid.Row="1" HorizontalAlignment="Right" x:Name="ChangeRoomControl" IsLightDismissEnabled="True">
