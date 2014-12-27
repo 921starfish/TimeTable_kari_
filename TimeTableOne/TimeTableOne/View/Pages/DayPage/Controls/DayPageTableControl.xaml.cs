@@ -21,14 +21,7 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
       
         private void Button1_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (Block1.Text == "")
-            {
-            }
-            else
-            {
-                Button1.BorderBrush = new SolidColorBrush(Color.FromArgb(0,0,0,0));
-                icon.Visibility = Visibility.Collapsed;
-            }
+          
         }
 
 

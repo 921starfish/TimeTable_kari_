@@ -8,6 +8,7 @@ using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 using TimeTableOne.View.Pages.DayPage.Controls;
+using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.DayPage
 {
@@ -34,12 +35,15 @@ namespace TimeTableOne.View.Pages.DayPage
                 }
             }
             Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
+           
         }
 
        
         public DispatcherTimer timer { get; set; }
 
         public Uri Background { get; set; }
+
+        public AlwaysExecutableDelegateCommand BackToTablePageCommand { get; set; }
     }
 
     public class DayPageViewModelInDesign : DayPageViewModel

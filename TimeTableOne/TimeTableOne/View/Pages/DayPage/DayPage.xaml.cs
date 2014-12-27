@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using TimeTableOne.Utils;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
@@ -23,6 +24,11 @@ namespace TimeTableOne.View.Pages.DayPage
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (TablePage.TablePage));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PageUtil.MovePage(MainStaticPages.TablePage);
         }
     }
 }

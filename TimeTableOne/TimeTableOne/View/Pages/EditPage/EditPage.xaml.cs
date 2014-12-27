@@ -95,5 +95,10 @@ namespace TimeTableOne.View.Pages.EditPage
             get { return DataContext as EditPageViewModel; }
         }
 
+        private void EditHeaderControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     } 
 }

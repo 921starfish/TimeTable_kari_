@@ -19,20 +19,14 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         private ScheduleData data;
         private TableKey TableKey;
         private DispatcherTimer timer;
+        private int _width;
+        private int _height;
+
         public DayPageTableViewModel(TableKey key)
         {
             data = ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
-            if (key.Equals(ScheduleManager.Instance.CurrentKey))
-            {
-                this.Width = 700;
-                this.Height = 360;
-            }
-            else
-            {
-                this.Width = 350;
-                this.Height = 180;
-            }
+            OnTick(null,null);
             this.TableNumber = key.TableNumber;
             this.TableNumberText = key.TableNumber.ToString() + "時限";
             this.Time = ApplicationData.Instance.TimeSpans[key.TableNumber - 1].FromTime.ToString("HH:mm") + " - " +
@@ -52,14 +46,48 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             });
         }
 
+       
+
         private void OnTick(object sender, object e)
         {
+            if (TableKey.Equals(ScheduleManager.Instance.CurrentKey))
+            {
+                this.Width = 600;
+                this.Height = 250;
+            }
+            else
+            {
+                this.Width = 350;
+                this.Height = 150;
+            }
+
         }
 
         public string Time { get; set; }
         public string TableNumberText { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+
+        public int Width
+        {
+            get { return _width; }
+            set
+            {
+                if (value == _width) return;
+                _width = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Height
+        {
+            get { return _height; }
+            set
+            {
+                if (value == _height) return;
+                _height = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int TableNumber { get; set; }
         public string TableName { get; set; }
         public SolidColorBrush TableColor { get; set; }
