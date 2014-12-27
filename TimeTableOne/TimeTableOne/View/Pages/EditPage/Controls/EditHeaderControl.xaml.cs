@@ -113,5 +113,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             VisualStateManager.GoToState(this, "BasicState", true);
             ViewModel.PlaceForEdit = placeBox.Text;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ColorPopup.IsOpen = !ColorPopup.IsOpen;
+        }
     }
 }

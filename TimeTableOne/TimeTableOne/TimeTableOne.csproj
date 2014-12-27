@@ -272,7 +272,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
-    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
