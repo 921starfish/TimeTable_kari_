@@ -51,7 +51,6 @@ namespace TimeTableOne
             await file.CopyAsync(folder, file.Name, NameCollisionOption.ReplaceExisting);
             Debug.WriteLine("アプリローカルに保存{0}\\{1}", folder.Path,file.Name);
             Data.ApplicationData.Instance.Configuration.BackgroundImagePath = folder.Path +"\\" +file.Name;
-
         }
 
         private void Button_Click_SetToDefault(object sender, RoutedEventArgs e)
