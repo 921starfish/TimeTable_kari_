@@ -245,11 +245,13 @@ namespace TimeTableOne.Data
         public string Description = "";
 
         public string OneNoteId = "";
+
+        public DateTime CreationDay;
         public Color ColorData { get; set; }
 
         public static ScheduleData GenerateEmpty()
         {
-            return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123)};
+            return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123),CreationDay =DateTime.Now};
         }
 
         public AssignmentSchedule GenerateAssignmentEmpty()
