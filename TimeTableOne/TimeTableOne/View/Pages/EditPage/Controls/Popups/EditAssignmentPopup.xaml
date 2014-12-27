@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:popups="using:Windows.UI.Popups"
-    d:DataContext="{local:AddAssignmentPopupViewModelInDesign}"
+    d:DataContext="{local:EditAssignmentPopupViewModelInDesign}"
     mc:Ignorable="d"
     d:DesignHeight="600" Width="600" Height="450"
     d:DesignWidth="450">
@@ -60,7 +60,7 @@
                 <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Right" Margin="0,0,25,0" Command="{Binding AcceptCommand}">
                     <SymbolIcon Symbol="Accept" Foreground="LawnGreen"></SymbolIcon>
                 </Button>
-                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Left" Margin="0,0,25,0" Command="{Binding 未実装}">
+                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Left" Margin="0,0,25,0" Command="{Binding AllDelete}">
                     <SymbolIcon Symbol="Delete" Foreground="Black"></SymbolIcon>
                 </Button>
             </Grid>
