@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTableOne.Data;
 
 namespace TimeTableOne.Utils
 {
@@ -35,6 +37,19 @@ namespace TimeTableOne.Utils
             }
 
             return true;
+        }
+
+        public static DateTime NextKeyDay(DateTime time,DayOfWeek weekday)
+        {
+           DateTime normalized=new DateTime(time.Year,time.Month,time.Day,0,0,0);
+            for (int i = 0; i < 7; i++)
+            {
+                if (normalized.AddDays(i).DayOfWeek == weekday)
+                {
+                    return normalized.AddDays(i);
+                }
+            }
+            throw  new InvalidDataContractException();
         }
 
     }

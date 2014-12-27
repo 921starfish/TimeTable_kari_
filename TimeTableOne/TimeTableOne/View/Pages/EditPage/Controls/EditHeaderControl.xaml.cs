@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using TimeTableOne.Data;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {

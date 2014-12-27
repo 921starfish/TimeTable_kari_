@@ -15,6 +15,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.Web.AtomPub;
 using TimeTableOne.Data.Args;
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.Data
 {
@@ -64,6 +65,8 @@ namespace TimeTableOne.Data
         public ConfigurationData Configuration=new ConfigurationData();
 
         public ObservableCollection<AssignmentSchedule> Assignments=new ObservableCollection<AssignmentSchedule>(); 
+
+        public List<ClassRoomChangeSchedule> ClassRoomChanges=new List<ClassRoomChangeSchedule>(); 
         private static ApplicationDataContainer SettingFolder
         {
             get
@@ -205,6 +208,41 @@ namespace TimeTableOne.Data
             {
                 if (data.ScheduleId.Equals(assignmentSchedule.ScheduleId)) yield return assignmentSchedule;
             }
+        }
+
+        public ClassRoomChangeSchedule GetClassRoomChangeSchedule(DateTime t, TableKey key)
+        {
+            var sc = GetSchedule(key.NumberOfDay, key.TableNumber);
+            foreach (var schedule in from cc in ClassRoomChanges where cc.ScheduleId.Equals(sc.ScheduleId)&&cc.ChangedDay.Equals(t) select cc)
+            {
+                return schedule;
+            }
+            return null;
+        }
+    }
+
+    public class ClassRoomChangeSchedule
+    {
+        public DateTime ChangedDay;
+
+        public Guid ScheduleId;
+
+        public string ChangedTo;
+
+        public ClassRoomChangeSchedule()
+        {
+            
+        }
+
+        public static ClassRoomChangeSchedule Generagte(DateTime next, ScheduleData targetLecture, string changedTo)
+        {
+            next=new DateTime(next.Year,next.Month,next.Day,0,0,0);
+            return new ClassRoomChangeSchedule()
+            {
+                ChangedDay = next,
+                ChangedTo = changedTo,
+                ScheduleId = targetLecture.ScheduleId
+            };
         }
     }
 

@@ -45,10 +45,13 @@ namespace TimeTableOne.View.Pages.EditPage
             _key = key;
             this.TableKey = _key;
             _scheduleData = ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
-            if (_scheduleData == null)
+            if (_scheduleData == null)//登録されているものがなかった場合
             {
                 _scheduleData = ScheduleData.GenerateEmpty();
                 ScheduleKey keyModel = ScheduleKey.Generate(key.NumberOfDay, key.TableNumber, _scheduleData);
+                //cheduleData.OneNoteId = ""; ノートのIDをここに。
+                //授業名は_scheduledata.TableNameでとれる。
+
                 ApplicationData.Instance.Keys.Add(keyModel);
                 ApplicationData.Instance.Data.Add(_scheduleData);
             }
