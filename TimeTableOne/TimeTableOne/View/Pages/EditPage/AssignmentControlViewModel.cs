@@ -18,11 +18,7 @@ namespace TimeTableOne.View.Pages.EditPage
             var assignments = ApplicationData.Instance.GetAssignments(TableUnitDataHelper.GetCurrentSchedule());
             foreach (var assignmentSchedule in assignments)
             {
-                Assignments.Add(new AssignmentListUnitViewModel()
-                {
-                    AssignmentName = assignmentSchedule.AssignmentName,
-                    
-                });
+                Assignments.Add(new AssignmentListUnitViewModel(assignmentSchedule));
             }
         }
         public ObservableCollection<AssignmentListUnitViewModel> Assignments { get; set; } 
