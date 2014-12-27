@@ -10,11 +10,14 @@
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
     <Grid MinHeight="768" MinWidth="1024" >
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding Background}" Stretch="Fill" Opacity="1"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="{StaticResource EditBoxGray}">
+        <Grid Grid.Column="0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="400"></ColumnDefinition>
@@ -32,9 +35,7 @@
             </ListView>
         </Grid>
         <Grid Grid.Column="1">
-            <Grid.Background>
-                <ImageBrush ImageSource="{Binding Background}" Stretch="Fill" Opacity="1"/>
-            </Grid.Background>
+           
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>

@@ -13,6 +13,7 @@ namespace TimeTableOne.View.Pages.DayPage
     public class DayPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private ScheduleData data;
         public ObservableCollection<TimeTableViewModel> Tables { get; set; }
         public DayPageViewModel()
         {
@@ -20,8 +21,12 @@ namespace TimeTableOne.View.Pages.DayPage
             TimeTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
-                VM = new TimeTableViewModel( new TableKey(i, DateTime.Now.DayOfWeek));
-                Tables.Add(VM);
+                data = ApplicationData.Instance.GetSchedule(i, (int) DateTime.Now.DayOfWeek);
+                if (data != null || data.TableName=="")
+                {
+                    VM = new TimeTableViewModel(new TableKey(i, DateTime.Now.DayOfWeek));
+                    Tables.Add(VM);
+                }
             }
 
             Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
