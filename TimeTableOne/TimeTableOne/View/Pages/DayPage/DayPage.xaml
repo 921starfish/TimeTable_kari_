@@ -11,9 +11,7 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
-            <AppBarButton Icon="Rotate"  Label="5/6/7列切替" ></AppBarButton>
-            <AppBarButton Icon="Add" Label="一行追加" ></AppBarButton>
-            <AppBarButton Icon="Remove" Label="一行消す" Name="RemoveButton"></AppBarButton>
+            <AppBarButton Icon="Pictures"  Label="背景の変更" Click="AppBarButton_Click_SelectImage" ></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" >

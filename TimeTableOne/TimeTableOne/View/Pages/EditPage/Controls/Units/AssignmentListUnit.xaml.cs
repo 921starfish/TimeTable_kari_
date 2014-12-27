@@ -41,5 +41,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 isEditState = false;
             }
         }
+
+        private void ShowEditPopup(object sender, RoutedEventArgs e)
+        {
+            EditPopup.IsOpen = !EditPopup.IsOpen;
+        }
     }
 }

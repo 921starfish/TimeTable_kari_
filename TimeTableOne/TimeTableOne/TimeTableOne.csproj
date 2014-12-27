@@ -211,6 +211,7 @@
       <DependentUpon>ClassRoomChangeUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnitViewModel.cs" />
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>

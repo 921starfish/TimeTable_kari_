@@ -5,10 +5,10 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DataContext="{local:ClassRoomChangeUnitViewModelInDesign}"
+    mc:Ignorable="d" d:DataContext="{local:NoClassRoomListUnitViewModelInDesign}"
     d:DesignHeight="100"
     d:DesignWidth="400" PointerPressed="ClassRoomChangeUnit_OnPointerPressed" IsHitTestVisible="True">
-    <Button BorderThickness="0" Click="ButtonBase_OnClick">
+    <Button BorderThickness="0" Click="ButtonBase_OnClick" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -25,8 +25,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DisplayDate}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SupportText}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ClassRoomChangeCaption}" Foreground="{Binding CaptionColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="{Binding NoClassStateText}" Foreground="{Binding NoClassStateBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
         </Grid>
     </Button>
 </UserControl>

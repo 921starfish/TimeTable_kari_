@@ -32,11 +32,30 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     }
                 }
             }
+            NoClasses = new ObservableCollection<NoClassRoomListUnitViewModel>();
+            schedule = TableUnitDataHelper.GetCurrentSchedule();
+            if (schedule != null)
+            {
+                var key = TableUnitDataHelper.GetCurrentKey();
+                DateTime current = DateTimeUtil.NextKeyDay(schedule.CreationDate, key.dayOfWeek);
+                for (int i = 0; i < 100; i++)
+                {
+                    NoClasses.Add(
+                        new NoClassRoomListUnitViewModel(current,ApplicationData.Instance.GetNoClassSchedule(current, key), key));
+                    current = current.AddDays(7);
+                    if ((current - DateTime.Now) >TimeSpan.FromDays(60))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public string RecordFirstDate { get; set; }
 
         public ObservableCollection<ClassRoomChangeUnitViewModel> ClassRoomChanges { get; set; } 
+
+        public ObservableCollection<NoClassRoomListUnitViewModel> NoClasses { get; set; } 
     }
 
     public class ClassRoomControlViewModelInDesign : ClassRoomControlViewModel

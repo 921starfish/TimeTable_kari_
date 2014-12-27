@@ -67,6 +67,8 @@ namespace TimeTableOne.Data
         public ObservableCollection<AssignmentSchedule> Assignments=new ObservableCollection<AssignmentSchedule>(); 
 
         public List<ClassRoomChangeSchedule> ClassRoomChanges=new List<ClassRoomChangeSchedule>(); 
+
+        public List<NoClassSchedule> NoClassSchedules=new List<NoClassSchedule>(); 
         private static ApplicationDataContainer SettingFolder
         {
             get
@@ -219,6 +221,24 @@ namespace TimeTableOne.Data
             }
             return null;
         }
+
+        public NoClassSchedule GetNoClassSchedule(DateTime t, TableKey key)
+        {
+            var sc = GetSchedule(key.NumberOfDay, key.TableNumber);
+            foreach (var schedule in from cc in NoClassSchedules where cc.ScheduleId.Equals(sc.ScheduleId) && cc.Day.Equals(t) select cc)
+            {
+                return schedule;
+            }
+            return null;
+        }
+
+    }
+
+    public class NoClassSchedule
+    {
+        public Guid ScheduleId;
+
+        public DateTime Day;
     }
 
     public class ClassRoomChangeSchedule

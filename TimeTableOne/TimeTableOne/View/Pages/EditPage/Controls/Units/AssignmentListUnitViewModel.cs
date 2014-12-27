@@ -26,6 +26,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             _schedule = schedule;
             AssignmentDetail = schedule.AssignmentDetail;
+            if (string.IsNullOrWhiteSpace(AssignmentDetail)) AssignmentDetail = "(説明はありません。)";
             AssignmentName =_assignmentName = schedule.AssignmentName ;
             updatAssignmentStatus();
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
