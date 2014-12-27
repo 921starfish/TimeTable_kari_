@@ -11,38 +11,62 @@
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="{Binding TableColor}"  
-          VerticalAlignment="Stretch"
-          HorizontalAlignment="Stretch">
+         Height="{Binding Height}"
+          Width="{Binding Width}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Button1" Grid.Column="0" 
-                Grid.ColumnSpan="3" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+       
+        <TextBlock
+                   Grid.Row="0"
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="25"
+            Margin="0,20,0,0"
+                   Text="{Binding TableNumberText}" Foreground="{Binding ForeColor}">
+        </TextBlock>
+        <TextBlock
+            Grid.Row="0"
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="20"
+              Margin="100,20,0,0"
+                   Text="{Binding Time}" Foreground="{Binding ForeColor}">
+        </TextBlock>
+        <TextBlock Grid.Row="1"
+            x:Name="Block1"
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="40"
+                   Text="{Binding TableName}" Foreground="{Binding ForeColor}">
+        </TextBlock>
+        <TextBlock Grid.Column="1"
+                   Grid.Row="2"
+                     Margin="0,-20,0,0"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="25"
+                   Text="{Binding Place}" Foreground="{Binding ForeColor}">
+        </TextBlock>
+        <Button x:Name="Button1"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="2"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch" 
                 Command="{Binding TableClickedAction}"  
                 FontSize="30"
                 Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
             <SymbolIcon x:Name="icon" Symbol="Add" Foreground="{StaticResource TextBoxBorder}"/>
-            </Button>
-        <TextBlock x:Name="Block1"
-                   Grid.Column="1" 
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Center"
-                   FontSize="30"
-                   Text="{Binding TableName}" Foreground="{Binding ForeColor}">
-        </TextBlock>
-        <TextBlock Grid.Column="1" 
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   Text="{Binding Place}" Foreground="{Binding ForeColor}"
-                   Margin="0,80,0,0">
-                   
-        </TextBlock>
-        <Rectangle StrokeThickness="2" Stroke="{StaticResource TextBoxBorder}" Grid.ColumnSpan="3"/>
+        </Button>
     </Grid>
+    
 </UserControl>

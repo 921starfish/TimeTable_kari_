@@ -22,6 +22,7 @@ namespace TimeTableOne.View.Pages.DayPage
             DayPageTableViewModel VM;
             for (int i = 1; i < 8; i++)
             {
+
                 data = ApplicationData.Instance.GetSchedule((int)DateTime.Now.DayOfWeek, i);
                 if (data != null)
                 {
@@ -32,9 +33,10 @@ namespace TimeTableOne.View.Pages.DayPage
                     }
                 }
             }
-
             Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
         }
+
+       
         public DispatcherTimer timer { get; set; }
 
         public Uri Background { get; set; }
@@ -44,7 +46,7 @@ namespace TimeTableOne.View.Pages.DayPage
     {
         public DayPageViewModelInDesign()
         {
-            Background = new Uri("ms-appx:///Assets/OneNotePurple.png");
+            Background = new Uri("ms-appx:///Assets/Background(1).jpg");
         }
     }
 }
