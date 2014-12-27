@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <AppBarButton HorizontalAlignment="Center" Grid.Column="0" Icon="Accept" Foreground="GreenYellow"/>
+            <AppBarButton HorizontalAlignment="Center" Grid.Column="0" Icon="Accept" Foreground="GreenYellow" Command="{Binding CompleteCommand}"/>
             <AppBarButton HorizontalAlignment="Center" Grid.Column="1" Icon="Edit"  />
             <AppBarButton HorizontalAlignment="Center"  Grid.Column="2" Icon="Library"/>
         </Grid>

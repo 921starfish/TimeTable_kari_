@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
+using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
@@ -23,6 +26,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             _schedule = schedule;
             updatAssignmentStatus();
+            CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
+        }
+
+        private void Completed()
+        {
+            //TODO ホシノクンへ
+            _schedule.IsCompleted = true;
         }
 
         private string _assignmentName;
@@ -99,6 +109,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 OnPropertyChanged();
             }
         }
+
+        public ICommand CompleteCommand { get; set; }
     }
 
     class AssignmentListUnitViewModelInDesign : AssignmentListUnitViewModel
