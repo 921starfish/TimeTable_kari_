@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
@@ -21,7 +23,23 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             
         }
 
-        public Brush NoClassStateBrush
+        public NoClassRoomListUnitViewModel(DateTime time,NoClassSchedule sc, TableKey key)
+        {
+            this.DisplayDate = time.ToString("M月dd日");
+            if (sc == null)
+            {
+                this.NoClassStateText = "通常";
+                NoClassStateBrush=new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                NoClassStateBrush = new SolidColorBrush(Colors.Red);
+                NoClassStateText = "休講";
+            }
+        }
+
+        public
+            Brush NoClassStateBrush
         {
             get { return _noClassStateBrush; }
             set
@@ -66,7 +84,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         }
     }
 
-    class NoClassRoomListUnitViewModelInDesign : NoClassRoomListUnitViewModel
+    public class NoClassRoomListUnitViewModelInDesign : NoClassRoomListUnitViewModel
     {
         public NoClassRoomListUnitViewModelInDesign()
         {

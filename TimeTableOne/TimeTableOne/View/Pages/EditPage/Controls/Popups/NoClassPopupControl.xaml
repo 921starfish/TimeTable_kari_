@@ -5,6 +5,7 @@
     xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Popups"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:units="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -17,6 +18,13 @@
                 </Grid.RowDefinitions>
                 <Rectangle Grid.Row="0" Fill="{StaticResource OneNotePurple}"/>
                 <TextBlock Grid.Row="0" Text="休講設定" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+<ListView Grid.Row="1" ItemsSource="{Binding NoClasses}">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <units:NoClassRoomListUnit/>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
             </Grid>
         </Border>
     </Grid>
