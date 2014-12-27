@@ -17,7 +17,7 @@
             <RowDefinition Height= "1*"/>
             <RowDefinition Height= "1*"/>
         </Grid.RowDefinitions>
-        <TextBlock  Grid.Column ="0" Grid.Row= "0" Grid.RowSpan="3" Text="{Binding TimeText}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="100"/>
+        <TextBlock  Grid.Column ="0" Grid.Row= "0" Grid.RowSpan="2" Text="{Binding TimeText}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="{Binding TimeSize}"/>
         <TextBlock  Grid.Column ="1" Grid.Row= "0" Text="{Binding DayText}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="36"/>
         <TextBlock  Grid.Column ="1" Grid.Row= "1" Text="{Binding WeekText}" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="36"/>
     </Grid>

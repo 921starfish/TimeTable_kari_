@@ -3,6 +3,7 @@ using System.ComponentModel;
 using TimeTableOne.Common;
 using TimeTableOne.Utils;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace TimeTableOne.View.Pages.DayPage.Controls
 {
@@ -65,6 +66,16 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             {
                 return DateTime.Now.ToString("M月d日");
             }
+        }
+
+        public double TimeSize
+        {
+            get
+            {
+                double a = ((Frame) (Window.Current.Content)).ActualWidth/15;
+                return Math.Min(a,100);
+            }
+            set { TimeSize = value; }
         }
         public DispatcherTimer timer { get; set; }
     }
