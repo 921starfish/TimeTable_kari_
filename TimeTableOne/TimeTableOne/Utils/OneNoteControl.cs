@@ -14,7 +14,7 @@ using Windows.System;
 namespace TimeTableOne.Utils {
 
 	public class OneNoteControl {
-
+		#region singleton
 		private static OneNoteControl _current;
 
 		public static OneNoteControl Current {
@@ -27,6 +27,7 @@ namespace TimeTableOne.Utils {
 		private OneNoteControl() {
 			_current = this;
 		}
+		#endregion
 
 		private const string UserNotSignedIn = "You're not signed in.";
 
@@ -41,27 +42,6 @@ namespace TimeTableOne.Utils {
 			}
 		}
 
-		private static readonly string[] Scopes = new[] {"wl.signin", "wl.offline_access", "Office.OneNote_Create"};
-
-		private static readonly string PagesEndPoint = "https://www.onenote.com/api/v1.0/pages";
-
-		private string pageSectionName = "Quick Notes";
-
-		private string DEFAULT_SECTION_NAME = "Quick Notes";
-
-		// 送るノート名の変更
-		public Uri GetPagesEndpoint(string specifiedSectionName) {
-			string sectionNameToUse;
-			if (specifiedSectionName != "") {
-				sectionNameToUse = specifiedSectionName;
-			}
-			else {
-				sectionNameToUse = DEFAULT_SECTION_NAME;
-			}
-			return new Uri(PagesEndPoint + "/?sectionName=" + sectionNameToUse);
-		}
-
-		// 認証されているか
 		public bool IsAuthenticated {
 			get {
 				return _authClient.Session != null && !string.IsNullOrEmpty(_authClient.Session.AccessToken);
@@ -71,8 +51,6 @@ namespace TimeTableOne.Utils {
 		public string SignInName;
 
 		public bool IsSignedIn;
-
-		public string clientLink;
 
 		public async Task<LiveLoginResult> SignIn() {
 
@@ -103,19 +81,19 @@ namespace TimeTableOne.Utils {
 				return loginResult;
 			}
 			catch (Exception e) {
-				Debug.WriteLine(e.ToString());
+				Account.Current.resultTest = e.ToString();
 				return null;
 			}
 		}
 
 		// Authの更新の結果を格納
 		private async void UpdateAuthProperties(LiveConnectSessionStatus loginStatus) {
-			IsSignedIn = loginStatus == LiveConnectSessionStatus.Connected;
-			if (IsSignedIn) {
-				SignInName = await RetrieveName();
+			this.IsSignedIn = loginStatus == LiveConnectSessionStatus.Connected;
+			if (this.IsSignedIn) {
+				this.SignInName = await RetrieveName();
 			}
 			else {
-				SignInName = UserNotSignedIn;
+				this.SignInName = UserNotSignedIn;
 			}
 		}
 
@@ -126,7 +104,7 @@ namespace TimeTableOne.Utils {
 			LiveOperationResult operationResult = await lcConnect.GetAsync("me");
 			dynamic result = operationResult.Result;
 			if (result != null) {
-				return (string) result.name;
+				return (string)result.name;
 			}
 			else {
 				throw new InvalidOperationException();
@@ -141,68 +119,27 @@ namespace TimeTableOne.Utils {
 			}
 		}
 
-		// 新規ページ作成の制御
-		private async Task CreatePage() {
-			StandardResponse response = await CreateSimplePage(pageSectionName);
-			Debug.WriteLine(
-				((int) response.StatusCode).ToString() + ": " +
-				response.StatusCode.ToString());
-			if (response.StatusCode == HttpStatusCode.Created) {
-				var successResponse = (CreateSuccessResponse) response;
-				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
-			}
-			else {
-				clientLink = string.Empty;
-			}
-		}
-
-		// 新規ページ作成本体
-		// ページにデフォルトで入れておく情報を指定できる
-		public async Task<StandardResponse> CreateSimplePage(string sectionName) {
-
-			var client = new HttpClient();
-
-			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-			if (IsAuthenticated) {
-				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-					"Bearer",
-					_authClient.Session.AccessToken);
-			}
-
-			string date = GetDate();
-			string simpleHtml = "<html>" +
-			                    "<head>" +
-			                    "<title>タイトルだよ</title>" +
-			                    "<meta name=\"created\" content=\"" + date + "\" />" +
-			                    "</head>" +
-			                    "<body>" +
-			                    "<p>いろいろできそう <i>ななめ</i> <b>太字</b></p>" +
-			                    "<p>リンクとか <a href=\"http://www.microsoft.com\">マイクロソフトへ</a></p>" +
-			                    "</body>" +
-			                    "</html>";
-
-			var createMessage = new HttpRequestMessage(HttpMethod.Post, GetPagesEndpoint(sectionName)) {
-				Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
-			};
-
-			HttpResponseMessage response = await client.SendAsync(createMessage);
-
-			return await TranslateResponse(response);
-		}
-
-		private static string GetDate() {
-			return DateTime.Now.ToString("o");
-		}
+		private static readonly string[] Scopes = new[] { "wl.signin", "wl.offline_access", "Office.OneNote_Create" };
 
 		// httpレスポンスを読みやすくする
-		// マイクロソフトのStandardResponseを使用
 		private static async Task<StandardResponse> TranslateResponse(HttpResponseMessage response) {
 			StandardResponse standardResponse;
 			if (response.StatusCode == HttpStatusCode.Created) {
 				dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
 				standardResponse = new CreateSuccessResponse {
 					StatusCode = response.StatusCode,
+					OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
+					OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
+				};
+			}
+			else if (response.StatusCode == HttpStatusCode.OK) {
+				dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+				standardResponse = new GetSuccessResponse {
+					StatusCode = response.StatusCode,
+					Name = responseObject.value.name,
+					Id = responseObject.value.id,
+					SectionsUri = responseObject.sectionsUrl,
+					PagesUri = responseObject.pagesUrl,
 					OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
 					OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
 				};
@@ -222,11 +159,136 @@ namespace TimeTableOne.Utils {
 			return standardResponse;
 		}
 
+		private string notebookID = "TimeTableOne";
+
+		private string pageSectionName = "Quick Notes";
+
+		private string DEFAULT_SECTION_NAME = "Quick Notes";
+
+		public string clientLink;
+
+		private static string GetDate() {
+			return DateTime.Now.ToString("o");
+		}
+
+		private static readonly string PagesEndPoint = "https://www.onenote.com/api/v1.0/pages";
+
+		// 送るノート名の変更
+		public Uri GetPagesEndpoint(string specifiedSectionName) {
+			string sectionNameToUse;
+			if (specifiedSectionName != "") {
+				sectionNameToUse = specifiedSectionName;
+			}
+			else {
+				sectionNameToUse = DEFAULT_SECTION_NAME;
+			}
+			return new Uri(PagesEndPoint + "/?sectionName=" + sectionNameToUse);
+		}
+
+		// 新規ページ作成の制御
+		private async Task CreatePage() {
+			StandardResponse response = await CreateEmptyPage(pageSectionName);
+			Account.Current.resultTest = ((int) response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
+			if (response.StatusCode == HttpStatusCode.Created) {
+				var successResponse = (CreateSuccessResponse) response;
+				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
+			}
+			else {
+				clientLink = string.Empty;
+			}
+		}
+
+		// 新規ページ作成本体
+		// ページにデフォルトで入れておく情報を指定できる
+		public async Task<StandardResponse> CreateEmptyPage(string noteID) {
+			var client = new HttpClient();
+
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			if (IsAuthenticated) {
+				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+					"Bearer",
+					_authClient.Session.AccessToken);
+			}
+
+			string simpleHtml = "<html>" +
+			                    "<head>" +
+			                    "</head>" +
+			                    "<body>" +
+			                    "</body>" +
+			                    "</html>";
+
+			var createMessage = new HttpRequestMessage(HttpMethod.Post, new Uri("https://www.onenote.com/api/v1.0/notebooks/" + noteID + "/sections")) {
+				Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
+			};
+
+			HttpResponseMessage response = await client.SendAsync(createMessage);
+
+			return await TranslateResponse(response);
+		}
+
+		private async Task CreateSection() {
+			StandardResponse response = await CreateEmptyPage(notebookID);
+			Account.Current.resultTest = ((int)response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
+			if (response.StatusCode == HttpStatusCode.Created) {
+				var successResponse = (CreateSuccessResponse)response;
+				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
+			}
+			else {
+				clientLink = string.Empty;
+			}
+		}
+
+		public async Task<StandardResponse> GetSectionInfo(string sectionName) {
+			var client = new HttpClient();
+
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			if (IsAuthenticated) {
+				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+					"Bearer",
+					_authClient.Session.AccessToken);
+			}
+
+			var createMessage = new HttpRequestMessage(HttpMethod.Get, new Uri("https://www.onenote.com/api/v1.0/notebooks/id/sections")) {
+
+			};
+
+			HttpResponseMessage response = await client.SendAsync(createMessage);
+
+			return await TranslateResponse(response);
+		}
 
 		public async void Open(string tableName) {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
 			await CreatePage();
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
+		}
+
+		private async Task GetSectionName() {
+			StandardResponse response = await GetSectionInfo(pageSectionName);
+			Account.Current.resultTest = ((int) response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
+			if (response.StatusCode == HttpStatusCode.Created) {
+				var successResponse = (CreateSuccessResponse)response;
+				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
+			}
+			else {
+				clientLink = string.Empty;
+			}
+		}
+
+		public async void OpenNewSection(string tableNameID) {
+			notebookID = tableNameID;
+			await AttemptRefreshToken();
+			await CreateSection();
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
+		}
+
+		public async void OpenResentSection(string tableNameID) {
+			pageSectionName = tableNameID;
+			await AttemptRefreshToken();
+			await GetSectionName();
 			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
 	}

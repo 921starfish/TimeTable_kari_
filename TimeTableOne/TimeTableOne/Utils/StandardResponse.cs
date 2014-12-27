@@ -67,5 +67,24 @@ namespace TimeTableOne.Utils {
 		/// </summary>
 		public string OneNoteWebUrl { get; set; }
 	}
+	public class GetSuccessResponse : StandardResponse {
+		public string Name { get; set; }
+
+		public string Id { get; set; }
+
+		public string SectionsUri { get; set; }
+
+		public string PagesUri { get; set; }
+
+		/// <summary>
+		/// URL to launch OneNote rich client
+		/// </summary>
+		public string OneNoteClientUrl { get; set; }
+
+		/// <summary>
+		/// URL to launch OneNote web experience
+		/// </summary>
+		public string OneNoteWebUrl { get; set; }
+	}
 
 }

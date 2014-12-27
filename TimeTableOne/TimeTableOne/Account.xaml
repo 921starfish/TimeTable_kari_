@@ -15,11 +15,14 @@
 	<!-- Content Section 1-->
 	<StackPanel x:Name="accountName">
 		<TextBlock Name="userName" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" 
-            Margin="0,0,0,25" Text="You're not signed in."/>
+            Margin="0,0,0,25" Text="{Binding UserLoginState}"/>
 		<!-- both buttons are defined to occupy the same place in the UI -->
 		<!-- however only one is visible at a time, to prevent flicker or confusion -->
 		<!-- they are defined as Collapsed so neither is visibly by default -->
 		<Button x:Name="signInBtn" Click="SignInClick" Content="Sign in" Visibility="Collapsed"/>
 		<Button x:Name="signOutBtn" Click="SignOutClick" Content="Sign out" Visibility="Collapsed"/>
+		<TextBox x:Name="TestResult" TextWrapping="Wrap" Text="TextBox"/>
+		<Button x:Name="Test1" Content="Test1" Click="Test1_Click"/>
+		<Button x:Name="Test2" Content="Test2" Click="Test2_Click" />
 	</StackPanel>
 </SettingsFlyout>

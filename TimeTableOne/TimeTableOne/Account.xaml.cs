@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Live;
 using TimeTableOne.Utils;
+using TimeTableOne.View.Pages.TablePage.Controls;
 
 
 namespace TimeTableOne {
@@ -40,6 +41,12 @@ namespace TimeTableOne {
 			}
 		}
 
+		private AccountViewModel ViewModel {
+			get {
+				return DataContext as AccountViewModel;
+			}
+		}
+
 		private static Account _current;
 
 		public static Account Current {
@@ -50,8 +57,9 @@ namespace TimeTableOne {
 
 		public Account() {
 			this.InitializeComponent();
+			this.DataContext = new AccountViewModel();
 			_current = this;
-			this.UpdateState();
+			this.UpdateState();		
 		}
 
 		private async void SignInClick(object sender, RoutedEventArgs e) {
@@ -60,7 +68,7 @@ namespace TimeTableOne {
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
-				Debug.WriteLine(exception.ToString());
+				resultTest = exception.ToString();
 			}
 		}
 
@@ -70,7 +78,7 @@ namespace TimeTableOne {
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
-				Debug.WriteLine(exception.ToString());
+				resultTest = exception.ToString();
 			}
 		}
 
@@ -83,14 +91,56 @@ namespace TimeTableOne {
 						? Visibility.Visible
 						: Visibility.Collapsed);
 					signInBtn.Visibility = Visibility.Collapsed;
+					ViewModel.UserLoginState = "ログイン済み:" + SignInName;
 				}
 				else {
 					signInBtn.Visibility = Visibility.Visible;
 					signOutBtn.Visibility = Visibility.Collapsed;
+					ViewModel.UserLoginState = "未ログイン";
 				}
 			}
 			catch (LiveConnectException exception) {
-				Debug.WriteLine(exception.ToString());
+				resultTest = exception.ToString();
+			}
+		}
+
+
+		public string resultTest {
+			get {
+				return this.TestResult.Text;
+			}
+			set {
+				this.TestResult.Text = value;
+			}
+		}
+
+		private void Test1_Click(object sender, RoutedEventArgs e) {
+			OneNoteControl.Current.OpenNewSection("0-C6B6330B2B7B4BB9!3318");
+		}
+
+		private void Test2_Click(object sender, RoutedEventArgs e) {
+
+		}
+	}
+
+
+	public class AccountViewModel : BasicViewModel {
+
+		public AccountViewModel() {
+			this.UserLoginState = "未ログイン";
+		}
+		private string _userLoginState;
+
+		public string UserLoginState {
+			get {
+				return _userLoginState;
+			}
+			set {
+				if (value == _userLoginState) {
+					return;
+				}
+				_userLoginState = value;
+				OnPropertyChanged();
 			}
 		}
 	}
