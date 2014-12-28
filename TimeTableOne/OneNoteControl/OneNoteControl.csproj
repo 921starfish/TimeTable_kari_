@@ -48,6 +48,7 @@
     <Compile Include="Responses\PatchContentResponse.cs" />
     <Compile Include="Responses\PostPagesResponse.cs" />
     <Compile Include="Responses\PostSectionsResponse.cs" />
+    <Compile Include="Responses\PostNotebooksResponse.cs" />
     <Compile Include="Responses\StandardResponse.cs" />
   </ItemGroup>
   <ItemGroup>
