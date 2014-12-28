@@ -69,6 +69,7 @@ namespace TimeTableOne.Data
         public List<ClassRoomChangeSchedule> ClassRoomChanges=new List<ClassRoomChangeSchedule>(); 
 
         public List<NoClassSchedule> NoClassSchedules=new List<NoClassSchedule>(); 
+
         private static ApplicationDataContainer SettingFolder
         {
             get

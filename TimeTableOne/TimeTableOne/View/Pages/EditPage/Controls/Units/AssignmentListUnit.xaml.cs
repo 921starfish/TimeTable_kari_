@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
@@ -45,6 +46,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private void ShowEditPopup(object sender, RoutedEventArgs e)
         {
             EditPopup.IsOpen = !EditPopup.IsOpen;
+            if (EditPopup.IsOpen)
+            {
+                var frame = (Frame)Window.Current.Content;
+                var rect=EditPopup.GetBoundingRect(frame);
+                EditPopup.VerticalOffset = frame.ActualHeight/2 - 300 - rect.Y;
+            }
         }
     }
 }
