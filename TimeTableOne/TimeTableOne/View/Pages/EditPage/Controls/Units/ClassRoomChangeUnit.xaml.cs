@@ -17,9 +17,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
-    public sealed partial class NoClassRoomListUnit : UserControl
+    public sealed partial class ClassRoomChangeUnit : UserControl
     {
-        public NoClassRoomListUnit()
+        public ClassRoomChangeUnit()
         {
             this.InitializeComponent();
         }
@@ -30,12 +30,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         private void ClassRoomChangeUnit_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            
+
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }

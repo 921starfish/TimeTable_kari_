@@ -34,7 +34,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         private async void Completed()
         {
-            
             MessageDialog dlg = new MessageDialog("課題「"+AssignmentName+"」を完了に設定します");
             dlg.Commands.Add(new UICommand("はい"));
             dlg.Commands.Add(new UICommand("いいえ"));
