@@ -29,7 +29,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public ColorPopup()
         {
             this.InitializeComponent();
-
         }
 
 
@@ -48,8 +47,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         private void ColorPopup_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
+            if (DataContext is ColorPopupViewModel) return;
             ColorPopupViewModel vm;
-            ColorList.DataContext = vm = ColorPopupViewModel.GenerateViewModel(TableUnitDataHelper.GetCurrentSchedule());
+            DataContext = vm = ColorPopupViewModel.GenerateViewModel(TableUnitDataHelper.GetCurrentSchedule());
             try
             {
                 ColorList.SelectedIndex = vm.SelectedIndex;

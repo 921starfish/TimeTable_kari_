@@ -22,6 +22,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public ColorPopupUnit()
         {
             this.InitializeComponent();
+          
         }
     }
 }
