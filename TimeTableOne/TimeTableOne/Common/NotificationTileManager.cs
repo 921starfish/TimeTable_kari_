@@ -10,25 +10,25 @@ using TimeTableOne.Data;
 
 namespace TimeTableOne.Common
 {
-    public class LiveTileManager
+    public class NotificationTileManager
     {
-        private static LiveTileManager _instance;
+        private static NotificationTileManager _instance;
 
-        public static LiveTileManager Instance
+        public static NotificationTileManager Instance
         {
             get
             {
-                _instance = _instance ?? new LiveTileManager();
+                _instance = _instance ?? new NotificationTileManager();
                 return _instance;
             }
         }
 
-        private LiveTileManager()
+        private NotificationTileManager()
         {
             
         }
 
-        public void GenerateTile()
+        public void UpdateTile()
         {
             XmlDocument template = TileUpdateManager.GetTemplateContent(TileTemplateType.TileSquare310x310BlockAndText01);
             //日付の追加
@@ -38,9 +38,21 @@ namespace TimeTableOne.Common
             ScheduleData currentSc;
             if ((currentSc = ScheduleManager.Instance.CurrentSchedule) != null)
             {
-                template.AppendTextElement(1, "現在の授業");
-                template.AppendTextElement(2, ScheduleManager.Instance.CurrentTimeSpanIndex+"時間目  "+currentSc.TableName);
-                template.AppendTextElement(3, currentSc.Place+"  "+ScheduleManager.Instance.CurrentTimeSpan.ToString());
+                if (ScheduleManager.Instance.CurrentScheduleState == ScheduleState.NoClass)
+                {
+                    template.AppendTextElement(1, "現在の授業");
+                    template.AppendTextElement(2,
+                        ScheduleManager.Instance.CurrentTimeSpanIndex + "時間目  " + currentSc.TableName+"(休講)");
+                }
+                else
+                {
+                    template.AppendTextElement(1, "現在の授業");
+                    template.AppendTextElement(2,
+                        ScheduleManager.Instance.CurrentTimeSpanIndex + "時間目  " + currentSc.TableName);
+                    template.AppendTextElement(3,
+                        currentSc.Place + "  " + ScheduleManager.Instance.CurrentTimeSpan.ToString());
+                    
+                }
             }
             else
             {
@@ -62,9 +74,14 @@ namespace TimeTableOne.Common
             TileNotification notif=new TileNotification(template);
             notif.ExpirationTime = DateTimeOffset.UtcNow.AddMinutes(60);
            TileUpdateManager.CreateTileUpdaterForApplication().Update(notif);
-
         }
 
+        public void NotifyScheduleData(ScheduleData schedule)
+        {
+            XmlDocument template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText04);
+            template.AppendTextElement(1,schedule.TableName);
+            
+        }
         
     }
 }

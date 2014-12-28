@@ -78,6 +78,11 @@ namespace TimeTableOne.Data
             }
         }
 
+        public static async Task<ScheduleKey> ToScheduleKey(TableKey key)
+        {
+            return Instance.GetScheduleKey(await Instance.GetKey(key.NumberOfDay, key.TableNumber));
+        }
+
         private static string getDataString()
         {
             if (SettingFolder.Values["DATA-COUNT"] != null)
@@ -183,6 +188,11 @@ namespace TimeTableOne.Data
             return Guid.Empty;
         }
 
+        private ScheduleKey GetScheduleKey(Guid id)
+        {
+            return (from k in Keys where k.DataId == id select k).FirstOrDefault();
+        }
+
         /// <summary>
         /// 指定したキーからスケジュールを検索
         /// </summary>
@@ -205,6 +215,8 @@ namespace TimeTableOne.Data
                 return null;
             }
         }
+
+
 
         public IEnumerable<AssignmentSchedule> GetAssignments(ScheduleData data)
         {
@@ -286,6 +298,13 @@ namespace TimeTableOne.Data
         {
             return new ScheduleKey() { DayOfWeek = dayOfWeek, TableNumber = tableNumber, DataId = data.ScheduleId };
         }
+
+                public bool IsNoClassThisWeek()
+                {
+                    return ApplicationData.Instance.GetNoClassSchedule(
+                        DateTimeUtil.NextKeyDay(DateTime.Now, (DayOfWeek) DayOfWeek),
+                        new TableKey(TableNumber, TableNumber)) != null;
+                }
     }
 
     public class ScheduleData
