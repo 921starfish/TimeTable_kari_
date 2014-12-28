@@ -9,18 +9,18 @@ using OneNoteControl.Responses;
 
 namespace OneNoteControl {
 
-	public class OneNoteControl {
+	public class OneNoteControler {
 		#region singleton
-		private static OneNoteControl _current;
+		private static OneNoteControler _current;
 
-		public static OneNoteControl Current {
+		public static OneNoteControler Current {
 			get {
-				_current = _current ?? new OneNoteControl();
+				_current = _current ?? new OneNoteControler();
 				return _current;
 			}
 		}
 
-		private OneNoteControl() {
+		private OneNoteControler() {
 			_current = this;
 		}
 		#endregion
@@ -266,9 +266,9 @@ namespace OneNoteControl {
 	        return client;
 	    }
 
-	    private async Task<JsonResponse<GetNoteBooksSuccessResponse>> GetNotebooks()
+	    private async Task<JsonResponse<GetNotebooksResponse>> GetNotebooks()
         {
-            var data = await StandardResponse.FetchJsonResponse<GetNoteBooksSuccessResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
+            var data = await StandardResponse.FetchJsonResponse<GetNotebooksResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
             return data;
         }
 
