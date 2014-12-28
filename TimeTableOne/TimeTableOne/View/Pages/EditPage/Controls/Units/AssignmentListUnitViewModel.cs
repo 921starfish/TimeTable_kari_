@@ -9,6 +9,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
 using TimeTableOne.Utils.Commands;
+using TimeTableOne.View.Pages.EditPage.Controls.Popups;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
@@ -20,6 +21,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         public AssignmentListUnitViewModel()
         {
             CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
+            EditAssignmentPopupData = new EditAssignmentPopupViewModel();
         }
 
         public AssignmentListUnitViewModel(AssignmentSchedule schedule)
@@ -30,6 +32,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             AssignmentName =_assignmentName = schedule.AssignmentName ;
             updatAssignmentStatus();
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
+            EditAssignmentPopupData = new EditAssignmentPopupViewModel();
+
         }
 
         private async void Completed()
@@ -57,6 +61,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private string _assignmentStatus;
         private Brush _assignmentStatusColor;
         private string _assignmentDetail;
+        private AddAssignmentPopupViewModel _assignmentPopupData;
 
         private void updatAssignmentStatus()
         {
@@ -140,6 +145,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         }
 
         public ICommand CompleteCommand { get; set; }
+
+        public EditAssignmentPopupViewModel EditAssignmentPopupData { get; set; }
     }
 
     class AssignmentListUnitViewModelInDesign : AssignmentListUnitViewModel

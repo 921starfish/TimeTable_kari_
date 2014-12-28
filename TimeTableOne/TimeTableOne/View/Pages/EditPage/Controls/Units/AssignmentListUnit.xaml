@@ -58,7 +58,7 @@
             <AppBarButton HorizontalAlignment="Center" BorderBrush="Black" Grid.Column="2" Icon="Library" Foreground="White" VerticalAlignment="Center"/>
         </Grid>
         <Popup x:Name="EditPopup" HorizontalAlignment="Right" IsLightDismissEnabled="True" >
-            <popups:EditAssignmentPopup/>
+            <popups:EditAssignmentPopup DataContext="{Binding EditAssignmentPopupData}"/>
         </Popup>
     </Grid>
 </UserControl>

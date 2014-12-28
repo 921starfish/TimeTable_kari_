@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.View.Pages.EditPage.Controls.Popups;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 using WinRTXamlToolkit.Controls.Extensions;
@@ -25,6 +26,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             this.InitializeComponent();
             VisualStateManager.GoToState(this, "BasicState", false);
+           
         }
 
         private void TextBlock1_OnPointerPressed(object sender, PointerRoutedEventArgs e)
@@ -43,6 +45,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
         }
 
+
         private void ShowEditPopup(object sender, RoutedEventArgs e)
         {
             EditPopup.IsOpen = !EditPopup.IsOpen;
@@ -53,5 +56,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 EditPopup.VerticalOffset = frame.ActualHeight/2 - 300 - rect.Y;
             }
         }
+
+        
     }
 }

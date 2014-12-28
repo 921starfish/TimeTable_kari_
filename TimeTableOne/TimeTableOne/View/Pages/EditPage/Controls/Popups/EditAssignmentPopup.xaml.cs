@@ -23,12 +23,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public EditAssignmentPopup()
         {
             this.InitializeComponent();
-            this.DataContext = new AddAssignmentPopupViewModel();
+            
         }
 
-        public AddAssignmentPopupViewModel ViewModel
+        public EditAssignmentPopupViewModel ViewModel
         {
-            get { return DataContext as AddAssignmentPopupViewModel; }
+            get { return DataContext as EditAssignmentPopupViewModel; }
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)

@@ -17,17 +17,15 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
     {
         public EditAssignmentPopupViewModel()
         {
+
+            this._assignmentName = "aa";
+            //this._assignmentDetail = null;
+            //this._yearEdit = 0;
+            //this._monthEdit = 0;
+            //this._dayEdit = 0;
+            //this._dueDate = null;
             _acceptCommand = new BasicCommand(OnAcceptAssignmentData, ValidateAssignmentData);
             AllDelete = new AlwaysExecutableDelegateCommand(DeleteWithCheck);
-            initializeAsToday();
-        }
-
-        private void initializeAsToday()
-        {
-            var d = DateTime.Now.AddDays(7);
-            _yearEdit = d.Year;
-            _monthEdit = d.Month;
-            _dayEdit = d.Day;
         }
 
         private bool ValidateAssignmentData()
