@@ -8,18 +8,13 @@ using Newtonsoft.Json;
 
 namespace OneNoteControl.Responses
 {
-
-    /// <summary>
-    /// Base class representing a simplified response from a service call 
-    /// </summary>
     public abstract class StandardResponse
     {
         public HttpStatusCode StatusCode { get; set; }
 
-        /// <summary>
-        /// Per call identifier that can be logged to diagnose issues with Microsoft support
-        /// </summary>
         public string CorrelationId { get; set; }
+
+        public Task<string> Content { get; set; }
 
         public static Task<JsonResponse<T>> FetchJsonResponse<T>(HttpRequestMessage message, HttpClient client)
             where T : new()
@@ -40,6 +35,7 @@ namespace OneNoteControl.Responses
 
         protected static void GenerateStandardResponse(StandardResponse result, HttpResponseMessage response)
         {
+            result.Content = response.Content.ReadAsStringAsync();
             result.StatusCode = response.StatusCode;
             IEnumerable<string> correlationValues;
             if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues))
@@ -83,6 +79,17 @@ namespace OneNoteControl.Responses
 
     }
 
+    public class LinksUnit
+    {
+        public LinksURIUnit oneNoteClientUrl;
+
+        public LinksURIUnit oneNoteWebUrl;
+    }
+
+    public class LinksURIUnit
+    {
+        public string href;
+    }
 
     /// <summary>
     /// Class representing standard error from the service
@@ -121,15 +128,4 @@ namespace OneNoteControl.Responses
     }
 
 
-    public class LinksUnit
-    {
-        public LinksURIUnit oneNoteClientUrl;
-
-        public LinksURIUnit oneNoteWebUrl;
-    }
-
-    public class LinksURIUnit
-    {
-        public string href;
-    }
 }
