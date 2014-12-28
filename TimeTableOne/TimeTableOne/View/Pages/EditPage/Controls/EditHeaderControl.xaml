@@ -142,7 +142,7 @@
                                                      Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="lectureNameBox"
                                                      Visibility="Collapsed" Opacity="0" Width="300" Height="50"
                                                      GotFocus="LectureTextBox_GotFocus"
-                                                     LostFocus="LectureTextBox_LostFocus" />
+                                                     LostFocus="LectureTextBox_LostFocus" KeyDown="LectureNameBox_OnKeyDown"/>
                 <TextBlock x:Name="textBlock" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center"
                                Text="{Binding LectureName}" FontSize="50" PointerEntered="LectureTextBox_MouseEnter"
                                PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed">

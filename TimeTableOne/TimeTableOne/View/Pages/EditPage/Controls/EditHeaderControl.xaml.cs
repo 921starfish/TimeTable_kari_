@@ -64,7 +64,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             CurrentState=HeaderState.EditLectureName;
             isLectureNameEditing = true;
-            lectureNameBox.Focus(FocusState.Pointer);
         }
 
         private void LectureTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -100,7 +99,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             _isPlaceEditing = true;
             CurrentState=HeaderState.EditPlace;
-            placeBox.Focus(FocusState.Keyboard);
         }
 
         private void PlaceTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -136,12 +134,18 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     switch (_currentState)
                     {
                         case HeaderState.Default:
+                            isLectureNameEditing = false;
+                            _isPlaceEditing = false;
                             moveTo = "BasicState";
                             break;
                         case HeaderState.EditPlace:
+                            isLectureNameEditing = false;
+                            _isPlaceEditing = true;
                             moveTo = "OnEditPlace";
                             break;
                         case HeaderState.EditLectureName:
+                            isLectureNameEditing = true;
+                            _isPlaceEditing = false;
                             moveTo = "OnEditLectureName";
                             break;
                         case HeaderState.MouserOverPlace:
@@ -165,6 +169,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             EditLectureName,
             MouserOverPlace,
             MouseOverLectureName
+        }
+
+        private void LectureNameBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
         }
     }
 }
