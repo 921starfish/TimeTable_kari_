@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace OneNoteControl.Responses
 {
-    class PostPagesInSectionsResponse
+    public class PatchContentResponsee
     {
-
     }
 }
