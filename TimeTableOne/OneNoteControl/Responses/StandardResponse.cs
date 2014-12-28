@@ -121,14 +121,14 @@ namespace OneNoteControl.Responses
     }
 
 
-    public class GetLinksUnit
+    public class LinksUnit
     {
-        public GeLinksURIUnit oneNoteClientUrl;
+        public LinksURIUnit oneNoteClientUrl;
 
-        public GeLinksURIUnit oneNoteWebUrl;
+        public LinksURIUnit oneNoteWebUrl;
     }
 
-    public class GeLinksURIUnit
+    public class LinksURIUnit
     {
         public string href;
     }
