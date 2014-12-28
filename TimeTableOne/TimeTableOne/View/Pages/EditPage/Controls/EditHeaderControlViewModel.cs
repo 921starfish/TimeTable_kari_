@@ -17,13 +17,14 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
     {
         private const string InitialLectureName = "(授業名をここに入力)";
         private const string InitialPlaceName = "(場所をここに入力)";
-        private Brush _backgroundColor;
+        private SolidColorBrush _backgroundColor;
         private TableKey _tableKey;
         protected ScheduleData _scheduleData;
         private string _lectureNameForEdit;
         private string _placeNameForEdit;
+        private SolidColorBrush _basicForeground;
 
-        public Brush BackgroundColor
+        public SolidColorBrush BackgroundColor
         {
             get { return _backgroundColor; }
             set
@@ -82,7 +83,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public Brush WeekBrush
         {
-            get { return TableKey.dayOfWeek.GetWeekColor(); }
+            get { return TableKey.dayOfWeek.GetWeekColor(BackgroundColor.Color.Liminance()>0.5); }
         }
 
         public string WeekText
@@ -145,6 +146,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 OnPropertyChanged("Place");
                 OnPropertyChanged();
             }
+        }
+
+        public SolidColorBrush BasicForeground
+        {
+            get { return new SolidColorBrush(BackgroundColor.Color.Liminance() > 0.5 ? Colors.Black : Colors.White); }
         }
 
         public ICommand BackToTablePageCommand { get; set; }
