@@ -88,7 +88,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public string ChangeTo
         {
-            get { return _changeTo; }
+            get
+            {
+                return string.IsNullOrEmpty(_changeTo) ? "変更" : _changeTo;
+            }
             set
             {
                 if (value == _changeTo) return;

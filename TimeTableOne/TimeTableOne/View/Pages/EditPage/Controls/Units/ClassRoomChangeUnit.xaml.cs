@@ -37,5 +37,15 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
 
         }
+
+        private void textBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "EditState", true);
+        }
+
+        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "BasicState", true);
+        }
     }
 }

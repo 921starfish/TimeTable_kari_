@@ -9,6 +9,45 @@
     d:DesignHeight="100"
     d:DesignWidth="400" PointerPressed="ClassRoomChangeUnit_OnPointerPressed" IsHitTestVisible="True">
     <Button BorderThickness="0" Click="ButtonBase_OnClick">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.1"/>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="BasicState">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Collapsed</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="EditState">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBlock">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Collapsed</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Visibility>Visible</Visibility>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
         <Grid>
             <Grid.Resources>
                 <Style TargetType="TextBlock">
@@ -26,7 +65,8 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DisplayDate}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SupportText}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ClassRoomChangeCaption}" Foreground="{Binding CaptionColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+            <TextBlock x:Name="textBlock" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo,Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" PointerPressed="textBlock_PointerPressed" Visibility="Visible" Opacity="1"></TextBlock>
+            <TextBox x:Name="textBox" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo,Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontStyle="Oblique" FontWeight="ExtraLight" Margin="0,0,0,0" Background="GhostWhite" BorderBrush="Transparent" Visibility="Collapsed" Opacity="0" LostFocus="textBox_LostFocus"  AcceptsReturn="False"></TextBox>
         </Grid>
     </Button>
 </UserControl>
