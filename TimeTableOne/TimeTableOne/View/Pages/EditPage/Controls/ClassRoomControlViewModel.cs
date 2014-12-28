@@ -42,7 +42,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 for (int i = 0; i < 100; i++)
                 {
                     NoClasses.Add(
-                        new NoClassRoomListUnitViewModel(current,ApplicationData.Instance.GetNoClassSchedule(current, key), key));
+                        new NoClassRoomListUnitViewModel(current, key));
                     current = current.AddDays(7);
                     if ((current - DateTime.Now) >TimeSpan.FromDays(60))
                     {
