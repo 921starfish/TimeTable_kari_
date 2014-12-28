@@ -66,11 +66,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             if (_schedule.IsCompleted)
             {
                 AssignmentStatusColor=new SolidColorBrush(Colors.GreenYellow);
+                AssignmentStatus = "完了済";
             }
             else
             {
-                DateTime dueTime = _schedule.DueTime;
-
+                AssignmentStatusColor=new SolidColorBrush(Colors.Yellow);
+                AssignmentStatus = "未完了";
             }
         }
 

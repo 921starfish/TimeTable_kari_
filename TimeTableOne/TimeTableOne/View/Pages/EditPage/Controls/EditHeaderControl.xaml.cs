@@ -23,12 +23,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
     {
         private bool isLectureNameEditing = false;
         private bool _isPlaceEditing;
+        private HeaderState _currentState;
 
         public EditHeaderControl()
         {
             this.InitializeComponent();
             Loaded += EditHeaderControl_Loaded;
-            VisualStateManager.GoToState(this, "BasicState", true);
+            CurrentState=HeaderState.Default;
         }
 
         public EditHeaderControlViewModel ViewModel
@@ -41,25 +42,27 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             this.DataContext = new EditHeaderControlViewModel(TableUnitDataHelper.GetCurrentKey());
             if (String.IsNullOrWhiteSpace(ViewModel.LectureName))
             {
-                VisualStateManager.GoToState(this, "OnEditLectureName", false);
+                CurrentState=HeaderState.EditLectureName;
             }
         }
          
         private void LectureTextBox_MouseEnter(object sender, PointerRoutedEventArgs e)
         {
             if (isLectureNameEditing||_isPlaceEditing) return;
-            VisualStateManager.GoToState(this, "OnEditLectureNameChanging", true);
+            CurrentState=HeaderState.MouseOverLectureName;
+            
         }
 
         private void LectureTextBox_MouseExit(object sender, PointerRoutedEventArgs e)
         {
             if(isLectureNameEditing||_isPlaceEditing)return;
-            VisualStateManager.GoToState(this, "BasicState", true);
+            CurrentState=HeaderState.Default;
+            
         }
 
         private void textBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            VisualStateManager.GoToState(this, "OnEditLectureName", true);
+            CurrentState=HeaderState.EditLectureName;
             isLectureNameEditing = true;
             lectureNameBox.Focus(FocusState.Pointer);
         }
@@ -76,26 +79,27 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private void LectureTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             isLectureNameEditing = false;
-            VisualStateManager.GoToState(this, "BasicState", true);
+            CurrentState=HeaderState.Default;
             ViewModel.LectureNameForEdit = lectureNameBox.Text;
         }
 
         private void PlaceTextBox_MouseEnter(object sender, PointerRoutedEventArgs e)
         {
             if(_isPlaceEditing||isLectureNameEditing)return;
-            VisualStateManager.GoToState(this, "OnEditPlaceChanging", true);
+            CurrentState=HeaderState.MouserOverPlace;
         }
 
         private void PlaceTextBox_MouseExit(object sender, PointerRoutedEventArgs e)
         {
             if(_isPlaceEditing||isLectureNameEditing)return;
-            VisualStateManager.GoToState(this, "BasicState", true);
+            CurrentState=HeaderState.Default;
+            
         }
 
         private void PlaceTextBox_MousePressed(object sender, PointerRoutedEventArgs e)
         {
             _isPlaceEditing = true;
-            VisualStateManager.GoToState(this, "OnEditPlace", true);
+            CurrentState=HeaderState.EditPlace;
             placeBox.Focus(FocusState.Keyboard);
         }
 
@@ -111,13 +115,56 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private void PlaceTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             _isPlaceEditing = false;
-            VisualStateManager.GoToState(this, "BasicState", true);
+            CurrentState=HeaderState.Default;
             ViewModel.PlaceForEdit = placeBox.Text;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ColorPopup.IsOpen = !ColorPopup.IsOpen;
+        }
+
+        private HeaderState CurrentState
+        {
+            get { return _currentState; }
+            set
+            {
+                if (_currentState != value)
+                {
+                    _currentState = value;
+                    string moveTo = "";
+                    switch (_currentState)
+                    {
+                        case HeaderState.Default:
+                            moveTo = "BasicState";
+                            break;
+                        case HeaderState.EditPlace:
+                            moveTo = "OnEditPlace";
+                            break;
+                        case HeaderState.EditLectureName:
+                            moveTo = "OnEditLectureName";
+                            break;
+                        case HeaderState.MouserOverPlace:
+                            moveTo = "OnEditPlaceChanging";
+                            break;
+                        case HeaderState.MouseOverLectureName:
+                            moveTo = "OnEditLectureNameChanging";
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                    VisualStateManager.GoToState(this, moveTo, true);
+                }
+            }
+        }
+
+        private enum HeaderState
+        {
+            Default,
+            EditPlace,
+            EditLectureName,
+            MouserOverPlace,
+            MouseOverLectureName
         }
     }
 }
