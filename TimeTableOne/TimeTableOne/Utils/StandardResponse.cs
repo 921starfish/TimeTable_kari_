@@ -1,23 +1,11 @@
-﻿//*********************************************************
-// Copyright (c) Microsoft Corporation
-// All rights reserved. 
-//
-// Licensed under the Apache License, Version 2.0 (the ""License""); 
-// you may not use this file except in compliance with the License. 
-// You may obtain a copy of the License at 
-// http://www.apache.org/licenses/LICENSE-2.0 
-//
-// THIS CODE IS PROVIDED ON AN  *AS IS* BASIS, WITHOUT 
-// WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS 
-// OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED 
-// WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR 
-// PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT. 
-//
-// See the Apache Version 2.0 License for specific language 
-// governing permissions and limitations under the License.
-//*********************************************************
-
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 
 namespace TimeTableOne.Utils {
@@ -32,7 +20,38 @@ namespace TimeTableOne.Utils {
 		/// Per call identifier that can be logged to diagnose issues with Microsoft support
 		/// </summary>
 		public string CorrelationId { get; set; }
+
+        public static Task<StandardResponse<T>> GetResponse<T>(HttpRequestMessage message, HttpClient client) where T : new()
+        {
+            
+	        return StandardResponse<T>.GetResponse<T>(message, client);
+	    }
 	}
+
+    public class StandardResponse<T>where T:new()
+    {
+        public HttpStatusCode StatusCode { get; set; }
+
+        public string CorrelationId { get; set; }
+
+        public T ResponseData { get; set; }
+
+        public async static Task<StandardResponse<T>> GetResponse<T>(HttpRequestMessage request,HttpClient client)where T:new()
+        {
+            HttpResponseMessage response = await client.SendAsync(request);
+            var result=new StandardResponse<T>();
+            result.StatusCode = response.StatusCode;
+            IEnumerable<string> correlationValues;
+            if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues))
+            {
+                result.CorrelationId = correlationValues.FirstOrDefault();
+            }
+            JsonSerializer serializer=new JsonSerializer();
+            result.ResponseData =
+                serializer.Deserialize<T>(new JsonTextReader(new StringReader(await response.Content.ReadAsStringAsync())));
+            return result;
+        }
+    }
 
 
 	/// <summary>
@@ -67,24 +86,56 @@ namespace TimeTableOne.Utils {
 		/// </summary>
 		public string OneNoteWebUrl { get; set; }
 	}
-	public class GetSuccessResponse : StandardResponse {
-		public string Name { get; set; }
 
-		public string Id { get; set; }
 
-		public string SectionsUri { get; set; }
 
-		public string PagesUri { get; set; }
+    public class GetNoteBooksSuccessResponse
+    {
+        [JsonProperty(PropertyName = "@odata.context")]
+        public string context;
 
-		/// <summary>
-		/// URL to launch OneNote rich client
-		/// </summary>
-		public string OneNoteClientUrl { get; set; }
+        public GetNoteBooksSuccessResponseValueUnit[] value;
+    }
 
-		/// <summary>
-		/// URL to launch OneNote web experience
-		/// </summary>
-		public string OneNoteWebUrl { get; set; }
-	}
+    public class GetNoteBooksSuccessResponseValueUnit
+    {
+        public bool isDefault;
+
+        public string userRole;
+
+        public bool isShared;
+
+        public string sectionsUrl;
+
+        public string sectionGroupsUrl;
+
+        public GetNoteBooksSuccessLinksUnit links;
+
+        public string id;
+
+        public string name;
+
+        public string self;
+
+        public string createdBy;
+
+        public string lastModifiedBy;
+
+        public string createdTime;
+
+        public string lastModifiedTime;
+    }
+
+    public class GetNoteBooksSuccessLinksUnit
+    {
+        public GetNoteBoolsSuccessURIUnit oneNoteClientUrl;
+
+        public GetNoteBoolsSuccessURIUnit oneNoteWebUrl;
+    }
+
+    public class GetNoteBoolsSuccessURIUnit
+    {
+        public string href;
+    }
 
 }

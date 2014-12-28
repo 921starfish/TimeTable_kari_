@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -29,7 +30,9 @@ namespace TimeTableOne.Utils {
 		}
 		#endregion
 
-		private const string UserNotSignedIn = "You're not signed in.";
+        #region Authraize
+
+        private const string UserNotSignedIn = "You're not signed in.";
 
 		private LiveAuthClient _authClient;
 
@@ -121,40 +124,37 @@ namespace TimeTableOne.Utils {
 
 		private static readonly string[] Scopes = new[] { "wl.signin", "wl.offline_access", "Office.OneNote_Create" };
 
-		// httpレスポンスを読みやすくする
-		private static async Task<StandardResponse> TranslateResponse(HttpResponseMessage response) {
-			StandardResponse standardResponse;
-			if (response.StatusCode == HttpStatusCode.Created) {
-				dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-				standardResponse = new CreateSuccessResponse {
-					StatusCode = response.StatusCode,
-					OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
-					OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
-				};
-			}
-			else if (response.StatusCode == HttpStatusCode.OK) {
-				dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-				standardResponse = new GetSuccessResponse {
-					StatusCode = response.StatusCode,
-					Name = responseObject.value.name,
-					Id = responseObject.value.id,
-					SectionsUri = responseObject.sectionsUrl,
-					PagesUri = responseObject.pagesUrl,
-					OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
-					OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
-				};
-			}
-			else {
-				standardResponse = new StandardErrorResponse {
-					StatusCode = response.StatusCode,
-					Message = await response.Content.ReadAsStringAsync()
-				};
-			}
+        #endregion
 
-			IEnumerable<string> correlationValues;
-			if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues)) {
-				standardResponse.CorrelationId = correlationValues.FirstOrDefault();
-			}
+        // httpレスポンスを読みやすくする
+		private static async Task<StandardResponse> TranslateResponse(HttpResponseMessage response) {
+            StandardResponse standardResponse=null;
+            //if (response.StatusCode == HttpStatusCode.Created) {
+            //    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+            //    standardResponse = new CreateSuccessResponse {
+            //        StatusCode = response.StatusCode,
+            //        OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
+            //        OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
+            //    };
+            //}
+            //else if (response.StatusCode == HttpStatusCode.OK) {
+            //    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+            //    standardResponse = new GetSuccessResponse {
+            //        StatusCode = response.StatusCode,
+            //        Value = responseObject.value
+            //    };
+            //}
+            //else {
+            //    standardResponse = new StandardErrorResponse {
+            //        StatusCode = response.StatusCode,
+            //        Message = await response.Content.ReadAsStringAsync()
+            //    };
+            //}
+
+            //IEnumerable<string> correlationValues;
+            //if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues)) {
+            //    standardResponse.CorrelationId = correlationValues.FirstOrDefault();
+            //}
 
 			return standardResponse;
 		}
@@ -258,6 +258,53 @@ namespace TimeTableOne.Utils {
 
 			return await TranslateResponse(response);
 		}
+
+        public async Task<StandardResponse<GetNoteBooksSuccessResponse>> GetNotebooks()
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            if (IsAuthenticated)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+                    "Bearer",
+                    _authClient.Session.AccessToken);
+            }
+
+
+            var getMessage = new HttpRequestMessage(HttpMethod.Get, new Uri("https://www.onenote.com/api/v1.0/notebooks")){};
+             var data=await StandardResponse.GetResponse<GetNoteBooksSuccessResponse>(getMessage, client);
+            //return await TranslateResponse(response);
+            return data;
+        }
+
+        private async Task OpenNotebook(string tableName)
+        {
+            var response = await GetNotebooks();
+            Account.Current.resultTest = ((int)response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
+            //if (response.StatusCode == HttpStatusCode.Created)
+            //{
+            //    var successResponse = (GetSuccessResponse)response;
+                
+            //}
+            //else
+            //{
+
+            //}
+        }
+
+        public async void OpenNotes(string tableName)
+        {
+            pageSectionName = tableName;
+            await AttemptRefreshToken();
+            await OpenNotebook(tableName);
+            await Launcher.LaunchUriAsync(new Uri(clientLink));
+        }
+
+
+
+
 
 		public async void Open(string tableName) {
 			pageSectionName = tableName;

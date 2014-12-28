@@ -114,8 +114,9 @@ namespace TimeTableOne {
 			}
 		}
 
-		private void Test1_Click(object sender, RoutedEventArgs e) {
-			OneNoteControl.Current.OpenNewSection("0-C6B6330B2B7B4BB9!3318");
+		private void Test1_Click(object sender, RoutedEventArgs e)
+		{
+            OneNoteControl.Current.OpenNotes("Test");
 		}
 
 		private void Test2_Click(object sender, RoutedEventArgs e) {
