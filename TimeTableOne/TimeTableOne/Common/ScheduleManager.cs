@@ -67,7 +67,8 @@ namespace TimeTableOne.Common
                     isConfirmed = true;
                     if (CurrentKey == null || (CurrentKey.dayOfWeek != now.DayOfWeek || CurrentKey.TableNumber != i + 1))
                     {
-                        CurrentKey = new TableKey(i + 1, ((int) DateTime.Now.DayOfWeek)%7);
+                        var candidateKey=new TableKey(i + 1, ((int) DateTime.Now.DayOfWeek)%7);
+                        CurrentKey = candidateKey;
                         CurrentTimeSpan = span;
                         CurrentTimeSpanIndex = i + 1;
                     }
@@ -137,6 +138,23 @@ namespace TimeTableOne.Common
             }
         }
 
+        public ScheduleState CurrentScheduleState
+        {
+            get
+            {
+                var no=ApplicationData.Instance.GetNoClassSchedule(DateTimeUtil.Today(), CurrentKey);
+                if (no != null)
+                {
+                    return ScheduleState.NoClass;
+                }
+                else
+                {
+                    //TODO 教室変更の際ここに書く必要あり
+                    return ScheduleState.Default;
+                }
+            }
+        }
+
         public ScheduleTimeSpan NextTimeSpanInToday
         {
             get { return _nextTimeSpanInToday; }
@@ -161,6 +179,11 @@ namespace TimeTableOne.Common
         }
     }
 
+
+    public enum ScheduleState
+    {
+        NoClass,Default,ChangeRoom
+    }
     /// <summary>
     ///     現在の時間帯が変わった際にコールされるイベントのイベント引数
     /// </summary>

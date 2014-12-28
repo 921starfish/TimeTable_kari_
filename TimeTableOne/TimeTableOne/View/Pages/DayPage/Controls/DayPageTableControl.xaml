@@ -72,8 +72,8 @@
                 Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
             <TextBlock></TextBlock>
         </Button>
-        <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter}}"></Border>
-        <Border Background="Red" Grid.ColumnSpan="3" Grid.RowSpan="3"  HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter} }" >
+        <Border IsHitTestVisible="False" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter}}"></Border>
+        <Border IsHitTestVisible="False" Background="Red" Grid.ColumnSpan="3" Grid.RowSpan="3"  HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter} }" >
             <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>
         </Border>
     </Grid>

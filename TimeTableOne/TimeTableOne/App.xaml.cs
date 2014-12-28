@@ -40,7 +40,7 @@ namespace TimeTableOne
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            LiveTileManager.Instance.GenerateTile();
+            NotificationTileManager.Instance.UpdateTile();
         }
 
         /// <summary>
