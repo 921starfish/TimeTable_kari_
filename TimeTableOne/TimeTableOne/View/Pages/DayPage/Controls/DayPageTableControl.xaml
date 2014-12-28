@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls"
+    xmlns:converters="using:WinRTXamlToolkit.Converters"
     mc:Ignorable="d" >
     
     <UserControl.Resources>
@@ -13,6 +14,9 @@
     <Grid Background="{StaticResource EditBoxGray}"  
          Height="{Binding Height}"
           Width="{Binding Width}">
+        <Grid.Resources>
+            <converters:BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="60"/>
@@ -68,6 +72,10 @@
                 Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
             <TextBlock></TextBlock>
         </Button>
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter}}"></Border>
+        <Border Background="Red" Grid.ColumnSpan="3" Grid.RowSpan="3"  HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter} }" >
+            <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>
+        </Border>
     </Grid>
     
 </UserControl>
