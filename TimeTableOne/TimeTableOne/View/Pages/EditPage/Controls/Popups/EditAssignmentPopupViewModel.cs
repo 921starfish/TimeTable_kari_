@@ -18,7 +18,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public EditAssignmentPopupViewModel()
         {
 
-            this._assignmentName = "aa";
+            //this._assignmentName = "aa";
             //this._assignmentDetail = null;
             //this._yearEdit = 0;
             //this._monthEdit = 0;

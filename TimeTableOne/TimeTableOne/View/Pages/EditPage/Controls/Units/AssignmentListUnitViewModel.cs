@@ -33,6 +33,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             updatAssignmentStatus();
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
             EditAssignmentPopupData = new EditAssignmentPopupViewModel();
+            EditAssignmentPopupData.AssignmentName = this.AssignmentName;
+            EditAssignmentPopupData.AssignmentDetail = this.AssignmentDetail;
 
         }
 

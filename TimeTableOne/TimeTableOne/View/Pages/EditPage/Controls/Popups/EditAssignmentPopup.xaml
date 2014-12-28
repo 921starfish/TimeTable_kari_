@@ -11,7 +11,7 @@
     d:DesignHeight="600" Width="600" Height="450"
     d:DesignWidth="450">
     <Grid>
-        <Border Background="White" BorderBrush="Black" BorderThickness="5">
+        <Border Background="{StaticResource EditBoxGray}" BorderBrush="Black" BorderThickness="5">
             <Grid Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -36,15 +36,15 @@
                     </StackPanel.Resources>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="課題名:"></TextBlock>
-                        <TextBox Width="400" Text="{Binding AssignmentName,Mode=TwoWay}"></TextBox>
+                        <TextBox Width="400" Text="{Binding AssignmentName,Mode=TwoWay}" Background="{StaticResource TextBoxGray}" BorderBrush="{x:Null}" ></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="期限:"></TextBlock>
-                        <TextBox Width="40" Text="{Binding YearEdit,Mode=TwoWay}"></TextBox>
+                        <TextBox Width="40" Text="{Binding YearEdit,Mode=TwoWay}" Background="{StaticResource TextBoxGray}" BorderBrush="{x:Null}"></TextBox>
                         <TextBlock Text="年"></TextBlock>
-                        <TextBox Width="40" Text="{Binding MonthEdit,Mode=TwoWay}"/>
+                        <TextBox Width="40" Text="{Binding MonthEdit,Mode=TwoWay}" Background="{StaticResource TextBoxGray}" BorderBrush="{x:Null}"/>
                         <TextBlock Text="月"></TextBlock>
-                        <TextBox Width="40" Text="{Binding DayEdit,Mode=TwoWay}"></TextBox>
+                        <TextBox Width="40" Text="{Binding DayEdit,Mode=TwoWay}" Background="{StaticResource TextBoxGray}" BorderBrush="{x:Null}"></TextBox>
                         <TextBlock Text="日"></TextBlock>
                         <Button BorderThickness="0" Padding="0" Click="ButtonBase_OnClick">
                             <SymbolIcon  Symbol="Download" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -54,13 +54,13 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="概要:"></TextBlock>
-                        <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail,Mode=TwoWay}"></TextBox>
+                        <TextBox Width="400" Height="200" Text="{Binding AssignmentDetail,Mode=TwoWay}" Background="{StaticResource TextBoxGray}" BorderBrush="{x:Null}"></TextBox>
                     </StackPanel>
                 </StackPanel>
                 <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Right" Margin="0,0,25,0" Command="{Binding AcceptCommand}">
                     <SymbolIcon Symbol="Accept" Foreground="LawnGreen"></SymbolIcon>
                 </Button>
-                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Left" Margin="0,0,25,0" Command="{Binding AllDelete}">
+                <Button Grid.Row="2" BorderThickness="3" HorizontalAlignment="Left" Margin="0,0,25,0" Command="{Binding AllDelete}" BorderBrush="{x:Null}">
                     <SymbolIcon Symbol="Delete" Foreground="Black"></SymbolIcon>
                 </Button>
             </Grid>
