@@ -12,15 +12,15 @@
     d:DesignWidth="450">
     
     <Grid>
-        <Border Background="{StaticResource EditBoxGray}" BorderBrush="Black" BorderThickness="5">
+        <Border Background="{StaticResource TextBoxGray}" BorderBrush="Black" BorderThickness="1">
         <Grid Margin="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="80"></RowDefinition>
             </Grid.RowDefinitions>
-            <Rectangle Fill="{StaticResource OneNotePurple}"></Rectangle>
-            <TextBlock Text="課題の追加" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <Rectangle Fill="{Binding TableColor}"></Rectangle>
+            <TextBlock Text="課題の追加" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding ForeColor}"></TextBlock>
             <StackPanel Grid.Row="1">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
@@ -37,25 +37,25 @@
                 </StackPanel.Resources>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="課題名:"></TextBlock>
-                    <TextBox Width="400" Text="{Binding AssignmentName,Mode=TwoWay}" BorderBrush="{x:Null}"></TextBox>
+                    <TextBox Width="450" Text="{Binding AssignmentName,Mode=TwoWay}" BorderBrush="{x:Null}" Background="White"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="期限:"></TextBlock>
-                        <TextBox Width="40" Text="{Binding YearEdit,Mode=TwoWay}" BorderBrush="{x:Null}" ></TextBox>
+                        <TextBox Width="70" Text="{Binding YearEdit,Mode=TwoWay}" BorderBrush="{x:Null}" Background="White" ></TextBox>
                     <TextBlock Text="年"></TextBlock>
-                        <TextBox Width="40" Text="{Binding MonthEdit,Mode=TwoWay}" BorderBrush="{x:Null}"/>
+                        <TextBox Width="70" Text="{Binding MonthEdit,Mode=TwoWay}" BorderBrush="{x:Null}" Background="White"/>
                     <TextBlock Text="月"></TextBlock>
-                        <TextBox Width="40" Text="{Binding DayEdit,Mode=TwoWay}" BorderBrush="{x:Null}"></TextBox>
+                        <TextBox Width="70" Text="{Binding DayEdit,Mode=TwoWay}" BorderBrush="{x:Null}" Background="White"></TextBox>
                     <TextBlock Text="日"></TextBlock>
                     <Button BorderThickness="0" Padding="0" Click="ButtonBase_OnClick">
                         <SymbolIcon  Symbol="Download" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                        Foreground="Black" />
+                                        Foreground="Black" Width="94" />
                               
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="概要:"></TextBlock>
-                        <TextBox Width="400" Height="200" BorderBrush="{x:Null}" Text="{Binding AssignmentDetail,Mode=TwoWay}"></TextBox>
+                        <TextBox Width="475" Height="200" BorderBrush="{x:Null}" Text="{Binding AssignmentDetail,Mode=TwoWay}" Background="White"></TextBox>
                 </StackPanel>
             </StackPanel>
                 <Button Grid.Row="2" BorderBrush="{StaticResource TextBoxBorder}" BorderThickness="3" HorizontalAlignment="Right" Margin="0,0,25,0" Command="{Binding AcceptCommand}">

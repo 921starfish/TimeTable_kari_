@@ -52,5 +52,11 @@ namespace TimeTableOne.Utils
             throw  new InvalidDataContractException();
         }
 
+        public static DateTime Today()
+        {
+            var d = DateTime.Now;
+            return new DateTime(d.Year,d.Month,d.Day,0,0,0);
+        }
+
     }
 }

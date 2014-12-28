@@ -60,8 +60,8 @@
                 BorderBrush="#00000000">
         </Button>
         <Rectangle Margin="1" x:Name="rectangle" StrokeThickness="2" Stroke="DodgerBlue"/>
-        <Border Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" ></Border>
-        <Border Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" >
+        <Border IsHitTestVisible="False" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" ></Border>
+        <Border IsHitTestVisible="False" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" >
             <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>
         </Border>
     </Grid>

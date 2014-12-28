@@ -29,6 +29,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         private ColorPopupViewModel(ScheduleData data) : this()
         {
+            _tableColor = new SolidColorBrush(data.ColorData);
             GenerateColors();
             for (int i = 0; i < ColorItems.Count; i++)
             {
@@ -38,6 +39,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     return;
                 }
             }
+            
         }
 
         public ObservableCollection<ColorPopupUnitViewModel> ColorItems { get; set; }

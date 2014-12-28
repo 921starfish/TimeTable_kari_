@@ -44,7 +44,7 @@
         	<TextBlock.RenderTransform>
         		<CompositeTransform ScaleY="1"/>
         	</TextBlock.RenderTransform></TextBlock>
-        <Grid x:Name="grid" Background="{StaticResource OneNotePurple}" Grid.Row="2" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0" PointerExited="Grid_OnPointerExited" IsHitTestVisible="True">
+        <Grid x:Name="grid" Grid.Row="2" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0" PointerExited="Grid_OnPointerExited" IsHitTestVisible="True">
         	<Grid.RenderTransform>
         		<CompositeTransform ScaleY="0"/>
         	</Grid.RenderTransform>
@@ -53,9 +53,21 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <AppBarButton HorizontalAlignment="Center" BorderBrush="Black" Grid.Column="0" Icon="Accept" Foreground="Green" Command="{Binding CompleteCommand}" VerticalAlignment="Center"/>
-            <AppBarButton HorizontalAlignment="Center" BorderBrush="Black" Grid.Column="1" Icon="Edit" Foreground="White" VerticalAlignment="Center"  Click="ShowEditPopup"/>
-            <AppBarButton HorizontalAlignment="Center" BorderBrush="Black" Grid.Column="2" Icon="Library" Foreground="White" VerticalAlignment="Center"/>
+            <Button BorderThickness="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding CompleteCommand}" >
+                <Border BorderThickness="2" BorderBrush="Black" CornerRadius="100" Padding="5" >
+                    <SymbolIcon Symbol="Accept" Foreground="Black"></SymbolIcon>
+                </Border>
+            </Button>
+            <Button BorderThickness="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="ShowEditPopup">
+                <Border BorderThickness="2" BorderBrush="Black" CornerRadius="100" Padding="5">
+                    <SymbolIcon Symbol="Edit" Foreground="Black"></SymbolIcon>
+                </Border>
+            </Button>
+            <Button BorderThickness="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
+                <Border BorderThickness="2" BorderBrush="Black" CornerRadius="100" Padding="5" >
+                    <SymbolIcon Symbol="Library" Foreground="Black"></SymbolIcon>
+                </Border>
+            </Button>
         </Grid>
         <Popup x:Name="EditPopup" HorizontalAlignment="Right" IsLightDismissEnabled="True" >
             <popups:EditAssignmentPopup DataContext="{Binding EditAssignmentPopupData}"/>

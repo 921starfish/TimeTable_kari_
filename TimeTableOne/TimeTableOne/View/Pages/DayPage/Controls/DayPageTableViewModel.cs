@@ -93,5 +93,15 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         public SolidColorBrush TableColor { get; set; }
         public string Place { get; set; }
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
+
+        public bool IsNoClass
+        {
+            get
+            {
+                return
+    ApplicationData.Instance.GetNoClassSchedule(
+        DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
+            }
+        }
     }
 }

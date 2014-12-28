@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Common;
 using TimeTableOne.Data;
 // add the assembly for the Settings flyout
 using Windows.UI.ApplicationSettings;
@@ -39,6 +40,7 @@ namespace TimeTableOne
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            NotificationTileManager.Instance.UpdateTile();
         }
 
         /// <summary>

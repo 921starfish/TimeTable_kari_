@@ -10,6 +10,8 @@ using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 {
@@ -42,6 +44,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             assignment.DueTime = _dueDate;
             ApplicationData.Instance.Assignments.Add(assignment);
             ApplicationData.SaveData();
+          
         }
 
         protected string _assignmentName;
@@ -51,6 +54,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         protected int _dayEdit;
         protected DateTime _dueDate;
         protected BasicCommand _acceptCommand;
+        private Brush _foreColor;
 
         public string AssignmentName
         {
@@ -75,6 +79,21 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 _acceptCommand.NotifyCanExecuteChanged();
 
             }
+        }
+        public SolidColorBrush TableColor
+        {
+            get { return new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); ; }
+            set { }
+        }
+        public Brush ForeColor
+        {
+            get
+            {
+                return TableUnitDataHelper.GetCurrentSchedule().ColorData.Liminance() >= 0.5
+                    ? new SolidColorBrush(Colors.Black)
+                    : new SolidColorBrush(Colors.White);
+            }
+            set { }
         }
 
         public int YearEdit
