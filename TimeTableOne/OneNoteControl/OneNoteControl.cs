@@ -256,8 +256,8 @@ namespace TimeTableOne.Utils {
 			return await TranslateResponse(response);
 		}
 
-        public async Task<StandardResponse<GetNoteBooksSuccessResponse>> GetNotebooks()
-        {
+	    private HttpClient GenerateClient()
+	    {
             var client = new HttpClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -268,11 +268,12 @@ namespace TimeTableOne.Utils {
                     "Bearer",
                     _authClient.Session.AccessToken);
             }
+	        return client;
+	    }
 
-
-            var getMessage = new HttpRequestMessage(HttpMethod.Get, new Uri("https://www.onenote.com/api/v1.0/notebooks")){};
-             var data=await StandardResponse.GetResponse<GetNoteBooksSuccessResponse>(getMessage, client);
-            //return await TranslateResponse(response);
+	    private async Task<JsonResponse<GetNoteBooksSuccessResponse>> GetNotebooks()
+        {
+            var data = await StandardResponse.FetchJsonResponse<GetNoteBooksSuccessResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
             return data;
         }
 
