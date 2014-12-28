@@ -16,7 +16,7 @@ namespace TimeTableOne.Utils
             DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday
         };
 
-        private static Color[] colors =
+        private static Color[] WeekColors=
         {
             Colors.Black, Colors.Black, Colors.Black, Colors.Black, Colors.Black,
             Colors.CornflowerBlue, Colors.Red
@@ -27,9 +27,14 @@ namespace TimeTableOne.Utils
             return (float) (0.298912*col.R/255d + 0.586611*col.G/255d + 0.114478*col.B/255d);
         }
 
-        public static Brush GetWeekColor(this DayOfWeek week)
+        public static Brush GetWeekColor(this DayOfWeek week,bool isWhiteTheme=true)
         {
-            return new SolidColorBrush(colors[Array.IndexOf(headers, week)]);
+            var col = WeekColors[Array.IndexOf(headers, week)];
+            if (!isWhiteTheme && col == Colors.Black)
+            {
+                col = Colors.White;
+            }
+            return new SolidColorBrush(col);
         }
     }
 }

@@ -116,8 +116,8 @@
         </Grid.ColumnDefinitions>
         <Border  Background="{Binding BackgroundColor}">
             <Button BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
-                <Border BorderThickness="2" BorderBrush="white" CornerRadius="100" Padding="10">
-                <SymbolIcon Symbol="Calendar" Foreground="White"></SymbolIcon>
+                <Border BorderThickness="2" BorderBrush="{Binding BasicForeground}" CornerRadius="100" Padding="10">
+                    <SymbolIcon Symbol="Calendar" Foreground="{Binding BasicForeground}"></SymbolIcon>
             </Border>
             </Button>
         </Border>
@@ -133,7 +133,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
                 <TextBlock x:Name="textBlock1"  Text="{Binding WeekText}" FontSize="20" Foreground="{Binding WeekBrush}" Padding="0,0,10,0"></TextBlock>
-                <TextBlock Text="{Binding TimeText}" FontSize="20" Padding="10,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding TimeText}" FontSize="20" Padding="10,0,0,0" Foreground="{Binding BasicForeground}"></TextBlock>
             </StackPanel>
             <StackPanel Margin="32,0,0,0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
@@ -142,21 +142,21 @@
                                                      Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="lectureNameBox"
                                                      Visibility="Collapsed" Opacity="0" Width="300" Height="50"
                                                      GotFocus="LectureTextBox_GotFocus"
-                                                     LostFocus="LectureTextBox_LostFocus" />
+                                                     LostFocus="LectureTextBox_LostFocus" KeyDown="LectureNameBox_OnKeyDown"/>
                 <TextBlock x:Name="textBlock" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center"
                                Text="{Binding LectureName}" FontSize="50" PointerEntered="LectureTextBox_MouseEnter"
-                               PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed">
+                               PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed" Foreground="{Binding BasicForeground}">
                 </TextBlock>
-                <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0"></SymbolIcon>
+                <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0" Foreground="{Binding BasicForeground}"></SymbolIcon>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="placeBox" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
-                <TextBlock x:Name="textBlock2" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Place}" FontSize="20" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
-                <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0"></SymbolIcon>
+                <TextBlock x:Name="textBlock2" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding BasicForeground}" Text="{Binding Place}" FontSize="20" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
+                <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0" Foreground="{Binding BasicForeground}"></SymbolIcon>
             </StackPanel>
             <Button Grid.Row ="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click">
                 <StackPanel>
-                    <SymbolIcon Symbol="Flag"></SymbolIcon>
+                    <SymbolIcon Symbol="Flag" Foreground="{Binding BasicForeground}"></SymbolIcon>
                     <Popup x:Name="ColorPopup" IsLightDismissEnabled="True">
                         <local:ColorPopup Width="400" Height="300" ></local:ColorPopup>
                     </Popup>

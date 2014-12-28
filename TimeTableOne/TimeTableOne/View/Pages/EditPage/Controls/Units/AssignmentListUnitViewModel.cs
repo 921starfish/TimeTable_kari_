@@ -34,12 +34,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         private async void Completed()
         {
-            
             MessageDialog dlg = new MessageDialog("課題「"+AssignmentName+"」を完了に設定します");
             dlg.Commands.Add(new UICommand("はい"));
             dlg.Commands.Add(new UICommand("いいえ"));
-            dlg.Commands.Add(new UICommand("キャンセル"));
-            dlg.DefaultCommandIndex = 2;
+            dlg.DefaultCommandIndex = 1;
             var cmd = await dlg.ShowAsync();
             if(cmd == dlg.Commands[0])
             {
@@ -66,11 +64,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             if (_schedule.IsCompleted)
             {
                 AssignmentStatusColor=new SolidColorBrush(Colors.GreenYellow);
+                AssignmentStatus = "完了済";
             }
             else
             {
-                DateTime dueTime = _schedule.DueTime;
-
+                AssignmentStatusColor=new SolidColorBrush(Colors.Yellow);
+                AssignmentStatus = "未完了";
             }
         }
 
