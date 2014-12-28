@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using Windows.UI.Xaml;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
 
@@ -13,6 +14,10 @@ namespace TimeTableOne.Common
     {
         private static ScheduleManager _instance;
         private TableKey _currentKey;
+        private TableKey _nextKeyInToday;
+        private ScheduleTimeSpan _currentTimeSpan;
+        private int _currentTimeSpanIndex;
+        private ScheduleTimeSpan _nextTimeSpanInToday;
 
         /// <summary>
         ///     Instance of Singleton
@@ -52,18 +57,60 @@ namespace TimeTableOne.Common
         /// </summary>
         private void UpdateCurrentTable()
         {
+            bool isConfirmed = false;
             var now = new DateTime(2015, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             for (var i = 0; i < ApplicationData.Instance.TimeSpans.Count; i++)
             {
                 var span = ApplicationData.Instance.TimeSpans[i];
                 if ((now - span.FromTime).TotalMilliseconds > 0 && (span.ToTime - now).TotalMilliseconds > 0)
                 {
+                    isConfirmed = true;
                     if (CurrentKey == null || (CurrentKey.dayOfWeek != now.DayOfWeek || CurrentKey.TableNumber != i + 1))
                     {
                         CurrentKey = new TableKey(i + 1, ((int) DateTime.Now.DayOfWeek)%7);
+                        CurrentTimeSpan = span;
+                        CurrentTimeSpanIndex = i + 1;
                     }
                 }
             }
+            if (!isConfirmed)
+            {
+                CurrentKey = null;
+                CurrentTimeSpanIndex = 0;
+            }
+            isConfirmed = false;
+            for (var i = 0; i < ApplicationData.Instance.TimeSpans.Count; i++)
+            {
+                var span = ApplicationData.Instance.TimeSpans[i];
+                if ((now - span.FromTime).TotalMilliseconds < 0)
+                {
+                    isConfirmed = true;
+                    if (NextKeyInToday == null || (NextKeyInToday.dayOfWeek != now.DayOfWeek || NextKeyInToday.TableNumber != i + 1))
+                    {
+                        NextKeyInToday = new TableKey(i + 1, ((int)DateTime.Now.DayOfWeek) % 7);
+                        NextTimeSpanInToday = span;
+                        NextTimeSpanIndexInToday=i+1;
+                    }
+                    break;
+                }
+            }
+            if (!isConfirmed)
+            {
+                NextKeyInToday = null;
+                NextTimeSpanIndexInToday = 0;
+            }
+        }
+
+        public ScheduleTimeSpan CurrentTimeSpan
+        {
+            get { return _currentTimeSpan; }
+            set { _currentTimeSpan = value; }
+        }
+
+        public int CurrentTimeSpanIndex
+        {
+            get { return _currentTimeSpanIndex; }
+            set { _currentTimeSpanIndex = value; }
         }
 
         /// <summary>
@@ -78,6 +125,38 @@ namespace TimeTableOne.Common
                 var lastKey = _currentKey;
                 _currentKey = value;
                 CurrentScheduleChanged(this, new CurrentScheduleKeyChangedEventArgs(lastKey, value));
+            }
+        }
+
+        public ScheduleData CurrentSchedule
+        {
+            get
+            {
+                if (CurrentKey == null) return null;
+                return ApplicationData.Instance.GetSchedule(CurrentKey.NumberOfDay, CurrentKey.TableNumber);
+            }
+        }
+
+        public ScheduleTimeSpan NextTimeSpanInToday
+        {
+            get { return _nextTimeSpanInToday; }
+            set { _nextTimeSpanInToday = value; }
+        }
+
+        public int NextTimeSpanIndexInToday { get; set; }
+
+        public TableKey NextKeyInToday
+        {
+            get { return _nextKeyInToday; }
+            set { _nextKeyInToday = value; }
+        }
+
+        public ScheduleData NextScheduleInToday
+        {
+            get
+            {
+                if (NextKeyInToday == null) return null;
+                return ApplicationData.Instance.GetSchedule(NextKeyInToday.NumberOfDay, NextKeyInToday.TableNumber);
             }
         }
     }
