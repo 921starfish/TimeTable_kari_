@@ -15,14 +15,13 @@
     <Grid Background="{StaticResource EditBoxGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5" Foreground="Black">出席率</TextBlock>
-        <local:AttendRateUserControl Margin="0,40,0,0"></local:AttendRateUserControl>
+        <!--<TextBlock FontSize="30" HorizontalAlignment="Center" Margin="5" Foreground="Black">出席率</TextBlock>-->
+        <!--<local:AttendRateUserControl Margin="0,40,0,0"></local:AttendRateUserControl>-->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ToggleNoClassPopup">
@@ -32,7 +31,7 @@
                 </StackPanel>
             </Button>
             <Popup Grid.Row="0" HorizontalAlignment="Right" x:Name="NoClassControl" IsLightDismissEnabled="True">
-                <popups:NoClassPopupControl Width="400" Height="600" Margin="0,-300,0,0"/>
+                <popups:NoClassPopupControl Width="400" Height="600" Margin="0,0,0,0"/>
             </Popup>
             <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ToggleChangeRoomPopup">
                 <StackPanel Orientation="Horizontal">
@@ -41,9 +40,9 @@
                 </StackPanel>
             </Button>
             <Popup Grid.Row="1" HorizontalAlignment="Right" x:Name="ChangeRoomControl" IsLightDismissEnabled="True">
-                <popups:ChangeRoomPopupControl Width="400" Height="600" Margin="0,-300,0,0"/>
+                <popups:ChangeRoomPopupControl Width="400" Height="600" Margin="0,0,0,0"/>
             </Popup>
-            <TextBlock Grid.Row="2" Text="{Binding RecordFirstDate}" Foreground="White" HorizontalAlignment="Center" FontSize="15"></TextBlock>
+            <!--<TextBlock Grid.Row="2" Text="{Binding RecordFirstDate}" Foreground="Black" HorizontalAlignment="Center" FontSize="15"></TextBlock>-->
         </Grid>
     </Grid>
 </UserControl>

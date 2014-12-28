@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DesignHeight="200"
     d:DesignWidth="350" d:DataContext="{local:AssignmentListUnitViewModelInDesign}">
-    <Grid Background="White" >
+    <Grid Background="GhostWhite" >
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">
     			<VisualStateGroup.Transitions>
@@ -37,10 +37,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding AssignmentName}" FontSize="20" VerticalAlignment="Center" Foreground="Black"></TextBlock>
-        <TextBlock Text="{Binding AssignmentStatus}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{Binding AssignmentStatusColor}"/>
+        <TextBlock Text="{Binding AssignmentName}" FontSize="20" VerticalAlignment="Center" Margin="4" Foreground="Black"></TextBlock>
+        <TextBlock Text="{Binding AssignmentStatus}" FontSize="20" VerticalAlignment="Center"  HorizontalAlignment="Right" Foreground="{Binding AssignmentStatusColor}"/>
         <TextBlock x:Name="textBlock" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Text="{Binding RemainingDateInformation}" Foreground="Black"></TextBlock>
-        <TextBlock x:Name="textBlock1" Grid.Row="2" Grid.Column="0"  FontSize="18" Text="{Binding AssignmentDetail}" RenderTransformOrigin="0.5,1" PointerPressed="TextBlock1_OnPointerPressed" Foreground="Black">
+        <TextBlock x:Name="textBlock1" Grid.Row="2" Grid.Column="0" Margin="4" FontSize="18" Text="{Binding AssignmentDetail}" RenderTransformOrigin="0.5,1" PointerPressed="TextBlock1_OnPointerPressed" Foreground="Black">
         	<TextBlock.RenderTransform>
         		<CompositeTransform ScaleY="1"/>
         	</TextBlock.RenderTransform></TextBlock>
