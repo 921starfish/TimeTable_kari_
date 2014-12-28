@@ -18,7 +18,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="{Binding TableColor}" Margin="0,1,2,0"></Border>
-            <TextBlock Grid.Row="0" Foreground="{Binding ForeColor}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">テーブル色を設定します</TextBlock>
+            <TextBlock Grid.Row="0" Foreground="{Binding ForeColor}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" >テーブル色を設定します</TextBlock>
             <ListView Name="ColorList" d:DataContext="{local:ColorPopupViewModelInDesign}" Grid.Row="1" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}"  ItemsSource="{Binding ColorItems}"  Width="365" SelectionChanged="Selector_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
