@@ -84,7 +84,6 @@ namespace TimeTableOne.Utils {
 				return loginResult;
 			}
 			catch (Exception e) {
-				Account.Current.resultTest = e.ToString();
 				return null;
 			}
 		}
@@ -188,7 +187,6 @@ namespace TimeTableOne.Utils {
 		// 新規ページ作成の制御
 		private async Task CreatePage() {
 			StandardResponse response = await CreateEmptyPage(pageSectionName);
-			Account.Current.resultTest = ((int) response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
 			if (response.StatusCode == HttpStatusCode.Created) {
 				var successResponse = (CreateSuccessResponse) response;
 				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
@@ -229,7 +227,6 @@ namespace TimeTableOne.Utils {
 
 		private async Task CreateSection() {
 			StandardResponse response = await CreateEmptyPage(notebookID);
-			Account.Current.resultTest = ((int)response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
 			if (response.StatusCode == HttpStatusCode.Created) {
 				var successResponse = (CreateSuccessResponse)response;
 				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
@@ -282,7 +279,6 @@ namespace TimeTableOne.Utils {
         private async Task OpenNotebook(string tableName)
         {
             var response = await GetNotebooks();
-            Account.Current.resultTest = ((int)response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
             //if (response.StatusCode == HttpStatusCode.Created)
             //{
             //    var successResponse = (GetSuccessResponse)response;
@@ -315,7 +311,6 @@ namespace TimeTableOne.Utils {
 
 		private async Task GetSectionName() {
 			StandardResponse response = await GetSectionInfo(pageSectionName);
-			Account.Current.resultTest = ((int) response.StatusCode).ToString() + ": " + response.StatusCode.ToString();
 			if (response.StatusCode == HttpStatusCode.Created) {
 				var successResponse = (CreateSuccessResponse)response;
 				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
