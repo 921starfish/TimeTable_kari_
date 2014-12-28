@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.Live;
-using Newtonsoft.Json;
 using Windows.System;
+using Microsoft.Live;
+using OneNoteControl.Responses;
 
-
-namespace TimeTableOne.Utils {
+namespace OneNoteControl {
 
 	public class OneNoteControl {
 		#region singleton

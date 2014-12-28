@@ -122,4 +122,16 @@ namespace TimeTableOne.Utils
         public string OneNoteWebUrl { get; set; }
     }
 
+
+    public class GetLinksUnit
+    {
+        public GeLinksURIUnit oneNoteClientUrl;
+
+        public GeLinksURIUnit oneNoteWebUrl;
+    }
+
+    public class GeLinksURIUnit
+    {
+        public string href;
+    }
 }

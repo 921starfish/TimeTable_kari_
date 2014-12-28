@@ -43,7 +43,7 @@
     <Compile Include="OneNoteControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\GetNoteBooksSuccessResponse.cs" />
-    <Compile Include="StandardResponse.cs" />
+    <Compile Include="Responses\StandardResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Live">

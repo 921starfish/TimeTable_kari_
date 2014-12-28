@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TimeTableOne.Utils;
 
 public class GetNoteBooksSuccessResponse
 {
@@ -20,7 +21,7 @@ public class GetNoteBooksSuccessResponseValueUnit
 
     public string sectionGroupsUrl;
 
-    public GetNoteBooksSuccessLinksUnit links;
+    public GetLinksUnit links;
 
     public string id;
 
@@ -35,16 +36,4 @@ public class GetNoteBooksSuccessResponseValueUnit
     public string createdTime;
 
     public string lastModifiedTime;
-}
-
-public class GetNoteBooksSuccessLinksUnit
-{
-    public GetNoteBoolsSuccessURIUnit oneNoteClientUrl;
-
-    public GetNoteBoolsSuccessURIUnit oneNoteWebUrl;
-}
-
-public class GetNoteBoolsSuccessURIUnit
-{
-    public string href;
 }
