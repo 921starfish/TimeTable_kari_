@@ -29,25 +29,8 @@ namespace TimeTableOne.Utils
         {
             get
             {
-                switch (_dayOfWeek)
-                {
-                    case DayOfWeek.Friday:
-                        return 5;
-                    case DayOfWeek.Monday:
-                        return 1;
-                    case DayOfWeek.Saturday:
-                        return 6;
-                    case DayOfWeek.Sunday:
-                        return 7;
-                    case DayOfWeek.Thursday:
-                        return 4;
-                    case DayOfWeek.Tuesday:
-                        return 2;
-                    case DayOfWeek.Wednesday:
-                        return 3;
-                    default:
-                        return 0;
-                }
+                if ((int) _dayOfWeek == 0) return 7;
+                else return (int) _dayOfWeek;
             }
             set
             {
@@ -70,6 +53,9 @@ namespace TimeTableOne.Utils
                         break;
                     case 6:
                         _dayOfWeek = DayOfWeek.Saturday;
+                        break;
+                    case 0:
+                        _dayOfWeek = DayOfWeek.Sunday;
                         break;
                     case 7:
                         _dayOfWeek = DayOfWeek.Sunday;

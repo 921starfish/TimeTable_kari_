@@ -35,7 +35,6 @@ namespace TimeTableOne.View.Pages.DayPage
                 }
             }
             Background = new Uri(ApplicationData.Instance.Configuration.BackgroundImagePath);
-           
         }
 
        

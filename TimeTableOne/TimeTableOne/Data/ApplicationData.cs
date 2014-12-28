@@ -45,30 +45,30 @@ namespace TimeTableOne.Data
         static void Assignments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             AssignmentSchedule sc = Instance.Assignments[e.NewStartingIndex];
-            Instance.OnAssignmentChanged(Instance,new AssignmentChangedEventArgs(sc.ScheduleId));
+            Instance.OnAssignmentChanged(Instance, new AssignmentChangedEventArgs(sc.ScheduleId));
         }
 
         #region Events
         /// <summary>
         /// 保存されている課題リストが変動した際に呼び出されます。
         /// </summary>
-        public event EventHandler<AssignmentChangedEventArgs> OnAssignmentChanged = delegate { }; 
-            
+        public event EventHandler<AssignmentChangedEventArgs> OnAssignmentChanged = delegate { };
+
         #endregion
 
         public List<ScheduleKey> Keys = new List<ScheduleKey>();
 
-        public List<ScheduleData> Data =new List<ScheduleData>();
+        public List<ScheduleData> Data = new List<ScheduleData>();
 
-        public List<ScheduleTimeSpan> TimeSpans=new List<ScheduleTimeSpan>();
+        public List<ScheduleTimeSpan> TimeSpans = new List<ScheduleTimeSpan>();
 
-        public ConfigurationData Configuration=new ConfigurationData();
+        public ConfigurationData Configuration = new ConfigurationData();
 
-        public ObservableCollection<AssignmentSchedule> Assignments=new ObservableCollection<AssignmentSchedule>(); 
+        public ObservableCollection<AssignmentSchedule> Assignments = new ObservableCollection<AssignmentSchedule>();
 
-        public List<ClassRoomChangeSchedule> ClassRoomChanges=new List<ClassRoomChangeSchedule>(); 
+        public List<ClassRoomChangeSchedule> ClassRoomChanges = new List<ClassRoomChangeSchedule>();
 
-        public List<NoClassSchedule> NoClassSchedules=new List<NoClassSchedule>(); 
+        public List<NoClassSchedule> NoClassSchedules = new List<NoClassSchedule>();
         private static ApplicationDataContainer SettingFolder
         {
             get
@@ -82,13 +82,13 @@ namespace TimeTableOne.Data
             if (SettingFolder.Values["DATA-COUNT"] != null)
             {
                 int count = (int)SettingFolder.Values["DATA-COUNT"];
-                List<byte> decompressed=new List<byte>();
+                List<byte> decompressed = new List<byte>();
                 for (int i = 0; i < count; i++)
                 {
                     byte[] data = SettingFolder.Values["DATA-" + i] as byte[];
                     decompressed.AddRange(data);
                 }
-                return Encoding.Unicode.GetString(decompressed.ToArray(),0,decompressed.Count);
+                return Encoding.Unicode.GetString(decompressed.ToArray(), 0, decompressed.Count);
             }
             else
             {
@@ -100,16 +100,16 @@ namespace TimeTableOne.Data
         {
             char[] saveChars = data.ToCharArray();
             byte[] dataAsBytes = Encoding.Unicode.GetBytes(saveChars);
-            byte[] buffer=new byte[1024];
-            using (MemoryStream ms=new MemoryStream(dataAsBytes))
+            byte[] buffer = new byte[1024];
+            using (MemoryStream ms = new MemoryStream(dataAsBytes))
             {
                 int sum = 0;
                 int count = 0;
                 int itr = 0;
-                while ((count=ms.Read(buffer,0,1024))!=0)
+                while ((count = ms.Read(buffer, 0, 1024)) != 0)
                 {
-                    byte[] cpBuf=new byte[count];
-                    Array.Copy(buffer,cpBuf,count);
+                    byte[] cpBuf = new byte[count];
+                    Array.Copy(buffer, cpBuf, count);
                     SettingFolder.Values["DATA-" + itr] = cpBuf;
                     sum += count;
                     itr++;
@@ -128,29 +128,29 @@ namespace TimeTableOne.Data
             {
                 string castedData = getDataString();
                 if (string.IsNullOrWhiteSpace(castedData)) return new ApplicationData();
-                    Debug.WriteLine(castedData);
-                    importer.WriteAsync(castedData);
-                    importer.FlushAsync();
-                    ms.Seek(0, SeekOrigin.Begin);
-                    XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
-                    XmlReader reader = XmlReader.Create(ms);
-                    try
+                Debug.WriteLine(castedData);
+                importer.WriteAsync(castedData);
+                importer.FlushAsync();
+                ms.Seek(0, SeekOrigin.Begin);
+                XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
+                XmlReader reader = XmlReader.Create(ms);
+                try
+                {
+                    if (serializer.CanDeserialize(reader))
                     {
-                        if (serializer.CanDeserialize(reader))
-                        {
-                            return serializer.Deserialize(reader) as ApplicationData;
-                        }
+                        return serializer.Deserialize(reader) as ApplicationData;
                     }
-                    catch (XmlException e)
-                    {
-                        Debug.WriteLine(e.ToString());
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine(e.ToString());
-                    }
-                    return new ApplicationData();
                 }
+                catch (XmlException e)
+                {
+                    Debug.WriteLine(e.ToString());
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.ToString());
+                }
+                return new ApplicationData();
+            }
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace TimeTableOne.Data
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ApplicationData));
                 serializer.Serialize(ms, Instance);
-                 ms.Flush();
+                ms.Flush();
                 ms.Seek(0, SeekOrigin.Begin);
                 using (StreamReader reader = new StreamReader(ms))
                 {
@@ -174,6 +174,7 @@ namespace TimeTableOne.Data
 
         private async Task<Guid> GetKey(int dayofWeek, int tableNumber)
         {
+            if (dayofWeek == 0) dayofWeek = 7;
             foreach (var guid in from k in Keys where k.DayOfWeek == dayofWeek && k.TableNumber == tableNumber select k.DataId)
             {
                 return guid;
@@ -187,7 +188,7 @@ namespace TimeTableOne.Data
         /// <param name="dayOfWeek"></param>
         /// <param name="tableNumber"></param>
         /// <returns></returns>
-        public ScheduleData                                                                                    GetSchedule(int dayOfWeek, int tableNumber)
+        public ScheduleData GetSchedule(int dayOfWeek, int tableNumber)
         {
             Guid key = GetKey(dayOfWeek, tableNumber).Result;
             if (key == Guid.Empty)
@@ -215,7 +216,7 @@ namespace TimeTableOne.Data
         public ClassRoomChangeSchedule GetClassRoomChangeSchedule(DateTime t, TableKey key)
         {
             var sc = GetSchedule(key.NumberOfDay, key.TableNumber);
-            foreach (var schedule in from cc in ClassRoomChanges where cc.ScheduleId.Equals(sc.ScheduleId)&&cc.ChangedDay.Equals(t) select cc)
+            foreach (var schedule in from cc in ClassRoomChanges where cc.ScheduleId.Equals(sc.ScheduleId) && cc.ChangedDay.Equals(t) select cc)
             {
                 return schedule;
             }
@@ -251,12 +252,12 @@ namespace TimeTableOne.Data
 
         public ClassRoomChangeSchedule()
         {
-            
+
         }
 
         public static ClassRoomChangeSchedule Generagte(DateTime next, ScheduleData targetLecture, string changedTo)
         {
-            next=new DateTime(next.Year,next.Month,next.Day,0,0,0);
+            next = new DateTime(next.Year, next.Month, next.Day, 0, 0, 0);
             return new ClassRoomChangeSchedule()
             {
                 ChangedDay = next,
@@ -289,14 +290,14 @@ namespace TimeTableOne.Data
     {
         public ScheduleData()
         {
-            
+
         }
 
         public Guid ScheduleId;
 
         public string TableName = "";
 
-        public string Place ="";
+        public string Place = "";
 
         public string FreeFormText = "";
 
@@ -309,12 +310,12 @@ namespace TimeTableOne.Data
 
         public static ScheduleData GenerateEmpty()
         {
-            return new ScheduleData() { ScheduleId = Guid.NewGuid(),ColorData = Color.FromArgb(255,128,57,123),CreationDate =DateTime.Now};
+            return new ScheduleData() { ScheduleId = Guid.NewGuid(), ColorData = Color.FromArgb(255, 128, 57, 123), CreationDate = DateTime.Now };
         }
 
         public AssignmentSchedule GenerateAssignmentEmpty()
         {
-            return new AssignmentSchedule(){ScheduleId= ScheduleId};
+            return new AssignmentSchedule() { ScheduleId = ScheduleId };
         }
     }
 
@@ -323,7 +324,7 @@ namespace TimeTableOne.Data
         public DateTime FromTime;
         public DateTime ToTime;
 
-        public static ScheduleTimeSpan GenerateFromHourMinute(int fromHour,int fromMinute,int toHour,int toMinute)
+        public static ScheduleTimeSpan GenerateFromHourMinute(int fromHour, int fromMinute, int toHour, int toMinute)
         {
             return new ScheduleTimeSpan()
             {
@@ -332,13 +333,13 @@ namespace TimeTableOne.Data
             };
         }
     }
-   
+
     public class AssignmentSchedule
     {
         public DateTime DueTime;
         public Guid ScheduleId;
-        public string AssignmentName="";
-        public string AssignmentDetail="";
+        public string AssignmentName = "";
+        public string AssignmentDetail = "";
         public bool IsCompleted;
     }
 }
