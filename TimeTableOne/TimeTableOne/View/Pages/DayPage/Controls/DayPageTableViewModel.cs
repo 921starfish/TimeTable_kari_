@@ -52,12 +52,12 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
         {
             if (TableKey.Equals(ScheduleManager.Instance.CurrentKey))
             {
-                this.Width = 600;
+                this.Width = 410;
                 this.Height = 250;
             }
             else
             {
-                this.Width = 350;
+                this.Width = 400;
                 this.Height = 150;
             }
 
