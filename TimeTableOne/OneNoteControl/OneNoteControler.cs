@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -251,6 +252,10 @@ namespace OneNoteControl {
 			return await TranslateResponse(response);
 		}
 
+
+
+
+
 	    private HttpClient GenerateClient()
 	    {
             var client = new HttpClient();
@@ -268,22 +273,38 @@ namespace OneNoteControl {
 
 	    private async Task<JsonResponse<GetNotebooksResponse>> GetNotebooks()
         {
-            var data = await StandardResponse.FetchJsonResponse<GetNotebooksResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
-            return data;
+            return await StandardResponse.FetchJsonResponse<GetNotebooksResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
+        }
+
+	    private async Task<JsonResponse<GetSectionsResponse>> GetSections()
+	    {
+            return await StandardResponse.FetchJsonResponse<GetSectionsResponse>(HttpMethod.Get, "https://www.onenote.com/api/v1.0/sections", GenerateClient());
+	    }
+
+        private async Task<JsonResponse<GetSectionsResponse>> GetSections(string nextUrl)
+        {
+            return await StandardResponse.FetchJsonResponse<GetSectionsResponse>(HttpMethod.Get, nextUrl, GenerateClient());
         }
 
         private async Task OpenNotebook(string tableName)
         {
             var response = await GetNotebooks();
-            //if (response.StatusCode == HttpStatusCode.Created)
-            //{
-            //    var successResponse = (GetSuccessResponse)response;
-                
-            //}
-            //else
-            //{
-
-            //}
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                foreach (var value in response.ResponseData.value)
+                {
+                    if (value.name == tableName)
+                    {
+                       var sectionResponse = await GetSections(value.sectionsUrl);
+                        break;
+                    }
+                }
+                Debug.WriteLine(response.Content);
+            }
+            else
+            {
+              Debug.WriteLine(response.Content);
+            }
         }
 
         public async void OpenNotes(string tableName)
@@ -291,7 +312,6 @@ namespace OneNoteControl {
             pageSectionName = tableName;
             await AttemptRefreshToken();
             await OpenNotebook(tableName);
-            await Launcher.LaunchUriAsync(new Uri(clientLink));
         }
 
 
