@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using TimeTableOne.Utils;
+using OneNoteControl.Responses;
 
 public class GetNoteBooksSuccessResponse
 {
