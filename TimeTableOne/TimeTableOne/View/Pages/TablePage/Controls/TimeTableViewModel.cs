@@ -90,6 +90,16 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public AlwaysExecutableDelegateCommand TableClickedAction { get; set; }
         public Page Page { get; set; }
         public TableKey TableKey { get; set; }
+
+        public bool IsNoClass
+        {
+            get
+            {
+                return
+                    ApplicationData.Instance.GetNoClassSchedule(
+                        DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
+            }
+        }
     }
 
     public class TimeTableViewModelInDesign : TimeTableViewModel

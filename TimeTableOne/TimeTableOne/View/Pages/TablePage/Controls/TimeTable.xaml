@@ -5,6 +5,7 @@
     xmlns:local="using:TimeTableOne.View.Pages.TablePage.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:WinRTXamlToolkit.Converters"
     mc:Ignorable="d"
     d:DesignHeight="{Binding Hight}"
     d:DesignWidth="{Binding Width}" Width="{Binding Width}" Height="80" d:DataContext="{local:TimeTableViewModelInDesign}">
@@ -15,6 +16,9 @@
        
     <Grid
           Background="{Binding TableColor}">
+        <Grid.Resources>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </Grid.Resources>
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">
     			<VisualState x:Name="CurrentState">
@@ -56,9 +60,10 @@
                 BorderBrush="#00000000">
         </Button>
         <Rectangle Margin="1" x:Name="rectangle" StrokeThickness="2" Stroke="DodgerBlue"/>
-
-
-
+        <Border Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" ></Border>
+        <Border Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" >
+            <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>
+        </Border>
     </Grid>
 </UserControl>
 
