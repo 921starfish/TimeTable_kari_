@@ -334,6 +334,11 @@ namespace TimeTableOne.Data
                 ToTime = new DateTime(2015, 1, 1, toHour, toMinute, 0)
             };
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}-{1}", FromTime.ToString("HH:mm"), ToTime.ToString("HH:mm"));
+        }
     }
 
     public class AssignmentSchedule
