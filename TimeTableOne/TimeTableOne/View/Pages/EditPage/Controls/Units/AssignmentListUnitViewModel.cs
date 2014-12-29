@@ -159,7 +159,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             this.RemainingDateInformation = "残り1日";
             this.AssignmentStatusColor = new SolidColorBrush(Colors.DarkOrange);
             this.AssignmentStatus = "未完了";
-            this.AssignmentDetail = "This is detail.\n This is detail.\nThis is detail.\nThis is detail.";
+            this.AssignmentDetail = "This is detail.\nThis is detail.\nThis is detail.\nThis is detail.";
         }
     }
 }
