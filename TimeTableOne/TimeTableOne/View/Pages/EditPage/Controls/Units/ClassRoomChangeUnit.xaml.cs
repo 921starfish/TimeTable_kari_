@@ -44,7 +44,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         }
 
-        private void textBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void PenMark_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "EditState", true);
         }
@@ -54,6 +54,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             VisualStateManager.GoToState(this, "BasicState", true);
 
             ViewModel.ApplyChangeStatus();
+        }
+
+        private void textBlock_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOnState", true);
         }
     }
 }
