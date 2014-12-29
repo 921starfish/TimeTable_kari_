@@ -66,6 +66,12 @@
             <controls:ClassRoomControl></controls:ClassRoomControl>
             <controls:AssignmentControl Grid.Column="1"></controls:AssignmentControl>
         </Grid>
+        <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="New_Button_Click">
+            <SymbolIcon Symbol="Add" Foreground="Black"></SymbolIcon>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="Edit_Button_Click">
+            <SymbolIcon Symbol="Edit" Foreground="Black"></SymbolIcon>
+        </Button>
     </Grid>
     <!--</Grid>-->
 </Page>
