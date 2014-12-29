@@ -303,6 +303,17 @@ namespace OneNoteControl {
 			return await StandardResponse.FetchJsonResponse<GetPagesResponse>(HttpMethod.Get, nextUrl, GenerateClient());
 		}
 
+		private async Task<JsonResponse<PostNotebooksResponse>> PostNotebooks(string tableName) {
+			string content = "{\"name\": \"" + tableName + "\"}";
+			return
+				await
+					StandardResponse.FetchJsonResponse<PostNotebooksResponse>(
+						HttpMethod.Post,
+						"https://www.onenote.com/api/v1.0/notebooks",
+						content,
+						GenerateClient());
+		}
+
 		private async Task<JsonResponse<PostSectionsResponse>> PostSections(string nextUrl, string sectionName) {
 			string content = "{\"name\": \"" + sectionName + "\"}";
 			return

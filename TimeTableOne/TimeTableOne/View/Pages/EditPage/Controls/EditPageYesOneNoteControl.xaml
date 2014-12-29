@@ -36,12 +36,12 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid>
-                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}"></Button>
+                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}" Click="NewButton_Click"></Button>
                     <TextBlock Text="新しいセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
                     <SymbolIcon Margin="10,0,0,0" HorizontalAlignment="Left" Foreground="Black" Symbol="Add"/>
                 </Grid>
                 <Grid Background="{StaticResource TextBoxGray}" Grid.Column="1">
-                    <Button BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Button>
+                    <Button BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="OpenButton_Click_1"></Button>
                 <TextBlock  Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
                 <SymbolIcon Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
                 </Grid>

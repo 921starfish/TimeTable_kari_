@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Text="ノートを追加する" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
-        <Button BorderThickness="0" HorizontalAlignment="Left">
+        <Button BorderThickness="0" HorizontalAlignment="Left" Click="NewButton_Click">
             <SymbolIcon Symbol="Add" Foreground="Black"></SymbolIcon>
         </Button>
 <TextBlock Grid.Row="1" Text="関連付けられたノートはありません" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>

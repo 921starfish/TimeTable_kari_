@@ -62,13 +62,13 @@ namespace TimeTableOne.View.Pages.EditPage
         /// <see cref="Frame.Navigate(Type, Object)"/> に渡されたナビゲーション パラメーターと、
         /// 前のセッションでこのページによって保存された状態の辞書を提供する
         /// イベント データ。ページに初めてアクセスするとき、状態は null になります。</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
             //bool isNote =
             //    !OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel) DataContext).TableName)
             //        .Result;
-            if (true)
+			if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel)DataContext).TableName))
             {
                 YesControl.Visibility = Visibility.Collapsed;
                 NoControl.Visibility = Visibility.Visible;

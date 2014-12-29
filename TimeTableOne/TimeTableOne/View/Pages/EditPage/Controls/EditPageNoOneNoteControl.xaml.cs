@@ -23,5 +23,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             this.InitializeComponent();
         }
+
+		private async void NewButton_Click(object sender, RoutedEventArgs e) {
+			await OneNoteControl.OneNoteControler.Current.CreateEmptyPage(((EditPageViewModel) DataContext).TableName);
+		}
     }
 }
