@@ -97,7 +97,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             get
             {
-                return string.IsNullOrEmpty(_changeTo) ? "\uE104" : _changeTo;
+                return string.IsNullOrEmpty(_changeTo) ? TableUnitDataHelper.GetCurrentSchedule().Place : _changeTo;
             }
             set
             {
