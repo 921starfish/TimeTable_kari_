@@ -66,4 +66,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             RecordFirstDate = DateTime.Now.ToString("M月dd日からの記録");
         }
     }
+
+    
 }
