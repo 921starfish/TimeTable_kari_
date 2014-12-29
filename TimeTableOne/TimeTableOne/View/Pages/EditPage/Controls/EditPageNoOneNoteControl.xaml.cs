@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -25,7 +26,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         }
 
 		private async void NewButton_Click(object sender, RoutedEventArgs e) {
-			await OneNoteControl.OneNoteControler.Current.CreateEmptyPage(((EditPageViewModel) DataContext).TableName);
+			await OneNoteControl.OneNoteControler.Current.CreateEmptyPage(TableUnitDataHelper.GetCurrentSchedule().TableName);
 		}
     }
 }
