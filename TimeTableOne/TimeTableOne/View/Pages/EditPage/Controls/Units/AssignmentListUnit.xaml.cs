@@ -56,7 +56,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             EditPopup.IsOpen = !EditPopup.IsOpen;
             if (EditPopup.IsOpen)
             {
-                EditPopup.DataContext = new EditAssignmentPopupViewModel(ViewModel._schedule);
+                ViewModel.EditAssignmentPopupData = new EditAssignmentPopupViewModel(ViewModel._schedule);
                 var frame = (Frame)Window.Current.Content;
                 var rect=EditPopup.GetBoundingRect(frame);
                 EditPopup.VerticalOffset = frame.ActualHeight/2 - 300 - rect.Y;

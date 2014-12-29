@@ -62,9 +62,14 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             AssignmentName = schedule.AssignmentName;
             AssignmentDetail = schedule.AssignmentDetail;
             DueDate = schedule.DueTime;
-            YearEdit = schedule.DueTime.Year;
-            MonthEdit = schedule.DueTime.Month;
-            DayEdit = schedule.DueTime.Day;
+            UpdateFromDueDate();
+        }
+
+        private void UpdateFromDueDate()
+        {
+            YearEdit = DueDate.Year;
+            MonthEdit = DueDate.Month;
+            DayEdit = DueDate.Day;
         }
 
         public string AssignmentName
@@ -153,7 +158,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 _dueDate = value;
                 OnPropertyChanged();
                 _acceptCommand.NotifyCanExecuteChanged();
-
+                UpdateFromDueDate();
             }
         }
 

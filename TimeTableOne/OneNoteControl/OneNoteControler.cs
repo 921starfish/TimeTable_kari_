@@ -323,6 +323,18 @@ namespace OneNoteControl {
 				await StandardResponse.FetchJsonResponse<PostSectionsResponse>(HttpMethod.Post, nextUrl, content, GenerateClient());
 		}
 
+		private async Task<JsonResponse<PostPagesResponse>> PostPages(string nextUrl) {
+			string simpleHtml = "<html>" +
+				"<head>" +
+				"</head>" +
+				"<body>" +
+				"</body>" +
+				"</html>";
+			var Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html");
+			return
+				await StandardResponse.FetchJsonResponse<PostPagesResponse>(HttpMethod.Post, nextUrl, Content, GenerateClient());
+		}
+
 		private JsonResponse<GetNotebooksResponse> notebookResponse;
 		private JsonResponse<GetSectionsResponse> sectionResponse;
 		private JsonResponse<GetPagesResponse> pageResponse;
@@ -347,7 +359,7 @@ namespace OneNoteControl {
 
 		private async Task OpenSection(string sectionName) {
 			if (sectionResponse.StatusCode == HttpStatusCode.OK) {
-				foreach (var value in notebookResponse.ResponseData.value) {
+				foreach (var value in sectionResponse.ResponseData.value) {
 					if (value.name == sectionName) {
 						pageResponse = await GetPages("https://www.onenote.com/api/beta/sections/" + value.id + "/pages");
 						break;
@@ -367,6 +379,12 @@ namespace OneNoteControl {
 
 		private async Task CreateSection(string sectionName) {
 			var response = await PostSections(childSectionUrl, sectionName);
+			if (response.StatusCode == HttpStatusCode.Conflict) {
+				await OpenSection(sectionName);
+			}
+			else {
+
+			}
 		}
 
 		public async Task CreateNotebook(string tableName) {
