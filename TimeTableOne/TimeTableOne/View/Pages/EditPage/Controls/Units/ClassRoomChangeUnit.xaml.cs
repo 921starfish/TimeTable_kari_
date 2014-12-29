@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -46,6 +47,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private void textBox_LostFocus(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "BasicState", true);
+
+            Debug.WriteLine(textBox.Text);// 授業名
         }
     }
 }
