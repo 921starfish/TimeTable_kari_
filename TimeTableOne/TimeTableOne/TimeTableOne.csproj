@@ -119,7 +119,12 @@
     </Compile>
     <Compile Include="Background\BackgroundTaskManager.cs" />
     <Compile Include="Background\NotificationTask.cs" />
+    <Compile Include="ClassSearchResult.xaml.cs">
+      <DependentUpon>ClassSearchResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\BasicTableCommands.cs" />
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\NotificationManager.cs" />
     <Compile Include="Common\LiveTileTemplateHelper.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
@@ -308,6 +313,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClassSearchResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
