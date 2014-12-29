@@ -56,7 +56,7 @@ namespace TimeTableOne.Common
         /// <summary>
         ///     現在の時間帯の再チェック
         /// </summary>
-        private void UpdateCurrentTable()
+        public void UpdateCurrentTable()
         {
             bool isConfirmed = false;
             var now = new DateTime(2015, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
@@ -143,6 +143,7 @@ namespace TimeTableOne.Common
         {
             get
             {
+                if (CurrentKey == null) return ScheduleState.Empty;
                 var no=ApplicationData.Instance.GetNoClassSchedule(DateTimeUtil.Today(), CurrentKey);
                 if (no != null)
                 {
