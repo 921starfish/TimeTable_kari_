@@ -121,7 +121,7 @@ namespace OneNoteControl {
 				UpdateAuthProperties(loginWithRefreshTokenResult.Status);
 			}
 			else {
-				SignIn();
+				await SignIn();
 			}
 		}
 
