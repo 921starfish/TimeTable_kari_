@@ -21,7 +21,13 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
     {
         public TimeTableGrid()
         {
+            Loaded += TimeTableGrid_Loaded;
             this.InitializeComponent();
+        }
+
+        void TimeTableGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

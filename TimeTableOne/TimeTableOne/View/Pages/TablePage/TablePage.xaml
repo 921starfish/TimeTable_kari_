@@ -23,6 +23,39 @@
         </CommandBar>
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource EditBoxGray}">
+        <Grid.Resources>
+            <!--DataTemplateの要素の宣言-->
+            <DataTemplate x:Key="TimeRegionDataTemplate">
+                <control:TimeDisplayUnit></control:TimeDisplayUnit>
+            </DataTemplate>
+            <DataTemplate x:Key="TimeTableUnitDataTemplate">
+                <control:TimeTable></control:TimeTable>
+            </DataTemplate>
+            <DataTemplate x:Key="HeaderTemplate" >
+                <control:TimeGridHeader></control:TimeGridHeader>
+            </DataTemplate>
+            <DataTemplate x:Key="EmptyTemplate">
+
+            </DataTemplate>
+            <DataTemplate x:Key="AppendRowTemplate">
+                <control:AppendRowButton></control:AppendRowButton>
+            </DataTemplate>
+            <control:TimeTableGridTemplateSelector x:Key="TemplateSelector" AppendRowTemplate="{StaticResource AppendRowTemplate}" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></control:TimeTableGridTemplateSelector>
+            <!--ItemsContainerStyleのリソース-->
+            <Style TargetType="ListViewItem" x:Key="ContainerBaseStyle">
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
+            </Style>
+            <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <control:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" AppendRowButtonStyle="{StaticResource AppendRowContainerStyle}" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></control:TimeTableGridContainerStyleSelector>
+        </Grid.Resources>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualStateGroup.Transitions>
@@ -59,8 +92,8 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource OneNotePurple}">
@@ -99,12 +132,17 @@
                 <SymbolIcon Symbol="Setting"></SymbolIcon>
             </Button>-->
         </Grid>
-        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
-        </control:TimeTableGrid>
-        <Grid Grid.Row="2" Grid.RowSpan="2" Margin="40,10" Background="{StaticResource TextBoxGray}" >
-            <SymbolIcon Symbol="Add" Foreground="{StaticResource SelectedDetailBoxBlack}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-100,0,0,0" Width="25" Height="15" ></SymbolIcon>
-            <TextBlock Text="行の追加" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource SelectedDetailBoxBlack}"></TextBlock>
-        </Grid>
+        <ListView Grid.Row="1" x:Name="GridHeaders" SelectionMode="None" ItemsSource="{Binding GridHeaders}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        <ScrollViewer Grid.Row="2" >
+        <control:TimeTableGrid x:Name="GridControl"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
+            </control:TimeTableGrid>
+        </ScrollViewer>
         <Grid Grid.Row="3" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,60,0">
             <Button  BorderBrush="{x:Null}" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Click="ButtonBase_OnClick">
                 <SymbolIcon Symbol="More" />
