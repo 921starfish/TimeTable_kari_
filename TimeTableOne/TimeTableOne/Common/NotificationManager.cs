@@ -94,8 +94,8 @@ namespace TimeTableOne.Common
                 widecontent.AppendTextElement(2,unit.Time.ToString("dddd"));
                 string thirdContent = "";
                 //現在授業中かどうか
-                if (ScheduleManager.Instance.CurrentSchedule != null)//現在授業中である
-                {
+                if (unit.TimingType==SpanTimeType.BeginTime&&!status[unit.ClassNumber][0].IsNoClass())//現在授業中である
+                {//TODO LIME TASK
                     var cs = ScheduleManager.Instance.CurrentSchedule;
                     thirdContent = String.Format("只今の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
                 }
