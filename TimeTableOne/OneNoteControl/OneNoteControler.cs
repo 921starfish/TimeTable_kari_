@@ -383,7 +383,8 @@ namespace OneNoteControl {
 				await OpenSection(sectionName);
 			}
 			else {
-
+				var pageResponse = await PostPages(response.ResponseData.self);
+				clientLink= pageResponse.ResponseData.links.oneNoteClientUrl.href;
 			}
 		}
 
