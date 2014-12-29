@@ -93,11 +93,11 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="{StaticResource OneNotePurple}">
+        <Grid Grid.Row="0"  Background="{StaticResource OneNotePurple}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0*"/>
@@ -140,8 +140,8 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <ScrollViewer Grid.Row="2" >
-        <control:TimeTableGrid x:Name="GridControl"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
+        <ScrollViewer Grid.Row="2" Grid.RowSpan="2" >
+        <control:TimeTableGrid  x:Name="GridControl"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
             </control:TimeTableGrid>
         </ScrollViewer>
         <Grid Grid.Row="3" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,60,0">
