@@ -38,7 +38,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         private void OnAcceptAssignmentData()
         {
             //TODO ここでscheduleに対して代入をする
-          
+            _schedule.AssignmentName = AssignmentName;
+            _schedule.AssignmentDetail = AssignmentDetail;
+            _schedule.DueTime = DueDate;
             ApplicationData.SaveData();
         }
 
@@ -50,12 +52,19 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         protected DateTime _dueDate;
         protected BasicCommand _acceptCommand;
         private Brush _foreColor;
+        private AssignmentSchedule _schedule;
 
         public EditAssignmentPopupViewModel(AssignmentSchedule schedule)
         {
+            _acceptCommand = new BasicCommand(OnAcceptAssignmentData, ValidateAssignmentData);
             //TODO ここでVMに反映されるようにする。
+            _schedule = schedule;
             AssignmentName = schedule.AssignmentName;
             AssignmentDetail = schedule.AssignmentDetail;
+            DueDate = schedule.DueTime;
+            YearEdit = schedule.DueTime.Year;
+            MonthEdit = schedule.DueTime.Month;
+            DayEdit = schedule.DueTime.Day;
         }
 
         public string AssignmentName
