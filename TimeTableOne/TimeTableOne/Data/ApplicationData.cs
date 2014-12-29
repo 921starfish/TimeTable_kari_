@@ -124,6 +124,22 @@ namespace TimeTableOne.Data
                 SettingFolder.Values["DATA-COUNT"] = itr;
             }
         }
+
+        public void CheckAndRemoveRow()
+        {
+            ISet<ScheduleKey> RemoveCandidate=new HashSet<ScheduleKey>();
+            foreach (var scheduleKey in Keys)
+            {
+                if (scheduleKey.TableNumber > Configuration.TableCount)
+                {
+                    RemoveCandidate.Add(scheduleKey);
+                }
+            }
+            foreach (var scheduleKey in RemoveCandidate)
+            {
+                Keys.Remove(scheduleKey);
+            }
+        }
         /// <summary>
         /// データをでシリアライズして取得
         /// </summary>

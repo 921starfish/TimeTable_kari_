@@ -154,6 +154,7 @@ namespace TimeTableOne.View.Pages.TablePage
         {
             var config = ApplicationData.Instance.Configuration;
             config.TableCount--;
+            ApplicationData.Instance.CheckAndRemoveRow();
             ApplicationData.SaveData();
             ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             RemoveCommand.NotifyCanExecuteChanged();
