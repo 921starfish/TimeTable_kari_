@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using TimeTableOne.Data;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -56,6 +57,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 ChangeRoomControl.IsOpen = !ChangeRoomControl.IsOpen;
             }
             
+        }
+
+        private void DeleteThisPage(object sender, RoutedEventArgs e)
+        {
+            ApplicationData.Instance.RemoveSchedule(TableUnitDataHelper.GetCurrentSchedule());
+            PageUtil.MovePage(MainStaticPages.TablePage);
         }
     }
 }

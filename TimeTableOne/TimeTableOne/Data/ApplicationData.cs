@@ -264,6 +264,19 @@ namespace TimeTableOne.Data
             return null;
         }
 
+        public void RemoveSchedule(ScheduleData getCurrentSchedule)
+        {
+            ScheduleKey key = null;
+            foreach (var scheduleKey in Keys)
+            {
+                if (scheduleKey.DataId == getCurrentSchedule.ScheduleId)
+                {
+                    key = scheduleKey;
+                }
+            }
+            if (key != null) Keys.Remove(key);
+            Data.Remove(getCurrentSchedule);
+        }
     }
 
     public class NoClassSchedule
