@@ -234,7 +234,7 @@ namespace TimeTableOne.Common
                     ScheduleData scData = ApplicationData.Instance.GetSchedule((int) movedTime.DayOfWeek, classIndex);
                     if (scData == null||string.IsNullOrWhiteSpace(scData.TableName))
                     {
-                        resultStatus[i][j] = ScheduleState.Empty;
+                        resultStatus[j][i] = ScheduleState.Empty;
                         continue;
                     }
                     else
@@ -244,7 +244,7 @@ namespace TimeTableOne.Common
                             new TableKey(classIndex, movedTime.DayOfWeek));
                         if (noClassSchedule != null)
                         {
-                            resultStatus[i][j] = ScheduleState.NoClass;
+                            resultStatus[j][i] = ScheduleState.NoClass;
                             continue;
                         }
                         //教室変更情報のチェック
@@ -252,10 +252,10 @@ namespace TimeTableOne.Common
                             movedTime, new TableKey(classIndex, movedTime.DayOfWeek));
                         if (changeSc != null)
                         {
-                            resultStatus[i][j] = ScheduleState.ChangeRoom;
+                            resultStatus[j][i] = ScheduleState.ChangeRoom;
                             continue;
                         }
-                        resultStatus[i][j] = ScheduleState.Default;
+                        resultStatus[j][i] = ScheduleState.Default;
                     }
                 }
             }
