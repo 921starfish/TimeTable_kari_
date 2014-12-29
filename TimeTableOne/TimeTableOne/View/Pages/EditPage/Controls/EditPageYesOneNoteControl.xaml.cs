@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Data;
+
+
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
@@ -30,12 +33,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
 		private void NewButton_Click(object sender, RoutedEventArgs e) {
             string sectionName = "m月N日";
-			OneNoteControl.OneNoteControler.Current.OpenNewSection(((EditPageViewModel)DataContext).TableName,sectionName);
+			OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
 
 		private void OpenButton_Click_1(object sender, RoutedEventArgs e) {
 			string sectionName = "m月N日";
-			OneNoteControl.OneNoteControler.Current.OpenRecentlySection(((EditPageViewModel)DataContext).TableName, sectionName);
+			OneNoteControl.OneNoteControler.Current.OpenRecentlySection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
     }
 }
