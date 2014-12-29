@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeTableOne.Data;
 
 namespace TimeTableOne.Common
 {
@@ -14,7 +15,9 @@ namespace TimeTableOne.Common
 
         public static string getAsString(DayOfWeek week)
         {
-            return EngDayOfWeek[(int) week];//TODO ここを設定変えれば日本語で出るようにしたらいいかも
+            return ApplicationData.Instance.Configuration.IsEnglishTablePageHeader
+                ? EngDayOfWeek[(int) week]
+                : JpnDayOfWeek[(int) week];
         }
 
         public static string getAsStringInJpn(DayOfWeek week)

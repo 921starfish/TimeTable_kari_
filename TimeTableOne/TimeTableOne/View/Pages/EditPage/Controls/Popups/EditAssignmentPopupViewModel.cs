@@ -37,14 +37,9 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 
         private void OnAcceptAssignmentData()
         {
-            var current = TableUnitDataHelper.GetCurrentSchedule();
-            var assignment = current.GenerateAssignmentEmpty();
-            assignment.AssignmentName = _assignmentName;
-            assignment.AssignmentDetail = _assignmentDetail;
-            assignment.DueTime = _dueDate;
-            ApplicationData.Instance.Assignments.Add(assignment);
-            ApplicationData.SaveData();
+            //TODO ここでscheduleに対して代入をする
           
+            ApplicationData.SaveData();
         }
 
         protected string _assignmentName;
@@ -55,6 +50,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         protected DateTime _dueDate;
         protected BasicCommand _acceptCommand;
         private Brush _foreColor;
+
+        public EditAssignmentPopupViewModel(AssignmentSchedule schedule)
+        {
+            //TODO ここでVMに反映されるようにする。
+            AssignmentName = schedule.AssignmentName;
+            AssignmentDetail = schedule.AssignmentDetail;
+        }
 
         public string AssignmentName
         {
@@ -83,7 +85,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public SolidColorBrush TableColor
         {
             get { return new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); ; }
-            set { }
+
         }
         public Brush ForeColor
         {
@@ -93,7 +95,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                     ? new SolidColorBrush(Colors.Black)
                     : new SolidColorBrush(Colors.White);
             }
-            set { }
         }
 
         public int YearEdit
