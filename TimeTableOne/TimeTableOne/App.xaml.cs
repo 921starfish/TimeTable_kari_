@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TimeTableOne.Background;
 using TimeTableOne.Common;
 using TimeTableOne.Data;
 // add the assembly for the Settings flyout
@@ -52,7 +53,7 @@ namespace TimeTableOne
         /// アプリケーションが特定のファイルを開くために呼び出されたときなどに使用されます。
         /// </summary>
         /// <param name="e">起動要求とプロセスの詳細を表示します。</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG

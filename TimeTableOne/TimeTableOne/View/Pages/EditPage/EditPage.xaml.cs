@@ -70,7 +70,7 @@ namespace TimeTableOne.View.Pages.EditPage
             //bool isNote =
             //    !OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel) DataContext).TableName)
             //        .Result;
-			if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel)DataContext).TableName))
+			if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
             {
                 YesControl.Visibility = Visibility.Collapsed;
                 NoControl.Visibility = Visibility.Visible;
