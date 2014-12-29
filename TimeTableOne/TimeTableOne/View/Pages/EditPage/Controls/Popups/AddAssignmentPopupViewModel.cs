@@ -40,7 +40,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             var assignment = current.GenerateAssignmentEmpty();
             assignment.AssignmentName = _assignmentName;
             assignment.AssignmentDetail = _assignmentDetail;
-            assignment.DueTime = _dueDate;
+            assignment.DueTime = new DateTime(YearEdit,MonthEdit,DayEdit,0,0,0,0);
             ApplicationData.Instance.Assignments.Add(assignment);
             ApplicationData.SaveData();
            
