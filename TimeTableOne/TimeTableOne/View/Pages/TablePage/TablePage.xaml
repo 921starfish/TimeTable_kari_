@@ -61,6 +61,7 @@
             <RowDefinition Height="120"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Background="{StaticResource OneNotePurple}">
             <Grid.ColumnDefinitions>
@@ -98,10 +99,13 @@
                 <SymbolIcon Symbol="Setting"></SymbolIcon>
             </Button>-->
         </Grid>
-        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" Grid.RowSpan="2" d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
-
+        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
         </control:TimeTableGrid>
-        <Grid Grid.Row="2" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,60,0">
+        <Grid Grid.Row="2" Grid.RowSpan="2" Margin="40,10" Background="{StaticResource TextBoxGray}" >
+            <SymbolIcon Symbol="Add" Foreground="{StaticResource SelectedDetailBoxBlack}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-100,0,0,0" Width="25" Height="15" ></SymbolIcon>
+            <TextBlock Text="行の追加" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource SelectedDetailBoxBlack}"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="3" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,60,0">
             <Button  BorderBrush="{x:Null}" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Click="ButtonBase_OnClick">
                 <SymbolIcon Symbol="More" />
             </Button>
