@@ -117,8 +117,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Background\BackgroundTaskManager.cs" />
+    <Compile Include="Background\NotificationTask.cs" />
     <Compile Include="Common\BasicTableCommands.cs" />
-    <Compile Include="Common\NotificationTileManager.cs" />
+    <Compile Include="Common\NotificationManager.cs" />
     <Compile Include="Common\LiveTileTemplateHelper.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
