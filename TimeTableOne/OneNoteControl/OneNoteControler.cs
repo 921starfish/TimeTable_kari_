@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.System;
 using Microsoft.Live;
@@ -121,7 +122,7 @@ namespace OneNoteControl {
 			}
 		}
 
-		private static readonly string[] Scopes = new[] { "wl.signin", "wl.offline_access", "office.onenote_update" };
+		private static readonly string[] Scopes = new[] {"wl.signin", "wl.offline_access", "office.onenote_update"};
 
 		#endregion
 
@@ -304,12 +305,13 @@ namespace OneNoteControl {
 
 		private async Task<JsonResponse<PostSectionsResponse>> PostSections(string nextUrl, string sectionName) {
 			string content = "{\"name\": \"" + sectionName + "\"}";
-			return await StandardResponse.FetchJsonResponse<PostSectionsResponse>(HttpMethod.Post, nextUrl,content, GenerateClient());
+			return
+				await StandardResponse.FetchJsonResponse<PostSectionsResponse>(HttpMethod.Post, nextUrl, content, GenerateClient());
 		}
 
-		JsonResponse<GetNotebooksResponse> notebookResponse;
-		JsonResponse<GetSectionsResponse> sectionResponse;
-		JsonResponse<GetPagesResponse> pageResponse;
+		private JsonResponse<GetNotebooksResponse> notebookResponse;
+		private JsonResponse<GetSectionsResponse> sectionResponse;
+		private JsonResponse<GetPagesResponse> pageResponse;
 
 		private string childSectionUrl;
 
@@ -350,7 +352,7 @@ namespace OneNoteControl {
 		}
 
 		private async Task CreateSection(string sectionName) {
-			var response = await PostSections(childSectionUrl,sectionName);
+			var response = await PostSections(childSectionUrl, sectionName);
 		}
 
 		public async void OpenNotes(string tableName) {
@@ -359,7 +361,7 @@ namespace OneNoteControl {
 			await OpenNotebook(tableName);
 			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
-		
+
 		public async void OpenNewSection(string tableName, string sectionName) {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
@@ -375,6 +377,22 @@ namespace OneNoteControl {
 			await OpenSection(sectionName);
 			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
+
+		public async Task<bool> IsExistNotebook(string tableName) {
+			await AttemptRefreshToken();
+			notebookResponse = await GetNotebooks();
+			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
+				foreach (var value in notebookResponse.ResponseData.value) {
+					if (value.name == tableName) {
+						return true;
+					}
+				}
+			}
+			else {
+				return false;
+			}
+			return false;
+		} 
 
 
 		public async void Open(string tableName) {
