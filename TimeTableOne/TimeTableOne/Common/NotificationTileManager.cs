@@ -78,7 +78,8 @@ namespace TimeTableOne.Common
         }
 
         public void NotifynextScheduleData()
-    {
+        {
+            IReadOnlyList<ScheduledToastNotification> scheduledToastNotifications = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications();
             var dat=ScheduleManager.Instance.TodaySchedule;
 
             for (int i = 0; i < dat.Length; i++)
@@ -97,7 +98,6 @@ namespace TimeTableOne.Common
         private XmlDocument generateToastNotification(ScheduleData schedule)
         {
             XmlDocument template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText04);
-            //TODO 休講の場合はじく処理
             template.AppendTextElement(0, schedule.GetTimeSpanIndex() + "時間目 " + schedule.TableName);
             template.AppendTextElement(1, "場所:" + schedule.Place);
             template.AppendTextElement(2, "時間:" + schedule.GetTimeSpan().ToString());
