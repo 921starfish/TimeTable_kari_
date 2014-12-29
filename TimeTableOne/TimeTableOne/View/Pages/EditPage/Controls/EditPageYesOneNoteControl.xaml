@@ -18,7 +18,7 @@
         <!--<Button BorderThickness="0" HorizontalAlignment="Left">
             <SymbolIcon  Foreground="Black" Symbol="Play"/>
         </Button>-->
-        <Grid  Background="GhostWhite" Grid.Row="1" Margin="50" Height="200" >
+        <Grid  Background="GhostWhite" VerticalAlignment="Top" Grid.Row="1" Margin="50" Height="200" >
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="0"></ColumnDefinition>
