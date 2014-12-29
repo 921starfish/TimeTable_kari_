@@ -90,7 +90,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             get
             {
-                return string.IsNullOrEmpty(_changeTo) ? "変更" : _changeTo;
+                return string.IsNullOrEmpty(_changeTo) ? "\uE104" : _changeTo;
             }
             set
             {
