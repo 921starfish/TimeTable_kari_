@@ -77,12 +77,6 @@ namespace TimeTableOne.Common
            TileUpdateManager.CreateTileUpdaterForApplication().Update(notif);
         }
 
-        public void UpdateBadgeNotification()
-        {
-            XmlDocument doc=BadgeUpdateManager.GetTemplateContent(BadgeTemplateType.BadgeGlyph);
-            UpdateWideTileNotification();
-        }
-
         public void UpdateWideTileNotificationOfToday()
         {
             var spans = ScheduleManager.Instance.GetTodayKeyTiming(ScheduleTimingType.BeginTimeWithNoClass|ScheduleTimingType.EndTime);
@@ -132,36 +126,6 @@ namespace TimeTableOne.Common
                 tileUpdater.AddToSchedule(scNotif);
             }
 
-        }
-
-        public void UpdateWideTileNotification()
-        {
-            var widecontent = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150BlockAndText02);
-            widecontent.AppendTextElement(1,DateTime.Now.ToString("dd"));
-            widecontent.AppendTextElement(2, DateTime.Now.ToString("dddd"));
-            string thirdContent = "";
-            //現在授業中かどうか
-            if (ScheduleManager.Instance.CurrentSchedule != null)//現在授業中である
-            {
-                var cs = ScheduleManager.Instance.CurrentSchedule;
-                thirdContent=String.Format("只今の授業 {0}\n{1}  {2}",cs.TableName,cs.GetTimeSpan().ToString(),cs.Place);
-            }
-            else
-            {
-                var cs = ScheduleManager.Instance.NextScheduleInToday;
-                if (cs == null)
-                {
-                    thirdContent = "本日次の授業はありません。";
-                }
-                else
-                {
-                    thirdContent = String.Format("次の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
-                }
-            }
-            widecontent.AppendTextElement(0, thirdContent);
-            TileNotification notif=new TileNotification(widecontent);
-            notif.ExpirationTime = DateTimeOffset.UtcNow.AddHours(1);
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(notif);
         }
 
         /// <summary>
