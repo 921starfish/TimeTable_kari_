@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿namespace OneNoteControl.Responses {
 
-namespace OneNoteControl.Responses
-{
-    public class PostPagesResponse
-    {
-        public string self;
+	public class PostPagesResponse {
+		public string self;
 
-        public LinksUnit links;
-    }
+		public LinksUnit links;
+	}
+
 }

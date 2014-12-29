@@ -1,38 +1,36 @@
-﻿using Windows.UI.Xaml;
-using Newtonsoft.Json;
-using OneNoteControl.Responses;
+﻿using Newtonsoft.Json;
 
-namespace OneNoteControl.Responses
-{
-    public class PostNotebooksResponse
-    {
-        [JsonProperty(PropertyName = "@odata.context")]
-        public string context;
 
-        public bool isDafult;
+namespace OneNoteControl.Responses {
 
-        public string userRole;
+	public class PostNotebooksResponse {
+		[JsonProperty(PropertyName = "@odata.context")] public string context;
 
-        public bool isShared;
+		public bool isDafult;
 
-        public string sectionUrl;
+		public string userRole;
 
-        public string sectionsGroupsUrl;
+		public bool isShared;
 
-        public LinksUnit links;
+		public string sectionUrl;
 
-        public string id;
+		public string sectionsGroupsUrl;
 
-        public string name;
+		public LinksUnit links;
 
-        public string self;
+		public string id;
 
-        public string createdBy;
+		public string name;
 
-        public string lastModifiedBy;
+		public string self;
 
-        public string createdTime;
+		public string createdBy;
 
-        public string lastModifiedTime;
-    }
+		public string lastModifiedBy;
+
+		public string createdTime;
+
+		public string lastModifiedTime;
+	}
+
 }
