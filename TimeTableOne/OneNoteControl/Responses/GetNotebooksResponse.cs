@@ -1,41 +1,41 @@
 ﻿using Newtonsoft.Json;
 
-namespace OneNoteControl.Responses
-{
-    public class GetNotebooksResponse
-    {
-        [JsonProperty(PropertyName = "@odata.context")]
-        public string context;
 
-        public GetNotebooksResponseValueUnit[] value;
-    }
+namespace OneNoteControl.Responses {
 
-    public class GetNotebooksResponseValueUnit
-    {
-        public bool isDefault;
+	public class GetNotebooksResponse {
+		[JsonProperty(PropertyName = "@odata.context")] public string context;
 
-        public string userRole;
+		public GetNotebooksResponseValueUnit[] value;
+	}
 
-        public bool isShared;
 
-        public string sectionsUrl;
+	public class GetNotebooksResponseValueUnit {
+		public bool isDefault;
 
-        public string sectionGroupsUrl;
+		public string userRole;
 
-        public LinksUnit links;
+		public bool isShared;
 
-        public string id;
+		public string sectionsUrl;
 
-        public string name;
+		public string sectionGroupsUrl;
 
-        public string self;
+		public LinksUnit links;
 
-        public string createdBy;
+		public string id;
 
-        public string lastModifiedBy;
+		public string name;
 
-        public string createdTime;
+		public string self;
 
-        public string lastModifiedTime;
-    }
+		public string createdBy;
+
+		public string lastModifiedBy;
+
+		public string createdTime;
+
+		public string lastModifiedTime;
+	}
+
 }
