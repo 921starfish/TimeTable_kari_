@@ -14,11 +14,11 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="次のノートと関連付けられました。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+        <TextBlock Text="次のノートと関連付けられました。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,8,0,0" Foreground="Black"></TextBlock>
         <!--<Button BorderThickness="0" HorizontalAlignment="Left">
             <SymbolIcon  Foreground="Black" Symbol="Play"/>
         </Button>-->
-        <Grid  Background="GhostWhite" VerticalAlignment="Top" Grid.Row="1" Margin="50" Height="200" >
+        <Grid  Background="GhostWhite" VerticalAlignment="Top" Grid.Row="1" Margin="40,20" Height="200" >
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="0"></ColumnDefinition>

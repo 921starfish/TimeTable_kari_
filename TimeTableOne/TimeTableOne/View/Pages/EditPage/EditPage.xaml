@@ -78,8 +78,8 @@
 
         <Grid  Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel VerticalAlignment="Center">
                 <ProgressRing IsActive="True"/>
