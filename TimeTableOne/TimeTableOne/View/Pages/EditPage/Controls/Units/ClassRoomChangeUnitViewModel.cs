@@ -21,7 +21,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private string _classRoomChangeCaption;
         private Brush _captionColor;
         private string _changeTo;
-        private string _changeToEdit;
 
         public ClassRoomChangeUnitViewModel(DateTime current, ClassRoomChangeSchedule getClassRoomChangeSchedule,int i)
         {
@@ -87,17 +86,16 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
         }
 
-        public string ChangeToEdit
+        public string ChangeTo
         {
             get
             {
-                return string.IsNullOrEmpty(_changeTo) ? "" : _changeTo;
+                return string.IsNullOrEmpty(_changeTo) ? "\uE104" : _changeTo;
             }
             set
             {
                 // if (value == _changeTo) return;
                 _changeTo = value;
-                _changeToEdit = value;
                 if (!string.IsNullOrEmpty(_changeTo))
                 {
                     CaptionColor = new SolidColorBrush(Colors.DarkOrange);
@@ -108,20 +106,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                     CaptionColor = new SolidColorBrush(Colors.Green);
                     ClassRoomChangeCaption = "通常";
                 }
-                OnPropertyChanged();
-            }
-        }
-
-        public string ChangeTo
-        {
-            get
-            {
-                return string.IsNullOrEmpty(_changeTo) ? "\uE104" : _changeTo;
-            }
-            set
-            {
-                if(value == _changeTo) return;
-                _changeTo = value;
                 OnPropertyChanged();
             }
         }
