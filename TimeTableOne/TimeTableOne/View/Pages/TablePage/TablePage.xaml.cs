@@ -194,5 +194,10 @@ namespace TimeTableOne.View.Pages.TablePage
             ApplicationData.SaveData();
             this.DataContext = new TablePageViewModel();
         }
+
+        private void pageRoot_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.DataContext = new TablePageViewModel();
+        }
     }
 }

@@ -10,7 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tablePage="using:TimeTableOne.View.Pages.TablePage"
     xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls"
-    mc:Ignorable="d" d:DataContext="{tablePage:TablePageViewModelInDesign}">
+    mc:Ignorable="d" d:DataContext="{tablePage:TablePageViewModelInDesign}" SizeChanged="pageRoot_SizeChanged"
+    >
     <Page.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
