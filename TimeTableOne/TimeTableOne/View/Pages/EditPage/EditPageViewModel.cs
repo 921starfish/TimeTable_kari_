@@ -199,6 +199,8 @@ namespace TimeTableOne.View.Pages.EditPage
                 {
                     _tableInformation = value;
                     freeTextEdited = true;
+                    _scheduleData.FreeFormText = value;
+                    ApplicationData.SaveData();
                 }
                 PropertyChanged(this, new PropertyChangedEventArgs("PlaceInfomation"));
             }

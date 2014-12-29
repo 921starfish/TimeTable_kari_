@@ -25,6 +25,8 @@ namespace TimeTableOne.Data
         public bool IsEnglishTablePageHeader = true;
 
         public int NotifictionExtratime = 5;
+
+        public bool Notificationenabled = false;
     }
 
     public enum TableType

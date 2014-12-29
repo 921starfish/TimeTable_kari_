@@ -81,16 +81,21 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <controls:EditPageOneNoteControl x:Name="YesControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
+            <StackPanel VerticalAlignment="Center">
+                <ProgressRing IsActive="True"/>
+                <TextBlock Text="OneNoteと通信中..." Foreground="Black" HorizontalAlignment="Center"/>
+            </StackPanel>
+            
+            <controls:EditPageOneNoteControl Visibility="Collapsed" x:Name="YesControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
             </controls:EditPageOneNoteControl>
-            <controls:EditPageYesOneNoteControl x:Name="NoControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
+            <controls:EditPageYesOneNoteControl Visibility="Collapsed" x:Name="NoControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
             </controls:EditPageYesOneNoteControl>
             <TextBox   Grid.Row="1" 
                        TextWrapping="Wrap"
                        AcceptsReturn="True"
                        Foreground="Black"
                        FontStyle="Normal"
-                       Text="{Binding TableInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding TableInformation,Mode = TwoWay}"
                        FontSize="20"
                        PlaceholderText="メモ">
             </TextBox>
