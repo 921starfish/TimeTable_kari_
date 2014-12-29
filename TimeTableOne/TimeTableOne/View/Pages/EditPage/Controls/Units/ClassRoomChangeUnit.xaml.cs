@@ -56,7 +56,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             ViewModel.ApplyChangeStatus();
         }
 
-        private void textBlock_PointerExited(object sender, PointerRoutedEventArgs e)
+        private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "MouseOnState", true);
         }

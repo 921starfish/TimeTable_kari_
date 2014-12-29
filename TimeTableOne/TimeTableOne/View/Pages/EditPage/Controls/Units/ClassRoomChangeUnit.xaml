@@ -68,7 +68,7 @@
     			</VisualState>
     		</VisualStateGroup>
     	</VisualStateManager.VisualStateGroups>
-        <Grid>
+        <Grid PointerExited="Grid_PointerExited" PointerEntered="Grid_PointerEntered" >
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="Black"></Setter>
@@ -85,9 +85,9 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DisplayDate}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SupportText}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ClassRoomChangeCaption}" Foreground="{Binding CaptionColor}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-            <TextBlock x:Name="textBlock" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo,Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Visibility="Visible" Opacity="1" FontFamily="Segoe UI Symbol" PointerExited="textBlock_PointerExited"></TextBlock>
+            <TextBlock x:Name="textBlock" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo,Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Visibility="Visible" Opacity="1" FontFamily="Segoe UI Symbol" ></TextBlock>
             <TextBox x:Name="textBox" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeTo,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraLight" Margin="0,0,0,0" Background="GhostWhite" BorderBrush="Transparent" Visibility="Collapsed" Opacity="0" LostFocus="textBox_LostFocus"  AcceptsReturn="False" FontFamily="Segoe UI Symbol" PlaceholderText="ここに入力"></TextBox>
-            <TextBlock x:Name="PenMark" Grid.Row="1" Grid.Column="1" Text="&#xe104;" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" PointerPressed="PenMark_PointerPressed" Visibility="Collapsed" Opacity="0" FontFamily="Segoe UI Symbol"></TextBlock>
+            <TextBlock x:Name="PenMark" Grid.Row="1" Grid.Column="1" Text="&#xe104;" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" PointerPressed="PenMark_PointerPressed" Visibility="Collapsed" Opacity="0" FontFamily="Segoe UI Symbol" ></TextBlock>
         </Grid>
     </Button>
 </UserControl>
