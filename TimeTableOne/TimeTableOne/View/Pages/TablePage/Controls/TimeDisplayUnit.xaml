@@ -74,6 +74,7 @@
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="capt1" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Editing">
@@ -93,7 +94,7 @@
                                     <Visibility>Visible</Visibility>
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
+                        </ObjectAnimationUsingKeyFrames> 
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock">
@@ -104,9 +105,15 @@
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon">
-                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="capt1">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<FontFamily>Global User Interface</FontFamily>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="capt1" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -119,7 +126,7 @@
         <SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0"/>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBlock  x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" Margin="10" VerticalAlignment="Center"/>
-        <TextBlock  Text="時限" VerticalAlignment="Center"  Foreground="#FF4D4D4D" HorizontalAlignment="Center" Margin="0,-65,70,0" ></TextBlock>
+        <TextBlock x:Name="capt1"  Text="時限" VerticalAlignment="Center"  Foreground="#FF4D4D4D" HorizontalAlignment="Center" Margin="0,-65,70,0" ></TextBlock>
         </StackPanel>
             <Grid Margin="91.11,0,0,0">
             <Grid.RowDefinitions>

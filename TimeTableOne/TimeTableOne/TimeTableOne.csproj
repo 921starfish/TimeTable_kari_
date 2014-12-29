@@ -234,9 +234,6 @@
       <DependentUpon>EditPageNoOneNoteControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
-    <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
-      <DependentUpon>TimeDisplay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml.cs">
       <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
     </Compile>
@@ -412,10 +409,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EditPage\Controls\EditPageNoOneNoteControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\TablePage\Controls\TimeDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

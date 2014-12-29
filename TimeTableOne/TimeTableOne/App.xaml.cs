@@ -44,7 +44,7 @@ namespace TimeTableOne
             this.Suspending += OnSuspending;
             NotificationManager.Instance.UpdateTile();
             NotificationManager.Instance.UpdateNotificationDataOfToday();
-            NotificationManager.Instance.UpdateBadgeNotification();
+            NotificationManager.Instance.UpdateWideTileNotificationOfToday();
         }
 
         /// <summary>

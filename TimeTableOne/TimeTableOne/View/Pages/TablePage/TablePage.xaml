@@ -26,6 +26,45 @@
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource EditBoxGray}">
         <Grid.Resources>
+            <Style x:Key="ListBoxtemStyleNoHighlighting" TargetType="ListViewItem">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Grid Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Unselected"/>
+                                        <VisualState x:Name="Selected"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused"/>
+                                        <VisualState x:Name="Unfocused"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Rectangle x:Name="fillColor" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <Rectangle x:Name="fillColor2" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"
+			Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			Margin="{TemplateBinding Padding}"/>
+                                <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1"
+			StrokeThickness="1" Visibility="Collapsed"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--DataTemplateの要素の宣言-->
             <DataTemplate x:Key="TimeRegionDataTemplate">
                 <control:TimeDisplayUnit></control:TimeDisplayUnit>
@@ -48,11 +87,15 @@
                 <Setter Property="Margin" Value="0"></Setter>
                 <Setter Property="Padding" Value="0"></Setter>
             </Style>
-            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
-
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}">
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Height" Value="70"></Setter>
             </Style>
             <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
-            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}">
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="Height" Value="70"></Setter>
+            </Style>
             <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
             </Style>
             <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
@@ -134,7 +177,7 @@
                 <SymbolIcon Symbol="Setting"></SymbolIcon>
             </Button>-->
         </Grid>
-        <ListView Grid.Row="1" x:Name="GridHeaders" SelectionMode="None" ItemsSource="{Binding GridHeaders}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" CanDragItems="False" CanReorderItems="False" ShowsScrollingPlaceholders="False" Grid.Row="1" x:Name="GridHeaders"  SelectionMode="None" ItemsSource="{Binding GridHeaders}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>

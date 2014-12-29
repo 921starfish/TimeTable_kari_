@@ -13,6 +13,45 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource EditBoxGray}">
         <Grid.Resources>
+            <Style x:Key="ListBoxtemStyleNoHighlighting" TargetType="ListViewItem">
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Grid Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Unselected"/>
+                                        <VisualState x:Name="Selected"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused"/>
+                                        <VisualState x:Name="Unfocused"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Rectangle x:Name="fillColor" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <Rectangle x:Name="fillColor2" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"
+			Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			Margin="{TemplateBinding Padding}"/>
+                                <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1"
+			StrokeThickness="1" Visibility="Collapsed"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--DataTemplateの要素の宣言-->
             <DataTemplate x:Key="TimeRegionDataTemplate">
                 <local:TimeDisplayUnit />
@@ -38,10 +77,10 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}" />
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}" />
             <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle"
                    BasedOn="{StaticResource ContainerBaseStyle}" />
-            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}" />
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}" />
             <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle"
                    BasedOn="{StaticResource ContainerBaseStyle}" />
             <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle"
