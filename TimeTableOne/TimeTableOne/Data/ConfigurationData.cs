@@ -22,6 +22,8 @@ namespace TimeTableOne.Data
 
         public string PageTitle = "TimeTable";
 
+        public bool IsEnglishTablePageHeader = true;
+
         public int NotifictionExtratime = 5;
     }
 

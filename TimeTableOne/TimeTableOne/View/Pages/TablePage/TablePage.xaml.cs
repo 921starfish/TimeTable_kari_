@@ -186,5 +186,13 @@ namespace TimeTableOne.View.Pages.TablePage
         {
            PageUtil.MovePage(MainStaticPages.DayPage);
         }
+
+        private void ToggleHeaderLanguage(object sender, RoutedEventArgs e)
+        {
+            var config = ApplicationData.Instance.Configuration;
+            config.IsEnglishTablePageHeader = !config.IsEnglishTablePageHeader;
+            ApplicationData.SaveData();
+            this.DataContext = new TablePageViewModel();
+        }
     }
 }
