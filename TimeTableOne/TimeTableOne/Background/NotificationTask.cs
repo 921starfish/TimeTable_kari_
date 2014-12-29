@@ -14,6 +14,7 @@ namespace TimeTableOne.Background
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             NotificationManager.Instance.UpdateNotificationDataOfToday();
+            NotificationManager.Instance.UpdateWideTileNotificationOfToday();
         }
     }
 }

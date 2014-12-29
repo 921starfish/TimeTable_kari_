@@ -87,6 +87,12 @@ namespace TimeTableOne.Common
         {
             var spans = ScheduleManager.Instance.GetTodayKeyTiming(ScheduleTimingType.BeginTimeWithNoClass|ScheduleTimingType.EndTime);
             var status = ScheduleManager.Instance.GetScheduleStatus(0);
+            var schedules = ScheduleManager.Instance.TodaySchedule;
+            var tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
+            foreach (var scNotif in tileUpdater.GetScheduledTileNotifications())
+            {
+                tileUpdater.RemoveFromSchedule(scNotif);
+            }
             foreach (var unit in spans)
             {
                 var widecontent = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150BlockAndText02);
@@ -94,23 +100,36 @@ namespace TimeTableOne.Common
                 widecontent.AppendTextElement(2,unit.Time.ToString("dddd"));
                 string thirdContent = "";
                 //現在授業中かどうか
-                if (unit.TimingType==SpanTimeType.BeginTime&&!status[unit.ClassNumber][0].IsNoClass())//現在授業中である
-                {//TODO LIME TASK
-                    var cs = ScheduleManager.Instance.CurrentSchedule;
+                if (unit.TimingType==SpanTimeType.BeginTime&&!status[unit.ClassNumber][0].IsNoClass())
+                {
+                    var cs = schedules[unit.ClassNumber];
                     thirdContent = String.Format("只今の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
                 }
                 else
                 {
-                    var cs = ScheduleManager.Instance.NextScheduleInToday;
-                    if (cs == null)
+                    int nextClassIndex = -1;
+                    for (int i = unit.ClassNumber+1; i < schedules.Length; i++)
+                    {
+                        if (schedules[i] != null)
+                        {
+                            nextClassIndex = i;
+                            break;
+                        }
+                    }
+                    if (nextClassIndex==-1)
                     {
                         thirdContent = "本日次の授業はありません。";
                     }
                     else
                     {
+                        var cs = schedules[nextClassIndex];
                         thirdContent = String.Format("次の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
                     }
                 }
+                widecontent.AppendTextElement(0, thirdContent);
+                var schedulerTiming = DateTimeOffset.UtcNow + (unit.Time - DateTime.Now.AsTimeData());
+                var scNotif = new ScheduledTileNotification(widecontent, schedulerTiming);
+                tileUpdater.AddToSchedule(scNotif);
             }
 
         }
@@ -164,6 +183,7 @@ namespace TimeTableOne.Common
                 DateTime daysoffset = DateTimeUtil.NowMoments();
                 TimeSpan span = dateTime.Time - daysoffset -
                                     TimeSpan.FromMinutes(ApplicationData.Instance.Configuration.NotifictionExtratime);
+                if(span<new TimeSpan())continue;
                 ScheduledToastNotification schd = new ScheduledToastNotification(generateToastNotification(dat[dateTime.ClassNumber]), DateTimeOffset.UtcNow.Add(span));
                 toastNotifier.AddToSchedule(schd);
             }
