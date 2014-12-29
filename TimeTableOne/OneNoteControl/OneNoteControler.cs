@@ -26,7 +26,6 @@ namespace OneNoteControl {
 
 		private OneNoteControler() {
 			_current = this;
-			SignIn();
 		}
 
 		#endregion
@@ -120,6 +119,9 @@ namespace OneNoteControl {
 			if (IsSignedIn) {
 				LiveLoginResult loginWithRefreshTokenResult = await AuthClient.InitializeAsync(Scopes);
 				UpdateAuthProperties(loginWithRefreshTokenResult.Status);
+			}
+			else {
+				SignIn();
 			}
 		}
 
