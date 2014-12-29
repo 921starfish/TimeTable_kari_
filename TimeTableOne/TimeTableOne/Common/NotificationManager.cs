@@ -123,6 +123,9 @@ namespace TimeTableOne.Common
                 widecontent.AppendTextElement(0, thirdContent);
                 var schedulerTiming = DateTimeOffset.UtcNow + (unit.Time - DateTime.Now.AsTimeData());
                 var scNotif = new ScheduledTileNotification(widecontent, schedulerTiming);
+                //デバッグ表示
+                Debug.WriteLine("Schedule:{0} minutes after",(schedulerTiming-DateTimeOffset.UtcNow).TotalMinutes);
+                Debug.WriteLine(widecontent.GetXml());
                 tileUpdater.AddToSchedule(scNotif);
             }
 
