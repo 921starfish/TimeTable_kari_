@@ -40,7 +40,7 @@
                     <TextBlock Text="教室変更" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ToggleChangeRoomPopup">
+            <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="DeleteThisPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Delete" Foreground="#FF2E2929"/>
                     <TextBlock Text="削除" VerticalAlignment="Center" Foreground="Black"></TextBlock>
