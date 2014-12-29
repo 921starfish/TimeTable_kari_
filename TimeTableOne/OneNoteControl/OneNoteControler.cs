@@ -369,6 +369,10 @@ namespace OneNoteControl {
 			var response = await PostSections(childSectionUrl, sectionName);
 		}
 
+		public async Task CreateNotebook(string tableName) {
+			var response = await PostNotebooks(tableName);
+		}
+
 		public async void OpenNotes(string tableName) {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
@@ -406,7 +410,7 @@ namespace OneNoteControl {
 				return false;
 			}
 			return false;
-		} 
+		}
 
 
 		public async void Open(string tableName) {

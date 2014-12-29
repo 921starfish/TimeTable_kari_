@@ -26,7 +26,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         }
 
 		private async void NewButton_Click(object sender, RoutedEventArgs e) {
-			await OneNoteControl.OneNoteControler.Current.CreateEmptyPage(TableUnitDataHelper.GetCurrentSchedule().TableName);
+			await OneNoteControl.OneNoteControler.Current.CreateNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName);
 		}
     }
 }
