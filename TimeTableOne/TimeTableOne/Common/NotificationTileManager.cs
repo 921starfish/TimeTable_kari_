@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 
 namespace TimeTableOne.Common
 {
@@ -76,12 +77,32 @@ namespace TimeTableOne.Common
            TileUpdateManager.CreateTileUpdaterForApplication().Update(notif);
         }
 
-        public void NotifyScheduleData(ScheduleData schedule)
+        public void NotifynextScheduleData()
+    {
+            var dat=ScheduleManager.Instance.TodaySchedule;
+
+            for (int i = 0; i < dat.Length; i++)
+            {
+                if (dat[i]!=null&&dat[i].GetTimeSpan().FromTime-DateTimeUtil.NowMoments()>TimeSpan.FromMinutes(ApplicationData.Instance.Configuration.NotifictionExtratime))
+                {
+                    DateTime daysoffset = DateTimeUtil.NowMoments();
+                    TimeSpan span = dat[i].GetTimeSpan().FromTime - daysoffset -
+                                        TimeSpan.FromMinutes(ApplicationData.Instance.Configuration.NotifictionExtratime);
+                    ScheduledToastNotification schd=new ScheduledToastNotification(generateToastNotification(dat[i]),DateTimeOffset.UtcNow.Add(span));
+                    ToastNotificationManager.CreateToastNotifier().AddToSchedule(schd);
+                }
+            }
+    }
+
+        private XmlDocument generateToastNotification(ScheduleData schedule)
         {
             XmlDocument template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText04);
-            template.AppendTextElement(1,schedule.TableName);
-            
-        }
+            //TODO 休講の場合はじく処理
+            template.AppendTextElement(0, schedule.GetTimeSpanIndex() + "時間目 " + schedule.TableName);
+            template.AppendTextElement(1, "場所:" + schedule.Place);
+            template.AppendTextElement(2, "時間:" + schedule.GetTimeSpan().ToString());
+            return template;
+        }                                                                                                                                                                                                                                                            
         
     }
 }

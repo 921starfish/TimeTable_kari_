@@ -41,6 +41,7 @@ namespace TimeTableOne
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             NotificationTileManager.Instance.UpdateTile();
+            NotificationTileManager.Instance.NotifynextScheduleData();
         }
 
         /// <summary>
@@ -92,6 +93,7 @@ namespace TimeTableOne
 
 
 			SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested;
+            var d = ScheduleManager.Instance.GetScheduleStatus();
         }
 
         /// <summary>

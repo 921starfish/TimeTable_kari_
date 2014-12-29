@@ -155,6 +155,25 @@ namespace TimeTableOne.Common
             }
         }
 
+        public ScheduleState NextScheduleState
+        {
+            get
+            {
+                if(NextKeyInToday==null)return ScheduleState.Default;
+                var no = ApplicationData.Instance.GetNoClassSchedule(DateTimeUtil.Today(),NextKeyInToday);
+                if (no != null)
+                {
+                    return ScheduleState.NoClass;
+                }
+                else
+                {
+                    //TODO 教室変更の際ここに書く必要あり
+                    return ScheduleState.Default;
+                }
+            }
+        }
+
+
         public ScheduleTimeSpan NextTimeSpanInToday
         {
             get { return _nextTimeSpanInToday; }
@@ -177,12 +196,92 @@ namespace TimeTableOne.Common
                 return ApplicationData.Instance.GetSchedule(NextKeyInToday.NumberOfDay, NextKeyInToday.TableNumber);
             }
         }
+
+        public ScheduleData[] TodaySchedule
+        {
+            get
+            {
+                ScheduleData[] data=new ScheduleData[ApplicationData.Instance.TimeSpans.Count];
+                for (int i = 0; i < data.Length; i++)
+                {
+                    data[i] = ApplicationData.Instance.GetSchedule((int) DateTime.Today.DayOfWeek, i + 1);
+                }
+                return data;
+            }
+        }
+
+        /// <summary>
+        /// 今日を含めた週もしくはそのn週間後のスケジュールの状況を取得します。
+        /// </summary>
+        /// <param name="weekago"></param>
+        /// <returns></returns>
+        public ScheduleState[][] GetScheduleStatus(int weekago = 0)
+        {
+            //返り値の配列の初期化
+            ScheduleState[][] resultStatus=new ScheduleState[ApplicationData.Instance.TimeSpans.Count][];
+            for (int i = 0; i < resultStatus.Length; i++)
+            {
+                resultStatus[i] = new ScheduleState[7];
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < ApplicationData.Instance.TimeSpans.Count; j++)
+                {
+                    int classIndex = j + 1;
+                    //classIndex時限目のi日後の予定を取得すればいい。
+                    DateTime movedTime = DateTime.Now.AddDays(i + weekago*7).AsDayData();
+                    //授業の存在チェック
+                    ScheduleData scData = ApplicationData.Instance.GetSchedule((int) movedTime.DayOfWeek, classIndex);
+                    if (scData == null||string.IsNullOrWhiteSpace(scData.TableName))
+                    {
+                        resultStatus[i][j] = ScheduleState.Empty;
+                        continue;
+                    }
+                    else
+                    {
+                        //休講情報のチェック
+                        NoClassSchedule noClassSchedule = ApplicationData.Instance.GetNoClassSchedule(movedTime,
+                            new TableKey(classIndex, movedTime.DayOfWeek));
+                        if (noClassSchedule != null)
+                        {
+                            resultStatus[i][j] = ScheduleState.NoClass;
+                            continue;
+                        }
+                        //教室変更情報のチェック
+                        ClassRoomChangeSchedule changeSc = ApplicationData.Instance.GetClassRoomChangeSchedule(
+                            movedTime, new TableKey(classIndex, movedTime.DayOfWeek));
+                        if (changeSc != null)
+                        {
+                            resultStatus[i][j] = ScheduleState.ChangeRoom;
+                            continue;
+                        }
+                        resultStatus[i][j] = ScheduleState.Default;
+                    }
+                }
+            }
+            return resultStatus;
+        }
     }
 
 
     public enum ScheduleState
     {
-        NoClass,Default,ChangeRoom
+        NoClass,Default,ChangeRoom,Empty
+    }
+
+    public static class ScheduleHelper
+    {
+        public static ScheduleTimeSpan GetTimeSpan(this ScheduleData data)
+        {
+            ScheduleKey key=ApplicationData.Instance.GetScheduleKey(data.ScheduleId);
+            return ApplicationData.Instance.TimeSpans[key.TableNumber - 1];
+        }
+
+        public static int GetTimeSpanIndex(this ScheduleData data)
+        {
+            ScheduleKey key = ApplicationData.Instance.GetScheduleKey(data.ScheduleId);
+            return key.TableNumber;
+        }
     }
     /// <summary>
     ///     現在の時間帯が変わった際にコールされるイベントのイベント引数

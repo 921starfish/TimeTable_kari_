@@ -21,6 +21,8 @@ namespace TimeTableOne.Data
         public string BackgroundImagePath = "ms-appx:///Assets/Background(1).jpg";
 
         public string PageTitle = "TimeTable";
+
+        public int NotifictionExtratime = 5;
     }
 
     public enum TableType

@@ -78,6 +78,7 @@ namespace TimeTableOne.Data
             }
         }
 
+
         public static async Task<ScheduleKey> ToScheduleKey(TableKey key)
         {
             return Instance.GetScheduleKey(await Instance.GetKey(key.NumberOfDay, key.TableNumber));
@@ -188,7 +189,7 @@ namespace TimeTableOne.Data
             return Guid.Empty;
         }
 
-        private ScheduleKey GetScheduleKey(Guid id)
+        public ScheduleKey GetScheduleKey(Guid id)
         {
             return (from k in Keys where k.DataId == id select k).FirstOrDefault();
         }
