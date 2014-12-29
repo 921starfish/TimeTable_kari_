@@ -39,7 +39,7 @@
     	</VisualStateManager.VisualStateGroups>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
             Loaded="Button1_Loaded">
-            <SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" Foreground="{StaticResource TextBoxBorder}" />
+            <!--<SymbolIcon x:Name="Symbol1" Symbol="Add" Loaded="SymbolIcon_Loaded" Foreground="{StaticResource TextBoxBorder}" />-->
             <TextBlock 
                 x:Name="Block1"
                 

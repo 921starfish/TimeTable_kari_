@@ -223,6 +223,9 @@
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\AppendRowButtonViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditPageOneNoteControl.xaml.cs">
+      <DependentUpon>EditPageOneNoteControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
       <DependentUpon>TimeDisplay.xaml</DependentUpon>
@@ -394,6 +397,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\TablePage\Controls\AppendRowButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditPageOneNoteControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
