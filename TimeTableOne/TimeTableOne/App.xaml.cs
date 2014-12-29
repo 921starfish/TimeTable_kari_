@@ -96,17 +96,6 @@ namespace TimeTableOne
 
 
 			SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested;
-            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
-        }
-
-        void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        {
-            args.Request.ApplicationCommands.Add(new SettingsCommand("Privacy", "プライバシーポリシー", onSettingsCommand));
-        }
-
-        async void onSettingsCommand(IUICommand command)
-        {
-            await Launcher.LaunchUriAsync(new Uri("http://921starfish.github.io/TimeTable_kari_"));
         }
 
         /// <summary>

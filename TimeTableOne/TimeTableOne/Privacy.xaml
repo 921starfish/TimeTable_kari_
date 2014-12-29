@@ -21,15 +21,23 @@
 		<!-- Content Section 1-->
 		<StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
 			<!-- Section 1 header -->
-			<TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Privacy statement" />
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="個人情報の収集について" />
 			<!-- Section 1 body -->
-			<TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
-				<TextBlock.Text>
-					Your privacy statement here.
-				</TextBlock.Text>
-			</TextBlock>
-
-		</StackPanel>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,25" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    このWindowsストアアプリでは、Application Insights(http://msdn.microsoft.com/ja-jp/library/dn481095.aspx)のみにより個人情報の収集を行います。
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
 		<!-- Define more Content Sections below as necessary -->
-	</StackPanel>
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <!-- Section 2 header -->
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="個人情報保護方針(Privacy Policy)" />
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="　当開発チームは、お客さまの個人情報を正確かつ最新の状態に保ち、個人情報への不正アクセス・紛失・破損・改ざん・漏洩などを防止するため、セキュリティシステムの維持・管理体制の整備・社員教育の徹底等の必要な措置を講じ、安全対策を実施し個人情報の厳重な管理を行ないます。"/>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text=""/>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="　当開発チームは、お客さまよりお預かりした個人情報を適切に管理し、次のいずれかに該当する場合を除き、個人情報を第三者に開示いたしません。"/>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="　・お客さまの同意がある場合"/>
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="　・法令に基づき開示することが必要である場合"/>
+        </StackPanel>
+    </StackPanel>
 </SettingsFlyout>
