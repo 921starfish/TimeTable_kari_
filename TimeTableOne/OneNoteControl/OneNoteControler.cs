@@ -26,7 +26,7 @@ namespace OneNoteControl {
 
 		private OneNoteControler() {
 			_current = this;
-			SilentSignIn();
+			SignIn();
 		}
 
 		#endregion
