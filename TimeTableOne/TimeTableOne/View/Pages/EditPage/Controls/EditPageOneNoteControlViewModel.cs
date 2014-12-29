@@ -7,6 +7,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.View.Pages.TablePage.Controls;
 using Windows.UI.Xaml;
+using TimeTableOne.Data;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
@@ -14,7 +15,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
     {
         public EditPageOneNoteControlViewModel()
         {
-            NoteName = "NoteName";
+            NoteName = TableUnitDataHelper.GetCurrentSchedule().TableName;
             NoteColor = new SolidColorBrush((Color)Application.Current.Resources["OneNotePurpleColor"]);
             ForeColor=new SolidColorBrush(Colors.White);
           

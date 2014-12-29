@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TimeTableOne.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -30,12 +31,17 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
 		private void NewButton_Click(object sender, RoutedEventArgs e) {
             string sectionName = "m月N日";
-			OneNoteControl.OneNoteControler.Current.OpenNewSection(((EditPageViewModel)DataContext).TableName,sectionName);
+            OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
 
 		private void OpenButton_Click_1(object sender, RoutedEventArgs e) {
 			string sectionName = "m月N日";
-			OneNoteControl.OneNoteControler.Current.OpenRecentlySection(((EditPageViewModel)DataContext).TableName, sectionName);
+            OneNoteControl.OneNoteControler.Current.OpenRecentlySection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
+
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext =new EditPageOneNoteControlViewModel();
+        }
     }
 }

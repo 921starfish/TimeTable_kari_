@@ -47,7 +47,7 @@
                 </Grid>
             </Grid>
             
-                <Border Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{StaticResource TextBoxBorder}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1"></Border>
+                <Border Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{StaticResource TextBoxBorder}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1" Loaded="Border_Loaded"></Border>
             <!--<Rectangle Fill="{Binding NoteColor}"></Rectangle>-->
            
         </Grid>

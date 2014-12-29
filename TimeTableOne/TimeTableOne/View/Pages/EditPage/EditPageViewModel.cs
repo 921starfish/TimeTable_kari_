@@ -66,7 +66,7 @@ namespace TimeTableOne.View.Pages.EditPage
            {
                OneNoteControl.OneNoteControler.Current.Open(_scheduleData.TableName);
            });
-            OneNoteControlData = new EditPageOneNoteControlViewModel();
+          
         }
      
 
