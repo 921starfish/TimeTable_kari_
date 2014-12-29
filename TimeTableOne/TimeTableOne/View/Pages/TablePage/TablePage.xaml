@@ -14,6 +14,7 @@
     <Page.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </Page.Resources>
+
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
             <AppBarButton Icon="Rotate"  Label="5/6/7列切替" Click="ToggleColumn"></AppBarButton>
@@ -21,50 +22,56 @@
             <AppBarButton Icon="Remove" Label="一行消す" Name="RemoveButton"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
-    <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource OneNotePurple}">
-    	<VisualStateManager.VisualStateGroups>
-    		<VisualStateGroup x:Name="VisualStateGroup">
-    			<VisualStateGroup.Transitions>
-    				<VisualTransition From="BasicState" GeneratedDuration="0:0:0.3" To="MouseOn"/>
-    				<VisualTransition GeneratedDuration="0:0:0.3"/>
-    				<VisualTransition From="MouseOn" GeneratedDuration="0:0:0.3" To="Editing"/>
-    			</VisualStateGroup.Transitions>
-    			<VisualState x:Name="BasicState"/>
-    			<VisualState x:Name="MouseOn">
-    				<Storyboard>
-    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True"/>
-    				</Storyboard>
-    			</VisualState>
-    			<VisualState x:Name="Editing">
-    				<Storyboard>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Visible</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="pageTitle">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
-    				</Storyboard>
-    			</VisualState>
-    		</VisualStateGroup>
-    	</VisualStateManager.VisualStateGroups>
+    <Grid MinHeight="768" MinWidth="1024" Background="{StaticResource EditBoxGray}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition From="BasicState" GeneratedDuration="0:0:0.3" To="MouseOn"/>
+                    <VisualTransition GeneratedDuration="0:0:0.3"/>
+                    <VisualTransition From="MouseOn" GeneratedDuration="0:0:0.3" To="Editing"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="BasicState"/>
+                <VisualState x:Name="MouseOn">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Editing">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="pageTitle">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBox" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource OneNotePurple}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
         <Grid Grid.Row="0" Loaded="Grid_Loaded">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton"  HorizontalAlignment="Stretch"  
                     VerticalAlignment="Stretch" 
@@ -73,7 +80,7 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <StackPanel Grid.Column="1"  Orientation="Horizontal">
                 <TextBlock x:Name="pageTitle" 
                        Text="{Binding PageTitle}"
                        Style="{StaticResource HeaderTextBlockStyle}" 
@@ -84,14 +91,20 @@
                 <TextBox Text="{Binding PageTitleForEdit,Mode=TwoWay}" x:Name="textBox" Width="300" Height="20" Visibility="Collapsed" Opacity="0" LostFocus="TextBox_OnLostFocus"/>
                 <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Margin="4,0,0,0" Opacity="0"></SymbolIcon>
             </StackPanel>
-            
-            <controls:TimeControl Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" d:DataContext="{controls:TimeControlViewModel}"/>
-            <Button Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="ButtonBase_OnClick">
+            <TextBlock  Grid.Column ="1" Grid.Row= "0" Text="{Binding TimeText}"  HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="70" Margin="0,0,170,0" DataContext="{Binding TimeControlData}" Width="174" Height="94"/>
+            <TextBlock  Grid.Column ="1" Grid.Row= "0" Text="{Binding DayText}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="36" Margin="0,0,20,0" DataContext="{Binding TimeControlData}" Height="64"/>
+            <!--<controls:TimeControl Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" d:DataContext="{controls:TimeControlViewModel}" />-->
+            <!--<Button Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Center" Click="ButtonBase_OnClick">
                 <SymbolIcon Symbol="Setting"></SymbolIcon>
+            </Button>-->
+        </Grid>
+        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" Grid.RowSpan="2" d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
+
+        </control:TimeTableGrid>
+        <Grid Grid.Row="2" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,100,0">
+            <Button  BorderBrush="{x:Null}" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Click="ButtonBase_OnClick">
+                <SymbolIcon Symbol="More" />
             </Button>
         </Grid>
-        <control:TimeTableGrid x:Name="GridControl" Grid.Row="1" d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
-            
-        </control:TimeTableGrid>
     </Grid>
 </Page>
