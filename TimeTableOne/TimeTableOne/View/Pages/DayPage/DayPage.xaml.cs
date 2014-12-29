@@ -34,7 +34,10 @@ namespace TimeTableOne.View.Pages.DayPage
         {
             PageUtil.MovePage(MainStaticPages.TablePage);
         }
-
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            BottomCommandBar.IsOpen = !BottomCommandBar.IsOpen;
+        }
         private async void AppBarButton_Click_SelectImage(object sender, RoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
