@@ -29,5 +29,12 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var f = (Frame)Window.Current.Content;
+            var tablePage = f.Content as TablePage;
+             tablePage.AppendCommand.Execute(null);
+        }
     }
 }

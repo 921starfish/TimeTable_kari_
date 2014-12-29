@@ -22,18 +22,7 @@ namespace TimeTableOne.View.Pages.TablePage
             PageTitleForEdit=PageTitle = config.PageTitle;
             TimeControlData = new TimeControlViewModel();
             GridHeaders = new ObservableCollection<BasicViewModel>();
-            TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
-            int n = TableLayoutManager.getElementCount(type);
-            GridHeaders.Add(new EmptyGridUnitViewModel());
-            DayOfWeek[] headers = { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
-
-            for (int i = 0; i < n; i++)
-            {
-                GridHeaders.Add(new TimeGridHeaderViewModel(headers[i]) { TextBrush = headers[i].GetWeekColor() });
-            }
-            ElementWidth = TableLayoutManager.getElementWidth(type);
-            ElementHeight = 90;
-            WidthSplit = n + 1;
+            UpdateHeader();
         }
 
         public TimeTableGridViewModel TimeTableDataContext
@@ -76,6 +65,23 @@ namespace TimeTableOne.View.Pages.TablePage
         public int ElementWidth { get; set; }
 
         public int ElementHeight { get; set; }
+
+        public void UpdateHeader()
+        {
+            GridHeaders.Clear();
+            TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
+            int n = TableLayoutManager.getElementCount(type);
+            GridHeaders.Add(new EmptyGridUnitViewModel());
+            DayOfWeek[] headers = { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
+
+            for (int i = 0; i < n; i++)
+            {
+                GridHeaders.Add(new TimeGridHeaderViewModel(headers[i]) { TextBrush = headers[i].GetWeekColor() });
+            }
+            ElementWidth = TableLayoutManager.getElementWidth(type);
+            ElementHeight = 90;
+            WidthSplit = n + 1;
+        }
     }
 
     public class TablePageViewModelInDesign : TablePageViewModel
