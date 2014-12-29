@@ -94,8 +94,18 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
             set
             {
-                if (value == _changeTo) return;
+                // if (value == _changeTo) return;
                 _changeTo = value;
+                if (!string.IsNullOrEmpty(_changeTo))
+                {
+                    CaptionColor = new SolidColorBrush(Colors.DarkOrange);
+                    ClassRoomChangeCaption = "教室変更";
+                }
+                else
+                {
+                    CaptionColor = new SolidColorBrush(Colors.Green);
+                    ClassRoomChangeCaption = "通常";
+                }
                 OnPropertyChanged();
             }
         }
