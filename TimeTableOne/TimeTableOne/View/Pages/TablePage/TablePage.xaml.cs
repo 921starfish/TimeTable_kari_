@@ -123,11 +123,12 @@ namespace TimeTableOne.View.Pages.TablePage
         }
 
         private void ToggleColumn(object sender, RoutedEventArgs e)
-        {//TODO 土曜日+平日設定も利用する?
+        {
             var config = ApplicationData.Instance.Configuration;
             config.TableTypeSetting = this.MoveNext(config.TableTypeSetting); 
             ApplicationData.SaveData();
             ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
+            this.DataContext = new TablePageViewModel();
         }
 
         private TableType MoveNext(TableType t)
@@ -192,6 +193,11 @@ namespace TimeTableOne.View.Pages.TablePage
             var config = ApplicationData.Instance.Configuration;
             config.IsEnglishTablePageHeader = !config.IsEnglishTablePageHeader;
             ApplicationData.SaveData();
+            ViewModel.UpdateHeader();
+        }
+
+        private void pageRoot_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
             this.DataContext = new TablePageViewModel();
         }
     }

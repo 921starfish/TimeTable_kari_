@@ -146,6 +146,7 @@
     <Compile Include="Utils\DateTimeUtil.cs" />
     <Compile Include="Utils\PageUtil.cs" />
     <Compile Include="Utils\TableKey.cs" />
+    <Compile Include="Utils\TimeSpanAnlyzer.cs" />
     <Compile Include="View\Pages\DayPage\Controls\DayPageTableViewModel.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>

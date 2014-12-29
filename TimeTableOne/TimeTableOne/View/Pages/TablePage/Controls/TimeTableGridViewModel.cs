@@ -59,7 +59,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public ObservableCollection<BasicViewModel> GridItems { get; set; }
 
-        public ObservableCollection<BasicViewModel> GridHeaders { get; set; } 
 
         public int ElementWidth { get; set; }
 

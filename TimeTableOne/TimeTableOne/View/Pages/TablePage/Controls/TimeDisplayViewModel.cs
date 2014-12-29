@@ -13,6 +13,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
 
 namespace TimeTableOne.View.Pages.TablePage.Controls
@@ -184,8 +185,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     j < ApplicationData.Instance.Configuration.TableCount - ApplicationData.Instance.TimeSpans.Count;
                     j++)
                 {
-                    ApplicationData.Instance.TimeSpans.Add(ScheduleTimeSpan.GenerateFromHourMinute(
-                        lastData.ToTime.Hour, lastData.ToTime.Minute, lastData.ToTime.Hour, lastData.ToTime.Minute));
+                    DateTime fromTime = lastData.ToTime.AddMinutes(TimeSpanAnlyzer.IdealSpanStride());
+                    DateTime toTime = fromTime.AddMinutes(TimeSpanAnlyzer.IdealSpanLength());
+                     ApplicationData.Instance.TimeSpans.Add(ScheduleTimeSpan.GenerateFromHourMinute(
+                        fromTime.Hour,fromTime.Minute,toTime.Hour,toTime.Minute));
                 }
             }
             else
