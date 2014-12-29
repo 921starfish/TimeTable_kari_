@@ -19,6 +19,8 @@ using TimeTableOne.Data;
 // add the assembly for the Settings flyout
 using Windows.UI.ApplicationSettings;
 using System.Threading.Tasks;
+using Windows.System;
+using Windows.UI.Popups;
 using Microsoft.Live;
 using TimeTableOne.Utils;
 
@@ -92,6 +94,17 @@ namespace TimeTableOne
 
 
 			SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested;
+            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
+        }
+
+        void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            args.Request.ApplicationCommands.Add(new SettingsCommand("Privacy", "プライバシーポリシー", onSettingsCommand));
+        }
+
+        async void onSettingsCommand(IUICommand command)
+        {
+            await Launcher.LaunchUriAsync(new Uri("http://921starfish.github.io/TimeTable_kari_"));
         }
 
         /// <summary>
