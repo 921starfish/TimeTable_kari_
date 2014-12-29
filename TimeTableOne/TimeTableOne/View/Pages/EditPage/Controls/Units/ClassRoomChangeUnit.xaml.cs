@@ -20,6 +20,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public sealed partial class ClassRoomChangeUnit : UserControl
     {
+        public ClassRoomChangeUnitViewModel ViewModel
+        {
+            get{return DataContext as ClassRoomChangeUnitViewModel;}
+        }
+
         public ClassRoomChangeUnit()
         {
             this.InitializeComponent();
@@ -48,8 +53,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             VisualStateManager.GoToState(this, "BasicState", true);
 
-            Debug.WriteLine(textBox.Text);// 教室名
-
+            ViewModel.ApplyChangeStatus();
         }
     }
 }
