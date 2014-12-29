@@ -40,9 +40,17 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OneNoteControl.cs" />
+    <Compile Include="OneNoteControler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardResponse.cs" />
+    <Compile Include="Responses\GetNotebooksResponse.cs" />
+    <Compile Include="Responses\GetPagesResponse.cs" />
+    <Compile Include="Responses\GetSectionGroupsResponse.cs" />
+    <Compile Include="Responses\GetSectionsResponse.cs" />
+    <Compile Include="Responses\PatchContentResponse.cs" />
+    <Compile Include="Responses\PostPagesResponse.cs" />
+    <Compile Include="Responses\PostSectionsResponse.cs" />
+    <Compile Include="Responses\PostNotebooksResponse.cs" />
+    <Compile Include="Responses\StandardResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Live">

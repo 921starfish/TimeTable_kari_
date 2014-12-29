@@ -64,7 +64,7 @@ namespace TimeTableOne {
 
 		private async void SignInClick(object sender, RoutedEventArgs e) {
 			try {
-				await OneNoteControl.Current.SignIn();
+                await OneNoteControl.OneNoteControler.Current.SignIn();
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
@@ -74,7 +74,7 @@ namespace TimeTableOne {
 
 		private async void SignOutClick(object sender, RoutedEventArgs e) {
 			try {
-				await OneNoteControl.Current.SignOut();
+                await OneNoteControl.OneNoteControler.Current.SignOut();
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
@@ -84,10 +84,10 @@ namespace TimeTableOne {
 
 		public void UpdateState() {
 			try {
-				this.SignInName = OneNoteControl.Current.SignInName;
-				this.IsSignedIn = OneNoteControl.Current.IsSignedIn;
+                this.SignInName = OneNoteControl.OneNoteControler.Current.SignInName;
+                this.IsSignedIn = OneNoteControl.OneNoteControler.Current.IsSignedIn;
 				if (this.IsSignedIn) {
-					signOutBtn.Visibility = (OneNoteControl.Current.AuthClient.CanLogout
+                    signOutBtn.Visibility = (OneNoteControl.OneNoteControler.Current.AuthClient.CanLogout
 						? Visibility.Visible
 						: Visibility.Collapsed);
 					signInBtn.Visibility = Visibility.Collapsed;
@@ -116,7 +116,7 @@ namespace TimeTableOne {
 
 		private void Test1_Click(object sender, RoutedEventArgs e)
 		{
-            OneNoteControl.Current.OpenNotes("Test");
+            OneNoteControl.OneNoteControler.Current.OpenNotes("Test");
 		}
 
 		private void Test2_Click(object sender, RoutedEventArgs e) {

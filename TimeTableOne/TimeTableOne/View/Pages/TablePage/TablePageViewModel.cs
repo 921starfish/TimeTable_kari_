@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Windows.UI.StartScreen;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
+using TimeTableOne.View.Pages.DayPage.Controls;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.TablePage
@@ -18,7 +19,7 @@ namespace TimeTableOne.View.Pages.TablePage
             Width = TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting);
             var config = ApplicationData.Instance.Configuration;
             PageTitleForEdit=PageTitle = config.PageTitle;
-            
+            TimeControlData = new TimeControlViewModel();
         }
 
         public TimeTableGridViewModel TimeTableDataContext
@@ -50,6 +51,8 @@ namespace TimeTableOne.View.Pages.TablePage
                 OnPropertyChanged();
             }
         }
+
+        public TimeControlViewModel TimeControlData { get; set; }
     }
 
     public class TablePageViewModelInDesign : TablePageViewModel

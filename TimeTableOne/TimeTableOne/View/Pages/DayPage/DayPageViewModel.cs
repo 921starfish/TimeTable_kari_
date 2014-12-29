@@ -21,7 +21,7 @@ namespace TimeTableOne.View.Pages.DayPage
         {
             Tables = new ObservableCollection<DayPageTableViewModel>();
             DayPageTableViewModel VM;
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i <= ApplicationData.Instance.TimeSpans.Count; i++)
             {
 
                 data = ApplicationData.Instance.GetSchedule((int)DateTime.Now.DayOfWeek, i);

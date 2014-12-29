@@ -100,5 +100,17 @@ namespace TimeTableOne.View.Pages.EditPage
 
         }
 
+        private void New_Button_Click(object sender, RoutedEventArgs e)
+        {
+            OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
+            string sectionName = "m月N日";
+        }
+        
+        private void Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
+            string sectionName = "m月N日";
+        }
+
     } 
 }

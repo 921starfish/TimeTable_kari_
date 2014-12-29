@@ -19,8 +19,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="80"></RowDefinition>
             </Grid.RowDefinitions>
-            <Rectangle Fill="{StaticResource OneNotePurple}"></Rectangle>
-            <TextBlock Text="課題の追加" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <Rectangle Fill="{Binding TableColor}"></Rectangle>
+            <TextBlock Text="課題の追加" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding ForeColor}"></TextBlock>
             <StackPanel Grid.Row="1">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">

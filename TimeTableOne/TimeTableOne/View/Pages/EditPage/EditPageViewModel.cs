@@ -64,7 +64,7 @@ namespace TimeTableOne.View.Pages.EditPage
             OpenOneNote = new AlwaysExecutableDelegateCommand(
            () =>
            {
-               OneNoteControl.Current.Open(_scheduleData.TableName);
+               OneNoteControl.OneNoteControler.Current.Open(_scheduleData.TableName);
            });
             TableColor = new SolidColorBrush(_scheduleData.ColorData);
         }

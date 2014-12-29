@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="5760ArLEquiN.TimeTableOne" Publisher="CN=6239D212-275E-4CC6-BD00-16F33F83CF05" Version="1.2.0.0" />
+  <Identity Name="5760ArLEquiN.TimeTableOne" Publisher="CN=6239D212-275E-4CC6-BD00-16F33F83CF05" Version="1.0.0.0" />
   <Properties>
     <DisplayName>TimeTableOne</DisplayName>
     <PublisherDisplayName>ArLEquiN</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TimeTableOne.App">
       <m2:VisualElements DisplayName="TimeTableOne" Square150x150Logo="Assets\Square150x150Logo.png" Square30x30Logo="Assets\Square30x30Logo.png" Description="TimeTableOne" ForegroundText="light" BackgroundColor="#80397B" ToastCapable="true">
-        <m2:DefaultTile Square310x310Logo="Assets\Square310x310Logo.png" Square70x70Logo="Assets\Square70x70Logo.png" Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="TimeTableOne">
+        <m2:DefaultTile Square310x310Logo="Assets\Square310x310Logo.png" Square70x70Logo="Assets\Square70x70Logo.png" Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="TimeTableOne" DefaultSize="square150x150Logo">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
             <m2:ShowOn Tile="wide310x150Logo" />
