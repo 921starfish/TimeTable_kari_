@@ -24,10 +24,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 
         private void initializeAsToday()
         {
-            var d = DateTime.Now.AddDays(7);
-            _yearEdit = d.Year;
-            _monthEdit = d.Month;
-            _dayEdit = d.Day;
+            DueDate=DateTime.Now.AddDays(7);
+            updateDuedateForEdit();
         }
 
         private bool ValidateAssignmentData()
@@ -57,6 +55,16 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         protected BasicCommand _acceptCommand;
         private SolidColorBrush _tableColor;
         private Brush _foreColor;
+
+
+        private void updateDuedateForEdit()
+        {
+            var d = DueDate;
+            YearEdit= d.Year;
+            MonthEdit = d.Month;
+            DayEdit = d.Day;
+        }
+       
 
         public string AssignmentName
         {
@@ -103,7 +111,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             {
                 if (value == _monthEdit) return;
                 _monthEdit = value;
-                OnPropertyChanged(); _acceptCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged();
+                _acceptCommand.NotifyCanExecuteChanged();
 
             }
         }
@@ -130,7 +139,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 _dueDate = value;
                 OnPropertyChanged();
                 _acceptCommand.NotifyCanExecuteChanged();
-
+                updateDuedateForEdit();
             }
         }
         public SolidColorBrush TableColor

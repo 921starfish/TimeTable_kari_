@@ -44,10 +44,18 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 
 
             PopupMenu menu = new PopupMenu();
-            menu.Commands.Add(new UICommand("テスト1"));
-            menu.Commands.Add(new UICommand("テスト2"));
+            menu.Commands.Add(new UICommand("明日",(d)=>assignDayAfter(1)));
+            menu.Commands.Add(new UICommand("次週", (d) => assignDayAfter(7)));
+            menu.Commands.Add(new UICommand("再来週", (d) => assignDayAfter(14)));
+            menu.Commands.Add(new UICommand("3週間後", (d) => assignDayAfter(21)));
+            menu.Commands.Add(new UICommand("4週間後", (d) => assignDayAfter(28)));
             await menu.ShowAsync(transformPoint);
 
+        }
+
+        private void assignDayAfter(int date)
+        {
+            ViewModel.DueDate = DateTime.Now.AddDays(date);
         }
     }
 }
