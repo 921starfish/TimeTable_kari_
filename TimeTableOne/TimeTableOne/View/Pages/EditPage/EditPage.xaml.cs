@@ -35,6 +35,8 @@ namespace TimeTableOne.View.Pages.EditPage
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;
+            YesControl.Visibility = Visibility.Collapsed;
+            NoControl.Visibility = Visibility.Collapsed;
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
