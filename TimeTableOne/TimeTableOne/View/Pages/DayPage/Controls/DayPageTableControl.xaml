@@ -72,6 +72,9 @@
                 Loaded="Button1_Loaded" BorderBrush="{x:Null}" >
             <TextBlock></TextBlock>
         </Button>
+        <Border IsHitTestVisible="False" Background="Orange" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="3" Visibility="{Binding IsChangePlace,Converter={StaticResource VisibilityConverter}}">
+            <TextBlock Text="教室変更" FontSize="20" Foreground="White"></TextBlock>
+        </Border>
         <Border IsHitTestVisible="False" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter}}"></Border>
         <Border IsHitTestVisible="False" Background="Red" Grid.ColumnSpan="3" Grid.RowSpan="3"  HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource VisibilityConverter} }" >
             <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>
