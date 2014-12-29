@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using TimeTableOne.Background;
 using TimeTableOne.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -62,6 +63,11 @@ namespace TimeTableOne.View.Pages.DayPage
             Debug.WriteLine("アプリローカルに保存{0}\\{1}", folder.Path, "\\Background" + file.FileType);
             Data.ApplicationData.Instance.Configuration.BackgroundImagePath = folder.Path + "\\Background" + file.FileType;
             this.DataContext = new DayPageViewModel();
+        }
+
+        private async void NotificationSetting(object sender, RoutedEventArgs e)
+        {
+           await BackgroundTaskManager.AskRegister();
         }
     }
 }

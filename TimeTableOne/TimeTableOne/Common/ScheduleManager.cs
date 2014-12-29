@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections.Generic;
 using Windows.UI.Xaml;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
@@ -261,7 +262,63 @@ namespace TimeTableOne.Common
             }
             return resultStatus;
         }
+
+        public IEnumerable<ScheduleTimingUnit> GetTodayKeyTiming(ScheduleTimingType timing,bool withFinishedTiming=false)
+        {
+            ScheduleState[][] ScheduleStatus = GetScheduleStatus();
+            for (int index = 0; index < ApplicationData.Instance.TimeSpans.Count; index++)
+            {
+                var span = ApplicationData.Instance.TimeSpans[index];
+                if (withFinishedTiming || span.FromTime - DateTime.Now.AsTimeData() > new TimeSpan())
+                {
+                    if (timing.HasFlag(ScheduleTimingType.BeginTimeWithNoClass))
+                    {
+                        yield return new ScheduleTimingUnit(SpanTimeType.BeginTime, index, span.FromTime);
+                    }
+                    else if (timing.HasFlag(ScheduleTimingType.BeginTime))
+                    {
+                        if (ScheduleStatus[index][0] != ScheduleState.Empty &&
+                            ScheduleStatus[index][0] != ScheduleState.NoClass)
+                            yield return new ScheduleTimingUnit(SpanTimeType.BeginTime, index, span.FromTime);
+                    }
+                }
+                if (withFinishedTiming || span.ToTime - DateTime.Now.AsTimeData() > new TimeSpan())
+                {
+                    if (timing.HasFlag(ScheduleTimingType.EndTimeWithNoClass))
+                    {
+                        yield return new ScheduleTimingUnit(SpanTimeType.EndTime, index, span.ToTime);
+
+                    }
+
+                    else if (timing.HasFlag(ScheduleTimingType.EndTime))
+                    {
+                        if (ScheduleStatus[index][0] != ScheduleState.Empty &&
+                            ScheduleStatus[index][0] != ScheduleState.NoClass)
+                            yield return new ScheduleTimingUnit(SpanTimeType.EndTime, index, span.ToTime);
+                    }
+                }
+            }
+        }
     }
+
+    public class ScheduleTimingUnit
+    {
+        public ScheduleTimingUnit(SpanTimeType timingType, int classNumber, DateTime time)
+        {
+            TimingType = timingType;
+            ClassNumber = classNumber;
+            Time = time;
+        }
+
+        public SpanTimeType TimingType { get; private set; }
+        public int ClassNumber { get; private set; }
+
+        public DateTime Time { get; private set; }
+
+
+    }
+
+    
 
 
     public enum ScheduleState
@@ -269,6 +326,19 @@ namespace TimeTableOne.Common
         NoClass,Default,ChangeRoom,Empty
     }
 
+    public enum SpanTimeType
+    {
+        BeginTime,EndTime
+    }
+
+    [Flags]
+    public enum ScheduleTimingType
+    {
+        BeginTime=0x01,
+        EndTime=0x02,
+        BeginTimeWithNoClass=0x04,
+        EndTimeWithNoClass=0x08
+    }
     public static class ScheduleHelper
     {
         public static ScheduleTimeSpan GetTimeSpan(this ScheduleData data)
@@ -281,6 +351,16 @@ namespace TimeTableOne.Common
         {
             ScheduleKey key = ApplicationData.Instance.GetScheduleKey(data.ScheduleId);
             return key.TableNumber;
+        }
+
+        public static bool IsNoClass(this ScheduleState state)
+        {
+            return state == ScheduleState.Empty || state == ScheduleState.NoClass;
+        }
+
+        public static bool IsSpecialState(this ScheduleState state)
+        {
+            return state == ScheduleState.NoClass || state == ScheduleState.ChangeRoom;
         }
     }
     /// <summary>

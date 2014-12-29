@@ -12,6 +12,7 @@
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
             <AppBarButton Icon="Pictures"  Label="背景の変更" Click="AppBarButton_Click_SelectImage" ></AppBarButton>
+            <AppBarButton Icon="Setting" Label="通知設定" Click="NotificationSetting"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" >

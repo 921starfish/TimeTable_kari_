@@ -42,8 +42,9 @@ namespace TimeTableOne
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            NotificationTileManager.Instance.UpdateTile();
-            NotificationTileManager.Instance.NotifynextScheduleData();
+            NotificationManager.Instance.UpdateTile();
+            NotificationManager.Instance.UpdateNotificationDataOfToday();
+            NotificationManager.Instance.UpdateBadgeNotification();
         }
 
         /// <summary>
