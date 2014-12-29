@@ -1,0 +1,78 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.EditPageLeftControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource EditBoxGray}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "1*"/>
+            <ColumnDefinition Width= "20*"/>
+            <ColumnDefinition Width= "1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "3*"/>
+            <RowDefinition Height= "0*"/>
+            <RowDefinition Height= "3*"/>
+            <RowDefinition Height= "1*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="1"
+                HorizontalAlignment="Left"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Stretch"
+                Command ="{Binding OpenOneNote}"
+                BorderBrush="#00000000">
+            <SymbolIcon Symbol="Emoji2" Foreground="Black" />
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1"  Grid.RowSpan="1"
+                HorizontalAlignment="Right"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Stretch"  Command="{Binding AllDelete}"
+                BorderBrush="#00000000">
+            <SymbolIcon Symbol="Delete" Foreground="Black" />
+        </Button>
+        <TextBlock Grid.Column="1" Grid.Row="0" 
+                   x:Name="pageTitle" 
+                   Text="{Binding TableName}" 
+                   Style="{StaticResource HeaderTextBlockStyle}" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   IsHitTestVisible="false" 
+                   Foreground="Black" 
+                   FontFamily="Meiryo UI"
+                   FontSize="45"/>
+        <TextBox Grid.Column="1" Grid.Row="2" 
+                Background ="{StaticResource TextBoxGray}"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                TextWrapping="Wrap"
+                AcceptsReturn="True"
+                BorderBrush="{StaticResource TextBoxBorder}"
+                Text="{Binding DetailText,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}">
+        </TextBox>
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "1*"/>
+                <RowDefinition Height= "1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                   Foreground="Black"
+                   Text="場所"
+                   FontSize="36"
+                   FontFamily="メイリオ"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox   Grid.Row="1" 
+                   BorderBrush="{StaticResource TextBoxBorder}"
+                   Foreground="Black"
+                   Background="{StaticResource TextBoxGray}"
+                   Text="{Binding PlaceInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}" FontFamily="Global User Interface"
+                   PlaceholderText="ここに場所を入力してください"/>
+        </Grid>
+    </Grid>
+</UserControl>

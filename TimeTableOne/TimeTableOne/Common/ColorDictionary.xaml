@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.Common"
+    xmlns:system="using:System">
+    <Color x:Key="OneNotePurpleColor" >#FF80397B</Color>
+    <Color x:Key="SelectedOneNotePurpleColor" >#FFA3569E</Color>
+    <Color x:Key="EditBoxGrayColor">#FFE8E2E8</Color>
+    <Color x:Key="TextBoxGrayColor">#FFF0EDF3</Color>
+    <Color x:Key="TextBoxBorderColor">#FFE0DADE</Color>
+    <Color x:Key="DetailBoxBlackColor">#FF212121</Color>
+    <Color x:Key="SelectedDetailBoxBlackColor">#FF474747</Color>
+    
+    <SolidColorBrush x:Key="OneNotePurple" Color="{StaticResource OneNotePurpleColor}"/>
+    <SolidColorBrush x:Key="SelectedOneNotePurple" Color="{StaticResource SelectedOneNotePurpleColor}"/>
+    <SolidColorBrush x:Key="EditBoxGray" Color="{StaticResource EditBoxGrayColor}"/>
+    <SolidColorBrush x:Key="TextBoxGray" Color="{StaticResource TextBoxGrayColor}"/>
+    <SolidColorBrush x:Key="TextBoxBorder" Color="{StaticResource TextBoxBorderColor}"/>
+    <SolidColorBrush x:Key="DetailBoxBlack" Color="{StaticResource DetailBoxBlackColor}"/>
+    <SolidColorBrush x:Key="SelectedDetailBoxBlack" Color="{StaticResource SelectedDetailBoxBlackColor}"/>
+</ResourceDictionary>

@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1D0AFD9-3736-48DB-873D-6BC247C28906}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimeTableOne</RootNamespace>
+    <AssemblyName>TimeTableOne</AssemblyName>
+    <DefaultLanguage>ja-JP</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>TimeTableOne_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
+    <PackageCertificateThumbprint>20235425E405AFFBC6D5EF5C0B271255E7D4E344</PackageCertificateThumbprint>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Account.xaml.cs">
+      <DependentUpon>Account.xaml</DependentUpon>
+    </Compile>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BasicTableCommands.cs" />
+    <Compile Include="Common\NotificationTileManager.cs" />
+    <Compile Include="Common\LiveTileTemplateHelper.cs" />
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\ScheduleManager.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Common\TimerManager.cs" />
+    <Compile Include="Common\WeekStringConverter.cs" />
+    <Compile Include="Data\ApplicationData.cs" />
+    <Compile Include="Data\Args\AssignmentChangedEventArgs.cs" />
+    <Compile Include="Data\ConfigurationData.cs" />
+    <Compile Include="Data\TableUnitDataHelper.cs" />
+    <Compile Include="Privacy.xaml.cs">
+      <DependentUpon>Privacy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="BackgroundSelect.xaml.cs">
+      <DependentUpon>BackgroundSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ColorUtil.cs" />
+    <Compile Include="Utils\Commands\AlwaysExecutableDelegateCommand.cs" />
+    <Compile Include="Utils\Commands\BasicCommand.cs" />
+    <Compile Include="Utils\Commands\CommandBase.cs" />
+    <Compile Include="Utils\Commands\DelegateCommandBase.cs" />
+    <Compile Include="Utils\DateTimeUtil.cs" />
+    <Compile Include="Utils\PageUtil.cs" />
+    <Compile Include="Utils\TableKey.cs" />
+    <Compile Include="View\Pages\DayPage\Controls\DayPageTableViewModel.cs" />
+    <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
+      <DependentUpon>DayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\DayPage\Controls\DayPageTableControl.xaml.cs">
+      <DependentUpon>DayPageTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\DayPage\DayPageViewModel.cs" />
+    <Compile Include="View\Pages\DayPage\Controls\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\DayPage\Controls\TimeControlViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\EditPage\AssignmentControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\AssignmentControl.xaml.cs">
+      <DependentUpon>AssignmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml.cs">
+      <DependentUpon>AttendRateUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\AttendRateUserControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml.cs">
+      <DependentUpon>ClassRoomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ClassRoomControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopup.xaml.cs">
+      <DependentUpon>ColorPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopupUnit.xaml.cs">
+      <DependentUpon>ColorPopupUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\ColorPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditHeaderControl.xaml.cs">
+      <DependentUpon>EditHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditHeaderControlViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
+      <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
+      <DependentUpon>EditPageRightControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml.cs">
+      <DependentUpon>AddAssignmentPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml.cs">
+      <DependentUpon>ChangeRoomPopupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopup.xaml.cs">
+      <DependentUpon>EditAssignmentPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopupViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml.cs">
+      <DependentUpon>NoClassPopupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml.cs">
+      <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml.cs">
+      <DependentUpon>NoClassRoomListUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnit.xaml.cs">
+      <DependentUpon>ClassRoomChangeUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditPage\EditPageViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\AppendRowButton.xaml.cs">
+      <DependentUpon>AppendRowButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\AppendRowButtonViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
+      <DependentUpon>TimeDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml.cs">
+      <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeDisplayViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeGridHeader.xaml.cs">
+      <DependentUpon>TimeGridHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeGridHeaderViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml.cs">
+      <DependentUpon>TimeTableGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\DeleteRowCommand.cs" />
+    <Compile Include="View\Pages\TablePage\TableLayoutManager.cs" />
+    <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
+    <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
+      <DependentUpon>TimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\TablePage.xaml.cs">
+      <DependentUpon>TablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\TimeTableViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Assets\Background%281%29.jpg" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-140.png" />
+    <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\OneNotePurple.png" />
+    <Content Include="Assets\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-140.png" />
+    <Content Include="Assets\Square150x150Logo.scale-180.png" />
+    <Content Include="Assets\Square150x150Logo.scale-80.png" />
+    <Content Include="Assets\Square30x30Logo.scale-100.png" />
+    <Content Include="Assets\Square30x30Logo.scale-140.png" />
+    <Content Include="Assets\Square30x30Logo.scale-180.png" />
+    <Content Include="Assets\Square30x30Logo.scale-80.png" />
+    <Content Include="Assets\Square30x30Logo.targetsize-16.png" />
+    <Content Include="Assets\Square30x30Logo.targetsize-256.png" />
+    <Content Include="Assets\Square30x30Logo.targetsize-32.png" />
+    <Content Include="Assets\Square30x30Logo.targetsize-48.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-140.png" />
+    <Content Include="Assets\Square310x310Logo.scale-180.png" />
+    <Content Include="Assets\Square310x310Logo.scale-80.png" />
+    <Content Include="Assets\Square70x70Logo.scale-100.png" />
+    <Content Include="Assets\Square70x70Logo.scale-140.png" />
+    <Content Include="Assets\Square70x70Logo.scale-180.png" />
+    <Content Include="Assets\Square70x70Logo.scale-80.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-140.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-180.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-80.png" />
+    <Content Include="Fonts\LiveSymbol.ttf" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\ColorDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Privacy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BackgroundSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\DayPage\DayPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\DayPage\Controls\DayPageTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\DayPage\Controls\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\AssignmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\AttendRateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ClassRoomControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ColorPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\ColorPopupUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\AddAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\ChangeRoomPopupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\EditAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Popups\NoClassPopupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Units\AssignmentListUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\EditPage\Controls\Units\ClassRoomChangeUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditPage\EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\AppendRowButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeGridHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\Controls\TimeTableGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\TablePage\TablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AutoCompleteBox">
+      <HintPath>..\packages\AutoCompleteBoxWinRT.1.2.0.3\lib\winrt\AutoCompleteBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Live">
+      <HintPath>..\packages\LiveSDK.5.6\WindowsXAML\Microsoft.Live.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\NetCore45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\NetCore45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\NetCore45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\NetCore45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\packages\Rx-XAML.2.1.30214.0\lib\NetCore45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\packages\WinRTXamlToolkit.1.3.5.3\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OneNoteControl\OneNoteControl.csproj">
+      <Project>{fdded2fd-defd-4a81-970c-48e312afbc06}</Project>
+      <Name>OneNoteControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューターにはない NuGet パッケージを参照しています。これらをダウンロードするには、NuGet パッケージの復元を有効にしてください。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。不足しているファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

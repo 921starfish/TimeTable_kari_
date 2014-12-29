@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="TimeTableOne.View.Pages.DayPage.DayPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:TimeTableOne.View.Pages.DayPage.Controls" d:DataContext=""
+    mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Name="BottomCommandBar">
+            <AppBarButton Icon="Pictures"  Label="背景の変更" Click="AppBarButton_Click_SelectImage" ></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Grid MinHeight="768" MinWidth="1024" >
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding Background}" Stretch="Fill" Opacity="1"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!-- 水平スクロール グリッド -->
+            <ListView  ItemsSource="{Binding Tables}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Center">
+                            <controls:DayPageTable/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <AppBarButton Grid.Column="1" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click_1" Icon="Calendar" >
+                <Border BorderThickness="2" BorderBrush="White" CornerRadius="100" Padding="10">
+                    <SymbolIcon Symbol="Calendar"></SymbolIcon>
+                </Border>
+            </AppBarButton>
+            <controls:TimeControl Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"  VerticalAlignment="Bottom"/>
+            <Grid Grid.Column="0" Grid.Row="0" 
+                  Grid.RowSpan="2" 
+                  Grid.ColumnSpan="1" />
+        </Grid>
+    </Grid>
+</Page>

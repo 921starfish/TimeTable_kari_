@@ -1,0 +1,79 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.AttendRateUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DataContext="{local:AttendRateUserControlViewModelInDesign}"
+    d:DesignHeight="250"
+    d:DesignWidth="350" Height="200" Width="280">
+    
+    <Grid>
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.2"/>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="BasicState">
+    				<Storyboard RepeatBehavior="Forever">
+    					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+    						<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:7" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:8" Value="1"/>
+    					</DoubleAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    						<DiscreteObjectKeyFrame KeyTime="0:0:3">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    						<DiscreteObjectKeyFrame KeyTime="0:0:4">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    						<DiscreteObjectKeyFrame KeyTime="0:0:7">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1">
+    						<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:7" Value="1"/>
+    						<EasingDoubleKeyFrame KeyTime="0:0:8" Value="0"/>
+    					</DoubleAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock1">
+    						<DiscreteObjectKeyFrame KeyTime="0">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    						<DiscreteObjectKeyFrame KeyTime="0:0:3">
+    							<DiscreteObjectKeyFrame.Value>
+    								<FontFamily>Global User Interface</FontFamily>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+        <Border BorderBrush="DimGray" BorderThickness="2" Background="DimGray">
+            <Border VerticalAlignment="Bottom" Height="{Binding BarHeight}" Background="LawnGreen">
+            </Border>
+        </Border>
+        <TextBlock x:Name="textBlock" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByDay}" FontSize="50" Opacity="1"></TextBlock>
+        <TextBlock x:Name="textBlock1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextByPercentage}" FontSize="50" Opacity="0"></TextBlock>
+    </Grid>
+</UserControl>

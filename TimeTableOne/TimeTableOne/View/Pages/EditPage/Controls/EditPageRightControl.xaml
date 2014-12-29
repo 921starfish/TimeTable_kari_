@@ -1,0 +1,59 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.EditPageRightControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="1000"
+    d:DesignWidth="1000"
+    Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White ">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "1*"/>
+            <ColumnDefinition Width= "20*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "1*"/>
+            <RowDefinition Height= "20*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row ="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height= "1*"/>
+                <RowDefinition Height= "8*"/>
+            </Grid.RowDefinitions>
+            <TextBox   Grid.Row="0"
+                       VerticalAlignment="Top"
+                       TextWrapping="NoWrap"
+                       AcceptsReturn ="False"
+                       Foreground="Black"
+                       Text="{Binding Komidashi, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       FontFamily="メイリオ"
+                       FontSize="48"
+                       Height="70"
+                       PlaceholderText="ここにテーブル名を入力してください"
+                       >
+            </TextBox>
+            <Rectangle  Fill="{StaticResource TextBoxBorder}" Grid.Row="0" 
+                        Margin="0,75,0,0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"  
+                        Height="1" 
+                        Width="{Binding RecLength}"/>
+            <TextBox   Grid.Row="1" 
+                       TextWrapping="Wrap"
+                       AcceptsReturn="True"
+                       Foreground="Black"
+                       FontStyle="Normal"
+                       Text="{Binding TableInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       FontSize="32"
+                       PlaceholderText="テーブルの説明を入力してください">
+            </TextBox>
+           
+        </Grid>
+    </Grid>
+</UserControl>
