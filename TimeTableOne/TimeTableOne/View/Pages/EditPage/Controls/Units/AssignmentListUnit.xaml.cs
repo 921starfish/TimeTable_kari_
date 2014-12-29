@@ -22,6 +22,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
     public sealed partial class AssignmentListUnit : UserControl
     {
         private bool isEditState = false;
+
+        public AssignmentListUnitViewModel ViewModel
+        {
+            get { return DataContext as AssignmentListUnitViewModel; }
+        }
         public AssignmentListUnit()
         {
             this.InitializeComponent();
@@ -51,6 +56,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             EditPopup.IsOpen = !EditPopup.IsOpen;
             if (EditPopup.IsOpen)
             {
+                EditPopup.DataContext = new EditAssignmentPopupViewModel(ViewModel._schedule);
                 var frame = (Frame)Window.Current.Content;
                 var rect=EditPopup.GetBoundingRect(frame);
                 EditPopup.VerticalOffset = frame.ActualHeight/2 - 300 - rect.Y;

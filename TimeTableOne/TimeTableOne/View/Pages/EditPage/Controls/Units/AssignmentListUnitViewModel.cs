@@ -16,7 +16,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public class AssignmentListUnitViewModel:BasicViewModel
     {
-        private readonly AssignmentSchedule _schedule;
+        public readonly AssignmentSchedule _schedule;
 
         public AssignmentListUnitViewModel()
         {
