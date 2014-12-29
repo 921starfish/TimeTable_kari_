@@ -186,6 +186,7 @@
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageOneNoteControlViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
       <DependentUpon>EditPageRightControl.xaml</DependentUpon>
     </Compile>
@@ -207,6 +208,9 @@
       <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditPageYesOneNoteControl.xaml.cs">
+      <DependentUpon>EditPageYesOneNoteControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml.cs">
       <DependentUpon>NoClassRoomListUnit.xaml</DependentUpon>
     </Compile>
@@ -224,8 +228,8 @@
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\AppendRowButtonViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
-    <Compile Include="View\Pages\EditPage\Controls\EditPageOneNoteControl.xaml.cs">
-      <DependentUpon>EditPageOneNoteControl.xaml</DependentUpon>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageNoOneNoteControl.xaml.cs">
+      <DependentUpon>EditPageNoOneNoteControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
@@ -385,6 +389,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditPageYesOneNoteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -401,7 +409,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\EditPage\Controls\EditPageOneNoteControl.xaml">
+    <Page Include="View\Pages\EditPage\Controls\EditPageNoOneNoteControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

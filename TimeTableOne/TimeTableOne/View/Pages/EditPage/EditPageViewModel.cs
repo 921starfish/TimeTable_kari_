@@ -66,9 +66,9 @@ namespace TimeTableOne.View.Pages.EditPage
            {
                OneNoteControl.OneNoteControler.Current.Open(_scheduleData.TableName);
            });
-            TableColor = new SolidColorBrush(_scheduleData.ColorData);
+            OneNoteControlData = new EditPageOneNoteControlViewModel();
         }
-
+     
 
         private void Initialize()
         {
@@ -107,6 +107,8 @@ namespace TimeTableOne.View.Pages.EditPage
         private bool freeTextEdited;
         private bool detailTextEdited;
         private SolidColorBrush _tableColor;
+        private SolidColorBrush _noteColor;
+        private EditPageOneNoteControlViewModel _oneNoteControlData;
         public TableKey TableKey { get; set; }
 
         int TableNumber { get; set; }
@@ -262,6 +264,13 @@ namespace TimeTableOne.View.Pages.EditPage
                 _tableColor = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("TableColor"));
             }
+        }
+
+
+        public EditPageOneNoteControlViewModel OneNoteControlData
+        {
+            get { return _oneNoteControlData; }
+            set { _oneNoteControlData = value; }
         }
     }
 }

@@ -22,5 +22,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             this.InitializeComponent();
         }
+
+        private void EditPageYesOneNoteControl_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            
+        }
     }
 }

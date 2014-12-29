@@ -65,6 +65,20 @@ namespace TimeTableOne.View.Pages.EditPage
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
+            //bool isNote =
+            //    !OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel) DataContext).TableName)
+            //        .Result;
+            if (true)
+            {
+                YesControl.Visibility = Visibility.Collapsed;
+                NoControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                YesControl.Visibility = Visibility.Visible;
+                NoControl.Visibility = Visibility.Collapsed;
+              
+            }
         }
 
         #region NavigationHelper の登録
@@ -111,6 +125,8 @@ namespace TimeTableOne.View.Pages.EditPage
             OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
             string sectionName = "m月N日";
         }
+
+        
 
     } 
 }

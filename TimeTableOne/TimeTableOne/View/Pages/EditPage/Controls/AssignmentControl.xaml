@@ -10,7 +10,7 @@
     xmlns:editPage="using:TimeTableOne.View.Pages.EditPage"
     mc:Ignorable="d"
     d:DesignHeight="600"
-    d:DesignWidth="400" d:DataContext="{editPage:AssignmentControlViewModelInDesign}">
+    d:DesignWidth="400" >
     <UserControl.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
