@@ -246,6 +246,7 @@ namespace TimeTableOne.Data
         public ClassRoomChangeSchedule GetClassRoomChangeSchedule(DateTime t, TableKey key)
         {
             var sc = GetSchedule(key.NumberOfDay, key.TableNumber);
+            if (sc == null) return null;
             foreach (var schedule in from cc in ClassRoomChanges where cc.ScheduleId.Equals(sc.ScheduleId) && cc.ChangedDay.Equals(t) select cc)
             {
                 return schedule;

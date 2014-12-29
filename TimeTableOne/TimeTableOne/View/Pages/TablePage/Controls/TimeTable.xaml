@@ -60,6 +60,9 @@
                 BorderBrush="#00000000">
         </Button>
         <Rectangle Margin="1" x:Name="rectangle" StrokeThickness="2" Stroke="DodgerBlue"/>
+        <Border IsHitTestVisible="False" Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="{Binding IsChangePlace,Converter={StaticResource BooleanToVisibilityConverter} }" Padding="4">
+            <TextBlock Text="教室変更" FontSize="20" Foreground="White"></TextBlock>
+        </Border>
         <Border IsHitTestVisible="False" Background="#88FFFFFF" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" ></Border>
         <Border IsHitTestVisible="False" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="4" Visibility="{Binding IsNoClass,Converter={StaticResource BooleanToVisibilityConverter} }" >
             <TextBlock Text="休講" FontSize="20" Foreground="White"></TextBlock>

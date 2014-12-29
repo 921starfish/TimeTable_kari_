@@ -363,6 +363,25 @@ namespace TimeTableOne.Common
         {
             return state == ScheduleState.NoClass || state == ScheduleState.ChangeRoom;
         }
+
+        public static string ActualPlaceInNextWeek(this TableKey tableKey)
+        {
+            var changeSchedule = ApplicationData.Instance.GetClassRoomChangeSchedule(
+                DateTimeUtil.NextKeyDay(DateTime.Now, tableKey.dayOfWeek), tableKey);
+            if (changeSchedule == null)
+            {
+                var d = ApplicationData.Instance.GetSchedule(tableKey.NumberOfDay, tableKey.TableNumber);
+                if (d != null) return d.Place;
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return changeSchedule.ChangedTo;
+            }
+        }
     }
     /// <summary>
     ///     現在の時間帯が変わった際にコールされるイベントのイベント引数
