@@ -72,7 +72,8 @@
         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="Edit_Button_Click">
             <SymbolIcon Symbol="Edit" Foreground="Black"></SymbolIcon>
         </Button>-->
-        <controls:EditPageOneNoteControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"></controls:EditPageOneNoteControl>
+        <controls:EditPageOneNoteControl Grid.Row="1" Grid.Column="1" ></controls:EditPageOneNoteControl>
+        <controls:EditPageYesOneNoteControl Grid.Row="1" Grid.Column="1" ></controls:EditPageYesOneNoteControl>
     </Grid>
     <!--</Grid>-->
 </Page>
