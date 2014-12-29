@@ -49,7 +49,7 @@ namespace TimeTableOne
             Debug.WriteLine("選択した画像{0}",file.Path);
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             await file.CopyAsync(folder, "Background" + file.FileType, NameCollisionOption.ReplaceExisting);
-            Debug.WriteLine("アプリローカルに保存{0}\\{1}", folder.Path, "\\Background" + file.FileType);
+            Debug.WriteLine("アプリローカルに保存{0}{1}", folder.Path, "\\Background" + file.FileType);
             Data.ApplicationData.Instance.Configuration.BackgroundImagePath = folder.Path + "\\Background" + file.FileType;
         }
 

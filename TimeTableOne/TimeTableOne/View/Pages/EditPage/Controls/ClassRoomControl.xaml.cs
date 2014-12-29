@@ -59,10 +59,22 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             
         }
 
-        private void DeleteThisPage(object sender, RoutedEventArgs e)
+        private async void DeleteThisPage(object sender, RoutedEventArgs e)
         {
-            ApplicationData.Instance.RemoveSchedule(TableUnitDataHelper.GetCurrentSchedule());
-            PageUtil.MovePage(MainStaticPages.TablePage);
+            MessageDialog dlg = new MessageDialog("完全にこの時間割を削除します。\nほんとうによろしいですか？");
+            dlg.Commands.Add(new UICommand("はい"));
+            dlg.Commands.Add(new UICommand("いいえ"));
+            dlg.DefaultCommandIndex = 1;
+            IUICommand command = await dlg.ShowAsync();
+            if (command == dlg.Commands[0])
+            {
+                ApplicationData.Instance.RemoveSchedule(TableUnitDataHelper.GetCurrentSchedule());
+                PageUtil.MovePage(MainStaticPages.TablePage);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
