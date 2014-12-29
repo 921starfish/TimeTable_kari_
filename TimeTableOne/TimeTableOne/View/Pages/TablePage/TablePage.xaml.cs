@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Windows.Security.ExchangeActiveSyncProvisioning;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -150,14 +152,25 @@ namespace TimeTableOne.View.Pages.TablePage
             RemoveCommand.NotifyCanExecuteChanged();
         }
 
-        private void RemoveRow()
+        private async void RemoveRow()
         {
-            var config = ApplicationData.Instance.Configuration;
-            config.TableCount--;
-            ApplicationData.Instance.CheckAndRemoveRow();
-            ApplicationData.SaveData();
-            ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
-            RemoveCommand.NotifyCanExecuteChanged();
+            MessageDialog dlg = new MessageDialog("行を削除するとその行に含まれる時間割情報も削除されます。\n本当に削除してもよろしいですか？");
+            dlg.Commands.Add(new UICommand("はい"));
+            dlg.Commands.Add(new UICommand("いいえ"));
+            dlg.DefaultCommandIndex = 1;
+            IUICommand cmd = await dlg.ShowAsync();
+            if(cmd == dlg.Commands[0]){
+                var config = ApplicationData.Instance.Configuration;
+                config.TableCount--;
+                ApplicationData.Instance.CheckAndRemoveRow();
+                ApplicationData.SaveData();
+                ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
+                RemoveCommand.NotifyCanExecuteChanged();
+            }
+            else if (cmd ==dlg.Commands[1])
+            {
+                return;
+            }
         }
 
         private void PageTitle_OnPointerEntered(object sender, PointerRoutedEventArgs e)
