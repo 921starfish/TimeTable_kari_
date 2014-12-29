@@ -53,6 +53,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             {
                 _schedule.IsCompleted = false;
             }
+            updatAssignmentStatus();
         }
 
          
