@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="TimeTableOne.View.Pages.EditPage.Controls.EditPageYesOneNoteControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimeTableOne.View.Pages.EditPage.Controls.Units"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" DataContextChanged="EditPageYesOneNoteControl_OnDataContextChanged"
+    d:DesignHeight="600"
+    d:DesignWidth="700">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="次のノートと関連付けられました。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,8,0,0" Foreground="Black"></TextBlock>
+        <!--<Button BorderThickness="0" HorizontalAlignment="Left">
+            <SymbolIcon  Foreground="Black" Symbol="Play"/>
+        </Button>-->
+        <Grid  Background="GhostWhite" VerticalAlignment="Top" Grid.Row="1" Margin="40,20" Height="200" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource OneNotePurple}">
+                <TextBlock Grid.Column="0" Text="{Binding NoteName}" FontSize="40"   Foreground="{Binding ForeColor}" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+            </Border>
+                <Grid Grid.Row="1" Background="{StaticResource EditBoxGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                   
+                    <TextBlock Text="新しいセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                    <SymbolIcon Margin="10,0,0,0" HorizontalAlignment="Left" Foreground="Black" Symbol="Add"/>
+                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}" Click="NewButton_Click"></Button>
+                </Grid>
+                <Grid Background="{StaticResource TextBoxGray}" Grid.Column="1">
+                <TextBlock  Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                <SymbolIcon Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
+                    <Button BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="OpenButton_Click_1"></Button>
+                </Grid>
+            </Grid>
+            
+                <Border Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{StaticResource TextBoxBorder}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1" Loaded="Border_Loaded"></Border>
+            <!--<Rectangle Fill="{Binding NoteColor}"></Rectangle>-->
+           
+        </Grid>
+    </Grid>
+</UserControl>

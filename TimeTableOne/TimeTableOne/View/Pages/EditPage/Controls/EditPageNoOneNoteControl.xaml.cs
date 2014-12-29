@@ -14,15 +14,19 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // ユーザー コントロールのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234236 を参照してください
+using TimeTableOne.Data;
 
-namespace TimeTableOne.View.Pages.TablePage.Controls
+namespace TimeTableOne.View.Pages.EditPage.Controls
 {
-    public sealed partial class TimeDisplay : UserControl
+    public sealed partial class EditPageOneNoteControl : UserControl
     {
-        public TimeDisplay()
+        public EditPageOneNoteControl()
         {
             this.InitializeComponent();
-            this.DataContext = TimeDisplayViewModel.GenerateViewModel();
         }
+
+		private async void NewButton_Click(object sender, RoutedEventArgs e) {
+			await OneNoteControl.OneNoteControler.Current.CreateNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName);
+		}
     }
 }

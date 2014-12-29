@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace OneNoteControl.Responses
-{
-    class PostSectionsResponse
-    {
-        [JsonProperty(PropertyName = "@odata.context")]
-        public string context;
 
-        public bool isDefault;
+namespace OneNoteControl.Responses {
 
-        public string pagesUrl;
+	internal class PostSectionsResponse {
+		[JsonProperty(PropertyName = "@odata.context")] public string context;
 
-        public string name;
+		public bool isDefault;
 
-        public string self;
+		public string pagesUrl;
 
-        public string createdBy;
+		public string name;
 
-        public string lastModifiedBy;
+		public string self;
 
-        public string lastModifiedTime;
+		public string createdBy;
 
-        public string id;
+		public string lastModifiedBy;
 
-        public string createdTime;
-    }
+		public string lastModifiedTime;
+
+		public string id;
+
+		public string createdTime;
+	}
+
 }

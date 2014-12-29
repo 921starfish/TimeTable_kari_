@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Live;
-using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 
@@ -114,9 +112,10 @@ namespace TimeTableOne {
 			}
 		}
 
-		private void Test1_Click(object sender, RoutedEventArgs e)
-		{
-            OneNoteControl.OneNoteControler.Current.OpenNotes("Test");
+		private async void Test1_Click(object sender, RoutedEventArgs e) {
+			if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook("Test")) {
+				int a = 10;
+			}
 		}
 
 		private void Test2_Click(object sender, RoutedEventArgs e) {

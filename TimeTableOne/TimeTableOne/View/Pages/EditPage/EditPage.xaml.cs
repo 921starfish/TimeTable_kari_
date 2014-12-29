@@ -35,6 +35,8 @@ namespace TimeTableOne.View.Pages.EditPage
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;
+            YesControl.Visibility = Visibility.Collapsed;
+            NoControl.Visibility = Visibility.Collapsed;
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -62,9 +64,23 @@ namespace TimeTableOne.View.Pages.EditPage
         /// <see cref="Frame.Navigate(Type, Object)"/> に渡されたナビゲーション パラメーターと、
         /// 前のセッションでこのページによって保存された状態の辞書を提供する
         /// イベント データ。ページに初めてアクセスするとき、状態は null になります。</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
+            //bool isNote =
+            //    !OneNoteControl.OneNoteControler.Current.IsExistNotebook(((EditPageViewModel) DataContext).TableName)
+            //        .Result;
+			if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
+            {
+                YesControl.Visibility = Visibility.Collapsed;
+                NoControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                YesControl.Visibility = Visibility.Visible;
+                NoControl.Visibility = Visibility.Collapsed;
+              
+            }
         }
 
         #region NavigationHelper の登録
@@ -103,11 +119,16 @@ namespace TimeTableOne.View.Pages.EditPage
         private void New_Button_Click(object sender, RoutedEventArgs e)
         {
             OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
+            string sectionName = "m月N日";
         }
+        
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
             OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
+            string sectionName = "m月N日";
         }
+
+        
 
     } 
 }

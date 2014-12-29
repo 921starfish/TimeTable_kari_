@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,6 +20,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public sealed partial class ClassRoomChangeUnit : UserControl
     {
+        public ClassRoomChangeUnitViewModel ViewModel
+        {
+            get{return DataContext as ClassRoomChangeUnitViewModel;}
+        }
+
         public ClassRoomChangeUnit()
         {
             this.InitializeComponent();
@@ -38,7 +44,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         }
 
-        private void textBlock_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void PenMark_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "EditState", true);
         }
@@ -46,6 +52,18 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private void textBox_LostFocus(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "BasicState", true);
+
+            ViewModel.ApplyChangeStatus();
+        }
+
+        private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "BasicState", true);
+        }
+
+        private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOnState", true);
         }
     }
 }

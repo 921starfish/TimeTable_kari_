@@ -5,6 +5,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using TimeTableOne.Common;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
@@ -33,7 +34,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             else
             {
                 TableColor = new SolidColorBrush(data.ColorData);
-                this.Place = (data ?? new ScheduleData()).Place;
+                this.Place = key.ActualPlaceInNextWeek();
             }
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(60);
@@ -98,6 +99,16 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 return
                     ApplicationData.Instance.GetNoClassSchedule(
                         DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
+            }
+        }
+
+        public bool IsChangePlace
+        {
+            get
+            {
+                return
+    ApplicationData.Instance.GetClassRoomChangeSchedule(
+        DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
             }
         }
     }

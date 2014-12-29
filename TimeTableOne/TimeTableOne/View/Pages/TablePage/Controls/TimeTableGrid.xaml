@@ -8,50 +8,116 @@
     mc:Ignorable="d" d:DataContext="{local:TimeTableGridViewModelInDesign}"
     d:DesignHeight="800"
     d:DesignWidth="1920">
-    <UserControl.Resources >
-        <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Common/ColorDictionary.xaml" />
     </UserControl.Resources>
     <Grid Background="{StaticResource EditBoxGray}">
         <Grid.Resources>
+            <Style x:Key="ListBoxtemStyleNoHighlighting" TargetType="ListViewItem">
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="TabNavigation" Value="Local"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Grid Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal"/>
+                                        <VisualState x:Name="MouseOver"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Unselected"/>
+                                        <VisualState x:Name="Selected"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused"/>
+                                        <VisualState x:Name="Unfocused"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Rectangle x:Name="fillColor" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <Rectangle x:Name="fillColor2" Fill="#FFBADDE9" IsHitTestVisible="False"
+				Opacity="0" RadiusY="1" RadiusX="1"/>
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}"
+			Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			Margin="{TemplateBinding Padding}"/>
+                                <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1"
+			StrokeThickness="1" Visibility="Collapsed"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--DataTemplateの要素の宣言-->
             <DataTemplate x:Key="TimeRegionDataTemplate">
-                <local:TimeDisplayUnit></local:TimeDisplayUnit>
+                <local:TimeDisplayUnit />
             </DataTemplate>
             <DataTemplate x:Key="TimeTableUnitDataTemplate">
-                <local:TimeTable></local:TimeTable>
+                <local:TimeTable />
             </DataTemplate>
-            <DataTemplate x:Key="HeaderTemplate" >
-                <local:TimeGridHeader></local:TimeGridHeader>
+            <DataTemplate x:Key="HeaderTemplate">
+                <local:TimeGridHeader />
             </DataTemplate>
-            <DataTemplate x:Key="EmptyTemplate">
-                
-            </DataTemplate>
+            <DataTemplate x:Key="EmptyTemplate" />
             <DataTemplate x:Key="AppendRowTemplate">
-                <local:AppendRowButton></local:AppendRowButton>
+                <local:AppendRowButton />
             </DataTemplate>
-            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector" AppendRowTemplate="{StaticResource AppendRowTemplate}" EmptyTemplate="{StaticResource EmptyTemplate}" HeaderTemplate="{StaticResource HeaderTemplate}" TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}" TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}"></local:TimeTableGridTemplateSelector>
+            <local:TimeTableGridTemplateSelector x:Key="TemplateSelector"
+                                                 AppendRowTemplate="{StaticResource AppendRowTemplate}"
+                                                 EmptyTemplate="{StaticResource EmptyTemplate}"
+                                                 HeaderTemplate="{StaticResource HeaderTemplate}"
+                                                 TimeRegionTemplate="{StaticResource TimeRegionDataTemplate}"
+                                                 TimeTableUnitTemplate="{StaticResource TimeTableUnitDataTemplate}" />
             <!--ItemsContainerStyleのリソース-->
             <Style TargetType="ListViewItem" x:Key="ContainerBaseStyle">
-                <Setter Property="Margin" Value="0"></Setter>
-                <Setter Property="Padding" Value="0"></Setter>
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
             </Style>
-            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
-                
-            </Style>
-            <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
-            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
-            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}">
-            </Style>
-            <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle" BasedOn="{StaticResource ContainerBaseStyle}"></Style>
-            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector" AppendRowButtonStyle="{StaticResource AppendRowContainerStyle}" EmptyStyle="{StaticResource EmptyContainerStyle}" HeaderStyle="{StaticResource HeaderContainerStyle}" TimeRegionStyle="{StaticResource TimeRegionContainerStyle}" TableElementStyle="{StaticResource TableElementContainerStyle}"></local:TimeTableGridContainerStyleSelector>
+            <Style TargetType="ListViewItem" x:Key="EmptyContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}" />
+            <Style TargetType="ListViewItem" x:Key="TableElementContainerStyle"
+                   BasedOn="{StaticResource ContainerBaseStyle}" />
+            <Style TargetType="ListViewItem" x:Key="HeaderContainerStyle" BasedOn="{StaticResource ListBoxtemStyleNoHighlighting}" />
+            <Style TargetType="ListViewItem" x:Key="TimeRegionContainerStyle"
+                   BasedOn="{StaticResource ContainerBaseStyle}" />
+            <Style TargetType="ListViewItem" x:Key="AppendRowContainerStyle"
+                   BasedOn="{StaticResource ContainerBaseStyle}" />
+            <local:TimeTableGridContainerStyleSelector x:Key="ContainerStyleSelector"
+                                                       AppendRowButtonStyle="{StaticResource AppendRowContainerStyle}"
+                                                       EmptyStyle="{StaticResource EmptyContainerStyle}"
+                                                       HeaderStyle="{StaticResource HeaderContainerStyle}"
+                                                       TimeRegionStyle="{StaticResource TimeRegionContainerStyle}"
+                                                       TableElementStyle="{StaticResource TableElementContainerStyle}" />
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         <!--以下ListViewの実装-->
-        <ListView x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel> 
-        </ListView>
+                <ListView Grid.Row="0" x:Name="Grids" SelectionMode="None" ItemsSource="{Binding GridItems}"
+                          ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}"
+                          ItemTemplateSelector="{StaticResource TemplateSelector}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal"
+                                           VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"
+                                           ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+        <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0"
+
+                        Background="{StaticResource TextBoxGray}" Padding="0,10" Margin="15,0" Click="ButtonBase_OnClick">
+            <Grid>
+                        <!--<SymbolIcon Symbol="Add" Foreground="{StaticResource TextBoxBorder}"
+                                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-100,0,0,0"
+                                    Width="25" Height="15" />-->
+                        <TextBlock Text="追加" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="{StaticResource TextBoxBorder}" />
+                    </Grid>
+                </Button>
     </Grid>
 </UserControl>

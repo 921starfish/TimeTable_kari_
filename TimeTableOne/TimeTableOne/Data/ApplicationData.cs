@@ -78,6 +78,7 @@ namespace TimeTableOne.Data
             }
         }
 
+
         public static async Task<ScheduleKey> ToScheduleKey(TableKey key)
         {
             return Instance.GetScheduleKey(await Instance.GetKey(key.NumberOfDay, key.TableNumber));
@@ -121,6 +122,22 @@ namespace TimeTableOne.Data
                     itr++;
                 }
                 SettingFolder.Values["DATA-COUNT"] = itr;
+            }
+        }
+
+        public void CheckAndRemoveRow()
+        {
+            ISet<ScheduleKey> RemoveCandidate=new HashSet<ScheduleKey>();
+            foreach (var scheduleKey in Keys)
+            {
+                if (scheduleKey.TableNumber > Configuration.TableCount)
+                {
+                    RemoveCandidate.Add(scheduleKey);
+                }
+            }
+            foreach (var scheduleKey in RemoveCandidate)
+            {
+                Keys.Remove(scheduleKey);
             }
         }
         /// <summary>
@@ -188,7 +205,7 @@ namespace TimeTableOne.Data
             return Guid.Empty;
         }
 
-        private ScheduleKey GetScheduleKey(Guid id)
+        public ScheduleKey GetScheduleKey(Guid id)
         {
             return (from k in Keys where k.DataId == id select k).FirstOrDefault();
         }
@@ -229,6 +246,7 @@ namespace TimeTableOne.Data
         public ClassRoomChangeSchedule GetClassRoomChangeSchedule(DateTime t, TableKey key)
         {
             var sc = GetSchedule(key.NumberOfDay, key.TableNumber);
+            if (sc == null) return null;
             foreach (var schedule in from cc in ClassRoomChanges where cc.ScheduleId.Equals(sc.ScheduleId) && cc.ChangedDay.Equals(t) select cc)
             {
                 return schedule;
@@ -247,6 +265,19 @@ namespace TimeTableOne.Data
             return null;
         }
 
+        public void RemoveSchedule(ScheduleData getCurrentSchedule)
+        {
+            ScheduleKey key = null;
+            foreach (var scheduleKey in Keys)
+            {
+                if (scheduleKey.DataId == getCurrentSchedule.ScheduleId)
+                {
+                    key = scheduleKey;
+                }
+            }
+            if (key != null) Keys.Remove(key);
+            Data.Remove(getCurrentSchedule);
+        }
     }
 
     public class NoClassSchedule

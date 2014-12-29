@@ -1,35 +1,33 @@
-﻿using Windows.UI.Xaml;
-using Newtonsoft.Json;
-using OneNoteControl.Responses;
+﻿using Newtonsoft.Json;
 
-namespace OneNoteControl.Responses
-{
-    class GetSectionGroupsResponse
-    {        
-        [JsonProperty(PropertyName = "@odata.context")]
-        public string context;
 
-        public GetSectionGroupsResponseValueUnit[] value;
-    }
+namespace OneNoteControl.Responses {
 
-    public class GetSectionGroupsResponseValueUnit
-    {
-        public string sectionUrl;
+	internal class GetSectionGroupsResponse {
+		[JsonProperty(PropertyName = "@odata.context")] public string context;
 
-        public string sectionGroupsUrl;
+		public GetSectionGroupsResponseValueUnit[] value;
+	}
 
-        public string id;
 
-        public string name;
+	public class GetSectionGroupsResponseValueUnit {
+		public string sectionUrl;
 
-        public string self;
+		public string sectionGroupsUrl;
 
-        public string createdBy;
+		public string id;
 
-        public string lastModifiedBy;
+		public string name;
 
-        public string createdTime;
+		public string self;
 
-        public string lastModifiedTime;
-    }
+		public string createdBy;
+
+		public string lastModifiedBy;
+
+		public string createdTime;
+
+		public string lastModifiedTime;
+	}
+
 }

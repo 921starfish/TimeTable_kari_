@@ -6,14 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignWidth="170" d:DesignHeight="45" Width="{Binding Width}" Height="90" d:DataContext="{local:TimeGridHeaderViewModelInDesign}">
+    d:DesignWidth="170" d:DesignHeight="45" Width="{Binding Width}" Height="70" d:DataContext="{local:TimeGridHeaderViewModelInDesign}">
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding HelpDisplay}" FontSize="32" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="0" Text="{Binding HelpDisplay}" FontSize="20" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock Grid.Row="1" Text="{Binding Header}" Foreground="{Binding TextBrush}" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </Grid>
 </UserControl>

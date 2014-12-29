@@ -33,7 +33,7 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
                         ApplicationData.Instance.TimeSpans[key.TableNumber - 1].ToTime.ToString("HH:mm");
             this.TableName = (data ?? new ScheduleData()).TableName;
             this.TableColor = new SolidColorBrush(data.ColorData);
-            this.Place = (data ?? new ScheduleData()).Place;
+            this.Place = key.ActualPlaceInNextWeek();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(60);
             timer.Tick += OnTick;
@@ -100,6 +100,16 @@ namespace TimeTableOne.View.Pages.DayPage.Controls
             {
                 return
     ApplicationData.Instance.GetNoClassSchedule(
+        DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
+            }
+        }
+
+        public bool IsChangePlace
+        {
+            get
+            {
+                return
+    ApplicationData.Instance.GetClassRoomChangeSchedule(
         DateTimeUtil.NextKeyDay(DateTime.Now, TableKey.dayOfWeek), TableKey) != null;
             }
         }

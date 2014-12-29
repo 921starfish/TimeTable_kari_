@@ -23,16 +23,12 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         public TimeTableGridViewModel()
         {
             GridItems=new ObservableCollection<BasicViewModel>();
+
             bool isDesignmode = DesignMode.DesignModeEnabled;
-            DayOfWeek[] headers = {DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
             TableType type = ApplicationData.Instance.Configuration.TableTypeSetting;
             var f = Window.Current.Content as Frame;
             int n = TableLayoutManager.getElementCount(type);
-            GridItems.Add(new EmptyGridUnitViewModel());
-            for (int i = 0; i < n; i++)
-            {
-                GridItems.Add(new TimeGridHeaderViewModel(headers[i]) {  TextBrush = headers[i].GetWeekColor() });
-            }
+
             for (int i = 0; i < ApplicationData.Instance.Configuration.TableCount; i++)
             {
                 for (int w = 0; w < n+1; w++)
@@ -55,14 +51,14 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     }
                 }
             }
-           GridItems.Add(new AppendRowButtonViewModel());
             ElementWidth =TableLayoutManager.getElementWidth(type);
             ElementHeight = 90;
             WidthSplit = n+1;
         }
 
 
-        public ObservableCollection<BasicViewModel> GridItems { get; set; } 
+        public ObservableCollection<BasicViewModel> GridItems { get; set; }
+
 
         public int ElementWidth { get; set; }
 

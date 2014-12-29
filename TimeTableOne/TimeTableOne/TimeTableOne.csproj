@@ -19,6 +19,8 @@
     <PackageCertificateThumbprint>20235425E405AFFBC6D5EF5C0B271255E7D4E344</PackageCertificateThumbprint>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>cc7ae60c</NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/0b17e6df-6ad0-4695-a8fd-db761cb7216b/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/TimeTableOne</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,8 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Background\BackgroundTaskManager.cs" />
+    <Compile Include="Background\NotificationTask.cs" />
+    <Compile Include="ClassSearchResult.xaml.cs">
+      <DependentUpon>ClassSearchResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\BasicTableCommands.cs" />
-    <Compile Include="Common\NotificationTileManager.cs" />
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\NotificationManager.cs" />
     <Compile Include="Common\LiveTileTemplateHelper.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
@@ -146,6 +155,7 @@
     <Compile Include="Utils\DateTimeUtil.cs" />
     <Compile Include="Utils\PageUtil.cs" />
     <Compile Include="Utils\TableKey.cs" />
+    <Compile Include="Utils\TimeSpanAnlyzer.cs" />
     <Compile Include="View\Pages\DayPage\Controls\DayPageTableViewModel.cs" />
     <Compile Include="View\Pages\DayPage\DayPage.xaml.cs">
       <DependentUpon>DayPage.xaml</DependentUpon>
@@ -185,6 +195,7 @@
     <Compile Include="View\Pages\EditPage\Controls\EditPageLeftControl.xaml.cs">
       <DependentUpon>EditPageLeftControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageOneNoteControlViewModel.cs" />
     <Compile Include="View\Pages\EditPage\Controls\EditPageRightControl.xaml.cs">
       <DependentUpon>EditPageRightControl.xaml</DependentUpon>
     </Compile>
@@ -206,6 +217,9 @@
       <DependentUpon>AssignmentListUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\AssignmentListUnitViewModel.cs" />
+    <Compile Include="View\Pages\EditPage\Controls\EditPageYesOneNoteControl.xaml.cs">
+      <DependentUpon>EditPageYesOneNoteControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml.cs">
       <DependentUpon>NoClassRoomListUnit.xaml</DependentUpon>
     </Compile>
@@ -223,10 +237,10 @@
     </Compile>
     <Compile Include="View\Pages\TablePage\Controls\AppendRowButtonViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\BasicViewModel.cs" />
-    <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
-    <Compile Include="View\Pages\TablePage\Controls\TimeDisplay.xaml.cs">
-      <DependentUpon>TimeDisplay.xaml</DependentUpon>
+    <Compile Include="View\Pages\EditPage\Controls\EditPageNoOneNoteControl.xaml.cs">
+      <DependentUpon>EditPageNoOneNoteControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\TablePage\Controls\EmptyGridUnitViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeDisplayUnit.xaml.cs">
       <DependentUpon>TimeDisplayUnit.xaml</DependentUpon>
     </Compile>
@@ -288,6 +302,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-80.png" />
     <Content Include="Fonts\LiveSymbol.ttf" />
+    <None Include="ApplicationInsights.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +316,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClassSearchResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,6 +400,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\EditPage\Controls\EditPageYesOneNoteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\EditPage\Controls\Units\NoClassRoomListUnit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -397,7 +420,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\TablePage\Controls\TimeDisplay.xaml">
+    <Page Include="View\Pages\EditPage\Controls\EditPageNoOneNoteControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -425,6 +448,15 @@
   <ItemGroup>
     <Reference Include="AutoCompleteBox">
       <HintPath>..\packages\AutoCompleteBoxWinRT.1.2.0.3\lib\winrt\AutoCompleteBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.winmd</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.RuntimeTelemetry.0.12.0-build17386\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.winmd</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Windows">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsStore.0.12.0-build17386\lib\win81\Microsoft.ApplicationInsights.Extensibility.Windows.winmd</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.6\WindowsXAML\Microsoft.Live.dll</HintPath>
@@ -468,7 +500,9 @@
       <ErrorText>このプロジェクトは、このコンピューターにはない NuGet パッケージを参照しています。これらをダウンロードするには、NuGet パッケージの復元を有効にしてください。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。不足しているファイルは {0} です。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.0.12.0-build17386\build\portable-win81+wpa81\Microsoft.ApplicationInsights.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

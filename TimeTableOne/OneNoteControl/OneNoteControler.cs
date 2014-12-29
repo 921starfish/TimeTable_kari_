@@ -3,15 +3,18 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.System;
 using Microsoft.Live;
 using OneNoteControl.Responses;
 
+
 namespace OneNoteControl {
 
 	public class OneNoteControler {
 		#region singleton
+
 		private static OneNoteControler _current;
 
 		public static OneNoteControler Current {
@@ -24,11 +27,13 @@ namespace OneNoteControl {
 		private OneNoteControler() {
 			_current = this;
 		}
+
 		#endregion
 
-        #region Authraize
 
-        private const string UserNotSignedIn = "You're not signed in.";
+		#region Authraize
+
+		private const string UserNotSignedIn = "You're not signed in.";
 
 		private LiveAuthClient _authClient;
 
@@ -102,7 +107,7 @@ namespace OneNoteControl {
 			LiveOperationResult operationResult = await lcConnect.GetAsync("me");
 			dynamic result = operationResult.Result;
 			if (result != null) {
-				return (string)result.name;
+				return (string) result.name;
 			}
 			else {
 				throw new InvalidOperationException();
@@ -115,41 +120,45 @@ namespace OneNoteControl {
 				LiveLoginResult loginWithRefreshTokenResult = await AuthClient.InitializeAsync(Scopes);
 				UpdateAuthProperties(loginWithRefreshTokenResult.Status);
 			}
+			else {
+				await SignIn();
+			}
 		}
 
-		private static readonly string[] Scopes = new[] { "wl.signin", "wl.offline_access", "Office.OneNote_Create" };
+		private static readonly string[] Scopes = new[] {"wl.signin", "wl.offline_access", "office.onenote_update"};
 
-        #endregion
+		#endregion
 
-        // httpレスポンスを読みやすくする
+
+		// httpレスポンスを読みやすくする
 		private static async Task<StandardResponse> TranslateResponse(HttpResponseMessage response) {
-            StandardResponse standardResponse=null;
-            //if (response.StatusCode == HttpStatusCode.Created) {
-            //    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-            //    standardResponse = new CreateSuccessResponse {
-            //        StatusCode = response.StatusCode,
-            //        OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
-            //        OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
-            //    };
-            //}
-            //else if (response.StatusCode == HttpStatusCode.OK) {
-            //    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
-            //    standardResponse = new GetSuccessResponse {
-            //        StatusCode = response.StatusCode,
-            //        Value = responseObject.value
-            //    };
-            //}
-            //else {
-            //    standardResponse = new StandardErrorResponse {
-            //        StatusCode = response.StatusCode,
-            //        Message = await response.Content.ReadAsStringAsync()
-            //    };
-            //}
+			StandardResponse standardResponse = null;
+			//if (response.StatusCode == HttpStatusCode.Created) {
+			//    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+			//    standardResponse = new CreateSuccessResponse {
+			//        StatusCode = response.StatusCode,
+			//        OneNoteClientUrl = responseObject.links.oneNoteClientUrl.href,
+			//        OneNoteWebUrl = responseObject.links.oneNoteWebUrl.href
+			//    };
+			//}
+			//else if (response.StatusCode == HttpStatusCode.OK) {
+			//    dynamic responseObject = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+			//    standardResponse = new GetSuccessResponse {
+			//        StatusCode = response.StatusCode,
+			//        Value = responseObject.value
+			//    };
+			//}
+			//else {
+			//    standardResponse = new StandardErrorResponse {
+			//        StatusCode = response.StatusCode,
+			//        Message = await response.Content.ReadAsStringAsync()
+			//    };
+			//}
 
-            //IEnumerable<string> correlationValues;
-            //if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues)) {
-            //    standardResponse.CorrelationId = correlationValues.FirstOrDefault();
-            //}
+			//IEnumerable<string> correlationValues;
+			//if (response.Headers.TryGetValues("X-CorrelationId", out correlationValues)) {
+			//    standardResponse.CorrelationId = correlationValues.FirstOrDefault();
+			//}
 
 			return standardResponse;
 		}
@@ -212,24 +221,15 @@ namespace OneNoteControl {
 			                    "</body>" +
 			                    "</html>";
 
-			var createMessage = new HttpRequestMessage(HttpMethod.Post, new Uri("https://www.onenote.com/api/v1.0/notebooks/" + noteID + "/sections")) {
-				Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
-			};
+			var createMessage = new HttpRequestMessage(
+				HttpMethod.Post,
+				new Uri("https://www.onenote.com/api/v1.0/notebooks/" + noteID + "/sections")) {
+					Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html")
+				};
 
 			HttpResponseMessage response = await client.SendAsync(createMessage);
 
 			return await TranslateResponse(response);
-		}
-
-		private async Task CreateSection() {
-			StandardResponse response = await CreateEmptyPage(notebookID);
-			if (response.StatusCode == HttpStatusCode.Created) {
-				var successResponse = (CreateSuccessResponse)response;
-				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
-			}
-			else {
-				clientLink = string.Empty;
-			}
 		}
 
 		public async Task<StandardResponse> GetSectionInfo(string sectionName) {
@@ -243,9 +243,11 @@ namespace OneNoteControl {
 					_authClient.Session.AccessToken);
 			}
 
-			var createMessage = new HttpRequestMessage(HttpMethod.Get, new Uri("https://www.onenote.com/api/v1.0/notebooks/id/sections")) {
+			var createMessage = new HttpRequestMessage(
+				HttpMethod.Get,
+				new Uri("https://www.onenote.com/api/v1.0/notebooks/id/sections")) {
 
-			};
+				};
 
 			HttpResponseMessage response = await client.SendAsync(createMessage);
 
@@ -256,66 +258,178 @@ namespace OneNoteControl {
 
 
 
-	    private HttpClient GenerateClient()
-	    {
-            var client = new HttpClient();
+		private HttpClient GenerateClient() {
+			var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            if (IsAuthenticated)
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                    "Bearer",
-                    _authClient.Session.AccessToken);
-            }
-	        return client;
-	    }
+			if (IsAuthenticated) {
+				client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+					"Bearer",
+					_authClient.Session.AccessToken);
+			}
+			return client;
+		}
 
-	    private async Task<JsonResponse<GetNotebooksResponse>> GetNotebooks()
-        {
-            return await StandardResponse.FetchJsonResponse<GetNotebooksResponse>(HttpMethod.Get,"https://www.onenote.com/api/v1.0/notebooks", GenerateClient());
-        }
+		private async Task<JsonResponse<GetNotebooksResponse>> GetNotebooks() {
+			return
+				await
+					StandardResponse.FetchJsonResponse<GetNotebooksResponse>(
+						HttpMethod.Get,
+						"https://www.onenote.com/api/v1.0/notebooks",
+						GenerateClient());
+		}
 
-	    private async Task<JsonResponse<GetSectionsResponse>> GetSections()
-	    {
-            return await StandardResponse.FetchJsonResponse<GetSectionsResponse>(HttpMethod.Get, "https://www.onenote.com/api/v1.0/sections", GenerateClient());
-	    }
+		private async Task<JsonResponse<GetSectionsResponse>> GetSections() {
+			return
+				await
+					StandardResponse.FetchJsonResponse<GetSectionsResponse>(
+						HttpMethod.Get,
+						"https://www.onenote.com/api/v1.0/sections",
+						GenerateClient());
+		}
 
-        private async Task<JsonResponse<GetSectionsResponse>> GetSections(string nextUrl)
-        {
-            return await StandardResponse.FetchJsonResponse<GetSectionsResponse>(HttpMethod.Get, nextUrl, GenerateClient());
-        }
+		private async Task<JsonResponse<GetSectionsResponse>> GetSections(string nextUrl) {
+			return await StandardResponse.FetchJsonResponse<GetSectionsResponse>(HttpMethod.Get, nextUrl, GenerateClient());
+		}
 
-        private async Task OpenNotebook(string tableName)
-        {
-            var response = await GetNotebooks();
-            if (response.StatusCode == HttpStatusCode.Created)
-            {
-                foreach (var value in response.ResponseData.value)
-                {
-                    if (value.name == tableName)
-                    {
-                       var sectionResponse = await GetSections(value.sectionsUrl);
-                        break;
-                    }
-                }
-                Debug.WriteLine(response.Content);
-            }
-            else
-            {
-              Debug.WriteLine(response.Content);
-            }
-        }
+		private async Task<JsonResponse<GetPagesResponse>> GetPages() {
+			return
+				await
+					StandardResponse.FetchJsonResponse<GetPagesResponse>(
+						HttpMethod.Get,
+						"https://www.onenote.com/api/beta/pages",
+						GenerateClient());
+		}
 
-        public async void OpenNotes(string tableName)
-        {
-            pageSectionName = tableName;
-            await AttemptRefreshToken();
-            await OpenNotebook(tableName);
-        }
+		private async Task<JsonResponse<GetPagesResponse>> GetPages(string nextUrl) {
+			return await StandardResponse.FetchJsonResponse<GetPagesResponse>(HttpMethod.Get, nextUrl, GenerateClient());
+		}
 
+		private async Task<JsonResponse<PostNotebooksResponse>> PostNotebooks(string tableName) {
+			string content = "{\"name\": \"" + tableName + "\"}";
+			return
+				await
+					StandardResponse.FetchJsonResponse<PostNotebooksResponse>(
+						HttpMethod.Post,
+						"https://www.onenote.com/api/v1.0/notebooks",
+						content,
+						GenerateClient());
+		}
 
+		private async Task<JsonResponse<PostSectionsResponse>> PostSections(string nextUrl, string sectionName) {
+			string content = "{\"name\": \"" + sectionName + "\"}";
+			return
+				await StandardResponse.FetchJsonResponse<PostSectionsResponse>(HttpMethod.Post, nextUrl, content, GenerateClient());
+		}
 
+		private async Task<JsonResponse<PostPagesResponse>> PostPages(string nextUrl) {
+			string simpleHtml = "<html>" +
+				"<head>" +
+				"</head>" +
+				"<body>" +
+				"</body>" +
+				"</html>";
+			var Content = new StringContent(simpleHtml, System.Text.Encoding.UTF8, "text/html");
+			return
+				await StandardResponse.FetchJsonResponse<PostPagesResponse>(HttpMethod.Post, nextUrl, Content, GenerateClient());
+		}
+
+		private JsonResponse<GetNotebooksResponse> notebookResponse;
+		private JsonResponse<GetSectionsResponse> sectionResponse;
+		private JsonResponse<GetPagesResponse> pageResponse;
+
+		private string childSectionUrl;
+
+		private async Task OpenNotebook(string tableName) {
+			notebookResponse = await GetNotebooks();
+			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
+				foreach (var value in notebookResponse.ResponseData.value) {
+					if (value.name == tableName) {
+						childSectionUrl = value.sectionsUrl;
+						sectionResponse = await GetSections(value.sectionsUrl);
+						break;
+					}
+				}
+			}
+			else {
+				Debug.WriteLine(notebookResponse.Content);
+			}
+		}
+
+		private async Task OpenSection(string sectionName) {
+			if (sectionResponse.StatusCode == HttpStatusCode.OK) {
+				foreach (var value in sectionResponse.ResponseData.value) {
+					if (value.name == sectionName) {
+						pageResponse = await GetPages("https://www.onenote.com/api/beta/sections/" + value.id + "/pages");
+						break;
+					}
+				}
+				if (pageResponse.StatusCode == HttpStatusCode.OK) {
+					clientLink = pageResponse.ResponseData.value[0].links.oneNoteClientUrl.href;
+				}
+				else {
+					Debug.WriteLine(pageResponse.Content);
+				}
+			}
+			else {
+				Debug.WriteLine(sectionResponse.Content);
+			}
+		}
+
+		private async Task CreateSection(string sectionName) {
+			var response = await PostSections(childSectionUrl, sectionName);
+			if (response.StatusCode == HttpStatusCode.Conflict) {
+				await OpenSection(sectionName);
+			}
+			else {
+				var pageResponse = await PostPages(response.ResponseData.self + "/pages");
+				clientLink= pageResponse.ResponseData.links.oneNoteClientUrl.href;
+			}
+		}
+
+		public async Task CreateNotebook(string tableName) {
+			var response = await PostNotebooks(tableName);
+		}
+
+		public async void OpenNotes(string tableName) {
+			pageSectionName = tableName;
+			await AttemptRefreshToken();
+			await OpenNotebook(tableName);
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
+		}
+
+		public async void OpenNewSection(string tableName, string sectionName) {
+			pageSectionName = tableName;
+			await AttemptRefreshToken();
+			await OpenNotebook(tableName);
+			await CreateSection(sectionName);
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
+		}
+
+		public async void OpenRecentlySection(string tableName, string sectionName) {
+			pageSectionName = tableName;
+			await AttemptRefreshToken();
+			await OpenNotebook(tableName);
+			await OpenSection(sectionName);
+			await Launcher.LaunchUriAsync(new Uri(clientLink));
+		}
+
+		public async Task<bool> IsExistNotebook(string tableName) {
+			await AttemptRefreshToken();
+			notebookResponse = await GetNotebooks();
+			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
+				foreach (var value in notebookResponse.ResponseData.value) {
+					if (value.name == tableName) {
+						return true;
+					}
+				}
+			}
+			else {
+				return false;
+			}
+			return false;
+		}
 
 
 		public async void Open(string tableName) {
@@ -328,26 +442,12 @@ namespace OneNoteControl {
 		private async Task GetSectionName() {
 			StandardResponse response = await GetSectionInfo(pageSectionName);
 			if (response.StatusCode == HttpStatusCode.Created) {
-				var successResponse = (CreateSuccessResponse)response;
+				var successResponse = (CreateSuccessResponse) response;
 				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
 			}
 			else {
 				clientLink = string.Empty;
 			}
-		}
-
-		public async void OpenNewSection(string tableNameID) {
-			notebookID = tableNameID;
-			await AttemptRefreshToken();
-			await CreateSection();
-			await Launcher.LaunchUriAsync(new Uri(clientLink));
-		}
-
-		public async void OpenResentSection(string tableNameID) {
-			pageSectionName = tableNameID;
-			await AttemptRefreshToken();
-			await GetSectionName();
-			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
 	}
 

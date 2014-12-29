@@ -58,5 +58,21 @@ namespace TimeTableOne.Utils
             return new DateTime(d.Year,d.Month,d.Day,0,0,0);
         }
 
+        public static DateTime NowMoments()
+        {
+            var d = DateTime.Now;
+            return new DateTime(2015, 1, 1, d.Hour, d.Minute, d.Second, d.Millisecond);
+        }
+
+
+        public static DateTime AsDayData(this DateTime time)
+        {
+            return new DateTime(time.Year,time.Month,time.Day,0,0,0,0);
+        }
+
+        public static DateTime AsTimeData(this DateTime time)
+        {
+            return new DateTime(2015,1,1,time.Hour,time.Minute,time.Second,time.Millisecond);
+        }
     }
 }

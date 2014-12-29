@@ -15,8 +15,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 {
     public class EditHeaderControlViewModel : BasicViewModel
     {
-        private const string InitialLectureName = "(授業名をここに入力)";
-        private const string InitialPlaceName = "(場所をここに入力)";
+        private const string InitialLectureName = "（授業名をここに入力）";
+        private const string InitialPlaceName = "（場所をここに入力）";
         private SolidColorBrush _backgroundColor;
         private TableKey _tableKey;
         protected ScheduleData _scheduleData;

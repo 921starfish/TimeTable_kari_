@@ -4,14 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using TimeTableOne.Data;
+using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.TablePage.Controls;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
     public class ClassRoomChangeUnitViewModel:BasicViewModel
     {
+        private readonly DateTime _current;
+        private readonly ClassRoomChangeSchedule _getClassRoomChangeSchedule;
+
         public ClassRoomChangeUnitViewModel()
         {
             
@@ -24,21 +29,23 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public ClassRoomChangeUnitViewModel(DateTime current, ClassRoomChangeSchedule getClassRoomChangeSchedule,int i)
         {
+            _current = current;
+            _getClassRoomChangeSchedule = getClassRoomChangeSchedule;
             string[] supprtTexts = {"次回","次の次"};
             if (getClassRoomChangeSchedule != null)
             {
-
+                ChangeTo = getClassRoomChangeSchedule.ChangedTo;
             }
             else
             {
-                this.DisplayDate = current.ToString("yyyy年M月dd日");
-                if (i < supprtTexts.Length)
-                {
-                    SupportText = supprtTexts[i];
-                }
                 CaptionColor = new SolidColorBrush(Colors.Green);
                 ClassRoomChangeCaption = "通常";
                 ChangeTo = "";
+            }
+            this.DisplayDate = current.ToString("yyyy年M月dd日");
+            if (i < supprtTexts.Length)
+            {
+                SupportText = supprtTexts[i];
             }
         }
 
@@ -90,13 +97,49 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             get
             {
-                return string.IsNullOrEmpty(_changeTo) ? "変更" : _changeTo;
+                return string.IsNullOrEmpty(_changeTo) ? TableUnitDataHelper.GetCurrentSchedule().Place : _changeTo;
             }
             set
             {
-                if (value == _changeTo) return;
+                // if (value == _changeTo) return;
                 _changeTo = value;
+                if (!string.IsNullOrEmpty(_changeTo))
+                {
+                    CaptionColor = new SolidColorBrush(Colors.DarkOrange);
+                    ClassRoomChangeCaption = "教室変更";
+                }
+                else
+                {
+                    CaptionColor = new SolidColorBrush(Colors.Green);
+                    ClassRoomChangeCaption = "通常";
+                }
                 OnPropertyChanged();
+            }
+        }
+
+        public void ApplyChangeStatus()
+        {
+            var currentKey = TableUnitDataHelper.GetCurrentKey();
+            var currentChangeData = ApplicationData.Instance.GetClassRoomChangeSchedule(_current, currentKey);
+            if (string.IsNullOrWhiteSpace(_changeTo))
+            {
+                if (currentChangeData != null)
+                {
+                    ApplicationData.Instance.ClassRoomChanges.Remove(currentChangeData);
+                    ApplicationData.SaveData();
+                }
+            }
+            else
+            {
+                if (currentChangeData != null)
+                {
+                    ApplicationData.Instance.ClassRoomChanges.Remove(currentChangeData);
+                    ApplicationData.SaveData();
+                }
+                var newData = ClassRoomChangeSchedule.Generagte(_current, TableUnitDataHelper.GetCurrentSchedule(),
+                    _changeTo);
+                ApplicationData.Instance.ClassRoomChanges.Add(newData);
+                ApplicationData.SaveData();
             }
         }
     }

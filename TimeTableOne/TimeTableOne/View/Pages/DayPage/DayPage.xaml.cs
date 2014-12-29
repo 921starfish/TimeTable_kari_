@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using TimeTableOne.Background;
 using TimeTableOne.Utils;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -34,7 +35,10 @@ namespace TimeTableOne.View.Pages.DayPage
         {
             PageUtil.MovePage(MainStaticPages.TablePage);
         }
-
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            BottomCommandBar.IsOpen = !BottomCommandBar.IsOpen;
+        }
         private async void AppBarButton_Click_SelectImage(object sender, RoutedEventArgs e)
         {
             FileOpenPicker picker = new FileOpenPicker();
@@ -55,10 +59,15 @@ namespace TimeTableOne.View.Pages.DayPage
             }
             Debug.WriteLine("選択した画像{0}", file.Path);
             StorageFolder folder = ApplicationData.Current.LocalFolder;
-            await file.CopyAsync(folder, file.Name, NameCollisionOption.ReplaceExisting);
-            Debug.WriteLine("アプリローカルに保存{0}\\{1}", folder.Path, file.Name);
-            Data.ApplicationData.Instance.Configuration.BackgroundImagePath = folder.Path + "\\" + file.Name;
+            await file.CopyAsync(folder, "Background"+file.FileType, NameCollisionOption.ReplaceExisting);
+            Debug.WriteLine("アプリローカルに保存{0}{1}", folder.Path, "\\Background" + file.FileType);
+            Data.ApplicationData.Instance.Configuration.BackgroundImagePath = folder.Path + "\\Background" + file.FileType;
             this.DataContext = new DayPageViewModel();
+        }
+
+        private async void NotificationSetting(object sender, RoutedEventArgs e)
+        {
+           await BackgroundTaskManager.AskRegister();
         }
     }
 }

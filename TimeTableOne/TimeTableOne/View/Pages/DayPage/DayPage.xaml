@@ -12,11 +12,12 @@
     <Page.BottomAppBar>
         <CommandBar Name="BottomCommandBar">
             <AppBarButton Icon="Pictures"  Label="背景の変更" Click="AppBarButton_Click_SelectImage" ></AppBarButton>
+            <AppBarButton Icon="Setting" Label="通知設定" Click="NotificationSetting"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid MinHeight="768" MinWidth="1024" >
         <Grid.Background>
-            <ImageBrush ImageSource="{Binding Background}" Stretch="Fill" Opacity="1"/>
+            <ImageBrush ImageSource="{Binding Background}" Stretch="UniformToFill" Opacity="1"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
@@ -43,15 +44,23 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>
+                <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Width="60" HorizontalAlignment="Right"  Background="Black" Margin="0,0,60,0">
+                <Button  BorderBrush="{x:Null}" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Click="ButtonBase_OnClick">
+                    <SymbolIcon Symbol="More" />
+                </Button>
+            </Grid>
             <AppBarButton Grid.Column="1" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click_1" Icon="Calendar" >
                 <Border BorderThickness="2" BorderBrush="White" CornerRadius="100" Padding="10">
                     <SymbolIcon Symbol="Calendar"></SymbolIcon>

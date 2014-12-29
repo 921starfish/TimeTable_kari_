@@ -1,38 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace OneNoteControl.Responses
-{
-    public class GetSectionsResponse
-    {
-        [JsonProperty(PropertyName = "@odata.context")]
-        public string context;
 
-        public GetSectionsResponseValueUnit[] value;
-    }
+namespace OneNoteControl.Responses {
 
-    public class GetSectionsResponseValueUnit
-    {
-        public bool isDefault;
+	public class GetSectionsResponse {
+		[JsonProperty(PropertyName = "@odata.context")] public string context;
 
-        public string pagesUrl;
+		public GetSectionsResponseValueUnit[] value;
+	}
 
-        public string name;
 
-        public string self;
+	public class GetSectionsResponseValueUnit {
+		public bool isDefault;
 
-        public string createdBy;
+		public string pagesUrl;
 
-        public string lastModifiedBy;
-        
-        public string lastModifiedTime;
+		public string name;
 
-        public string id;
+		public string self;
 
-        public string createdTime;
-    }
+		public string createdBy;
+
+		public string lastModifiedBy;
+
+		public string lastModifiedTime;
+
+		public string id;
+
+		public string createdTime;
+	}
+
 }

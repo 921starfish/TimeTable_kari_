@@ -74,7 +74,6 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             }
             else
             {
-                Symbol1.Visibility = Visibility.Collapsed;
 
             }
 

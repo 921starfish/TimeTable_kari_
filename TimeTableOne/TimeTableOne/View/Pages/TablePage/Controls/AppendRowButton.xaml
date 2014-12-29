@@ -9,9 +9,9 @@
     d:DesignHeight="90"
     d:DesignWidth="200" Height="90">
     
-    <Grid>
+    <Grid Background="{StaticResource TextBoxGray}">
         <Button BorderBrush="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding Append}"></Button>
-        <Polygon Points="0,0 70,0 100,45 70,90 0,90" Fill="{StaticResource TextBoxGray}" />
-        <SymbolIcon Symbol="Add" HorizontalAlignment="Left" Margin="20,0,0,0"></SymbolIcon>
+     
+        <SymbolIcon Symbol="Add" HorizontalAlignment="Center"  Foreground="{StaticResource DetailBoxBlack}"></SymbolIcon>
     </Grid>
 </UserControl>
