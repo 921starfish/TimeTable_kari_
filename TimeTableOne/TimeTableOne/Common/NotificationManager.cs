@@ -77,8 +77,39 @@ namespace TimeTableOne.Common
            TileUpdateManager.CreateTileUpdaterForApplication().Update(notif);
         }
 
+        private void UpdateWideTileNow()
+        {
+            var tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
+            var scheduleStatus = ScheduleManager.Instance.CurrentScheduleState;
+            var widecontent = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWide310x150BlockAndText02);
+            widecontent.AppendTextElement(1, DateTime.Now.ToString("dd"));
+            widecontent.AppendTextElement(2, DateTime.Now.ToString("dddd"));
+            string thirdContent = "";
+            //現在授業中かどうか
+            if (!scheduleStatus.IsNoClass()&&ScheduleManager.Instance.CurrentSchedule!=null)
+            {
+                var cs = ScheduleManager.Instance.CurrentSchedule;
+                thirdContent = String.Format("只今の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
+            }
+            else
+            {
+                if (ScheduleManager.Instance.NextScheduleInToday==null)
+                {
+                    thirdContent = "本日次の授業はありません。";
+                }
+                else
+                {
+                    var cs = ScheduleManager.Instance.NextScheduleInToday;
+                    thirdContent = String.Format("次の授業 {0}\n{1}  {2}", cs.TableName, cs.GetTimeSpan().ToString(), cs.Place);
+                }
+            }
+            widecontent.AppendTextElement(0, thirdContent);
+            tileUpdater.Update(new TileNotification(widecontent));
+        }
+
         public void UpdateWideTileNotificationOfToday()
         {
+            ScheduleManager.Instance.UpdateCurrentTable();
             var spans = ScheduleManager.Instance.GetTodayKeyTiming(ScheduleTimingType.BeginTimeWithNoClass|ScheduleTimingType.EndTime);
             var status = ScheduleManager.Instance.GetScheduleStatus(0);
             var schedules = ScheduleManager.Instance.TodaySchedule;
@@ -128,7 +159,7 @@ namespace TimeTableOne.Common
                 Debug.WriteLine(widecontent.GetXml());
                 tileUpdater.AddToSchedule(scNotif);
             }
-
+            UpdateWideTileNow();
         }
 
         /// <summary>
