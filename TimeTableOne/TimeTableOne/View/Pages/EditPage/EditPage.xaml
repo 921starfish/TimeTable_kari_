@@ -50,14 +50,16 @@
         <controls:EditHeaderControl Height="300" Width="800" Grid.ColumnSpan="2"></controls:EditHeaderControl>-->
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+       
         <controls:EditHeaderControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></controls:EditHeaderControl>
+       
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -66,14 +68,33 @@
             <controls:ClassRoomControl></controls:ClassRoomControl>
             <controls:AssignmentControl Grid.Column="1"></controls:AssignmentControl>
         </Grid>
+        
         <!--<Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="New_Button_Click">
             <SymbolIcon Symbol="Add" Foreground="Black"></SymbolIcon>
         </Button>
         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="Edit_Button_Click">
             <SymbolIcon Symbol="Edit" Foreground="Black"></SymbolIcon>
         </Button>-->
-        <controls:EditPageOneNoteControl x:Name="YesControl" Grid.Row="1" Grid.Column="1" DataContext="{Binding OneNoteControlData}"></controls:EditPageOneNoteControl>
-        <controls:EditPageYesOneNoteControl x:Name="NoControl" Grid.Row="1" Grid.Column="1" DataContext="{Binding OneNoteControlData}"></controls:EditPageYesOneNoteControl>
+
+        <Grid  Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <controls:EditPageOneNoteControl x:Name="YesControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
+            </controls:EditPageOneNoteControl>
+            <controls:EditPageYesOneNoteControl x:Name="NoControl" Grid.Row="0" Grid.Column="1" DataContext="{Binding OneNoteControlData}">
+            </controls:EditPageYesOneNoteControl>
+            <TextBox   Grid.Row="1" 
+                       TextWrapping="Wrap"
+                       AcceptsReturn="True"
+                       Foreground="Black"
+                       FontStyle="Normal"
+                       Text="{Binding TableInformation,Mode = TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       FontSize="20"
+                       PlaceholderText="メモ">
+            </TextBox>
+        </Grid>
+      
     </Grid>
-    <!--</Grid>-->
 </Page>

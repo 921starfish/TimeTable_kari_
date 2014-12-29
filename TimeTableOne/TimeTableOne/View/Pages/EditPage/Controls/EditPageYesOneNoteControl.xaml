@@ -14,24 +14,40 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="次のノートが見つかりました。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+        <TextBlock Text="次のノートと関連付けられました。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
         <!--<Button BorderThickness="0" HorizontalAlignment="Left">
             <SymbolIcon  Foreground="Black" Symbol="Play"/>
         </Button>-->
-        <Grid  Background="GhostWhite" Grid.Row="1" Margin="50" >
+        <Grid  Background="GhostWhite" Grid.Row="1" Margin="50" Height="200" >
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="0"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
             <Border Background="{StaticResource OneNotePurple}">
                 <TextBlock Grid.Column="0" Text="{Binding NoteName}" FontSize="40"   Foreground="{Binding ForeColor}" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
             </Border>
-                <Border Grid.Row="1" Background="{StaticResource EditBoxGray}"></Border>
-            <Border Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{StaticResource TextBoxBorder}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1"></Border>
+                <Grid Grid.Row="1" Background="{StaticResource EditBoxGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}"></Button>
+                    <TextBlock Text="新しいセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                    <SymbolIcon Margin="10,0,0,0" HorizontalAlignment="Left" Foreground="Black" Symbol="Add"/>
+                </Grid>
+                <Grid Background="{StaticResource TextBoxGray}" Grid.Column="1">
+                    <Button BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Button>
+                <TextBlock  Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                <SymbolIcon Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
+                </Grid>
+            </Grid>
+            
+                <Border Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{StaticResource TextBoxBorder}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="1"></Border>
             <!--<Rectangle Fill="{Binding NoteColor}"></Rectangle>-->
            
         </Grid>
