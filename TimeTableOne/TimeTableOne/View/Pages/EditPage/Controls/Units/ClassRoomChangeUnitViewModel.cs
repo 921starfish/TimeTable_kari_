@@ -98,7 +98,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 _changeTo = value;
                 if (!string.IsNullOrEmpty(_changeTo))
                 {
-                    CaptionColor = new SolidColorBrush(Colors.Yellow);
+                    CaptionColor = new SolidColorBrush(Colors.DarkOrange);
                     ClassRoomChangeCaption = "教室変更";
                 }
                 else
