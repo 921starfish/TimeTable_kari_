@@ -228,17 +228,6 @@ namespace OneNoteControl {
 			return await TranslateResponse(response);
 		}
 
-		private async Task CreateSection() {
-			StandardResponse response = await CreateEmptyPage(notebookID);
-			if (response.StatusCode == HttpStatusCode.Created) {
-				var successResponse = (CreateSuccessResponse) response;
-				clientLink = successResponse.OneNoteClientUrl ?? "No URI";
-			}
-			else {
-				clientLink = string.Empty;
-			}
-		}
-
 		public async Task<StandardResponse> GetSectionInfo(string sectionName) {
 			var client = new HttpClient();
 
@@ -313,15 +302,23 @@ namespace OneNoteControl {
 			return await StandardResponse.FetchJsonResponse<GetPagesResponse>(HttpMethod.Get, nextUrl, GenerateClient());
 		}
 
+		private async Task<JsonResponse<PostSectionsResponse>> PostSections(string nextUrl, string sectionName) {
+			string content = "{\"name\": \"" + sectionName + "\"}";
+			return await StandardResponse.FetchJsonResponse<PostSectionsResponse>(HttpMethod.Post, nextUrl,content, GenerateClient());
+		}
+
 		JsonResponse<GetNotebooksResponse> notebookResponse;
 		JsonResponse<GetSectionsResponse> sectionResponse;
 		JsonResponse<GetPagesResponse> pageResponse;
+
+		private string childSectionUrl;
 
 		private async Task OpenNotebook(string tableName) {
 			notebookResponse = await GetNotebooks();
 			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
 				foreach (var value in notebookResponse.ResponseData.value) {
 					if (value.name == tableName) {
+						childSectionUrl = value.sectionsUrl;
 						sectionResponse = await GetSections(value.sectionsUrl);
 						break;
 					}
@@ -352,6 +349,10 @@ namespace OneNoteControl {
 			}
 		}
 
+		private async Task CreateSection(string sectionName) {
+			var response = await PostSections(childSectionUrl,sectionName);
+		}
+
 		public async void OpenNotes(string tableName) {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
@@ -363,9 +364,10 @@ namespace OneNoteControl {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
 			await OpenNotebook(tableName);
-			await OpenSection(sectionName);
+			await CreateSection(sectionName);
 			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
+
 		public async void OpenRecentlySection(string tableName, string sectionName) {
 			pageSectionName = tableName;
 			await AttemptRefreshToken();
@@ -391,13 +393,6 @@ namespace OneNoteControl {
 			else {
 				clientLink = string.Empty;
 			}
-		}
-
-		public async void OpenResentSection(string tableNameID) {
-			pageSectionName = tableNameID;
-			await AttemptRefreshToken();
-			await GetSectionName();
-			await Launcher.LaunchUriAsync(new Uri(clientLink));
 		}
 	}
 

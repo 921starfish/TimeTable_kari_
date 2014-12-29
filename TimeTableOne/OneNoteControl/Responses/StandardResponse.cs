@@ -23,7 +23,13 @@ namespace OneNoteControl.Responses {
 
 		public static Task<JsonResponse<T>> FetchJsonResponse<T>(HttpMethod method, string uri, HttpClient client)
 			where T : new() {
-			return FetchJsonResponse<T>(new HttpRequestMessage(method, uri), client);
+				return FetchJsonResponse<T>(new HttpRequestMessage(method, uri), client);
+		}
+		public static Task<JsonResponse<T>> FetchJsonResponse<T>(HttpMethod method, string uri, string content, HttpClient client)
+		   where T : new() {
+			return FetchJsonResponse<T>(new HttpRequestMessage(method, uri) {
+				Content = new StringContent(content, System.Text.Encoding.UTF8, "application/json")
+			}, client);
 		}
 
 		public static Task<HtmlResponse> FetchHtmlResponse(HttpRequestMessage message, HttpClient client) {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="5760ArLEquiN.TimeTableOne" Publisher="CN=6239D212-275E-4CC6-BD00-16F33F83CF05" Version="1.0.0.0" />
+  <Identity Name="5760ArLEquiN.TimeTableOne" Publisher="CN=6239D212-275E-4CC6-BD00-16F33F83CF05" Version="1.1.0.0" />
   <Properties>
     <DisplayName>TimeTableOne</DisplayName>
     <PublisherDisplayName>ArLEquiN</PublisherDisplayName>
