@@ -48,7 +48,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         {
             VisualStateManager.GoToState(this, "BasicState", true);
 
-            Debug.WriteLine(textBox.Text);// 授業名
+            Debug.WriteLine(textBox.Text);// 教室名
+
         }
     }
 }
