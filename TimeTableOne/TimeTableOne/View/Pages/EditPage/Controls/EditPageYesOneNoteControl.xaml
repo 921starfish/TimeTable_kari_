@@ -27,7 +27,7 @@
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
-            <Border Background="{StaticResource OneNotePurple}">
+            <Border Background="{Binding NoteColor}">
                 <TextBlock Grid.Column="0" Text="{Binding NoteName}" FontSize="40"   Foreground="{Binding ForeColor}" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
             </Border>
                 <Grid Grid.Row="1" Background="{StaticResource EditBoxGray}">

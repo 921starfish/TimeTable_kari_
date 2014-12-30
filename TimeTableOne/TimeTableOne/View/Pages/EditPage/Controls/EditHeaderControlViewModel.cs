@@ -35,17 +35,19 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 if (Equals(value, _tableColor)) return;
                 _tableColor = value;
                 OnPropertyChanged();
-                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
-                new SolidColorBrush(Colors.White);
+                ForeColor = null;
             }
         }
         public Brush ForeColor
         {
-            get { return _foreColor; }
+            get
+            {
+                return TableUnitDataHelper.GetCurrentSchedule().ColorData.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.White);
+               
+            }
             set
             {
-                if (Equals(value, _foreColor)) return;
-                _foreColor = value;
+                _foreColor = value; 
                 OnPropertyChanged();
             }
         }

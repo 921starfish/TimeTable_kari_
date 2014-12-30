@@ -67,18 +67,18 @@ namespace TimeTableOne.View.Pages.EditPage
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
-        
-            //if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
-            //{
-            //    YesControl.Visibility = Visibility.Collapsed;
-            //    NoControl.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    YesControl.Visibility = Visibility.Visible;
-            //    NoControl.Visibility = Visibility.Collapsed;
 
-            //}
+            if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
+            {
+                YesControl.Visibility = Visibility.Collapsed;
+                NoControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                YesControl.Visibility = Visibility.Visible;
+                NoControl.Visibility = Visibility.Collapsed;
+
+            }
         }
 
         #region NavigationHelper の登録
