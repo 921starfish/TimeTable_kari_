@@ -119,6 +119,31 @@ namespace TimeTableOne.View.Pages.EditPage
             get { return DataContext as EditPageViewModel; }
         }
 
+        private async void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+            if (false)//オンラインかどうか。
+            {
+            }
+            else
+            {
+                Grid1.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
+            {
+                YesControl.Visibility = Visibility.Collapsed;
+                NoControl.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                YesControl.Visibility = Visibility.Visible;
+                NoControl.Visibility = Visibility.Collapsed;
+
+            }
+        }
+
         
 
     } 
