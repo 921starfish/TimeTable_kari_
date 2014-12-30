@@ -41,7 +41,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             ApplicationData.SaveData();
             TableKey Key = TableUnitDataHelper.GetCurrentKey();
             // ViewModel.loadData(Key);
-
+            EditPageUpdateEvents.OnColorUpdate();
+         
 
         }
 

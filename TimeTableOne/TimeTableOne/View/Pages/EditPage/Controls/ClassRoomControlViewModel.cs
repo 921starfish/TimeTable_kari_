@@ -8,15 +8,24 @@ using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.EditPage.Controls.Units;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls
 {
     public class ClassRoomControlViewModel:BasicViewModel
     {
+        private SolidColorBrush _tableColor;
+        private Brush _foreColor;
         public ClassRoomControlViewModel()
         {
             ClassRoomChanges=new ObservableCollection<ClassRoomChangeUnitViewModel>();
             var schedule = TableUnitDataHelper.GetCurrentSchedule();
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+                OnPropertyChanged();
+            };
             if (schedule != null)
             {
                 RecordFirstDate = schedule.CreationDate.ToString("yyyy年M月dd日からの記録");
@@ -33,6 +42,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     }
                 }
             }
+
             NoClasses = new ObservableCollection<NoClassRoomListUnitViewModel>();
             schedule = TableUnitDataHelper.GetCurrentSchedule();
             if (schedule != null)
@@ -52,6 +62,28 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             }
         }
 
+        public SolidColorBrush TableColor
+        {
+            get { return _tableColor; }
+            set
+            {
+                if (Equals(value, _tableColor)) return;
+                _tableColor = value;
+                OnPropertyChanged();
+                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
+                new SolidColorBrush(Colors.White);
+            }
+        }
+        public Brush ForeColor
+        {
+            get { return _foreColor; }
+            set
+            {
+                if (Equals(value, _foreColor)) return;
+                _foreColor = value;
+                OnPropertyChanged();
+            }
+        }
         public string RecordFirstDate { get; set; }
 
         public ObservableCollection<ClassRoomChangeUnitViewModel> ClassRoomChanges { get; set; } 

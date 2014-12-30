@@ -19,7 +19,7 @@
                     <RowDefinition Height="80"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Rectangle Fill="{Binding TableColor}"></Rectangle>
-                <TextBlock Text="課題の編集" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding ForeColor}"></TextBlock>
+                <TextBlock Text="課題の編集" FontSize="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding ForeColor}" Margin="232,7,222,7"></TextBlock>
                 <StackPanel Grid.Row="1">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">

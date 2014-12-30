@@ -19,6 +19,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         {
             _acceptCommand=new BasicCommand(OnAcceptAssignmentData,ValidateAssignmentData);
             initializeAsToday();
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+                OnPropertyChanged();
+            };
            
         }
 
@@ -26,6 +31,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         {
             DueDate=DateTime.Now.AddDays(7);
             updateDuedateForEdit();
+
         }
 
         private bool ValidateAssignmentData()

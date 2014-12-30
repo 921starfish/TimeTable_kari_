@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Common/ColorDictionary.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="{Binding BackgroundColor}" x:Name="VSM_Target">
+    <Grid Background="{Binding TableColor}" x:Name="VSM_Target">
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">
     			<VisualStateGroup.Transitions>
@@ -117,10 +117,10 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border  Background="{Binding BackgroundColor}">
+        <Border  Background="{Binding TableColor}">
             <Button BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
-                <Border BorderThickness="2" BorderBrush="{Binding BasicForeground}" CornerRadius="100" Padding="10">
-                    <SymbolIcon Symbol="Calendar" Foreground="{Binding BasicForeground}"></SymbolIcon>
+                <Border BorderThickness="2" BorderBrush="{Binding ForeColor}" CornerRadius="100" Padding="10">
+                    <SymbolIcon Symbol="Calendar" Foreground="{Binding ForeColor}"></SymbolIcon>
             </Border>
             </Button>
         </Border>
@@ -134,9 +134,9 @@
                                                      LostFocus="LectureTextBox_LostFocus" KeyDown="LectureNameBox_OnKeyDown"/>
             <TextBlock x:Name="textBlock" Opacity="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,0"
                                Text="{Binding LectureName}" FontSize="64" PointerEntered="LectureTextBox_MouseEnter"
-                               PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed" Foreground="{Binding BasicForeground}">
+                               PointerExited="LectureTextBox_MouseExit" PointerPressed="textBlock_PointerPressed" Foreground="{Binding ForeColor}">
             </TextBlock>
-            <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0" Foreground="{Binding BasicForeground}"></SymbolIcon>
+            <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Opacity="0" Foreground="{Binding ForeColor}"></SymbolIcon>
         </StackPanel>
         <Grid Grid.Column="3">
           <Grid.RowDefinitions>
@@ -144,21 +144,21 @@
               <RowDefinition></RowDefinition>
           </Grid.RowDefinitions>
             <StackPanel  Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
-                <TextBlock x:Name="textBlock2" Opacity="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding BasicForeground}" Text="{Binding Place}" FontSize="30" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
+                <TextBlock x:Name="textBlock2" Opacity="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding ForeColor}" Text="{Binding Place}" FontSize="30" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
            
                 <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="placeBox" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
 
-                <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0" Foreground="{Binding BasicForeground}"></SymbolIcon>
+                <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0" Foreground="{Binding ForeColor}"></SymbolIcon>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <TextBlock x:Name="textBlock1"   Text="{Binding WeekText}" FontSize="30" Foreground="{Binding WeekBrush}" Padding="0,0,10,0"></TextBlock>
-                <TextBlock Text="{Binding TimeText}" FontSize="30" Padding="10,0,0,0" Foreground="{Binding BasicForeground}"></TextBlock>
+                <TextBlock Text="{Binding TimeText}" FontSize="30" Padding="10,0,0,0" Foreground="{Binding ForeColor}"></TextBlock>
             </StackPanel>
         </Grid>
         
             <Button  Grid.Column="4"  BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click">
             <StackPanel >
-                <SymbolIcon Symbol="Flag" Foreground="{Binding BasicForeground}"></SymbolIcon>
+                <SymbolIcon Symbol="Flag" Foreground="{Binding ForeColor}"></SymbolIcon>
                 <Popup x:Name="ColorPopup" IsLightDismissEnabled="True">
                     <local:ColorPopup Width="400" Height="300" Margin="-500,100,0,0" ></local:ColorPopup>
                 </Popup>

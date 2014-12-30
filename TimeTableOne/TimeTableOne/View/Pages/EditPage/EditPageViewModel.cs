@@ -65,8 +65,13 @@ namespace TimeTableOne.View.Pages.EditPage
            () =>
            {
                OneNoteControl.OneNoteControler.Current.Open(_scheduleData.TableName);
+                
            });
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
           
+            };
         }
      
 

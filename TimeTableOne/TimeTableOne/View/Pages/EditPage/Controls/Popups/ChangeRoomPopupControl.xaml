@@ -17,8 +17,8 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Fill="{StaticResource OneNotePurple}"/>
-                <TextBlock FontSize="20" Text="教室変更" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <Rectangle Fill="{Binding TableColor}"/>
+                <TextBlock FontSize="20" Text="教室変更" Foreground="{Binding ForeColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <ListView Grid.Row="1" ItemsSource="{Binding ClassRoomChanges}" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>

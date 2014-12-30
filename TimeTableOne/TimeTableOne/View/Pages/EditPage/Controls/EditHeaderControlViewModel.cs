@@ -23,14 +23,29 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private string _lectureNameForEdit;
         private string _placeNameForEdit;
         private SolidColorBrush _basicForeground;
+        private SolidColorBrush _tableColor;
+        private Brush _foreColor;
 
-        public SolidColorBrush BackgroundColor
+      
+        public SolidColorBrush TableColor
         {
-            get { return _backgroundColor; }
+            get { return _tableColor=new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); }
             set
             {
-                if (Equals(value, _backgroundColor)) return;
-                _backgroundColor = value;
+                if (Equals(value, _tableColor)) return;
+                _tableColor = value;
+                OnPropertyChanged();
+                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
+                new SolidColorBrush(Colors.White);
+            }
+        }
+        public Brush ForeColor
+        {
+            get { return _foreColor; }
+            set
+            {
+                if (Equals(value, _foreColor)) return;
+                _foreColor = value;
                 OnPropertyChanged();
             }
         }
@@ -63,6 +78,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             {
                 PageUtil.MovePage(MainStaticPages.TablePage);
             });
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+            };
         }
 
         private bool AutoCompleteFunctionImpl(string inlist, string input)
@@ -83,7 +102,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
         public Brush WeekBrush
         {
-            get { return TableKey.dayOfWeek.GetWeekColor(BackgroundColor.Color.Liminance()>0.5); }
+            get { return TableKey.dayOfWeek.GetWeekColor(TableColor.Color.Liminance()>0.5); }
         }
 
         public string WeekText
@@ -148,11 +167,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             }
         }
 
-        public SolidColorBrush BasicForeground
-        {
-            get { return new SolidColorBrush(BackgroundColor.Color.Liminance() > 0.5 ? Colors.Black : Colors.White); }
-        }
-
+        
         public ICommand BackToTablePageCommand { get; set; }
 
         public string Place
@@ -176,7 +191,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                 Place = "624教室",
                 TableName = "経済学Ⅰ"
             };
-            BackgroundColor = new SolidColorBrush(Colors.Purple);
+    TableColor = new SolidColorBrush(Colors.Purple);
         }
     }
 }

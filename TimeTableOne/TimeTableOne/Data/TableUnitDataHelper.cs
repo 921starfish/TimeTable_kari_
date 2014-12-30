@@ -28,5 +28,6 @@ namespace TimeTableOne.Data
             var editPage = f.Content as EditPage;
             return editPage.ViewModel;
         }
+
     }
 }

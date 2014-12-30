@@ -28,6 +28,11 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             //this._dueDate = null;
             _acceptCommand = new BasicCommand(OnAcceptAssignmentData, ValidateAssignmentData);
             AllDelete = new AlwaysExecutableDelegateCommand(DeleteWithCheck);
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+                OnPropertyChanged();
+            };
         }
 
         private bool ValidateAssignmentData()
@@ -53,6 +58,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         protected BasicCommand _acceptCommand;
         private Brush _foreColor;
         private AssignmentSchedule _schedule;
+        private SolidColorBrush _tableColor;
 
         public EditAssignmentPopupViewModel(AssignmentSchedule schedule)
         {
@@ -65,6 +71,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             _yearEdit = DueDate.Year;
             _monthEdit = DueDate.Month;
             _dayEdit = DueDate.Day;
+     
         }
 
         private void UpdateFromDueDate()
@@ -100,16 +107,24 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         }
         public SolidColorBrush TableColor
         {
-            get { return new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); ; }
-
+            get { return _tableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); }
+            set
+            {
+                if (Equals(value, _tableColor)) return;
+                _tableColor = value;
+                OnPropertyChanged();
+                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
+                new SolidColorBrush(Colors.White);
+            }
         }
         public Brush ForeColor
         {
-            get
+            get { return _foreColor; }
+            set
             {
-                return TableUnitDataHelper.GetCurrentSchedule().ColorData.Liminance() >= 0.5
-                    ? new SolidColorBrush(Colors.Black)
-                    : new SolidColorBrush(Colors.White);
+                if (Equals(value, _foreColor)) return;
+                _foreColor = value;
+                OnPropertyChanged();
             }
         }
 

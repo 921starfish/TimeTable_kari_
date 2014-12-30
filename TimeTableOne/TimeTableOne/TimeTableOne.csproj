@@ -231,6 +231,7 @@
     <Compile Include="View\Pages\EditPage\EditPage.xaml.cs">
       <DependentUpon>EditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\EditPage\EditPageUpdateEvents.cs" />
     <Compile Include="View\Pages\EditPage\EditPageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\AppendRowButton.xaml.cs">
       <DependentUpon>AppendRowButton.xaml</DependentUpon>

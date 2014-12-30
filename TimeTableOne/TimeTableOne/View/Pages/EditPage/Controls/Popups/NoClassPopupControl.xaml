@@ -16,8 +16,8 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.Row="0" Fill="{StaticResource OneNotePurple}"/>
-                <TextBlock Grid.Row="0" Text="休講設定" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Rectangle Grid.Row="0" Fill="{Binding TableColor}"/>
+                <TextBlock Grid.Row="0" Foreground="{Binding ForeColor}" Text="休講設定" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 <ListView Grid.Row="1" ItemsSource="{Binding NoClasses}" SelectionMode="None">
     <ListView.ItemTemplate>
         <DataTemplate>

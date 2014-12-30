@@ -38,8 +38,15 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
                     SelectedIndex = i;
                     return;
                 }
+                EditPageUpdateEvents.ColorUpdateEvent += () =>
+                {
+                    this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+                };
             }
-            
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+                this.TableColor=new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+            };
         }
 
         public ObservableCollection<ColorPopupUnitViewModel> ColorItems { get; set; }
