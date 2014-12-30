@@ -30,12 +30,10 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 HelpDisplay = "今日";
             }
             int diff = ((int) today - (int) _dayofWeek)%7;
+            diff += diff < 0 ? 7 : 0;
             if (diff == 6)
             {
                 HelpDisplay = "明日";
-            }else if (diff == 1)
-            {
-                HelpDisplay = "昨日";
             }else if (diff == 5)
             {
                 HelpDisplay = "明後日";
