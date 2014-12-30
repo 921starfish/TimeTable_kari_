@@ -33,12 +33,12 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         }
 
 		private void NewButton_Click(object sender, RoutedEventArgs e) {
-            string sectionName = "m月N日";
+            string sectionName = DateTime.Now.ToString("d");
             OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
 
 		private void OpenButton_Click_1(object sender, RoutedEventArgs e) {
-			string sectionName = "m月N日";
+            string sectionName = DateTime.Now.ToString("d");
             OneNoteControl.OneNoteControler.Current.OpenRecentlySection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
 
