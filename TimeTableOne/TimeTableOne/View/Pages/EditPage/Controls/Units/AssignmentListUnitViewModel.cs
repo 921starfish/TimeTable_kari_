@@ -65,6 +65,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         private Brush _assignmentStatusColor;
         private string _assignmentDetail;
         private AddAssignmentPopupViewModel _assignmentPopupData;
+        private EditAssignmentPopupViewModel _editAssignmentPopupData;
 
         private void updatAssignmentStatus()
         {
@@ -149,7 +150,16 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public ICommand CompleteCommand { get; set; }
 
-        public EditAssignmentPopupViewModel EditAssignmentPopupData { get; set; }
+        public EditAssignmentPopupViewModel EditAssignmentPopupData
+        {
+            get { return _editAssignmentPopupData; }
+            set
+            {
+                if (Equals(value, _editAssignmentPopupData)) return;
+                _editAssignmentPopupData = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     class AssignmentListUnitViewModelInDesign : AssignmentListUnitViewModel
