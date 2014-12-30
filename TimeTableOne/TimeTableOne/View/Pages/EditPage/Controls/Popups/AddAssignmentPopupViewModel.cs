@@ -49,7 +49,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             assignment.DueTime = new DateTime(YearEdit,MonthEdit,DayEdit,0,0,0,0);
             ApplicationData.Instance.Assignments.Add(assignment);
             ApplicationData.SaveData();
-           
+           AssignmentControl.NotifyPopupClose();
         }
 
         protected string _assignmentName;

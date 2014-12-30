@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using TimeTableOne.Data;
 using TimeTableOne.Utils;
 using TimeTableOne.Utils.Commands;
@@ -63,6 +64,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         public EditAssignmentPopupViewModel(AssignmentSchedule schedule)
         {
             _acceptCommand = new BasicCommand(OnAcceptAssignmentData, ValidateAssignmentData);
+            AllDelete = new AlwaysExecutableDelegateCommand(DeleteWithCheck);
             //TODO ここでVMに反映されるようにする。
             _schedule = schedule;
             AssignmentName = schedule.AssignmentName;
@@ -204,13 +206,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             }
             else if (cmd == dlg.Commands[0])
             {
-                this._assignmentName = "";
-                this._assignmentDetail = "";
-                this._yearEdit = 1;
-                this._monthEdit = 1;
-                this._dayEdit = 1;
-                OnPropertyChanged();
-                _acceptCommand.NotifyCanExecuteChanged();
+                ApplicationData.Instance.RemoveAssignment(_schedule);
+                AssignmentControl.NotifyPopupClose();
             }
 
         }

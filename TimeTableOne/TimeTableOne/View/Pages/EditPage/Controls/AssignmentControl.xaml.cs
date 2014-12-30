@@ -23,8 +23,14 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public AssignmentControl()
         {
             this.InitializeComponent();
+            OnPopupClose += AssignmentControl_OnPopupClose;
             Loaded += AssignmentControl_Loaded;
 
+        }
+
+        void AssignmentControl_OnPopupClose(object sender, EventArgs e)
+        {
+            AddAssignmentPopup.IsOpen = false;
         }
 
         void AssignmentControl_Loaded(object sender, RoutedEventArgs e)
@@ -43,6 +49,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             //Expand Popup
             AddAssignmentPopup.IsOpen = !AddAssignmentPopup.IsOpen;
+        }
+
+        public static event EventHandler OnPopupClose = delegate { };
+
+        public static void NotifyPopupClose()
+        {
+            OnPopupClose(null,new EventArgs());
         }
     }
 }

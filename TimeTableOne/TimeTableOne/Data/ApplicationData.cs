@@ -44,6 +44,7 @@ namespace TimeTableOne.Data
 
         static void Assignments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if(e.NewStartingIndex==-1)return;
             AssignmentSchedule sc = Instance.Assignments[e.NewStartingIndex];
             Instance.OnAssignmentChanged(Instance, new AssignmentChangedEventArgs(sc.ScheduleId));
         }
@@ -277,6 +278,12 @@ namespace TimeTableOne.Data
             }
             if (key != null) Keys.Remove(key);
             Data.Remove(getCurrentSchedule);
+        }
+
+        public void RemoveAssignment(AssignmentSchedule schedule)
+        {
+            Assignments.Remove(schedule);
+            OnAssignmentChanged(this,new AssignmentChangedEventArgs(schedule.ScheduleId));
         }
     }
 

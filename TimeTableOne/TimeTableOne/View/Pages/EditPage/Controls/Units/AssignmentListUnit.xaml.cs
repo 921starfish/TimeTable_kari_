@@ -30,8 +30,14 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         public AssignmentListUnit()
         {
             this.InitializeComponent();
+            AssignmentControl.OnPopupClose += AssignmentControl_OnPopupClose;
             VisualStateManager.GoToState(this, "BasicState", false);
            
+        }
+
+        void AssignmentControl_OnPopupClose(object sender, EventArgs e)
+        {
+            EditPopup.IsOpen = false;
         }
 
         private void TextBlock1_OnPointerPressed(object sender, PointerRoutedEventArgs e)
