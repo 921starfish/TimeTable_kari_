@@ -37,6 +37,7 @@ namespace TimeTableOne.View.Pages.EditPage
             navigationHelper.SaveState += navigationHelper_SaveState;
             YesControl.Visibility = Visibility.Collapsed;
             NoControl.Visibility = Visibility.Collapsed;
+            Grid1.Visibility = Visibility.Collapsed;
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -67,6 +68,15 @@ namespace TimeTableOne.View.Pages.EditPage
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
+
+            if (false)//オンラインかどうか。
+            {
+            }
+            else
+            {
+                Grid1.Visibility = Visibility.Visible;
+                return;
+            }
 
             if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
             {
@@ -107,23 +117,6 @@ namespace TimeTableOne.View.Pages.EditPage
         public EditPageViewModel ViewModel
         {
             get { return DataContext as EditPageViewModel; }
-        }
-
-        private void EditHeaderControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void New_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
-            string sectionName = "m月N日";
-        }
-        
-        private void Edit_Button_Click(object sender, RoutedEventArgs e)
-        {
-            OneNoteControl.OneNoteControler.Current.Open(ViewModel.TableName);
-            string sectionName = "m月N日";
         }
 
         
