@@ -19,9 +19,12 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="課題を追加する" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
-        <Button BorderThickness="0" HorizontalAlignment="Left" Click="ButtonBase_OnClick">
-            <SymbolIcon Symbol="Add" Foreground="Black"></SymbolIcon>
+
+        <Button BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Width="225" Click="ButtonBase_OnClick" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0">
+            <Grid>
+                <SymbolIcon HorizontalAlignment="Left" Symbol="Add" Foreground="Black"></SymbolIcon>
+                <TextBlock Text="課題を追加する" FontSize="20" FontWeight="Light" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0" Foreground="Black"></TextBlock>
+            </Grid>
         </Button>
         <ListView Grid.Row="1" Grid.Column="0"  ItemsSource="{Binding Assignments}" HorizontalAlignment="Stretch"  SelectionMode="None">
             <ListView.ItemTemplate>

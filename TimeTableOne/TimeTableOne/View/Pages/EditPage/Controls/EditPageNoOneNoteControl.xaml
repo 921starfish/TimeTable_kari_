@@ -13,10 +13,12 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="ノートを追加する" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
-        <Button BorderThickness="0" HorizontalAlignment="Left" Click="NewButton_Click">
-            <SymbolIcon Symbol="Add" Foreground="Black"></SymbolIcon>
+        <Button BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Width="225"  Click="NewButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,1,0,0">
+            <Grid>
+                <SymbolIcon HorizontalAlignment="Left" Symbol="Add" Foreground="Black"></SymbolIcon>
+                <TextBlock Text="ノートを追加する" FontSize="20" FontWeight="Light" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0" Foreground="Black"></TextBlock>
+            </Grid>
         </Button>
-<TextBlock Grid.Row="1" Text="関連付けられたノートはありません" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+        <TextBlock Grid.Row="1" Text="関連付けられたノートはありません" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
     </Grid>
 </UserControl>

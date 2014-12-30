@@ -28,7 +28,7 @@
             <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent"  Click="ToggleNoClassPopup">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Home" Foreground="Black"></SymbolIcon>
-                    <TextBlock Text="休講" VerticalAlignment="Center" Foreground="Black"></TextBlock>
+                    <TextBlock Text="休講" FontWeight="Light" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
             <Popup Grid.Row="0" HorizontalAlignment="Right" x:Name="NoClassControl" IsLightDismissEnabled="True">
@@ -37,13 +37,13 @@
             <Button Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="ToggleChangeRoomPopup">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Important" Foreground="#FF2E2929"></SymbolIcon>
-                    <TextBlock Text="教室変更" VerticalAlignment="Center" Foreground="Black"></TextBlock>
+                    <TextBlock Text="教室変更" FontWeight="Light" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
             <Button Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Transparent" Click="DeleteThisPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Delete" Foreground="#FF2E2929"/>
-                    <TextBlock Text="削除" VerticalAlignment="Center" Foreground="Black"></TextBlock>
+                    <TextBlock Text="削除" FontWeight="Light" VerticalAlignment="Center" Foreground="Black"></TextBlock>
                 </StackPanel>
             </Button>
             <Popup Grid.Row="1" HorizontalAlignment="Right" x:Name="ChangeRoomControl" IsLightDismissEnabled="True">

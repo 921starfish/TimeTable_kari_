@@ -20,6 +20,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             NoteName = TableUnitDataHelper.GetCurrentSchedule().TableName;
             NoteColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData); ;
+            EditPageUpdateEvents.ColorUpdateEvent += () =>
+            {
+              NoteColor  = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+            };
         }
 
         public string NoteName { get; set; }
