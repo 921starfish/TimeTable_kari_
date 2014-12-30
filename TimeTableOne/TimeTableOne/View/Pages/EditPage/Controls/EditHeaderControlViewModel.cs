@@ -83,6 +83,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             EditPageUpdateEvents.ColorUpdateEvent += () =>
             {
                 this.TableColor = new SolidColorBrush(TableUnitDataHelper.GetCurrentSchedule().ColorData);
+               OnPropertyChanged("WeekBrush");
             };
         }
 
@@ -110,6 +111,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         public string WeekText
         {
             get { return WeekStringConverter.getAsStringInJpn(TableKey.dayOfWeek) + "曜日"; }
+
         }
 
         public string TimeText

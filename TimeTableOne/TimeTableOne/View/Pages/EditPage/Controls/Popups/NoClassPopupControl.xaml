@@ -10,7 +10,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <Grid>
-        <Border Background="White" BorderBrush="Black" BorderThickness="5">
+        <Border Background="White" BorderBrush="Black" BorderThickness="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
