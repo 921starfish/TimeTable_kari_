@@ -122,7 +122,7 @@ namespace TimeTableOne.View.Pages.EditPage
         private async void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
-            if (false)//オンラインかどうか。
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。
             {
             }
             else
