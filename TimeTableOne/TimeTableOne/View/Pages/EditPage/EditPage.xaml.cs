@@ -38,7 +38,6 @@ namespace TimeTableOne.View.Pages.EditPage
             YesControl.Visibility = Visibility.Collapsed;
             NoControl.Visibility = Visibility.Collapsed;
             Grid1.Visibility = Visibility.Collapsed;
-            EditPageUpdateEvents.ReloadOneNoteEvent += reloadOneNote;
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -69,7 +68,7 @@ namespace TimeTableOne.View.Pages.EditPage
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
-
+            EditPageUpdateEvents.ReloadOneNoteAction = reloadOneNote;
             EditPageUpdateEvents.ReloadOneNote();
         }
 
@@ -106,7 +105,7 @@ namespace TimeTableOne.View.Pages.EditPage
            EditPageUpdateEvents.ReloadOneNote();
         }
 
-        private async void reloadOneNote()
+        public async void reloadOneNote()
         {
 
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。

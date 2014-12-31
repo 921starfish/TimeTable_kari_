@@ -21,17 +21,16 @@ namespace TimeTableOne.View.Pages.EditPage
             }
         }
 
-    
-
-        public static event Action ReloadOneNoteEvent;
+        public static Action ReloadOneNoteAction;
 
         public static void ReloadOneNote()
         {
-            Action handler = ReloadOneNoteEvent;
-            if (handler != null)
+          
+            if (ReloadOneNoteAction != null)
             {
-                handler();
+                ReloadOneNoteAction();
             }
+
         }
     }
 }
