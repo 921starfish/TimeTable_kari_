@@ -14,14 +14,35 @@ namespace TimeTableOne.View.Pages.EditPage
     {
         public AssignmentControlViewModel()
         {
-            Assignments=new ObservableCollection<AssignmentListUnitViewModel>();
+            var pAssignments=new List<AssignmentListUnitViewModel>();
             var assignments = ApplicationData.Instance.GetAssignments(TableUnitDataHelper.GetCurrentSchedule());
             foreach (var assignmentSchedule in assignments)
             {
-                Assignments.Add(new AssignmentListUnitViewModel(assignmentSchedule));
+                pAssignments.Add(new AssignmentListUnitViewModel(assignmentSchedule));
+            }
+            var comparator = new AssignmentListUnitViewModelComparator();
+            pAssignments.Sort(comparator);
+            Assignments=new ObservableCollection<AssignmentListUnitViewModel>(pAssignments);
+        }
+        public ObservableCollection<AssignmentListUnitViewModel> Assignments { get; set; }
+
+        private class AssignmentListUnitViewModelComparator : IComparer<AssignmentListUnitViewModel>
+        {
+            public int Compare(AssignmentListUnitViewModel x, AssignmentListUnitViewModel y)
+            {
+                double xelapsed = ToDaysScaling(x._schedule.DueTime);
+                double yelapsed = ToDaysScaling(y._schedule.DueTime);
+                xelapsed += x._schedule.IsCompleted ? 3650000 : 0;
+                yelapsed += y._schedule.IsCompleted ? 3650000 : 0;
+                return (int) (xelapsed - yelapsed);
+            }
+
+            private double ToDaysScaling(DateTime time)
+            {
+                var elapsed = time - DateTime.MinValue;
+                return elapsed.TotalDays;
             }
         }
-        public ObservableCollection<AssignmentListUnitViewModel> Assignments { get; set; } 
     }
 
     class AssignmentControlViewModelInDesign : AssignmentControlViewModel
