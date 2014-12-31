@@ -69,7 +69,7 @@ namespace TimeTableOne.View.Pages.EditPage
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
 
-            if (false)//オンラインかどうか。
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。
             {
             }
             else
