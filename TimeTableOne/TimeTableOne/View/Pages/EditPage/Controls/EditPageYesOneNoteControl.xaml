@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" DataContextChanged="EditPageYesOneNoteControl_OnDataContextChanged"
-    d:DesignHeight="600"
+    d:DesignHeight="300"
     d:DesignWidth="700">
 
-    <Grid Background="White">
+    <Grid Background="White" Height="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
