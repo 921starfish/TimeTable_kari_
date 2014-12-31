@@ -110,7 +110,7 @@
                 </ListView>
         <Button Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderThickness="0"
 
-                        Background="{StaticResource TextBoxGray}" Padding="0,10" Margin="215,0" Click="ButtonBase_OnClick">
+                        Background="{StaticResource TextBoxGray}" Padding="0,10" Margin="215,0,0,0" Click="ButtonBase_OnClick">
             <Grid>
                         <!--<SymbolIcon Symbol="Add" Foreground="{StaticResource TextBoxBorder}"
                                     VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-100,0,0,0"

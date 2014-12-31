@@ -91,7 +91,7 @@
                     <TextBlock Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="225,10,224,0" Text="お使いのデバイスがインターネットに接続されていないため、OneNoteと通信できません。" Height="37"></TextBlock>
                     <Grid Background="DodgerBlue" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-300,0,0,0" >
                         <Button BorderThickness="0">
-                            <TextBlock Text="再読み込み" FontWeight="Light" FontSize="10" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"></TextBlock>
+                            <TextBlock Text="再読み込み" FontWeight="Light" FontSize="10" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" SelectionChanged="TextBlock_SelectionChanged"></TextBlock>
                         </Button>
                     </Grid>
 
