@@ -38,6 +38,7 @@ namespace TimeTableOne.View.Pages.EditPage
             YesControl.Visibility = Visibility.Collapsed;
             NoControl.Visibility = Visibility.Collapsed;
             Grid1.Visibility = Visibility.Collapsed;
+            EditPageUpdateEvents.ReloadOneNoteEvent += reloadOneNote;
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -69,26 +70,7 @@ namespace TimeTableOne.View.Pages.EditPage
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
 
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。
-            {
-            }
-            else
-            {
-                Grid1.Visibility = Visibility.Visible;
-                return;
-            }
-
-            if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
-            {
-                YesControl.Visibility = Visibility.Collapsed;
-                NoControl.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                YesControl.Visibility = Visibility.Visible;
-                NoControl.Visibility = Visibility.Collapsed;
-
-            }
+            EditPageUpdateEvents.ReloadOneNote();
         }
 
         #region NavigationHelper の登録
@@ -121,6 +103,11 @@ namespace TimeTableOne.View.Pages.EditPage
 
         private async void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
+           EditPageUpdateEvents.ReloadOneNote();
+        }
+
+        private async void reloadOneNote()
+        {
 
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。
             {
@@ -143,8 +130,6 @@ namespace TimeTableOne.View.Pages.EditPage
 
             }
         }
-
-        
 
     } 
 }

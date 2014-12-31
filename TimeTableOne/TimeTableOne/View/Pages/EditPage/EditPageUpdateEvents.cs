@@ -8,19 +8,30 @@ namespace TimeTableOne.View.Pages.EditPage
 {
     public static class EditPageUpdateEvents
     {
-        public delegate void ColorUpdateEventHandler();
+     
 
-        public static event ColorUpdateEventHandler ColorUpdateEvent;
+        public static event Action ColorUpdateEvent;
 
         public static void OnColorUpdate()
         {
-            ColorUpdateEventHandler handler = ColorUpdateEvent;
+            Action handler = ColorUpdateEvent;
             if (handler != null)
             {
                 handler();
             }
         }
 
+    
 
+        public static event Action ReloadOneNoteEvent;
+
+        public static void ReloadOneNote()
+        {
+            Action handler = ReloadOneNoteEvent;
+            if (handler != null)
+            {
+                handler();
+            }
+        }
     }
 }
