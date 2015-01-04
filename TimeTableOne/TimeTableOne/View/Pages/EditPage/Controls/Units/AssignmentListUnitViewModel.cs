@@ -11,6 +11,8 @@ using TimeTableOne.Data;
 using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.EditPage.Controls.Popups;
 using TimeTableOne.View.Pages.TablePage.Controls;
+using Windows.Networking.Connectivity;
+using OneNoteControl;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 {
@@ -21,6 +23,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         public AssignmentListUnitViewModel()
         {
             CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
+            OneNoteCommand = new AlwaysExecutableDelegateCommand(Onenote);
             EditAssignmentPopupData = new EditAssignmentPopupViewModel();
         }
 
@@ -32,6 +35,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             AssignmentName =_assignmentName = schedule.AssignmentName ;
             updatAssignmentStatus();
             CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
+            OneNoteCommand = new AlwaysExecutableDelegateCommand(Onenote);
             EditAssignmentPopupData = new EditAssignmentPopupViewModel();
             EditAssignmentPopupData.AssignmentName = this.AssignmentName;
             EditAssignmentPopupData.AssignmentDetail = this.AssignmentDetail;
@@ -55,6 +59,45 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
             }
             updatAssignmentStatus();
         }
+
+
+        private async void Onenote()
+        {
+            
+                var data = NetworkInformation.GetInternetConnectionProfile();
+                if (data == null) return;
+                if (data.IsWlanConnectionProfile || data.IsWwanConnectionProfile)
+                {
+                    if (await OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
+                    {
+                        OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, AssignmentName);
+                    }
+                    else
+                    {
+                        MessageDialog dlg = new MessageDialog("関連付けられたノートが存在しません。先にノートを追加してください。");
+                        dlg.Commands.Add(new UICommand("はい"));
+                        dlg.DefaultCommandIndex = 0;
+                        try
+                        {
+                            var cmd = await dlg.ShowAsync();
+                            if (cmd == dlg.Commands[0])
+                            {
+                                return;
+                            }
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            return;
+                        }
+
+                    }
+                }
+            
+
+
+        }
+
+
 
          
 
@@ -149,6 +192,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         }
 
         public ICommand CompleteCommand { get; set; }
+        public ICommand OneNoteCommand { get; set; }
 
         public EditAssignmentPopupViewModel EditAssignmentPopupData
         {

@@ -11,7 +11,8 @@
     mc:Ignorable="d"
     IconSource=""
     Title="Privacy"
-    d:DesignWidth="346" HeaderBackground="{StaticResource OneNotePurple}">
+    d:DesignWidth="346" HeaderBackground="{StaticResource OneNotePurple}"
+    Background="{StaticResource EditBoxGray}">
 
 	<!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
 	<StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >

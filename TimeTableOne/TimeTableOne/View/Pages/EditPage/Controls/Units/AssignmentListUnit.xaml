@@ -63,7 +63,7 @@
                     <SymbolIcon Symbol="Edit" Foreground="Black"></SymbolIcon>
                 </Border>
             </Button>
-            <Button BorderThickness="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding BackToTablePageCommand}">
+            <Button BorderThickness="0" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding OneNoteCommand}">
                 <Border BorderThickness="2" BorderBrush="Black" CornerRadius="100" Padding="5" >
                     <SymbolIcon Symbol="Library" Foreground="Black"></SymbolIcon>
                 </Border>
