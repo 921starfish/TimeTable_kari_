@@ -43,7 +43,7 @@
                 </Grid>
                 <Grid Background="{StaticResource TextBoxGray}" Grid.Column="1">
                 <TextBlock  x:Name="Text1" Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
-                <SymbolIcon Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
+                <SymbolIcon x:Name="Icon1" Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
                     <Button x:Name="Button1" BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="OpenButton_Click_1" Loaded="Button_Loaded"></Button>
                 </Grid>
             </Grid>
