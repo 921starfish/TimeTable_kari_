@@ -126,9 +126,7 @@
         </Border>
         <StackPanel Margin="32,0,0,0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-            <autoCompleteBox:AutoCompleteBox  SearchFunction="{Binding AutoCompleteFunction}"
-                                                     ItemsSource="{Binding LectureNamePredictions}"
-                                                     Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="lectureNameBox"
+            <TextBox Text="{Binding LectureNameForEdit,Mode=TwoWay}" x:Name="lectureNameBox"
                                                      Visibility="Collapsed" Opacity="0" Width="300" Height="50"
                                                      GotFocus="LectureTextBox_GotFocus"
                                                      LostFocus="LectureTextBox_LostFocus" KeyDown="LectureNameBox_OnKeyDown"/>
@@ -146,7 +144,7 @@
             <StackPanel  Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                 <TextBlock x:Name="textBlock2" Opacity="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding ForeColor}" Text="{Binding Place}" FontSize="30" PointerEntered="PlaceTextBox_MouseEnter" PointerExited="PlaceTextBox_MouseExit" PointerPressed="PlaceTextBox_MousePressed"></TextBlock>
            
-                <autoCompleteBox:AutoCompleteBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="placeBox" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ItemsSource="{Binding PlacePredictions}" SearchFunction="{Binding AutoCompleteFunction}"></autoCompleteBox:AutoCompleteBox>
+                <TextBox GotFocus="PlaceTextBox_GotFocus" LostFocus="PlaceTextBox_LostFocus" x:Name="placeBox" VerticalAlignment="Center" Width="200" Opacity="1" Visibility="Collapsed" Text="{Binding PlaceForEdit,Mode=TwoWay}" ></TextBox>
 
                 <SymbolIcon x:Name="symbolIcon1" Symbol="Edit" Opacity="0" Foreground="{Binding ForeColor}"></SymbolIcon>
             </StackPanel>
