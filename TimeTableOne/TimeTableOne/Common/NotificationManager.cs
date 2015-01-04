@@ -63,14 +63,14 @@ namespace TimeTableOne.Common
             ScheduleData nextSc;
             if ((nextSc = ScheduleManager.Instance.NextScheduleInToday) != null)
             {
-                template.AppendTextElement(4, "本日の次の授業");
+                template.AppendTextElement(4, "このあとの授業");
                 template.AppendTextElement(5, ScheduleManager.Instance.NextTimeSpanIndexInToday+"時間目 "+nextSc.TableName);
                 template.AppendTextElement(6,
                     nextSc.Place + "  " + ScheduleManager.Instance.NextTimeSpanInToday.ToString());
             }
             else
             {
-                template.AppendTextElement(4, "本日次の授業はありません。");
+                template.AppendTextElement(4, "このあと授業はありません。");
             }
             TileNotification notif=new TileNotification(template);
             notif.ExpirationTime = DateTimeOffset.UtcNow.AddMinutes(60);
@@ -95,7 +95,7 @@ namespace TimeTableOne.Common
             {
                 if (ScheduleManager.Instance.NextScheduleInToday==null)
                 {
-                    thirdContent = "本日次の授業はありません。";
+                    thirdContent = "このあと授業はありません。";
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace TimeTableOne.Common
                     }
                     if (nextClassIndex==-1)
                     {
-                        thirdContent = "本日次の授業はありません。";
+                        thirdContent = "このあと授業はありません。";
                     }
                     else
                     {
