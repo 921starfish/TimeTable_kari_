@@ -10,7 +10,9 @@
     mc:Ignorable="d"
     IconSource=""
     Title="Account"
-    d:DesignWidth="346" HeaderBackground="{StaticResource OneNotePurple}">
+    d:DesignWidth="346" HeaderBackground="{StaticResource OneNotePurple}"
+    Background="{StaticResource EditBoxGray}"
+    >
 
 	<!-- Content Section 1-->
 	<StackPanel x:Name="accountName">
