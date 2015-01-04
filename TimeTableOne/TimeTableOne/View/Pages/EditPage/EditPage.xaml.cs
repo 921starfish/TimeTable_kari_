@@ -129,8 +129,7 @@ namespace TimeTableOne.View.Pages.EditPage
 
         public async void reloadOneNote()
         {
-            var data = NetworkInformation.GetInternetConnectionProfile();
-            if (data!=null)//オンラインかどうか。
+            if (getNetworkStatus())//オンラインかどうか。
             {
             }
             else
@@ -152,6 +151,13 @@ namespace TimeTableOne.View.Pages.EditPage
                 NoControl.Visibility = Visibility.Collapsed;
 
             }
+        }
+
+        private bool getNetworkStatus()
+        {
+            var data = NetworkInformation.GetInternetConnectionProfile();
+            if (data == null) return false;
+            return data.IsWlanConnectionProfile || data.IsWwanConnectionProfile;
         }
 
     } 
