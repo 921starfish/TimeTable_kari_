@@ -51,10 +51,10 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
             DataContext =new EditPageOneNoteControlViewModel();
         }
 
-        private void Button_Loaded(object sender, RoutedEventArgs e)
+        private async void Button_Loaded(object sender, RoutedEventArgs e)
         {
 
-            if (false)//セクションがあるかどうか
+			if (await OneNoteControl.OneNoteControler.Current.ExistsSection(TableUnitDataHelper.GetCurrentSchedule().TableName, TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName))//セクションがあるかどうか
             {
                 Button1.IsEnabled = true;
                 Text1.Foreground = new SolidColorBrush(Colors.Black);
