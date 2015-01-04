@@ -307,8 +307,6 @@
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="ApplicationInsights.config" />
     <None Include="packages.config" />
-    <None Include="TimeTableOne_StoreKey.pfx" />
-    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
