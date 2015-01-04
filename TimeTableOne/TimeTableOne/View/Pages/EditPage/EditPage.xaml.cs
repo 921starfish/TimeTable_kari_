@@ -157,7 +157,7 @@ namespace TimeTableOne.View.Pages.EditPage
         {
             var data = NetworkInformation.GetInternetConnectionProfile();
             if (data == null) return false;
-            return data.IsWlanConnectionProfile || data.IsWwanConnectionProfile;
+            return data.IsWlanConnectionProfile || data.IsWwanConnectionProfile || (data.ProfileName=="イーサネット");
         }
 
     } 
