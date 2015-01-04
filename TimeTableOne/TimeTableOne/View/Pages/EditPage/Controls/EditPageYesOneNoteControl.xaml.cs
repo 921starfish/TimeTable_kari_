@@ -53,7 +53,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private async void Button_Loaded(object sender, RoutedEventArgs e)
         {
 
-			if (TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName != "")//セクションがあるかどうか
+            if (!string.IsNullOrEmpty(TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName))//セクションがあるかどうか
             {
 				if (
 					await
