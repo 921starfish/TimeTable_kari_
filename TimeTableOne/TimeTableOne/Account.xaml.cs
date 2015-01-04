@@ -66,7 +66,7 @@ namespace TimeTableOne {
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
-				resultTest = exception.ToString();
+				
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace TimeTableOne {
 				this.UpdateState();
 			}
 			catch (LiveConnectException exception) {
-				resultTest = exception.ToString();
+				
 			}
 		}
 
@@ -98,17 +98,7 @@ namespace TimeTableOne {
 				}
 			}
 			catch (LiveConnectException exception) {
-				resultTest = exception.ToString();
-			}
-		}
-
-
-		public string resultTest {
-			get {
-				return this.TestResult.Text;
-			}
-			set {
-				this.TestResult.Text = value;
+				
 			}
 		}
 
