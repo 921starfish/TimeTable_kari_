@@ -364,6 +364,8 @@ namespace TimeTableOne.Data
 
         public string OneNoteId = "";
 
+	    public string RecentlySectionName = "";
+
         public DateTime CreationDate;
         public Color ColorData;
 

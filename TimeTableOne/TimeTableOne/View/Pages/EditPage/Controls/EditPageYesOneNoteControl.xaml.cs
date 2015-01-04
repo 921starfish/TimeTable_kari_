@@ -36,12 +36,13 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 
 		private void NewButton_Click(object sender, RoutedEventArgs e) {
             string sectionName = DateTime.Now.ToString("yyyy年MMM月d日");
+			TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName = sectionName;
             OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
             Button_Loaded(null,null);
 		}
 
 		private void OpenButton_Click_1(object sender, RoutedEventArgs e) {
-            string sectionName = DateTime.Now.ToString("yyyy年MMM月d日");
+			string sectionName = TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName;
             OneNoteControl.OneNoteControler.Current.OpenRecentlySection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
 		}
 
