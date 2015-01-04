@@ -432,7 +432,8 @@ namespace OneNoteControl {
 		}
 
 		public async Task<bool> ExistsSection(string tableName,string sectionName) {
-			await AttemptRefreshToken();
+            // await AttemptRefreshToken();
+            // TODO ↑直前にIsExistNotebookがなくても呼べるように。
 			notebookResponse = await GetNotebooks();
 			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
 				foreach (var value in notebookResponse.ResponseData.value) {
