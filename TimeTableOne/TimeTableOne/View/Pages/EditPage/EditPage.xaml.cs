@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -9,6 +10,8 @@ using TimeTableOne.Utils;
 using TimeTableOne.View.Pages.EditPage.Controls;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +32,8 @@ namespace TimeTableOne.View.Pages.EditPage
     public sealed partial class EditPage : Page
     {
         private NavigationHelper navigationHelper;
+
+        private CoreDispatcher dispatcher;
         public EditPage()
         {
             this.InitializeComponent();
@@ -38,6 +43,23 @@ namespace TimeTableOne.View.Pages.EditPage
             YesControl.Visibility = Visibility.Collapsed;
             NoControl.Visibility = Visibility.Collapsed;
             Grid1.Visibility = Visibility.Collapsed;
+            dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+            NetworkInformation.NetworkStatusChanged += NetworkInformation_NetworkStatusChanged;
+        }
+
+        void NetworkInformation_NetworkStatusChanged(object sender)
+        {
+
+            dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                Debug.WriteLine("dispatcher called.");
+                EditPageUpdateEvents.ReloadOneNote();
+            });
+        }
+
+        void NetworkChange_NetworkAddressChanged(object sender, EventArgs e)
+        {
+
         }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
@@ -107,12 +129,14 @@ namespace TimeTableOne.View.Pages.EditPage
 
         public async void reloadOneNote()
         {
-
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())//オンラインかどうか。
+            var data = NetworkInformation.GetInternetConnectionProfile();
+            if (data!=null)//オンラインかどうか。
             {
             }
             else
             {
+                YesControl.Visibility = Visibility.Collapsed;
+                NoControl.Visibility = Visibility.Collapsed;
                 Grid1.Visibility = Visibility.Visible;
                 return;
             }
