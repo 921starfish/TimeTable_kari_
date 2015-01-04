@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
-  <Publisher>CN=6239D212-275E-4CC6-BD00-16F33F83CF05</Publisher>
-  <PublisherDisplayName>ArLEquiN</PublisherDisplayName>
+  <Publisher>CN=814D2D53-80BA-4A8B-88EE-381E8A228804</Publisher>
+  <PublisherDisplayName>921starfish</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
@@ -348,11 +348,11 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>5760ArLEquiN.TimeTableOne</MainPackageIdentityName>
+    <MainPackageIdentityName>26600921starfish.TimeTableOne</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>TimeTableOne</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/f42c4b1d-1e1a-4303-8dad-4eb2710935a6" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/ff30f6b7-0886-4c42-b062-1b2da1950a3c" />
 </StoreAssociation>
