@@ -37,7 +37,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid>
                    
-                    <TextBlock Text="新しいセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                    <TextBlock Text="今日のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
                     <SymbolIcon Margin="10,0,0,0" HorizontalAlignment="Left" Foreground="Black" Symbol="Add"/>
                     <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}" Click="NewButton_Click"></Button>
                 </Grid>
