@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TimeTableOne.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +23,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 {
     public sealed partial class EditPageYesOneNoteControl : UserControl
     {
+       
         public EditPageYesOneNoteControl()
         {
             this.InitializeComponent();
@@ -35,6 +37,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
 		private void NewButton_Click(object sender, RoutedEventArgs e) {
             string sectionName = DateTime.Now.ToString("yyyy年MMM月d日");
             OneNoteControl.OneNoteControler.Current.OpenNewSection(TableUnitDataHelper.GetCurrentSchedule().TableName, sectionName);
+            Button_Loaded(null,null);
 		}
 
 		private void OpenButton_Click_1(object sender, RoutedEventArgs e) {
@@ -46,5 +49,24 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         {
             DataContext =new EditPageOneNoteControlViewModel();
         }
+
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            if (false)//セクションがあるかどうか
+            {
+                Button1.IsEnabled = true;
+                Text1.Foreground = new SolidColorBrush(Colors.Black);
+                Icon1.Visibility = Visibility.Visible;
+               
+            }
+            else
+            {
+                Button1.IsEnabled = false;
+                Text1.Foreground = new SolidColorBrush(Colors.Gray);
+                Icon1.Visibility = Visibility.Collapsed;
+            }
+        }
+
     }
 }

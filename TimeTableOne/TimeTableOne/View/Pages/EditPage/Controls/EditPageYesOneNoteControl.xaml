@@ -42,9 +42,9 @@
                     <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{x:Null}" Click="NewButton_Click"></Button>
                 </Grid>
                 <Grid Background="{StaticResource TextBoxGray}" Grid.Column="1">
-                <TextBlock  Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
+                <TextBlock  x:Name="Text1" Text="最後のセクションを開く。" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,8,0,0" Foreground="Black"></TextBlock>
                 <SymbolIcon Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Foreground="Black" Symbol="Edit"/>
-                    <Button BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="OpenButton_Click_1"></Button>
+                    <Button x:Name="Button1" BorderBrush="{x:Null}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="OpenButton_Click_1" Loaded="Button_Loaded"></Button>
                 </Grid>
             </Grid>
             
