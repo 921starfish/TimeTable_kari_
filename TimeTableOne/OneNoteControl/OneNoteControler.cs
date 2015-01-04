@@ -431,6 +431,29 @@ namespace OneNoteControl {
 			return false;
 		}
 
+		public async Task<bool> ExistsSection(string tableName,string sectionName) {
+			await AttemptRefreshToken();
+			notebookResponse = await GetNotebooks();
+			if (notebookResponse.StatusCode == HttpStatusCode.OK) {
+				foreach (var value in notebookResponse.ResponseData.value) {
+					if (value.name == tableName) {
+						sectionResponse = await GetSections(value.sectionsUrl);
+						if (sectionResponse.StatusCode == HttpStatusCode.OK) {
+							foreach (var svalue in sectionResponse.ResponseData.value) {
+								if (svalue.name == sectionName) {
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
+				return false;
+			}
+			return false;
+		}
+
 
 		public async void Open(string tableName) {
 			pageSectionName = tableName;
