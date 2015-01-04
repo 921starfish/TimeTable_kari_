@@ -54,13 +54,18 @@ namespace TimeTableOne.View.Pages.EditPage.Controls
         private async void Button_Loaded(object sender, RoutedEventArgs e)
         {
 
-			if (TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName != "" && await OneNoteControl.OneNoteControler.Current.ExistsSection(TableUnitDataHelper.GetCurrentSchedule().TableName, TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName))//セクションがあるかどうか
+			if (TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName != "")//セクションがあるかどうか
             {
-                Button1.IsEnabled = true;
-                Text1.Foreground = new SolidColorBrush(Colors.Black);
-                Icon1.Visibility = Visibility.Visible;
-               
-            }
+				if (
+					await
+						OneNoteControl.OneNoteControler.Current.ExistsSection(
+							TableUnitDataHelper.GetCurrentSchedule().TableName,
+							TableUnitDataHelper.GetCurrentSchedule().RecentlySectionName)) {
+					Button1.IsEnabled = true;
+					Text1.Foreground = new SolidColorBrush(Colors.Black);
+					Icon1.Visibility = Visibility.Visible;
+				}
+			}
             else
             {
                 Button1.IsEnabled = false;
