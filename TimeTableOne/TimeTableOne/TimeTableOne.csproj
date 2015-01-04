@@ -14,13 +14,15 @@
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>TimeTableOne_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>TimeTableOne_StoreKey.pfx</PackageCertificateKeyFile>
     <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
-    <PackageCertificateThumbprint>20235425E405AFFBC6D5EF5C0B271255E7D4E344</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A29324390EE2DFC0823DAA22477CF1DC18D09F82</PackageCertificateThumbprint>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>cc7ae60c</NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/0b17e6df-6ad0-4695-a8fd-db761cb7216b/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/TimeTableOne</ApplicationInsightsResourceId>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -305,6 +307,8 @@
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="ApplicationInsights.config" />
     <None Include="packages.config" />
+    <None Include="TimeTableOne_StoreKey.pfx" />
+    <None Include="TimeTableOne_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-100.png" />
