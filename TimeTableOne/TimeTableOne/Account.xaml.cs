@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.Networking.Connectivity;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Live;
 using TimeTableOne.View.Pages.TablePage.Controls;
@@ -84,7 +85,7 @@ namespace TimeTableOne {
 			try {
                 this.SignInName = OneNoteControl.OneNoteControler.Current.SignInName;
                 this.IsSignedIn = OneNoteControl.OneNoteControler.Current.IsSignedIn;
-				if (this.IsSignedIn) {
+				if (getNetworkStatus() && this.IsSignedIn) {
                     signOutBtn.Visibility = (OneNoteControl.OneNoteControler.Current.AuthClient.CanLogout
 						? Visibility.Visible
 						: Visibility.Collapsed);
@@ -111,6 +112,13 @@ namespace TimeTableOne {
 		private void Test2_Click(object sender, RoutedEventArgs e) {
 
 		}
+
+        private bool getNetworkStatus()
+        {
+            var data = NetworkInformation.GetInternetConnectionProfile();
+            if (data == null) return false;
+            return data.IsWlanConnectionProfile || data.IsWwanConnectionProfile || (data.ProfileName == "イーサネット");
+        }
 	}
 
 

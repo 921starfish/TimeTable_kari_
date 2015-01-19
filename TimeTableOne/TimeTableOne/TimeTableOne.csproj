@@ -23,6 +23,7 @@
     <ApplicationInsightsResourceId>/subscriptions/0b17e6df-6ad0-4695-a8fd-db761cb7216b/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/TimeTableOne</ApplicationInsightsResourceId>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

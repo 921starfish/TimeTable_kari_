@@ -1,5 +1,2 @@
-MainPackage=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\bin\Release\TimeTableOne_1.1.0.0_Bundle\TimeTableOne_1.1.0.0_AnyCPU.appx
-SymbolPackage=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\AppPackages\TimeTableOne_1.1.0.0_Test\TimeTableOne_1.1.0.0_AnyCPU.appxsym
-ResourcePack=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\bin\Release\TimeTableOne_1.1.0.0_Bundle\TimeTableOne_1.1.0.0_language-ja.appx
-ResourcePack=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\bin\Release\TimeTableOne_1.1.0.0_Bundle\TimeTableOne_1.1.0.0_scale-140.appx
-ResourcePack=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\bin\Release\TimeTableOne_1.1.0.0_Bundle\TimeTableOne_1.1.0.0_scale-180.appx
+MainPackage=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\bin\Release\TimeTableOne_1.1.0.1_Bundle\TimeTableOne_1.1.0.1_AnyCPU.appx
+SymbolPackage=C:\TimeTable_kari_\TimeTableOne\TimeTableOne\AppPackages\TimeTableOne_1.1.0.1_Test\TimeTableOne_1.1.0.1_AnyCPU.appxsym
