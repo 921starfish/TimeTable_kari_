@@ -135,8 +135,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     minute = str[2].ToString() + str[3].ToString();
                 }
             }
-            try { return new DateTime(2015, 1, 1, int.Parse(hour), int.Parse(minute), 0); }
-            catch (Exception e) { return new DateTime(2015, 1, 1, 0, 0, 0); }
+            return new DateTime(2015, 1, 1, int.Parse(hour), int.Parse(minute), 0);
         }
 
         public async Task<bool> CommitChange()
