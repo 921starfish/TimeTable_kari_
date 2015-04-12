@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using TimeTableOne.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -25,11 +26,32 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
             get { return DataContext as TimeDisplayUnitViewModel; }
         }
-            private bool isFocused = false;
+        private bool isFocused = false;
+       
         public TimeDisplayUnit()
         {
             this.InitializeComponent();
             VisualStateManager.GoToState(this, "NotMouseOver", false);
+            TablePageUpdateEvents.EditTimeDisplay += TimeDisplayUnitOnPointerPressed;
+            TablePageUpdateEvents.CommitTimeDisplay += CommitTimeDisplay;
+            TablePageUpdateEvents.RequestTimeCommit += PushTimeSpan;
+        }
+
+        public void PushTimeSpan()
+        {
+            PushTimeSpanTask();
+        }
+
+        public async Task PushTimeSpanTask()
+        {
+            var x =await GetTimeSpanTask();
+            TablePageUpdateEvents.ScheduleTimeSpansList.Add(GetTimeSpanTask().Result); 
+                  
+        }
+
+        private async Task<ScheduleTimeSpan> GetTimeSpanTask()
+        {
+            return await ViewModel.GetTargetModelSpan();
         }
 
         protected override void OnPointerEntered(PointerRoutedEventArgs e)
@@ -42,33 +64,29 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         protected override void OnPointerExited(PointerRoutedEventArgs e)
         {
             base.OnPointerExited(e);
-            if(isFocused)return;
+            if (isFocused) return;
             VisualStateManager.GoToState(this, "NotMouseOver", true);
         }
 
-        protected async override void OnPointerPressed(PointerRoutedEventArgs e)
+        public void CommitTimeDisplay()
         {
-            base.OnPointerPressed(e);
-            if (isFocused)
-            {
-                await EndFocus();
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, "Editing", true);
-                textBox.Focus(FocusState.Keyboard);
-                isFocused = !isFocused;
-            }
+            CommitTimeDisplayTask();
         }
 
-        private async Task EndFocus()
+        public async Task CommitTimeDisplayTask()
         {
-            if (await ViewModel.CommitChange())
-            {
-                isFocused = !isFocused;
-                VisualStateManager.GoToState(this, "MouseOverToEdit", true);
-            }
+            isFocused = !isFocused;
+            await ViewModel.CommitChange();
+            VisualStateManager.GoToState(this, "NotMouseOver", false);
         }
+
+        public void TimeDisplayUnitOnPointerPressed()
+        {
+            VisualStateManager.GoToState(this, "Editing", true);
+            textBox.Focus(FocusState.Keyboard);
+            isFocused = !isFocused;
+        }
+
 
         private void TextBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
@@ -81,13 +99,16 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         private void TextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Enter)
-            {
-                if (isFocused)
-                {
-                    EndFocus();
-                }
-            }
         }
+
+        //{
+        //    if (e.Key == VirtualKey.Enter)
+        //    {
+        //        if (isFocused)
+        //        {
+        //            EndFocus();
+        //        }
+        //    }
+        //}
     }
 }

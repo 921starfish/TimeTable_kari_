@@ -26,7 +26,6 @@ namespace TimeTableOne.View.Pages.TablePage
                 case TableType.WithoutSunday:
                     return (int)(((Frame)(Window.Current.Content)).ActualWidth / 6 - ((Frame)(Window.Current.Content)).ActualWidth / 30);
                     break;
-
                 default:
                     throw new ArgumentOutOfRangeException("type");
             }
@@ -49,7 +48,5 @@ namespace TimeTableOne.View.Pages.TablePage
                     throw new ArgumentOutOfRangeException("type");
             }
         }
-
-
     }
 }

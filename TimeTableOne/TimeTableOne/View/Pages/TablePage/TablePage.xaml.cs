@@ -106,8 +106,8 @@ namespace TimeTableOne.View.Pages.TablePage
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = new TablePageViewModel();
-            RemoveButton.Command=RemoveCommand=new DeleteRowCommand(RemoveRow);
-            BasicTableCommands.AddRowCommand=AppendCommand=new AlwaysExecutableDelegateCommand(AppendRow);
+            RemoveButton.Command = RemoveCommand = new DeleteRowCommand(RemoveRow);
+            BasicTableCommands.AddRowCommand = AppendCommand = new AlwaysExecutableDelegateCommand(AppendRow);
         }
 
         public DeleteRowCommand RemoveCommand { get; set; }
@@ -127,15 +127,15 @@ namespace TimeTableOne.View.Pages.TablePage
         private void ToggleColumn(object sender, RoutedEventArgs e)
         {
             var config = ApplicationData.Instance.Configuration;
-            config.TableTypeSetting = this.MoveNext(config.TableTypeSetting); 
+            config.TableTypeSetting = this.MoveNext(config.TableTypeSetting);
             ApplicationData.SaveData();
-            ViewModel.TimeTableDataContext=new TimeTableGridViewModel();
+            ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
             this.DataContext = new TablePageViewModel();
         }
 
         private TableType MoveNext(TableType t)
         {
-            return  (TableType)((((int)t) + 1) % Enum.GetValues(typeof(TableType)).Length);
+            return (TableType)((((int)t) + 1) % Enum.GetValues(typeof(TableType)).Length);
         }
 
         private void AppendRow(object sender, RoutedEventArgs e)
@@ -159,7 +159,8 @@ namespace TimeTableOne.View.Pages.TablePage
             dlg.Commands.Add(new UICommand("いいえ"));
             dlg.DefaultCommandIndex = 1;
             IUICommand cmd = await dlg.ShowAsync();
-            if(cmd == dlg.Commands[0]){
+            if (cmd == dlg.Commands[0])
+            {
                 var config = ApplicationData.Instance.Configuration;
                 config.TableCount--;
                 ApplicationData.Instance.CheckAndRemoveRow();
@@ -167,7 +168,7 @@ namespace TimeTableOne.View.Pages.TablePage
                 ViewModel.TimeTableDataContext = new TimeTableGridViewModel();
                 RemoveCommand.NotifyCanExecuteChanged();
             }
-            else if (cmd ==dlg.Commands[1])
+            else if (cmd == dlg.Commands[1])
             {
                 return;
             }
@@ -175,7 +176,7 @@ namespace TimeTableOne.View.Pages.TablePage
 
         private void PageTitle_OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if(_isTableTitleEditing)return;
+            if (_isTableTitleEditing) return;
             VisualStateManager.GoToState(this, "MouseOn", true);
         }
 
@@ -199,7 +200,7 @@ namespace TimeTableOne.View.Pages.TablePage
 
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-           PageUtil.MovePage(MainStaticPages.DayPage);
+            PageUtil.MovePage(MainStaticPages.DayPage);
         }
 
         private void ToggleHeaderLanguage(object sender, RoutedEventArgs e)
@@ -213,6 +214,23 @@ namespace TimeTableOne.View.Pages.TablePage
         private void pageRoot_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.DataContext = new TablePageViewModel();
+        }
+
+
+        private void Button1_OnClick(object sender, RoutedEventArgs e)
+        {
+            TablePageUpdateEvents.OnEditTimeDisplay();
+            button1.Visibility = Visibility.Collapsed;
+            button2.Visibility = Visibility.Visible;
+        }
+
+        private void Button2_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (TablePageUpdateEvents.OnCommitTimeDisplay())
+            {
+                button2.Visibility = Visibility.Collapsed;
+                button1.Visibility = Visibility.Visible;
+            }
         }
     }
 }

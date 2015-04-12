@@ -135,44 +135,58 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                     minute = str[2].ToString() + str[3].ToString();
                 }
             }
-            return new DateTime(2015, 1, 1, int.Parse(hour), int.Parse(minute), 0);
+            try
+            {
+                return new DateTime(2015, 1, 1, int.Parse(hour), int.Parse(minute), 0);
+            }
+            catch (Exception)
+            {
+                return new DateTime();
+                
+            }
+          
         }
 
-        public async Task<bool> CommitChange()
+        public async Task CommitChange()
         {
-            if ((FromTime-ToTime).TotalMilliseconds > 0)
-            {
-                //時間の順番がおかしい時
-                FromTime = TargetModelSpan.FromTime;
-                ToTime = TargetModelSpan.ToTime;
-                MessageDialog dialog=new MessageDialog("開始時間は終了時間より前である必要があります。","エラー");
-                await dialog.ShowAsync();
-                return false;
-            }
-            //次の時間が先になっていないかチェック
-            int index = ApplicationData.Instance.TimeSpans.IndexOf(TargetModelSpan);
-            if (index == -1)
-            {
-                throw new InvalidDataContractException();
-            }
-                if (index != ApplicationData.Instance.TimeSpans.Count - 1)
-                {
-                    var next = ApplicationData.Instance.TimeSpans[index + 1];
-                    if ((next.FromTime - TargetModelSpan.ToTime).TotalMilliseconds < 0)
-                    {
-                        FromTime = TargetModelSpan.FromTime;
-                        ToTime = TargetModelSpan.ToTime;
-                        MessageDialog dialog = new MessageDialog("終了時間は次の時間の開始時間よりも前である必要があります。", "エラー");
-                        await dialog.ShowAsync();
-                        return false;
-                    }
-                }
+            //if ((FromTime-ToTime).TotalMilliseconds > 0)
+            //{
+            //    //時間の順番がおかしい時
+            //    FromTime = TargetModelSpan.FromTime;
+            //    ToTime = TargetModelSpan.ToTime;
+            //    MessageDialog dialog=new MessageDialog("開始時間は終了時間より前である必要があります。","エラー");
+            //    await dialog.ShowAsync();
+            //    return false;
+            //}
+            ////次の時間が先になっていないかチェック
+            //int index = ApplicationData.Instance.TimeSpans.IndexOf(TargetModelSpan);
+            //if (index == -1)
+            //{
+            //    throw new InvalidDataContractException();
+            //}
+            //    if (index != ApplicationData.Instance.TimeSpans.Count - 1)
+            //    {
+            //        var next = ApplicationData.Instance.TimeSpans[index + 1];
+            //        if ((next.FromTime - TargetModelSpan.ToTime).TotalMilliseconds < 0)
+            //        {
+            //            FromTime = TargetModelSpan.FromTime;
+            //            ToTime = TargetModelSpan.ToTime;
+            //            MessageDialog dialog = new MessageDialog("終了時間は次の時間の開始時間よりも前である必要があります。", "エラー");
+            //            await dialog.ShowAsync();
+            //            return false;
+            //        }
+            //    }
+           
                 TargetModelSpan.FromTime = FromTime;
                 TargetModelSpan.ToTime = ToTime;
-                ApplicationData.SaveData();
-                return true;
-            
+                ApplicationData.SaveData();         
         }
+
+        public async Task<ScheduleTimeSpan> GetTargetModelSpan()
+        {
+            return ScheduleTimeSpan.GenerateFromHourMinute(FromTime.Hour,FromTime.Minute,ToTime.Hour,ToTime.Minute);
+        }
+
 
         public ScheduleTimeSpan TargetModelSpan { get; set; }
 

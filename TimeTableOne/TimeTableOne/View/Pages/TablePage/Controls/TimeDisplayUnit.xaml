@@ -44,6 +44,7 @@
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualTransition>
+                   
                     <VisualTransition From="MouseOverToEdit" GeneratedDuration="0:0:0.3" To="Editing">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
@@ -63,6 +64,7 @@
                         </Storyboard>
                     </VisualTransition>
                 </VisualStateGroup.Transitions>
+                
                 <VisualState x:Name="NotMouseOver">
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True"/>
@@ -70,13 +72,13 @@
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon1" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
-                <VisualState x:Name="MouseOverToEdit">
+                <!--<VisualState x:Name="MouseOverToEdit">
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="symbolIcon1" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="capt1" d:IsOptimized="True"/>
                     </Storyboard>
-                </VisualState>
+                </VisualState>-->
                 <VisualState x:Name="Editing">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
@@ -97,7 +99,7 @@
                         </ObjectAnimationUsingKeyFrames> 
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock">
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontFamily)" Storyboard.TargetName="textBlock">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
                                     <FontFamily>Global User Interface</FontFamily>
@@ -112,7 +114,7 @@
                         			<FontFamily>Global User Interface</FontFamily>
                         		</DiscreteObjectKeyFrame.Value>
                         	</DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
+                        </ObjectAnimationUsingKeyFrames>-->
                         <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="capt1" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
@@ -121,12 +123,12 @@
 
         <Polygon Points="90,0 200,0 200,35 90.11,35" Fill="{StaticResource EditBoxGray}"/>
         <Polygon Points="90,90 200,90 200,50 90.11,50 " Fill="{StaticResource EditBoxGray}"/>
-        <!--<Polygon Points="0,0 70,0 100,45 70,90 0,90" Fill="{StaticResource TextBoxGray}" />-->
-        <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0"/>
-        <SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+        <Polygon Points="0,0 70,0 100,45 70,90 0,90" Fill="{StaticResource TextBoxGray}" />
+        <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0" Visibility="Collapsed"/>
+        <SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0" Visibility="Collapsed"/>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBlock  x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" Margin="10" VerticalAlignment="Center"/>
-        <TextBlock x:Name="capt1"  Text="時限" VerticalAlignment="Center"  Foreground="#FF4D4D4D" HorizontalAlignment="Center" Margin="0,-65,70,0" ></TextBlock>
+        <TextBlock x:Name="capt1"  Text="時限" VerticalAlignment="Center"  Foreground="#FF4D4D4D" HorizontalAlignment="Center" Margin="0,-65,70,0" Visibility="Collapsed" ></TextBlock>
         </StackPanel>
             <Grid Margin="91.11,0,0,0">
             <Grid.RowDefinitions>

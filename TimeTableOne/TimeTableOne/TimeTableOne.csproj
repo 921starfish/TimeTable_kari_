@@ -111,7 +111,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Account.xaml.cs">
+    <Compile Include="View\Pages\TablePage\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
@@ -258,6 +258,7 @@
     <Compile Include="View\Pages\TablePage\Controls\TimeTableGridViewModel.cs" />
     <Compile Include="View\Pages\TablePage\DeleteRowCommand.cs" />
     <Compile Include="View\Pages\TablePage\TableLayoutManager.cs" />
+    <Compile Include="View\Pages\TablePage\TablePageUpdateEvents.cs" />
     <Compile Include="View\Pages\TablePage\TablePageViewModel.cs" />
     <Compile Include="View\Pages\TablePage\Controls\TimeTable.xaml.cs">
       <DependentUpon>TimeTable.xaml</DependentUpon>
@@ -320,7 +321,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Account.xaml">
+    <Page Include="View\Pages\TablePage\Account.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
