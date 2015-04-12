@@ -92,9 +92,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
                     }
                 }
-            
-
-
         }
 
 

@@ -8,7 +8,7 @@
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core" x:Name="userControl"
     x:Class="TimeTableOne.View.Pages.TablePage.Controls.TimeDisplayUnit"
     mc:Ignorable="d"
-    d:DesignHeight="90"
+    d:DesignHeight="80"
     d:DesignWidth="200">
     <UserControl.Resources>
         <local:TimeDisplayUnitTimeConverter x:Key="DateConverter"/>
@@ -120,25 +120,26 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
-        <Polygon Points="90,0 200,0 200,35 90.11,35" Fill="{StaticResource EditBoxGray}"/>
-        <Polygon Points="90,90 200,90 200,50 90.11,50 " Fill="{StaticResource EditBoxGray}"/>
-        <Polygon Points="0,0 70,0 100,45 70,90 0,90" Fill="{StaticResource TextBoxGray}" />
+        <!--<Polygon Points="0,0 85,0 85,80 0,80" Fill="{StaticResource TextBoxGray}" />-->
+        <Ellipse Width="90" VerticalAlignment="Stretch"  Fill="{StaticResource TextBoxGray}" HorizontalAlignment="Left"></Ellipse>
+        <!--<Polygon Points="90,0 200,0 200,35.5 90.11,35.5" Fill="{StaticResource TextBoxGray}"/>
+        <Polygon Points="90,80 200,80 200,42.5 90.11,42.5 " Fill="{StaticResource TextBoxGray}"/>-->
+     
         <SymbolIcon x:Name="symbolIcon" Symbol="Edit" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0" Visibility="Collapsed"/>
         <SymbolIcon x:Name="symbolIcon1" Symbol="Accept" Foreground="#FF4D4D4D" HorizontalAlignment="Left" Margin="15,0,0,0" Visibility="Collapsed"/>
         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBlock  x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" Margin="10" VerticalAlignment="Center"/>
+        <TextBlock  x:Name="textBlock" Text="{Binding TimeIndex}" Foreground="#FF4D4D4D" FontWeight="Light" FontSize="60" Margin="25,0,0,0" VerticalAlignment="Center"/>
         <TextBlock x:Name="capt1"  Text="時限" VerticalAlignment="Center"  Foreground="#FF4D4D4D" HorizontalAlignment="Center" Margin="0,-65,70,0" Visibility="Collapsed" ></TextBlock>
         </StackPanel>
-            <Grid Margin="91.11,0,0,0">
+            <Grid HorizontalAlignment="Right" Margin="100,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="textBlock2"  Grid.Row="0" Text="{Binding FromTime, Converter={StaticResource DateConverter}}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF4D4D4D"/>
-            <TextBlock x:Name="textBlock1"  Grid.Row="1" Text="{Binding ToTime, Converter={StaticResource DateConverter}}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF4D4D4D"/>
-            <TextBox x:Name="textBox" Grid.Row="0" Padding="0" Text="{Binding FromTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Top" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
-            <TextBox x:Name="textBox1" Grid.Row="1" Padding="0" Text="{Binding ToTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="30" VerticalAlignment="Bottom" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
+            <TextBlock x:Name="textBlock2"  Grid.Row="0" Text="{Binding FromTime, Converter={StaticResource DateConverter}}" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF4D4D4D"/>
+            <TextBlock x:Name="textBlock1"  Grid.Row="1" Text="{Binding ToTime, Converter={StaticResource DateConverter}}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#FF4D4D4D"/>
+            <TextBox x:Name="textBox" Grid.Row="0" Padding="0" Text="{Binding FromTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="32.5" VerticalAlignment="Top" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
+            <TextBox x:Name="textBox1" Grid.Row="1" Padding="0" Text="{Binding ToTimeToEdit,Mode=TwoWay}" Opacity="0" Visibility="Collapsed" Height="32.5" VerticalAlignment="Bottom" GotFocus="TextBox_OnGotFocus" KeyDown="TextBox_OnKeyDown"/>
         </Grid>
     </Grid>
 </UserControl>

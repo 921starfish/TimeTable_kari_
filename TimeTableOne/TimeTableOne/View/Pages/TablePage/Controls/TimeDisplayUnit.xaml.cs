@@ -101,6 +101,8 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
         {
         }
 
+       
+
         //{
         //    if (e.Key == VirtualKey.Enter)
         //    {
