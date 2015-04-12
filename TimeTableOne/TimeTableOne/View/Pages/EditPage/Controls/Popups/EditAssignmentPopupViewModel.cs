@@ -13,6 +13,7 @@ using TimeTableOne.Utils.Commands;
 using TimeTableOne.View.Pages.TablePage.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using TimeTableOne.View.Pages.EditPage.Controls.Units;
 
 namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
 {
@@ -39,6 +40,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
         private bool ValidateAssignmentData()
         {
             return DateTimeUtil.IsDate(YearEdit, MonthEdit, DayEdit) && !String.IsNullOrWhiteSpace(_assignmentName);
+        
         }
 
         private void OnAcceptAssignmentData()
@@ -48,6 +50,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             _schedule.AssignmentDetail = AssignmentDetail;
             _schedule.DueTime = DueDate;
             ApplicationData.SaveData();
+            AssignmentControl.NotifyPopupClose();
+            EditPageUpdateEvents.OnUpdateAssignmentListUnit();
         }
 
         protected string _assignmentName;
@@ -71,7 +75,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
             AssignmentDetail = schedule.AssignmentDetail;
             DueDate = schedule.DueTime;
             UpdateFromDueDate();
-     
+          
         }
 
         private void UpdateFromDueDate()
@@ -187,6 +191,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Popups
                 if (Equals(value, _acceptCommand)) return;
                 _acceptCommand = value;
                 OnPropertyChanged();
+              
             }
         }
 

@@ -32,5 +32,12 @@ namespace TimeTableOne.View.Pages.EditPage
             }
 
         }
+
+        public static event Action AssignmentListUnitUpdateEvent;
+
+        public static void OnUpdateAssignmentListUnit()
+        {
+            if (AssignmentListUnitUpdateEvent != null) AssignmentListUnitUpdateEvent();
+        }
     }
 }
