@@ -177,13 +177,25 @@
                 <SymbolIcon Symbol="Setting"></SymbolIcon>
             </Button>-->
         </Grid>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled" CanDragItems="False" CanReorderItems="False" ShowsScrollingPlaceholders="False" Grid.Row="1" x:Name="GridHeaders"  SelectionMode="None" ItemsSource="{Binding GridHeaders}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
+     
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Disabled"  CanReorderItems="False" ShowsScrollingPlaceholders="False" Grid.Row="1" x:Name="GridHeaders" ItemsSource="{Binding GridHeaders}" ItemContainerStyleSelector="{StaticResource ContainerStyleSelector}" ItemTemplateSelector="{StaticResource TemplateSelector}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" MaximumRowsOrColumns="{Binding WidthSplit}"  ItemWidth="{Binding ElementWidth}" ItemHeight="{Binding ElementHeight}"></ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Center" Height="80"  Width="{Binding ElementWidth}" Grid.Row="1" x:Name="button1"  Click="Button1_OnClick" BorderBrush="{x:Null}" >
+           <StackPanel Orientation="Horizontal" >
+               <!--<TextBlock Text="時間の編集" Foreground="Black" FontWeight="Light" ></TextBlock>-->
+                <SymbolIcon  VerticalAlignment="Bottom" HorizontalAlignment="Right"  Foreground="Black" Symbol="Clock" />
+                <TextBlock Text="時間の編集" Foreground="Black" FontWeight="Light" VerticalAlignment="Center" ></TextBlock>
+            </StackPanel>
+          
+        </Button>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Center" Height="80" Width="{Binding ElementWidth}" Grid.Row="1" x:Name="button2"  Click="Button2_OnClick" BorderBrush="{x:Null}" Visibility="Collapsed">
+            <SymbolIcon   VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="Black" Symbol="Accept" />
+        </Button>
         <ScrollViewer Grid.Row="2" Grid.RowSpan="2" >
         <control:TimeTableGrid  x:Name="GridControl"  d:DataContext="{control:TimeTableGridViewModelInDesign}" DataContext="{Binding TimeTableDataContext}" FontFamily="Global User Interface">
             </control:TimeTableGrid>

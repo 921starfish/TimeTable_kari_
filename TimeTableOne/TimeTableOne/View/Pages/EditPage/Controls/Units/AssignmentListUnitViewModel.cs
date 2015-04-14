@@ -22,6 +22,7 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         public AssignmentListUnitViewModel()
         {
+           
             CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
             OneNoteCommand = new AlwaysExecutableDelegateCommand(Onenote);
             EditAssignmentPopupData = new EditAssignmentPopupViewModel();
@@ -30,16 +31,23 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
         public AssignmentListUnitViewModel(AssignmentSchedule schedule)
         {
             _schedule = schedule;
-            AssignmentDetail = schedule.AssignmentDetail;
+            AssignmentDetail = _schedule.AssignmentDetail;
             if (string.IsNullOrWhiteSpace(AssignmentDetail)) AssignmentDetail = "(説明はありません。)";
-            AssignmentName =_assignmentName = schedule.AssignmentName ;
+            AssignmentName = _assignmentName = _schedule.AssignmentName;
             updatAssignmentStatus();
-            CompleteCommand=new AlwaysExecutableDelegateCommand(Completed);
+            CompleteCommand = new AlwaysExecutableDelegateCommand(Completed);
             OneNoteCommand = new AlwaysExecutableDelegateCommand(Onenote);
             EditAssignmentPopupData = new EditAssignmentPopupViewModel();
             EditAssignmentPopupData.AssignmentName = this.AssignmentName;
             EditAssignmentPopupData.AssignmentDetail = this.AssignmentDetail;
 
+        }
+
+        public void UpdateData()
+        {
+         
+           
+          
         }
 
         private async void Completed()
@@ -92,9 +100,6 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
                     }
                 }
-            
-
-
         }
 
 

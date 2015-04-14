@@ -42,18 +42,23 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
 
         private void TextBlock1_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            VisualStateManager.GoToState(this, "EditState", true);
-            isEditState = true;
+           
+            if (isEditState)
+            {
+
+                VisualStateManager.GoToState(this, "BasicState", true);
+                isEditState = false;
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "EditState", true);
+                isEditState = true;
+            }
         }
 
         private void Grid_OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (isEditState)
-            {
-                
-                VisualStateManager.GoToState(this, "BasicState", true);
-                isEditState = false;
-            }
+          
         }
 
 
@@ -68,6 +73,8 @@ namespace TimeTableOne.View.Pages.EditPage.Controls.Units
                 EditPopup.VerticalOffset = frame.ActualHeight/2 - 300 - rect.Y;
             }
         }
+
+       
 
         
     }

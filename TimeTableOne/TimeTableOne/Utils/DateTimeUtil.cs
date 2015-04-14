@@ -41,7 +41,7 @@ namespace TimeTableOne.Utils
 
         public static DateTime NextKeyDay(DateTime time,DayOfWeek weekday)
         {
-           DateTime normalized=new DateTime(time.Year,time.Month,time.Day,0,0,0);
+            DateTime normalized = new DateTime(time.Year, time.Month, time.Day, 0, 0, 0);
             for (int i = 0; i < 7; i++)
             {
                 if (normalized.AddDays(i).DayOfWeek == weekday)

@@ -21,13 +21,13 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
 
         public TimeTableViewModel(TableKey key)
         {
-            data=ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
+            data = ApplicationData.Instance.GetSchedule(key.NumberOfDay, key.TableNumber);
             this.TableKey = key;
-            this.Width =TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting)-10;
+            this.Width = TableLayoutManager.getElementWidth(ApplicationData.Instance.Configuration.TableTypeSetting) - 10;
             this.Hight = 90;
             this.TableNumber = key.TableNumber;
             this.TableName = (data ?? new ScheduleData()).TableName;
-            if (TableName=="")
+            if (TableName == "")
             {
                 TableColor = new SolidColorBrush(Color.FromArgb(225, 240, 237, 243));
             }
@@ -44,13 +44,13 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
             () =>
             {
                 Frame f = Window.Current.Content as Frame;
-                if(f!=null)f.Navigate(typeof(EditPage.EditPage), key);
+                if (f != null) f.Navigate(typeof(EditPage.EditPage), key);
             });
         }
 
         public TimeTableViewModel()
         {
-            
+
         }
 
         private void OnTick(object sender, object e)
@@ -65,7 +65,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 if (Equals(value, _tableColor)) return;
                 _tableColor = value;
                 OnPropertyChanged();
-                ForeColor=value.Color.Liminance()>=0.5?new SolidColorBrush(Colors.Black):
+                ForeColor = value.Color.Liminance() >= 0.5 ? new SolidColorBrush(Colors.Black) :
                 new SolidColorBrush(Colors.White);
             }
         }
@@ -78,7 +78,7 @@ namespace TimeTableOne.View.Pages.TablePage.Controls
                 if (Equals(value, _foreColor)) return;
                 _foreColor = value;
                 OnPropertyChanged();
-        }
+            }
         }
 
         public string TableName { get; set; }

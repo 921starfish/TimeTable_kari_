@@ -14,7 +14,13 @@ namespace TimeTableOne.View.Pages.EditPage
     {
         public AssignmentControlViewModel()
         {
-            var pAssignments=new List<AssignmentListUnitViewModel>();
+            EditPageUpdateEvents.AssignmentListUnitUpdateEvent += UpdateData;
+            UpdateData();
+        }
+
+        public void UpdateData()
+        {
+            var pAssignments = new List<AssignmentListUnitViewModel>();
             var assignments = ApplicationData.Instance.GetAssignments(TableUnitDataHelper.GetCurrentSchedule());
             foreach (var assignmentSchedule in assignments)
             {
@@ -22,8 +28,10 @@ namespace TimeTableOne.View.Pages.EditPage
             }
             var comparator = new AssignmentListUnitViewModelComparator();
             pAssignments.Sort(comparator);
-            Assignments=new ObservableCollection<AssignmentListUnitViewModel>(pAssignments);
+            Assignments = new ObservableCollection<AssignmentListUnitViewModel>(pAssignments);
+            OnPropertyChanged("Assignments");
         }
+
         public ObservableCollection<AssignmentListUnitViewModel> Assignments { get; set; }
 
         private class AssignmentListUnitViewModelComparator : IComparer<AssignmentListUnitViewModel>
