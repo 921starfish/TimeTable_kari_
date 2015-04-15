@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="26600921starfish.TimeTableOne" Publisher="CN=814D2D53-80BA-4A8B-88EE-381E8A228804" Version="1.1.0.1" />
+  <Identity Name="26600921starfish.TimeTableOne" Publisher="CN=814D2D53-80BA-4A8B-88EE-381E8A228804" Version="1.1.1.1" />
   <Properties>
     <DisplayName>TimeTableOne</DisplayName>
     <PublisherDisplayName>921starfish</PublisherDisplayName>
