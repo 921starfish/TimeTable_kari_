@@ -90,7 +90,7 @@ namespace TimeTableOne.View.Pages.EditPage
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             this.DataContext = new EditPageViewModel((TableKey)e.NavigationParameter);
-            EditPageUpdateEvents.ReloadOneNoteAction = reloadOneNote;
+            EditPageUpdateEvents.ReloadOneNoteAction = ReloadOneNote;
             EditPageUpdateEvents.ReloadOneNote();
         }
 
@@ -127,12 +127,9 @@ namespace TimeTableOne.View.Pages.EditPage
            EditPageUpdateEvents.ReloadOneNote();
         }
 
-        public async void reloadOneNote()
+        public async void ReloadOneNote()
         {
-            if (getNetworkStatus())//オンラインかどうか。
-            {
-            }
-            else
+            if (!getNetworkStatus())//オンラインかどうか。
             {
                 YesControl.Visibility = Visibility.Collapsed;
                 NoControl.Visibility = Visibility.Collapsed;
@@ -140,16 +137,28 @@ namespace TimeTableOne.View.Pages.EditPage
                 return;
             }
 
-            if (await OneNoteControl.OneNoteControler.Current.IsExistNotebook(TableUnitDataHelper.GetCurrentSchedule().TableName))
+            try
+            {
+                if (
+                    await
+                        OneNoteControl.OneNoteControler.Current.IsExistNotebook(
+                            TableUnitDataHelper.GetCurrentSchedule().TableName))
+                {
+                    YesControl.Visibility = Visibility.Collapsed;
+                    NoControl.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    YesControl.Visibility = Visibility.Visible;
+                    NoControl.Visibility = Visibility.Collapsed;
+                }
+            }
+            catch
             {
                 YesControl.Visibility = Visibility.Collapsed;
-                NoControl.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                YesControl.Visibility = Visibility.Visible;
                 NoControl.Visibility = Visibility.Collapsed;
-
+                Grid1.Visibility = Visibility.Visible;
+                return;
             }
         }
 
