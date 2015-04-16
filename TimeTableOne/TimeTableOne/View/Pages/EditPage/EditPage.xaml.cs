@@ -169,5 +169,9 @@ namespace TimeTableOne.View.Pages.EditPage
             return data.IsWlanConnectionProfile || data.IsWwanConnectionProfile || (data.ProfileName=="イーサネット");
         }
 
+        private void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+          ReloadOneNote();
+        }
     } 
 }
