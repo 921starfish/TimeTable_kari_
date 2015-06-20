@@ -1,4 +1,4 @@
 TimeTable(仮)
 ===============
 
-MWCC用のWindowsStoreApplication(パソコン／タブレット用)
+MSCC用のWindowsStoreApplication(パソコン／タブレット用)
